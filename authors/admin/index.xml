@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>admin on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/authors/admin/</link>
+    <description>Recent content in admin on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Sun, 04 Apr 2021 10:38:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mybatis generator插件自定义修改-[修改数据类型与java类型映射关系&#43;增加分页&#43;增加多字段模糊查询&#43;增加中文字段特殊字符转化]</title>
+      <link>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Sun, 04 Apr 2021 10:38:53 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</guid>
+      <description>如果你想在mybatis generator 自动生成mapper xml model等的时候，调整生成java的数据库类型（数据类型转换）、生成分页语句、or连接的多列模糊查询、含中文特殊字符处理。末尾有源码的地址和jar.
+准备工作 下载源码：https://github.com/mybatis/generator 其中，mybatis-generator-core目录 是该项目的源码，主要修改这里。 注：本例是对mybatis-generator-core1.4.1的扩展，其他版本修改过程类似。 目录如下： 修改 mybatis-generator 中数据库类型和 Java 类型的映射关系 本例是将原本数据库的TIMESTAMP 映射为 Date 类型， 改为 数据库的TIMESTAMP 映射为 LocalDateTime类型。
+注： 仅为示例，其他类型修改类似。 mybatis generator 本身可直接将TIMESTAMP映射为LocalDateTime。具体使用方法请参考http://mybatis.org/generator/configreference/javaTypeResolver.html
+修改文件位置为src\main\java\org\mybatis\generator\internal\types\JavaTypeResolverDefaultImpl.java // typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ // new FullyQualifiedJavaType(Date.class.getName()))); typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ new FullyQualifiedJavaType(LocalDateTime.class.getName())));  这样就会将数据库的TIMESTAMP映射为java的LocalDateTime。
+增加物理分页 适用于targetRuntime=&amp;ldquo;MyBatis3&amp;rdquo;
+增加代码位置 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithBLOBsElementGenerator.java 和 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithoutBLOBsElementGenerator.java
+ifElement = new XmlElement(&amp;quot;if&amp;quot;); //$NON-NLS-1$ ifElement.addAttribute(new Attribute(&amp;quot;test&amp;quot;, &amp;quot;limitStart &amp;gt;= 0 and limitEnd &amp;gt; 0&amp;quot;)); //$NON-NLS-1$ //$NON-NLS-2$ ifElement.addElement(new TextElement(&amp;quot;limit ${limitStart},${limitEnd}&amp;quot;)); //$NON-NLS-1$ answer.</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序-实体建模</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/</link>
+      <pubDate>Fri, 12 Apr 2019 10:38:53 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/</guid>
+      <description>在本章中，我们将看到如何使用业务实体和模型。
+使用命令行生成实体 &amp;gt; jhipster entity Invoice  使用JHipster域语言进行实体建模 JHipster Domain Language (JDL)用于为JHipster应用程序创建域模型。它提供了一个简单且用户友好的DSL来描述实体及其关系(仅适用于SQL数据库)。
+JDL是为应用程序创建实体的推荐方法，它可以替代JHipster提供的实体生成器，在创建大量实体时，可能很难使用JHipster提供的实体生成器。JDL通常写在一个或多个扩展名为.jh的文件中。
+使用JDL进行实体建模 实体声明语法
+entity &amp;lt;entity name&amp;gt; ([&amp;lt;table name&amp;gt;]) { &amp;lt;field name&amp;gt; &amp;lt;type&amp;gt; [&amp;lt;validation&amp;gt;*] }   &amp;lt;entity name&amp;gt;是实体的名称，将用于类名和表名。可以使用可选的&amp;lt;Table name&amp;gt;参数重写表名。 &amp;lt;field name&amp;gt;是您希望用于实体的字段(属性)的名称，&amp;lt;type&amp;gt;是字段类型，如String、Integer等。  请参考JHipster 域语言 (JDL)，查看所有支持类型。
+ ID字段将自动创建，因此不需要在JDL中指定。 &amp;lt;validation&amp;gt;是可选的，可以根据字段类型支持的验证指定一个或多个字段的&amp;lt;validation&amp;gt;。对于max length和pattern等验证，可以在大括号中指定值。  示例如下：
+entity Customer { /** Name field */ name String required, age Integer, address String maxlength(100) pattern(/[a-Z0-9]+/) }  枚举也可以使用以下语法声明:
+enum &amp;lt;enum name&amp;gt; { &amp;lt;VALUE&amp;gt;* }  示例如下：</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序-文件结构与部分代码</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monolithic-structure/</link>
+      <pubDate>Thu, 11 Apr 2019 15:33:41 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monolithic-structure/</guid>
+      <description>文件结构   src: 这是源文件夹，其中包含主应用程序源文件和测试源文件。 webpack: 这个文件夹包含用于开发、生产和测试的所有webpack客户端构建配置。 gradle: 这个文件夹有gradle包装器和额外的gradle构建脚本，这些脚本将由主要的gradle构建文件使用(如果选择Maven, JHipster也提供了类似的包装器)。 build.gradle: 这是gradle构建文件，它指定了应用程序的构建生命周期。它还指定了服务器端依赖项。构建使用gradle中定义的gradle.properties。还可以找到一个名为gradlew (gradlew.bat，用于Windows)的可执行文件，它允许您使用Gradle而无需安装它。 .yo-rc.json: 这是JHipster的配置文件。这个文件存储了我们在创建应用程序时选择的选项，并用于应用程序的更新和升级。 package.json: 这是NPM配置文件，它指定了所有客户端依赖项、客户端构建依赖项和任务。 tsconfig.json: 这是Typescript的配置。还有tsconfig-aot.json,用于Angular AOT (Ahead-of-Time) compilation。 tslint.json: 这是Typescript的lint配置。  src src文件夹内结构
+main  docker: 保存应用程序的Dockerfile，并保存所选选项的docker配置。 java: 保存应用程序的主要java源代码。 resources: 保存Spring引导配置文件、Liquibase更改日志以及应用程序使用的静态资源，如服务器端i18n文件和电子邮件模板。 webapp: 保存Angular应用程序源代码和客户端静态内容，如图像、样式表、i18n文件等。  test  java:保存服务器端单元和集成测试源。 javascript:为客户端应用程序保存Karma单元测试规范和量角器端到端规范。 resources:保存应用程序用于测试的Spring配置文件和静态资源，如服务器端i18n文件和电子邮件模板。  服务端src/main/java src/main/java文件夹内重要部分。
+ ShopApp.java 这是应用程序的主入口类。由于这是一个Spring引导应用程序，主类是可执行的，您可以通过在IDE中运行这个类来启动应用程序。
+注解 Spring JavaConfig注解
+@SpringBootApplication @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})   @SpringBootApplication:是一个复合注解，包括@ComponentScan，和@SpringBootConfiguration，@EnableAutoConfiguration。  @ComponentScan：扫描当前包及其子包下被@Component，@Controller，@Service，@Repository注解标记的类并纳入到spring容器中进行管理。 @EnableAutoConfiguration：作用是启动自动的配置，意思就是Springboot根据你添加的jar包来配置你项目的默认配置。 @SpringBootConfiguration：继承自@Configuration，二者功能也一致，标注当前类是配置类，并会将当前类内声明的一个或多个以@Bean注解标记的方法的实例纳入到srping容器中，并且实例名就是方法名。  @EnableConfigurationProperties：帮助通过属性文件注册应用程序的其他配置。  main方法 public static void main(String[] args) { SpringApplication app = new SpringApplication(ShopApp.</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monolithic-build/</link>
+      <pubDate>Wed, 10 Apr 2019 11:30:47 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monolithic-build/</guid>
+      <description>准备 从Oracle网站安装Java 8。
+从Node.js网站安装Node.js（LTS 64位版本，不支持非LTS版本）。
+如使用docker，请从docker网站安装docker。
+安装JHipster 使用yarn安装，在终端运行:
+yarn add global generator-jhipster
+使用npm安装,在终端运行：
+npm install -g generator-jhipster
+等待安装完毕，执行jhipster --version ，你将会看到版本信息。
+ 生成应用 在此之前,可以先准备一个github repository(仓库)，之后将在这个仓库上创建许多Git Branchs(分支)。
+可以查看本博客关于Git简要说明。
+准备工作区 为工作区创建一个新文件夹,导航到该文件夹。
+mkdir my-test-app cd my-test-app  为应用创建一个文件夹，导航到该文件夹。
+mkdir my-shop cd my-shop  在开始前执行jhipster --version确保准备完成，最好使用最新版本的工具,执行yarn global upgrade generator-jhipster或npm update -g generator-jhipster更新版本。
+使用JHipster生成代码 生成代码只需要在应用文件夹下终端执行jhipster命令，终端将输出。
+ JHipster将询问一些问题，以获得有关所需的不同选项输入。
+? (1/19) Which *type* of application would you like to create? (Use arrow keys) //选择创建的应用类型 &amp;gt; Monolithic application (recommended for simple projects) //综合应用 Microservice application //微服务应用 Microservice gateway //微服务网关 [BETA] JHipster UAA server (for microservice OAuth2 authentication) //微服务OAuth2的身份认证服务  服务器选择 ?</description>
+    </item>
+    
+    <item>
+      <title>Gitalk评论自动初始化</title>
+      <link>https://cytgenkidu.github.io/post/gitalk-initialize/</link>
+      <pubDate>Thu, 04 Apr 2019 17:31:01 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/gitalk-initialize/</guid>
+      <description>出现原因 该篇博文的评论系统还没初始化。
+解决办法 手动完成 登录自己的github账号登录后，就可以在上面错误信息处看到“Initialize Comments”的按钮 (ps: 由于要求回调URL和当前地址一样，故第2步不能在本地调试， 需把代码先上传再调试),点击Initialize Comments按钮后，就可以开始对该篇博文开始评论了， 同时也可以在对应的github仓库看到相应的issue。
+自动初始化Gitalk 生成sitemap站点地图： hugo附带了一个内置模板文件,可在layouts/sitemap.xml或layouts/_default/sitemap.xml查看模板。
+在public/sitemap.xml查看生成的sitemap站点地图。
+获取github接口的调用权限  创建一个access token 点此创建  点击Generate new token按钮,生成token。   编写脚本文件 安装依赖包 在根目录下执行以下命令
+npm install request --save npm install xml-parser --save npm install cheerio --save  创建脚本文件 在根目录下创建initialize.js
+const request = require(&amp;quot;request&amp;quot;); const fs = require(&amp;quot;fs&amp;quot;); const path = require(&amp;quot;path&amp;quot;); const url = require(&amp;quot;url&amp;quot;); const xmlParser = require(&amp;quot;xml-parser&amp;quot;); const cheerio = require(&amp;quot;cheerio&amp;quot;); // 根据自己的情况进行配置 const config = { username: &amp;quot;cytgenkidu&amp;quot;, // GitHub 用户名 token: &amp;quot;&amp;quot;, // GitHub Token repo: &amp;quot;cytgenkidu.</description>
+    </item>
+    
+    <item>
+      <title>Gitalk出现Error:Validation Failed问题的解决办法</title>
+      <link>https://cytgenkidu.github.io/post/gitalk-validation-failed/</link>
+      <pubDate>Thu, 04 Apr 2019 17:25:04 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/gitalk-validation-failed/</guid>
+      <description>出现原因 文章标题名太长，由于 Github 限制 labal 长度不能超过 50引起的，该问题解决方案来自Gitalk项目仓 Issues115，通过MD5加密ID来缩短labal长度。
+解决办法 创建md5.min.js文件 ! function(n) { &amp;quot;use strict&amp;quot;; function t(n, t) { var r = (65535 &amp;amp; n) + (65535 &amp;amp; t); return (n &amp;gt;&amp;gt; 16) + (t &amp;gt;&amp;gt; 16) + (r &amp;gt;&amp;gt; 16) &amp;lt;&amp;lt; 16 | 65535 &amp;amp; r } function r(n, t) { return n &amp;lt;&amp;lt; t | n &amp;gt;&amp;gt;&amp;gt; 32 - t } function e(n, e, o, u, c, f) { return t(r(t(t(e, n), t(u, f)), c), o) } function o(n, t, r, o, u, c, f) { return e(t &amp;amp; r | ~t &amp;amp; o, n, t, u, c, f) } function u(n, t, r, o, u, c, f) { return e(t &amp;amp; o | r &amp;amp; ~o, n, t, u, c, f) } function c(n, t, r, o, u, c, f) { return e(t ^ r ^ o, n, t, u, c, f) } function f(n, t, r, o, u, c, f) { return e(r ^ (t | ~o), n, t, u, c, f) } function i(n, r) { n[r &amp;gt;&amp;gt; 5] |= 128 &amp;lt;&amp;lt; r % 32, n[14 + (r + 64 &amp;gt;&amp;gt;&amp;gt; 9 &amp;lt;&amp;lt; 4)] = r; var e, i, a, d, h, l = 1732584193, g = -271733879, v = -1732584194, m = 271733878; for (e = 0; e &amp;lt; n.</description>
+    </item>
+    
+    <item>
+      <title>博客添加Gitalk评论</title>
+      <link>https://cytgenkidu.github.io/post/blog-gitalk/</link>
+      <pubDate>Tue, 02 Apr 2019 14:51:48 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/blog-gitalk/</guid>
+      <description>前言  在整理个人博客的过程中，想添加一套评论系统，一方面想收集意见来更好的改进，另一方面想提供一个读者与作者或读者与读者之间交流的平台。 在对比线下比较火的几个评论系统，又考虑到自己的博客是基于GitHub，综合考虑最终选择了基于Github Issues的评论系统Gitalk。 其他评论系统，如：
+  LiveRe：中文名称“来必力”，是一家韩国的公司，但本地化做的非常到位。这是我新发现的一个评论系统，支持的登录方式也挺多，但由于时间问题没有仔细的研究，后续有可能会尝试。
+ Disqus：国外比较火的评论系统，但在国内必须完全代理VPN,才可以正常访问。
+ gitment:基于Github issue的评论插件,但很久没有人维护。
+ 畅言：需要ICP备案。
+ 友言、网易云跟帖、多说等等其他家：关停太随意。
+  正文 关于Gitalk Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件。
+ 使用 GitHub 登录 支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru] 支持个人或组织 无干扰模式（设置 distractionFreeMode 为 true 开启） 快捷键提交评论 （cmd|ctrl + enter）  在线演示
+使用 创建一个Github Application 如果没有 点击申请，也可以
+ Github头像下拉菜单 &amp;gt; Settings &amp;gt; 左边Developer settings下的OAuth Application &amp;gt; Register a new application，填写相关信息：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/author/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/author/admin/</guid>
+      <description>简简单单知道什么是不够的，我需要知道为什么。
+这个博客就是记录我日常出现的问题。 本站所有内容均代表个人观点。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/post/</link>
+    <description>Recent content in 博客 on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Wed, 07 Apr 2021 14:50:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python生成word</title>
+      <link>https://cytgenkidu.github.io/post/python%E7%94%9F%E6%88%90word/</link>
+      <pubDate>Wed, 07 Apr 2021 14:50:21 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/python%E7%94%9F%E6%88%90word/</guid>
+      <description>方法一：写入新建文档 安装第三方库 pip install python-docx  实现代码 # pip install python-docx from docx import Document from docx.shared import Pt # 简单的打开word，输入数据，关闭word document = Document() # 向word里增加段落 document.add_paragraph(&#39;hello&#39;) document.save(&#39;./doc/test.docx&#39;) # 在一个段落中增加文字 document = Document() paragraph = document.add_paragraph(&#39;Hello, &#39;) # 增加文字 paragraph.add_run(&#39;tgenkidu&#39;) # 设置word字体大小 style = document.styles[&#39;Normal&#39;] font = style.font font.size = Pt(10) document.save(&#39;./doc/test.docx&#39;)  运行结果 注意 运行python时，要写入的word文档应处于关闭状态。
+方法二：运用模板写入word文档 本例创建了 模板.docx生成模板2.docx,也可使用已有模板进行修改，加以应用。
+安装第三方库 pip3 install docxtpl -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com  因直接安装报错，所以选择了国内的库</description>
+    </item>
+    
+    <item>
+      <title>Angular Ngxecharts Baidu Bmap</title>
+      <link>https://cytgenkidu.github.io/post/angular-ngxecharts-baidu-bmap/</link>
+      <pubDate>Wed, 07 Apr 2021 14:48:36 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/angular-ngxecharts-baidu-bmap/</guid>
+      <description>@TOC
+安装插件 npm install echarts npm install ngx-echarts  配置ngx-echarts import { NgxEchartsModule } from &#39;ngx-echarts&#39;; @NgModule({ imports: [ ..., NgxEchartsModule ], }) export class AppModule { }  引入百度地图 申请百度地图密钥 申请链接：http://lbsyun.baidu.com/index.php?title=jspopular/guide/getkey） 记住ak码，在浏览器端使用，请选择“浏览器端AK”，例如JavaScript API只支持浏览器类型AK。
+在index.html中引入 &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;https://api.map.baidu.com/api?v=2.0&amp;amp;ak=xxxxxxxxxxxxx&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  注：百度地图必须在根组件index.html页面引入，否则会报错
+新建组件，显示地图 修改echarts的effectScatter-bmap示例https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap
+HTML &amp;lt;div echarts [options]=&amp;quot;Options&amp;quot; (chartInit)=&amp;quot;onChartInit($event)&amp;quot; class=&amp;quot;chart-container&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  ts import { Component, OnInit } from &amp;quot;@angular/core&amp;quot;; @Component({ selector: &amp;quot;bmap&amp;quot;, templateUrl: &amp;quot;./bmap.component.html&amp;quot;, styleUrls: [&amp;quot;./bmap.component.scss&amp;quot;] }) export class BmapComponent implements OnInit { constructor() { } Options: any; Intance: any; data: any = [ { name: &#39;海门&#39;, value: 9 }, { name: &#39;鄂尔多斯&#39;, value: 12 }, { name: &#39;招远&#39;, value: 12 }, { name: &#39;舟山&#39;, value: 12 }, { name: &#39;齐齐哈尔&#39;, value: 14 }, { name: &#39;盐城&#39;, value: 15 }, { name: &#39;赤峰&#39;, value: 16 }, { name: &#39;青岛&#39;, value: 18 }, { name: &#39;乳山&#39;, value: 18 }, { name: &#39;金昌&#39;, value: 19 }, { name: &#39;泉州&#39;, value: 21 }, { name: &#39;莱西&#39;, value: 21 }, { name: &#39;日照&#39;, value: 21 }, { name: &#39;胶南&#39;, value: 22 }, { name: &#39;南通&#39;, value: 23 }, { name: &#39;拉萨&#39;, value: 24 }, { name: &#39;云浮&#39;, value: 24 }, { name: &#39;梅州&#39;, value: 25 }, { name: &#39;文登&#39;, value: 25 }, { name: &#39;上海&#39;, value: 25 }, { name: &#39;攀枝花&#39;, value: 25 }, { name: &#39;威海&#39;, value: 25 }, { name: &#39;承德&#39;, value: 25 }, { name: &#39;厦门&#39;, value: 26 }, { name: &#39;汕尾&#39;, value: 26 }, { name: &#39;潮州&#39;, value: 26 }, { name: &#39;丹东&#39;, value: 27 }, { name: &#39;太仓&#39;, value: 27 }, { name: &#39;曲靖&#39;, value: 27 }, { name: &#39;烟台&#39;, value: 28 }, { name: &#39;福州&#39;, value: 29 }, { name: &#39;瓦房店&#39;, value: 30 }, { name: &#39;即墨&#39;, value: 30 }, { name: &#39;抚顺&#39;, value: 31 }, { name: &#39;玉溪&#39;, value: 31 }, { name: &#39;张家口&#39;, value: 31 }, { name: &#39;阳泉&#39;, value: 31 }, { name: &#39;莱州&#39;, value: 32 }, { name: &#39;湖州&#39;, value: 32 }, { name: &#39;汕头&#39;, value: 32 }, { name: &#39;昆山&#39;, value: 33 }, { name: &#39;宁波&#39;, value: 33 }, { name: &#39;湛江&#39;, value: 33 }, { name: &#39;揭阳&#39;, value: 34 }, { name: &#39;荣成&#39;, value: 34 }, { name: &#39;连云港&#39;, value: 35 }, { name: &#39;葫芦岛&#39;, value: 35 }, { name: &#39;常熟&#39;, value: 36 }, { name: &#39;东莞&#39;, value: 36 }, { name: &#39;河源&#39;, value: 36 }, { name: &#39;淮安&#39;, value: 36 }, { name: &#39;泰州&#39;, value: 36 }, { name: &#39;南宁&#39;, value: 37 }, { name: &#39;营口&#39;, value: 37 }, { name: &#39;惠州&#39;, value: 37 }, { name: &#39;江阴&#39;, value: 37 }, { name: &#39;蓬莱&#39;, value: 37 }, { name: &#39;韶关&#39;, value: 38 }, { name: &#39;嘉峪关&#39;, value: 38 }, { name: &#39;广州&#39;, value: 38 }, { name: &#39;延安&#39;, value: 38 }, { name: &#39;太原&#39;, value: 39 }, { name: &#39;清远&#39;, value: 39 }, { name: &#39;中山&#39;, value: 39 }, { name: &#39;昆明&#39;, value: 39 }, { name: &#39;寿光&#39;, value: 40 }, { name: &#39;盘锦&#39;, value: 40 }, { name: &#39;长治&#39;, value: 41 }, { name: &#39;深圳&#39;, value: 41 }, { name: &#39;珠海&#39;, value: 42 }, { name: &#39;宿迁&#39;, value: 43 }, { name: &#39;咸阳&#39;, value: 43 }, { name: &#39;铜川&#39;, value: 44 }, { name: &#39;平度&#39;, value: 44 }, { name: &#39;佛山&#39;, value: 44 }, { name: &#39;海口&#39;, value: 44 }, { name: &#39;江门&#39;, value: 45 }, { name: &#39;章丘&#39;, value: 45 }, { name: &#39;肇庆&#39;, value: 46 }, { name: &#39;大连&#39;, value: 47 }, { name: &#39;临汾&#39;, value: 47 }, { name: &#39;吴江&#39;, value: 47 }, { name: &#39;石嘴山&#39;, value: 49 }, { name: &#39;沈阳&#39;, value: 50 }, { name: &#39;苏州&#39;, value: 50 }, { name: &#39;茂名&#39;, value: 50 }, { name: &#39;嘉兴&#39;, value: 51 }, { name: &#39;长春&#39;, value: 51 }, { name: &#39;胶州&#39;, value: 52 }, { name: &#39;银川&#39;, value: 52 }, { name: &#39;张家港&#39;, value: 52 }, { name: &#39;三门峡&#39;, value: 53 }, { name: &#39;锦州&#39;, value: 54 }, { name: &#39;南昌&#39;, value: 54 }, { name: &#39;柳州&#39;, value: 54 }, { name: &#39;三亚&#39;, value: 54 }, { name: &#39;自贡&#39;, value: 56 }, { name: &#39;吉林&#39;, value: 56 }, { name: &#39;阳江&#39;, value: 57 }, { name: &#39;泸州&#39;, value: 57 }, { name: &#39;西宁&#39;, value: 57 }, { name: &#39;宜宾&#39;, value: 58 }, { name: &#39;呼和浩特&#39;, value: 58 }, { name: &#39;成都&#39;, value: 58 }, { name: &#39;大同&#39;, value: 58 }, { name: &#39;镇江&#39;, value: 59 }, { name: &#39;桂林&#39;, value: 59 }, { name: &#39;张家界&#39;, value: 59 }, { name: &#39;宜兴&#39;, value: 59 }, { name: &#39;北海&#39;, value: 60 }, { name: &#39;西安&#39;, value: 61 }, { name: &#39;金坛&#39;, value: 62 }, { name: &#39;东营&#39;, value: 62 }, { name: &#39;牡丹江&#39;, value: 63 }, { name: &#39;遵义&#39;, value: 63 }, { name: &#39;绍兴&#39;, value: 63 }, { name: &#39;扬州&#39;, value: 64 }, { name: &#39;常州&#39;, value: 64 }, { name: &#39;潍坊&#39;, value: 65 }, { name: &#39;重庆&#39;, value: 66 }, { name: &#39;台州&#39;, value: 67 }, { name: &#39;南京&#39;, value: 67 }, { name: &#39;滨州&#39;, value: 70 }, { name: &#39;贵阳&#39;, value: 71 }, { name: &#39;无锡&#39;, value: 71 }, { name: &#39;本溪&#39;, value: 71 }, { name: &#39;克拉玛依&#39;, value: 72 }, { name: &#39;渭南&#39;, value: 72 }, { name: &#39;马鞍山&#39;, value: 72 }, { name: &#39;宝鸡&#39;, value: 72 }, { name: &#39;焦作&#39;, value: 75 }, { name: &#39;句容&#39;, value: 75 }, { name: &#39;北京&#39;, value: 79 }, { name: &#39;徐州&#39;, value: 79 }, { name: &#39;衡水&#39;, value: 80 }, { name: &#39;包头&#39;, value: 80 }, { name: &#39;绵阳&#39;, value: 80 }, { name: &#39;乌鲁木齐&#39;, value: 84 }, { name: &#39;枣庄&#39;, value: 84 }, { name: &#39;杭州&#39;, value: 84 }, { name: &#39;淄博&#39;, value: 85 }, { name: &#39;鞍山&#39;, value: 86 }, { name: &#39;溧阳&#39;, value: 86 }, { name: &#39;库尔勒&#39;, value: 86 }, { name: &#39;安阳&#39;, value: 90 }, { name: &#39;开封&#39;, value: 90 }, { name: &#39;济南&#39;, value: 92 }, { name: &#39;德阳&#39;, value: 93 }, { name: &#39;温州&#39;, value: 95 }, { name: &#39;九江&#39;, value: 96 }, { name: &#39;邯郸&#39;, value: 98 }, { name: &#39;临安&#39;, value: 99 }, { name: &#39;兰州&#39;, value: 99 }, { name: &#39;沧州&#39;, value: 100 }, { name: &#39;临沂&#39;, value: 103 }, { name: &#39;南充&#39;, value: 104 }, { name: &#39;天津&#39;, value: 105 }, { name: &#39;富阳&#39;, value: 106 }, { name: &#39;泰安&#39;, value: 112 }, { name: &#39;诸暨&#39;, value: 112 }, { name: &#39;郑州&#39;, value: 113 }, { name: &#39;哈尔滨&#39;, value: 114 }, { name: &#39;聊城&#39;, value: 116 }, { name: &#39;芜湖&#39;, value: 117 }, { name: &#39;唐山&#39;, value: 119 }, { name: &#39;平顶山&#39;, value: 119 }, { name: &#39;邢台&#39;, value: 119 }, { name: &#39;德州&#39;, value: 120 }, { name: &#39;济宁&#39;, value: 120 }, { name: &#39;荆州&#39;, value: 127 }, { name: &#39;宜昌&#39;, value: 130 }, { name: &#39;义乌&#39;, value: 132 }, { name: &#39;丽水&#39;, value: 133 }, { name: &#39;洛阳&#39;, value: 134 }, { name: &#39;秦皇岛&#39;, value: 136 }, { name: &#39;株洲&#39;, value: 143 }, { name: &#39;石家庄&#39;, value: 147 }, { name: &#39;莱芜&#39;, value: 148 }, { name: &#39;常德&#39;, value: 152 }, { name: &#39;保定&#39;, value: 153 }, { name: &#39;湘潭&#39;, value: 154 }, { name: &#39;金华&#39;, value: 157 }, { name: &#39;岳阳&#39;, value: 169 }, { name: &#39;长沙&#39;, value: 175 }, { name: &#39;衢州&#39;, value: 177 }, { name: &#39;廊坊&#39;, value: 193 }, { name: &#39;菏泽&#39;, value: 194 }, { name: &#39;合肥&#39;, value: 229 }, { name: &#39;武汉&#39;, value: 273 }, { name: &#39;大庆&#39;, value: 279 } ]; geoCoordMap: any = { &#39;海门&#39;: [121.</description>
+    </item>
+    
+    <item>
+      <title>mysql导入数据【mysql 配置环境变量、处理中文乱码】</title>
+      <link>https://cytgenkidu.github.io/post/mysql%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AEcsv/</link>
+      <pubDate>Wed, 07 Apr 2021 14:44:16 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/mysql%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AEcsv/</guid>
+      <description> Mysql命令导入 前提 已安装好mysql并打开服务，配置好环境变量。 配置环境变量 找到mysql 安装位置，此为我的安装位置C:\Program Files\MySQL\MySQL Server 5.6\bin 此电脑 &amp;gt; 右键 属性 &amp;gt; 高级系统设置 操作 mysql -h 123.55.133.0 -u root -p -P 3306  SHOW VARIABLES LIKE &#39;character%&#39;;  LOAD DATA LOCAL INFILE &#39;D:/1.csv&#39; INTO TABLE test.data FIELDS TERMINATED BY &#39;,&#39;;  </description>
+    </item>
+    
+    <item>
+      <title>mybatis generator插件自定义修改-[修改数据类型与java类型映射关系&#43;增加分页&#43;增加多字段模糊查询&#43;增加中文字段特殊字符转化]</title>
+      <link>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Sun, 04 Apr 2021 10:38:53 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</guid>
+      <description>如果你想在mybatis generator 自动生成mapper xml model等的时候，调整生成java的数据库类型（数据类型转换）、生成分页语句、or连接的多列模糊查询、含中文特殊字符处理。末尾有源码的地址和jar.
+准备工作 下载源码：https://github.com/mybatis/generator 其中，mybatis-generator-core目录 是该项目的源码，主要修改这里。 注：本例是对mybatis-generator-core1.4.1的扩展，其他版本修改过程类似。 目录如下： 修改 mybatis-generator 中数据库类型和 Java 类型的映射关系 本例是将原本数据库的TIMESTAMP 映射为 Date 类型， 改为 数据库的TIMESTAMP 映射为 LocalDateTime类型。
+注： 仅为示例，其他类型修改类似。 mybatis generator 本身可直接将TIMESTAMP映射为LocalDateTime。具体使用方法请参考http://mybatis.org/generator/configreference/javaTypeResolver.html
+修改文件位置为src\main\java\org\mybatis\generator\internal\types\JavaTypeResolverDefaultImpl.java // typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ // new FullyQualifiedJavaType(Date.class.getName()))); typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ new FullyQualifiedJavaType(LocalDateTime.class.getName())));  这样就会将数据库的TIMESTAMP映射为java的LocalDateTime。
+增加物理分页 适用于targetRuntime=&amp;ldquo;MyBatis3&amp;rdquo;
+增加代码位置 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithBLOBsElementGenerator.java 和 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithoutBLOBsElementGenerator.java
+ifElement = new XmlElement(&amp;quot;if&amp;quot;); //$NON-NLS-1$ ifElement.addAttribute(new Attribute(&amp;quot;test&amp;quot;, &amp;quot;limitStart &amp;gt;= 0 and limitEnd &amp;gt; 0&amp;quot;)); //$NON-NLS-1$ //$NON-NLS-2$ ifElement.addElement(new TextElement(&amp;quot;limit ${limitStart},${limitEnd}&amp;quot;)); //$NON-NLS-1$ answer.</description>
+    </item>
+    
+    <item>
+      <title>思维题智力题</title>
+      <link>https://cytgenkidu.github.io/post/%E6%80%9D%E7%BB%B4%E9%A2%98%E6%99%BA%E5%8A%9B%E9%A2%98/</link>
+      <pubDate>Thu, 04 Mar 2021 09:59:34 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/%E6%80%9D%E7%BB%B4%E9%A2%98%E6%99%BA%E5%8A%9B%E9%A2%98/</guid>
+      <description> 思维题-智力题 赛马问题 赛马问题: 有36匹马，6个跑道，没有计时器，请赛马确定，36匹马中的前三名。 请问最少比赛几次？ 赛马问题：有25匹马，5个跑道，没有计时器，请赛马确定，25匹马中的前三名。 请问最少比赛几次？ ...  烧香问题 烧香问题: 有一个种香，材质不均匀,但是每一根这样的香，燃烧完恰好是1个小时 给你2跟香，帮我确定一个15分钟的时间段  </description>
+    </item>
+    
+    <item>
+      <title>Nodejs给图片批量添加水印</title>
+      <link>https://cytgenkidu.github.io/post/nodejs%E6%89%B9%E9%87%8F%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/</link>
+      <pubDate>Wed, 17 Feb 2021 22:23:00 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/nodejs%E6%89%B9%E9%87%8F%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/</guid>
+      <description>环境准备 安装 images 库 npm install images  安装 imageinfo 库 npm install imageinfo  实现 本例 addimageinfo.js 与 marklogo.png 、imagest文件夹、node_modules 文件夹 在同一目录下。
+含子文件也可实现
+JS代码 若直接使用需修改一下信息
+var logomarkimg = images(&#39;./marklogo.png&#39;);//水印位置 var rmimgpath = &amp;quot;./imagest/img/&amp;quot;;//添加图片文件加位置 var mark = &amp;quot;logo_&amp;quot;;//另存图片前缀，若为&amp;quot;&amp;quot;则替换原图片  完整代码 addimageinfo.js
+//引用文件系统模块 var fs = require(&amp;quot;fs&amp;quot;); //引用imageinfo模块 var imageInfo = require(&amp;quot;imageinfo&amp;quot;); //引用images模块 var images = require(&#39;images&#39;); var logomarkimg = images(&#39;./marklogo.png&#39;);//水印位置 var rmimgpath = &amp;quot;./imagest/img/&amp;quot;;//添加图片文件加位置 var mark = &amp;quot;logo_&amp;quot;;//另存图片前缀，若为&amp;quot;&amp;quot;则替换原图片 function readFileList(path, filesList) { var files = fs.</description>
+    </item>
+    
+    <item>
+      <title>power BI 连接mysql出现:“MySQL: Authentication method &#39;caching_sha2_password&#39; not supported by any of the available plugins.”</title>
+      <link>https://cytgenkidu.github.io/post/powerbi-mysql-error2/</link>
+      <pubDate>Mon, 25 Jan 2021 18:27:37 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/powerbi-mysql-error2/</guid>
+      <description> 连接出错：检查mysql连接，数据库的大小写 Mysql Connector Net 未安装或版本太高 写在过高版本，下载Mysql Connector Net 8.0.16 版本，安装。 重启PowerBI.  注 ：mysql-connector-net-8.0.16.msi下载地址：
+链接：https://pan.baidu.com/s/1gxDwPStOjYSQmFFwNPI1ew 提取码：7goq 复制这段内容后打开百度网盘手机App，操作更方便哦&amp;ndash;来自百度网盘超级会员V5的分享
+ </description>
+    </item>
+    
+    <item>
+      <title>PowerBI连接Mysql数据库出现未将对象引用设置到对象的实例的问题</title>
+      <link>https://cytgenkidu.github.io/post/powerbi-mysql-error1/</link>
+      <pubDate>Mon, 25 Jan 2021 15:35:57 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/powerbi-mysql-error1/</guid>
+      <description>检查是否开启mysql服务 设置中清除权限，重新建立mysql数据库   清除权限【若第一次设置链接错误后，重写会一直显示错误。产生原因是设置的内容被PBI记录，需清空在重新设置。】   设置好后点击连接，完成。</description>
+    </item>
+    
+    <item>
+      <title>使用VSCode运行C语言</title>
+      <link>https://cytgenkidu.github.io/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/</link>
+      <pubDate>Thu, 21 Jan 2021 17:24:58 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/</guid>
+      <description>VSCode安装 下载地址：https://code.visualstudio.com/Download
+Mingw-w64 下载 下载地址：https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/
+下载并解压后配置PATH
+ 安装VSCode 插件  配置运行文件   新建一个工程，然后建一个.c文件，随便写点代码，运行它，.vscode文件夹，文件夹下会生成launch.json文件，另外可以通过在该文件夹下新建 tasks.json。 配置 launch.json文件  { &amp;quot;configurations&amp;quot;: [ { &amp;quot;name&amp;quot;: &amp;quot;(gdb) Launch&amp;quot;, // 配置名称，将会在启动配置的下拉菜单中显示 &amp;quot;type&amp;quot;: &amp;quot;cppdbg&amp;quot;, // 配置类型，这里只能为cppdbg &amp;quot;request&amp;quot;: &amp;quot;launch&amp;quot;, // 请求配置类型，可以为launch（启动）或attach（附加） &amp;quot;program&amp;quot;: &amp;quot;${fileDirname}\\${fileBasenameNoExtension}.</description>
+    </item>
+    
+    <item>
+      <title>VSCode搭建java环境</title>
+      <link>https://cytgenkidu.github.io/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Wed, 12 Jun 2019 22:31:57 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/</guid>
+      <description>安装扩展  安装完成重启 VSCode。
+配置Maven 点击左下角设置图标-&amp;gt;设置，打开设置内容,然后点击右侧的打开json格式setting：
+ 然后把maven的可执行文件路径配置、maven的setting路径配置、java.home的路径配置，拷贝到右侧的用户设置区域并且设置为自己电脑的实际路径。
+设置内容如下：
+{ &amp;quot;workbench.startupEditor&amp;quot;: &amp;quot;newUntitledFile&amp;quot;, &amp;quot;java.errors.incompleteClasspath.severity&amp;quot;: &amp;quot;ignore&amp;quot;, &amp;quot;java.home&amp;quot;:&amp;quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_192&amp;quot;, &amp;quot;java.configuration.maven.userSettings&amp;quot;: &amp;quot;D:\\软件安装位置\\apache-maven-3.6.0\\conf\\settings.xml&amp;quot;, &amp;quot;maven.executable.path&amp;quot;: &amp;quot;D:\\软件安装位置\\apache-maven-3.6.0\\bin\\mvn.cmd&amp;quot;, &amp;quot;maven.terminal.useJavaHome&amp;quot;: true, &amp;quot;maven.terminal.customEnv&amp;quot;: [ { &amp;quot;environmentVariable&amp;quot;: &amp;quot;JAVA_HOME&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_192&amp;quot; } ], &amp;quot;git.path&amp;quot;: &amp;quot;C:\\Program Files\\Git\\bin\\git.exe&amp;quot;, &amp;quot;workbench.colorTheme&amp;quot;: &amp;quot;Visual Studio Dark&amp;quot;, // &amp;quot;vscodePluginDemo.showTip&amp;quot;: false, &amp;quot;files.encoding&amp;quot;: &amp;quot;utf8&amp;quot;, &amp;quot;javascript.implicitProjectConfig.experimentalDecorators&amp;quot;: true, &amp;quot;vscodePluginDemo.showTip&amp;quot;: true, &amp;quot;files.exclude&amp;quot;: { &amp;quot;**/.classpath&amp;quot;: true, &amp;quot;**/.project&amp;quot;: true, &amp;quot;**/.settings&amp;quot;: true, &amp;quot;**/.factorypath&amp;quot;: true }, &amp;quot;editor.</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序-实体建模</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/</link>
+      <pubDate>Fri, 12 Apr 2019 10:38:53 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/</guid>
+      <description>在本章中，我们将看到如何使用业务实体和模型。
+使用命令行生成实体 &amp;gt; jhipster entity Invoice  使用JHipster域语言进行实体建模 JHipster Domain Language (JDL)用于为JHipster应用程序创建域模型。它提供了一个简单且用户友好的DSL来描述实体及其关系(仅适用于SQL数据库)。
+JDL是为应用程序创建实体的推荐方法，它可以替代JHipster提供的实体生成器，在创建大量实体时，可能很难使用JHipster提供的实体生成器。JDL通常写在一个或多个扩展名为.jh的文件中。
+使用JDL进行实体建模 实体声明语法
+entity &amp;lt;entity name&amp;gt; ([&amp;lt;table name&amp;gt;]) { &amp;lt;field name&amp;gt; &amp;lt;type&amp;gt; [&amp;lt;validation&amp;gt;*] }   &amp;lt;entity name&amp;gt;是实体的名称，将用于类名和表名。可以使用可选的&amp;lt;Table name&amp;gt;参数重写表名。 &amp;lt;field name&amp;gt;是您希望用于实体的字段(属性)的名称，&amp;lt;type&amp;gt;是字段类型，如String、Integer等。  请参考JHipster 域语言 (JDL)，查看所有支持类型。
+ ID字段将自动创建，因此不需要在JDL中指定。 &amp;lt;validation&amp;gt;是可选的，可以根据字段类型支持的验证指定一个或多个字段的&amp;lt;validation&amp;gt;。对于max length和pattern等验证，可以在大括号中指定值。  示例如下：
+entity Customer { /** Name field */ name String required, age Integer, address String maxlength(100) pattern(/[a-Z0-9]+/) }  枚举也可以使用以下语法声明:
+enum &amp;lt;enum name&amp;gt; { &amp;lt;VALUE&amp;gt;* }  示例如下：</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序-文件结构与部分代码</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monolithic-structure/</link>
+      <pubDate>Thu, 11 Apr 2019 15:33:41 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monolithic-structure/</guid>
+      <description>文件结构   src: 这是源文件夹，其中包含主应用程序源文件和测试源文件。 webpack: 这个文件夹包含用于开发、生产和测试的所有webpack客户端构建配置。 gradle: 这个文件夹有gradle包装器和额外的gradle构建脚本，这些脚本将由主要的gradle构建文件使用(如果选择Maven, JHipster也提供了类似的包装器)。 build.gradle: 这是gradle构建文件，它指定了应用程序的构建生命周期。它还指定了服务器端依赖项。构建使用gradle中定义的gradle.properties。还可以找到一个名为gradlew (gradlew.bat，用于Windows)的可执行文件，它允许您使用Gradle而无需安装它。 .yo-rc.json: 这是JHipster的配置文件。这个文件存储了我们在创建应用程序时选择的选项，并用于应用程序的更新和升级。 package.json: 这是NPM配置文件，它指定了所有客户端依赖项、客户端构建依赖项和任务。 tsconfig.json: 这是Typescript的配置。还有tsconfig-aot.json,用于Angular AOT (Ahead-of-Time) compilation。 tslint.json: 这是Typescript的lint配置。  src src文件夹内结构
+main  docker: 保存应用程序的Dockerfile，并保存所选选项的docker配置。 java: 保存应用程序的主要java源代码。 resources: 保存Spring引导配置文件、Liquibase更改日志以及应用程序使用的静态资源，如服务器端i18n文件和电子邮件模板。 webapp: 保存Angular应用程序源代码和客户端静态内容，如图像、样式表、i18n文件等。  test  java:保存服务器端单元和集成测试源。 javascript:为客户端应用程序保存Karma单元测试规范和量角器端到端规范。 resources:保存应用程序用于测试的Spring配置文件和静态资源，如服务器端i18n文件和电子邮件模板。  服务端src/main/java src/main/java文件夹内重要部分。
+ ShopApp.java 这是应用程序的主入口类。由于这是一个Spring引导应用程序，主类是可执行的，您可以通过在IDE中运行这个类来启动应用程序。
+注解 Spring JavaConfig注解
+@SpringBootApplication @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})   @SpringBootApplication:是一个复合注解，包括@ComponentScan，和@SpringBootConfiguration，@EnableAutoConfiguration。  @ComponentScan：扫描当前包及其子包下被@Component，@Controller，@Service，@Repository注解标记的类并纳入到spring容器中进行管理。 @EnableAutoConfiguration：作用是启动自动的配置，意思就是Springboot根据你添加的jar包来配置你项目的默认配置。 @SpringBootConfiguration：继承自@Configuration，二者功能也一致，标注当前类是配置类，并会将当前类内声明的一个或多个以@Bean注解标记的方法的实例纳入到srping容器中，并且实例名就是方法名。  @EnableConfigurationProperties：帮助通过属性文件注册应用程序的其他配置。  main方法 public static void main(String[] args) { SpringApplication app = new SpringApplication(ShopApp.</description>
+    </item>
+    
+    <item>
+      <title>Git简要说明</title>
+      <link>https://cytgenkidu.github.io/post/git-guide/</link>
+      <pubDate>Wed, 10 Apr 2019 13:57:00 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/git-guide/</guid>
+      <description>安装  下载git Mac OS X 版 下载git Windows版 下载git Linux 和 Unix版  配置Git 设置名字和邮箱地址
+git config --global user.name cytgenkidu git config --global user.email tgenkidu@163.com  检查配置信息,执行 git config --list
+ 更多自定义配置请查看。
+创建新仓库（repository） 创建repository(仓库)  建立本地新仓库 创建新文件夹，打开，然后执行 git init 创建新的 git 仓库。
+存储库克隆到新目录  创建一个本地仓库的克隆版本 git clone /path/to/repository 创建一个远程仓库的克隆版本 git clone username@host:/path/to/repository  Git工作流 Git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。 由此引出三个工作区域的概念：Git 仓库、工作目录以及暂存区域(Index)。
+ Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。 工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。 暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作`‘索引’&amp;rsquo;，不过一般说法还是叫暂存区域。   基本的 Git 工作流程如下：</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monolithic-build/</link>
+      <pubDate>Wed, 10 Apr 2019 11:30:47 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monolithic-build/</guid>
+      <description>准备 从Oracle网站安装Java 8。
+从Node.js网站安装Node.js（LTS 64位版本，不支持非LTS版本）。
+如使用docker，请从docker网站安装docker。
+安装JHipster 使用yarn安装，在终端运行:
+yarn add global generator-jhipster
+使用npm安装,在终端运行：
+npm install -g generator-jhipster
+等待安装完毕，执行jhipster --version ，你将会看到版本信息。
+ 生成应用 在此之前,可以先准备一个github repository(仓库)，之后将在这个仓库上创建许多Git Branchs(分支)。
+可以查看本博客关于Git简要说明。
+准备工作区 为工作区创建一个新文件夹,导航到该文件夹。
+mkdir my-test-app cd my-test-app  为应用创建一个文件夹，导航到该文件夹。
+mkdir my-shop cd my-shop  在开始前执行jhipster --version确保准备完成，最好使用最新版本的工具,执行yarn global upgrade generator-jhipster或npm update -g generator-jhipster更新版本。
+使用JHipster生成代码 生成代码只需要在应用文件夹下终端执行jhipster命令，终端将输出。
+ JHipster将询问一些问题，以获得有关所需的不同选项输入。
+? (1/19) Which *type* of application would you like to create? (Use arrow keys) //选择创建的应用类型 &amp;gt; Monolithic application (recommended for simple projects) //综合应用 Microservice application //微服务应用 Microservice gateway //微服务网关 [BETA] JHipster UAA server (for microservice OAuth2 authentication) //微服务OAuth2的身份认证服务  服务器选择 ?</description>
+    </item>
+    
+    <item>
+      <title>Gitalk评论自动初始化</title>
+      <link>https://cytgenkidu.github.io/post/gitalk-initialize/</link>
+      <pubDate>Thu, 04 Apr 2019 17:31:01 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/gitalk-initialize/</guid>
+      <description>出现原因 该篇博文的评论系统还没初始化。
+解决办法 手动完成 登录自己的github账号登录后，就可以在上面错误信息处看到“Initialize Comments”的按钮 (ps: 由于要求回调URL和当前地址一样，故第2步不能在本地调试， 需把代码先上传再调试),点击Initialize Comments按钮后，就可以开始对该篇博文开始评论了， 同时也可以在对应的github仓库看到相应的issue。
+自动初始化Gitalk 生成sitemap站点地图： hugo附带了一个内置模板文件,可在layouts/sitemap.xml或layouts/_default/sitemap.xml查看模板。
+在public/sitemap.xml查看生成的sitemap站点地图。
+获取github接口的调用权限  创建一个access token 点此创建  点击Generate new token按钮,生成token。   编写脚本文件 安装依赖包 在根目录下执行以下命令
+npm install request --save npm install xml-parser --save npm install cheerio --save  创建脚本文件 在根目录下创建initialize.js
+const request = require(&amp;quot;request&amp;quot;); const fs = require(&amp;quot;fs&amp;quot;); const path = require(&amp;quot;path&amp;quot;); const url = require(&amp;quot;url&amp;quot;); const xmlParser = require(&amp;quot;xml-parser&amp;quot;); const cheerio = require(&amp;quot;cheerio&amp;quot;); // 根据自己的情况进行配置 const config = { username: &amp;quot;cytgenkidu&amp;quot;, // GitHub 用户名 token: &amp;quot;&amp;quot;, // GitHub Token repo: &amp;quot;cytgenkidu.</description>
+    </item>
+    
+    <item>
+      <title>Gitalk出现Error:Validation Failed问题的解决办法</title>
+      <link>https://cytgenkidu.github.io/post/gitalk-validation-failed/</link>
+      <pubDate>Thu, 04 Apr 2019 17:25:04 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/gitalk-validation-failed/</guid>
+      <description>出现原因 文章标题名太长，由于 Github 限制 labal 长度不能超过 50引起的，该问题解决方案来自Gitalk项目仓 Issues115，通过MD5加密ID来缩短labal长度。
+解决办法 创建md5.min.js文件 ! function(n) { &amp;quot;use strict&amp;quot;; function t(n, t) { var r = (65535 &amp;amp; n) + (65535 &amp;amp; t); return (n &amp;gt;&amp;gt; 16) + (t &amp;gt;&amp;gt; 16) + (r &amp;gt;&amp;gt; 16) &amp;lt;&amp;lt; 16 | 65535 &amp;amp; r } function r(n, t) { return n &amp;lt;&amp;lt; t | n &amp;gt;&amp;gt;&amp;gt; 32 - t } function e(n, e, o, u, c, f) { return t(r(t(t(e, n), t(u, f)), c), o) } function o(n, t, r, o, u, c, f) { return e(t &amp;amp; r | ~t &amp;amp; o, n, t, u, c, f) } function u(n, t, r, o, u, c, f) { return e(t &amp;amp; o | r &amp;amp; ~o, n, t, u, c, f) } function c(n, t, r, o, u, c, f) { return e(t ^ r ^ o, n, t, u, c, f) } function f(n, t, r, o, u, c, f) { return e(r ^ (t | ~o), n, t, u, c, f) } function i(n, r) { n[r &amp;gt;&amp;gt; 5] |= 128 &amp;lt;&amp;lt; r % 32, n[14 + (r + 64 &amp;gt;&amp;gt;&amp;gt; 9 &amp;lt;&amp;lt; 4)] = r; var e, i, a, d, h, l = 1732584193, g = -271733879, v = -1732584194, m = 271733878; for (e = 0; e &amp;lt; n.</description>
+    </item>
+    
+    <item>
+      <title>博客添加Gitalk评论</title>
+      <link>https://cytgenkidu.github.io/post/blog-gitalk/</link>
+      <pubDate>Tue, 02 Apr 2019 14:51:48 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/blog-gitalk/</guid>
+      <description>前言  在整理个人博客的过程中，想添加一套评论系统，一方面想收集意见来更好的改进，另一方面想提供一个读者与作者或读者与读者之间交流的平台。 在对比线下比较火的几个评论系统，又考虑到自己的博客是基于GitHub，综合考虑最终选择了基于Github Issues的评论系统Gitalk。 其他评论系统，如：
+  LiveRe：中文名称“来必力”，是一家韩国的公司，但本地化做的非常到位。这是我新发现的一个评论系统，支持的登录方式也挺多，但由于时间问题没有仔细的研究，后续有可能会尝试。
+ Disqus：国外比较火的评论系统，但在国内必须完全代理VPN,才可以正常访问。
+ gitment:基于Github issue的评论插件,但很久没有人维护。
+ 畅言：需要ICP备案。
+ 友言、网易云跟帖、多说等等其他家：关停太随意。
+  正文 关于Gitalk Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件。
+ 使用 GitHub 登录 支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru] 支持个人或组织 无干扰模式（设置 distractionFreeMode 为 true 开启） 快捷键提交评论 （cmd|ctrl + enter）  在线演示
+使用 创建一个Github Application 如果没有 点击申请，也可以
+ Github头像下拉菜单 &amp;gt; Settings &amp;gt; 左边Developer settings下的OAuth Application &amp;gt; Register a new application，填写相关信息：</description>
+    </item>
+    
+  </channel>
+</rss>

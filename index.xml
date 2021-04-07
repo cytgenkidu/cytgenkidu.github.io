@@ -1,0 +1,6088 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cytgenkidu on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/</link>
+    <description>Recent content in Cytgenkidu on Cytgenkidu</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Wed, 07 Apr 2021 00:00:00 +0100</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>基本概念</title>
+      <link>https://cytgenkidu.github.io/tutorial/java/1/</link>
+      <pubDate>Wed, 07 Apr 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/java/1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>初识C语言</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/1/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/1/</guid>
+      <description>
+
+&lt;h2 id=&#34;什么是c语言&#34;&gt;什么是C语言？&lt;/h2&gt;
+
+&lt;p&gt;C语言是一门计算机语言&lt;/p&gt;
+
+&lt;p&gt;计算机语言是什么？人和计算机交流的语言 C/C++/java/python&lt;/p&gt;
+
+&lt;p&gt;语言的发展：低级语言→高级语言&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;010001000-机器语言【二进制语言 硬件-电-正电/负电】&lt;/li&gt;
+&lt;li&gt;汇编语言&lt;/li&gt;
+&lt;li&gt;B语言&lt;/li&gt;
+&lt;li&gt;C语言、C++&amp;mdash;高级语言&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;C语言→早期不是很成熟→成熟→流行
+国际标准ANSIC-C89/C90 、 C99/C11并不流行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main() //main函数是程序的入口,一个工程中main函数有且仅有一个
+{
+    printf(&amp;quot;hello\n&amp;quot;);
+    printf(&amp;quot;he he\n&amp;quot;);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;数据类型&#34;&gt;数据类型&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;char - 字符数据类型 1&lt;/li&gt;
+&lt;li&gt;short - 短整型 2&lt;/li&gt;
+&lt;li&gt;int - 整形 4&lt;/li&gt;
+&lt;li&gt;long - 长整型 4&lt;/li&gt;
+&lt;li&gt;long long -更长的整形 8&lt;/li&gt;
+&lt;li&gt;float -单精度浮点数 4&lt;/li&gt;
+&lt;li&gt;double -双精度浮点数 8&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char ch = &#39;As&#39;;
+int a = 0;
+float b = 1.22f;
+double c = 1.23;
+printf(&amp;quot;char:  %c\n&amp;quot;, ch);
+printf(&amp;quot;int:  %d\n&amp;quot;, a); //整形
+printf(&amp;quot;float:  %f\n&amp;quot;, b);
+printf(&amp;quot;double:  %lf\n&amp;quot;, c);
+
+printf(&amp;quot;%d\n&amp;quot;, sizeof(char));      //1个字节
+printf(&amp;quot;%d\n&amp;quot;, sizeof(short));     //2
+printf(&amp;quot;%d\n&amp;quot;, sizeof(int));       //4
+printf(&amp;quot;%d\n&amp;quot;, sizeof(long));      //4\8
+printf(&amp;quot;%d\n&amp;quot;, sizeof(long long)); //8
+printf(&amp;quot;%d\n&amp;quot;, sizeof(float));     //4
+printf(&amp;quot;%d\n&amp;quot;, sizeof(double));    //8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;变量-常量&#34;&gt;变量、常量&lt;/h2&gt;
+
+&lt;h3 id=&#34;变量&#34;&gt;变量&lt;/h3&gt;
+
+&lt;h4 id=&#34;分类&#34;&gt;分类&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;局部变量&lt;/li&gt;
+&lt;li&gt;全局变量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;【当局部变量和全局变量同名时，局部变量优先使用】&lt;/p&gt;
+
+&lt;h4 id=&#34;如何使用&#34;&gt;如何使用&lt;/h4&gt;
+
+&lt;p&gt;scanf  \  printf&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int num1, num2;               //C语言语法规定，变量要定义在当前代码块的最前面
+    scanf(&amp;quot;%d,%d&amp;quot;, &amp;amp;num1, &amp;amp;num2); //取地址符号&amp;amp;
+    printf(&amp;quot;sum= %d\n&amp;quot;, num1 + num2);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;作用域-限定的这个名字的可用性的代码范围&#34;&gt;作用域：（限定的这个名字的可用性的代码范围）&lt;/h4&gt;
+
+&lt;p&gt;作用域（scope），程序设计概念，通常来说，一段程序代码中所用到的名字并不总是有效/可用的,
+而限定这个名字的可用性的代码范围就是这个名字的作用域。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;局部变量的作用域是变量所在局部范围。&lt;/li&gt;
+&lt;li&gt;全局变量的作用域是整个工程。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;生命周期-变量的生命周期指的是变量的创建到变量的销毁之间的一个时间段&#34;&gt;生命周期：变量的生命周期指的是变量的创建到变量的销毁之间的一个时间段&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;局部变量的生命周期是：进入作用域生命周期开始，出作用域生命周期结束。&lt;/li&gt;
+&lt;li&gt;全局变量的生命周期是：整个程序的生命周期。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;常量&#34;&gt;常量&lt;/h3&gt;
+
+&lt;p&gt;字面变量&lt;/p&gt;
+
+&lt;p&gt;const 修饰的常变量：是变量，但又有常属性，所以是常变量&lt;/p&gt;
+
+&lt;p&gt;#define 定义的标识符常量&lt;/p&gt;
+
+&lt;p&gt;枚举常量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+enum Sex //枚举常量
+{
+    MALE,
+    FEMALE,
+    SECERT
+};
+int main()
+{
+    enum Sex s = FEMALE;
+    printf(&amp;quot;%d\n&amp;quot;, MALE);   //0
+    printf(&amp;quot;%d\n&amp;quot;, FEMALE); //1
+    printf(&amp;quot;%d\n&amp;quot;, SECERT); //2
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;字符串-转义字符-注释&#34;&gt;字符串、转义字符、注释&lt;/h2&gt;
+
+&lt;h3 id=&#34;字符串-s-n&#34;&gt;字符串(%s\n)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+
+int main()
+{
+    char arr1[] = &amp;quot;abc&amp;quot;;
+    char arr2[] = {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;};
+    char arr3[] = {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, 0};
+    printf(&amp;quot;%s\n&amp;quot;, arr1);                        // abc
+    printf(&amp;quot;%s\n&amp;quot;, arr2);                        // abcabc
+    printf(&amp;quot;%s\n&amp;quot;, arr3);                        // abc
+    printf(&amp;quot;%d\n&amp;quot;, strlen(arr1));                // 3
+    printf(&amp;quot;%d\n&amp;quot;, strlen(arr2));                // 6 未知
+    printf(&amp;quot;%d\n&amp;quot;, strlen(arr3));                // 3
+    printf(&amp;quot;%d\n&amp;quot;, strlen(&amp;quot;c:\test\32\test.c&amp;quot;)); // 13
+    printf(&amp;quot;%s\n&amp;quot;, &amp;quot;\32&amp;quot;);                       //
+    // \t是一个字符
+    // \32也是一个转移字符，是32作为八进制代表的十进制数字，作为ASCII码值,对应的字符
+    // 32---&amp;gt;10进制26【3*8^1+2*8^0】--&amp;gt;作为ASCII码代表的字符
+    printf(&amp;quot;%s\n&amp;quot;, &amp;quot;\130&amp;quot;); //X
+    printf(&amp;quot;%s\n&amp;quot;, &amp;quot;\x30&amp;quot;); //0
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;这种由双引号-double-quote-引起来的一串字符称为字符串字面值-string-literal-或者建成字符串&#34;&gt;这种由双引号（Double Quote）引起来的一串字符称为字符串字面值（String Literal）,或者建成字符串&lt;/h4&gt;
+
+&lt;p&gt;注：字符串的结束标志是一个\0的转义字符。在计算字符串长度的时候\0是结束标志，不算做字符串内容。&lt;/p&gt;
+
+&lt;h3 id=&#34;转义字符&#34;&gt;转义字符【\】&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/1/转义字符.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;区分，斜杠：&amp;rdquo;/&amp;rdquo; 与 反斜杠：&amp;rdquo;\&amp;rdquo; ,此处不可互换&lt;/li&gt;
+&lt;li&gt;\xhh 十六进制转义不限制字符个数 &amp;lsquo;\x000000000000F&amp;rsquo; == &amp;lsquo;\xF&amp;rsquo;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/1/ASCII.jpg&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;注释&#34;&gt;注释&lt;/h3&gt;
+
+&lt;h4 id=&#34;作用&#34;&gt;作用&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;代码中有不需要的代码可以直接删除，也可以注释&lt;/li&gt;
+&lt;li&gt;代码中有些代码比较难懂，可以加一下注释文字&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;形式&#34;&gt;形式&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;C语言风格的注释/*xxxxxxx*/： 缺陷：不能嵌套注释&lt;/li&gt;
+&lt;li&gt;C++注释风格//xxxxx：可以注释一行也可以注释多行&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;选择语句&#34;&gt;选择语句&lt;/h2&gt;
+
+&lt;h2 id=&#34;循环语句&#34;&gt;循环语句&lt;/h2&gt;
+
+&lt;h2 id=&#34;函数-特点是简化代码-代码复用&#34;&gt;函数：特点是简化代码，代码复用&lt;/h2&gt;
+
+&lt;h2 id=&#34;数组&#34;&gt;数组&lt;/h2&gt;
+
+&lt;h3 id=&#34;定义-一组相同类型元素的集合&#34;&gt;定义：一组相同类型元素的集合&lt;/h3&gt;
+
+&lt;h3 id=&#34;使用&#34;&gt;使用&lt;/h3&gt;
+
+&lt;h2 id=&#34;操作符&#34;&gt;操作符&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;算数操作符：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt; + - * / %
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;移位操作符：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt; &amp;gt;&amp;gt; &amp;lt;&amp;lt;   --- 移动二进制位
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;位操作符：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt; &amp;amp; ^ |
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;赋值操作符：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt; = += -= /= &amp;amp;= ^= |= &amp;gt;&amp;gt;= &amp;lt;&amp;lt;=
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;单目操作符：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;!           逻辑反操作
+-           负值
++           正值
+&amp;amp;           取地址
+sizeof      操作数的类型长度（以字节为单位）
+~           对一个数的二进制按位取反
+--          前置、后置--
+++          前置、后置++
+*           间接访问操作符(解引用操作符)
+(类型)       强制类型转换
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+int main()
+{
+    int a = 10;
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(a));                    //4
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(int));                  //4
+    printf(&amp;quot;%d\n&amp;quot;, sizeof a);                     //4
+    //printf(&amp;quot;%d\n&amp;quot;, sizeof int; //err
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(arr));                  //24
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(arr) / sizeof(arr[0])); //6
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注：原码、反码、补码&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;只要是整数，内存中存储的都是二进制补码&lt;/li&gt;
+&lt;li&gt;对于正数来说，反码、补码、原码 相同。&lt;/li&gt;
+&lt;li&gt;对负数来说，存储的是补码。&lt;/li&gt;
+&lt;li&gt;负数：
+    ①原码是直接按照正负写出来的二进制序列；
+    ②反码是原码的符号位不变，其他的位按位取反得到的；
+    ③补码是反码+1。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-t&#34;&gt;-2
+原码：1000000000000000000000010
+反码：1111111111111111111111101
+补码：1111111111111111111111110
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int a = 0;
+    int b = ~a; //~按二进制取反
+    //00000000000000000000000000000000
+    //11111111111111111111111111111111
+    //原码、反码、补码
+    //11111111111111111111111111111111
+    //11111111111111111111111111111110
+    //10000000000000000000000000000001
+    printf(&amp;quot;%d\n&amp;quot;, b); //-1，适用的，打印的是这个数的原码
+    //有符号数，最高位的二进制位符号位
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int a = 10, b = 10;
+    int c = a++;                            //后置++，先使用，在++
+    int d = ++b;                            //前置++，先++，在使用
+    printf(&amp;quot;%d\n%d\n%d\n%d\n&amp;quot;, a, c, b, d); //11 10 11 11
+    a = 10, b = 10;
+    int e = a--;                            //后置--，先使用，在--
+    int f = --b;                            //前置--，先--，在使用
+    printf(&amp;quot;%d\n%d\n%d\n%d\n&amp;quot;, a, e, b, f); //9 10 9 9
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = (int)3.14;//double--&amp;gt;int
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;关系操作符：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;&amp;gt;
+&amp;gt;=
+&amp;lt;
+&amp;lt;=
+!=   用于测试“不相等”
+==      用于测试“相等
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;逻辑操作符：&amp;amp;&amp;amp; 逻辑与【零为假,非零为真】 ； || 逻辑或【同假为假】&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int a = 3;
+    int b = 5;
+    int c = a &amp;amp; b;//按位与
+    int d = a ^ b;
+    printf(&amp;quot;%d\n&amp;quot;, c); //1
+    printf(&amp;quot;%d\n&amp;quot;, d); //6 [^不是次方，是异或]
+                       //异或的计算规律：对应二进制同，则为0；对应二进制异，则为1
+                       //按位与：只有对应的两个二进位都为1时，结果位才为1
+                       //3: 011
+                       //5: 101
+                       //6: 110 - 异或
+                       //1: 001 - 按位与
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;条件操作符(三木操作符)：exp1?exp2:exp3&lt;/li&gt;
+&lt;li&gt;逗号表达式：exp1,exp2,exp3……expn&lt;/li&gt;
+&lt;li&gt;下标引用、函数调用和结构成员：[] () . -&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;关键字&#34;&gt;关键字&lt;/h2&gt;
+
+&lt;h3 id=&#34;常见关键字&#34;&gt;常见关键字&lt;/h3&gt;
+
+&lt;p&gt;auto break case char case count continue default do double else enum extern float for goyo if int long register return short signed sizeof static struct switch typeof union unsigned void volatile while&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;auto int a = 10; //局部变量，自动创建，自动销毁，自动变量，默认省略auto
+//int 定义的变量是有符号的
+//signed int;有符号的
+unsigned int num=0;//无符号的 
+register int b=0;//寄存器关键字
+//struct 结构体关键字
+//union 联合体，共用体
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;typedef-类型定义&#34;&gt;typedef:类型定义&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;unsigned int num = 20;
+typedef unsigned int u_int; //类型重定义
+u_int num2 = 20;            //num1和num2类型一致
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;static修饰变量和函数&#34;&gt;static修饰变量和函数&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;修饰局部变量-静态局部变量（局部变量的生命周期变长）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+void text()
+{
+    int a = 1;
+    a++;
+    printf(&amp;quot;a=%d\n&amp;quot;, a); // 2 2 2 2 2
+}
+void text2()
+{
+    static int a = 1; //修饰局部变量,局部变量的生命周期变长
+    a++;
+    printf(&amp;quot;a=%d -static\n&amp;quot;, a); // 2 3 4 5 6
+}
+int main()
+{
+    int i = 0;
+    while (i &amp;lt; 5)
+    {
+        text();
+        text2();
+        printf(&amp;quot;_____________\n&amp;quot;);
+        i++;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/1/static结果.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修饰全局变量-静态全局变量（改变了作用域，让静态的全局变量只能在自己的源文件内使用，出了源文件就无法再使用）&lt;/p&gt;
+
+&lt;p&gt;运行正常&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//add.c
+int g_val = 2021; //全局变量
+
+//test.c
+#include &amp;lt;stdio.h&amp;gt;
+int main() {
+    //extern -声明外部符号
+    extern int g_val;
+    printf(&amp;quot;g_val=%d\n&amp;quot;, g_val);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行异常&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//add.c
+static int g_val = 2021;
+
+//test.c
+#include &amp;lt;stdio.h&amp;gt;
+int main() {
+    //extern -生命外部符号
+    extern int g_val;
+    printf(&amp;quot;g_val=%d\n&amp;quot;, g_val);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修饰函数-静态函数（修饰函数的外部链接属性，外部链接属性&amp;ndash;&amp;gt;内部链接属性）
+一个函数被static修饰，使用这个函数只能在本源文件内使用，不能再其他源文件内使用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//add.c
+int Add(int x, int y) {
+    int z = x + y;
+    return z;
+}
+
+//test.c
+#include &amp;lt;stdio.h&amp;gt;
+int main() {
+    extern Add(int, int);
+    printf(&amp;quot;%d&amp;quot;, Add(1, 2));
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;define定义常量和宏&#34;&gt;#define定义常量和宏&lt;/h2&gt;
+
+&lt;h3 id=&#34;定义标识符常量-define-max-1000&#34;&gt;定义标识符常量：#define MAX 1000&lt;/h3&gt;
+
+&lt;h3 id=&#34;定义宏&#34;&gt;定义宏&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+//define定义标识符常量
+#define MAX 1000
+//define定义宏
+#define MAX(x, y) (x &amp;gt; y ? x : y)
+//函数
+int Max(int x,int y){
+    if(x&amp;gt;y){
+        return x;
+    }else{
+        return y;
+    }
+}
+int main()
+{
+    //函数的方式
+    int max = Max(2, 3);
+    printf(&amp;quot;MAX = %d\n&amp;quot;, max);
+    //宏的方式
+    max = MAX(2, 3);
+    printf(&amp;quot;MAX = %d\n&amp;quot;, max);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;指针&#34;&gt;指针&lt;/h2&gt;
+
+&lt;h3 id=&#34;内存&#34;&gt;内存&lt;/h3&gt;
+
+&lt;p&gt;内存是电脑上特别重要的存储器，计算机中所有程序的运行都是在内存中进行的 。
+所以为了有效的使用内存，就把内存划分成一个个小的内存单元，每个内存单元的大小是&lt;strong&gt;1个字节&lt;/strong&gt;。
+为了能够有效的访问到内存的每个单元，就给内存单元进行了编号，这些编号被称为该&lt;strong&gt;内存单元的地址&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/1/内存.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;指针变量&#34;&gt;指针变量&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;变量地址取出&lt;/li&gt;
+&lt;li&gt;地址存储&lt;/li&gt;
+&lt;li&gt;使用实例&amp;ndash;推广使用&lt;/li&gt;
+&lt;li&gt;指针变量的大小&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int a = 10;  //4个字节
+    int *p = &amp;amp;a; //取地址
+    //有一种变量是用来存放地址的-指针变量
+    printf(&amp;quot;%p\n&amp;quot;, &amp;amp;a); //打印地址
+    printf(&amp;quot;%p\n&amp;quot;, p);  //打印地址
+    printf(&amp;quot;a=%d\n&amp;quot;, a);
+    *p = 20; //* -解引用操作符,间接访问操作符
+    printf(&amp;quot;a=%d\n&amp;quot;, a);
+
+    char ch = &#39;a&#39;;
+    char *pc = &amp;amp;ch;//类型是char *
+    printf(&amp;quot;ch=%c\n&amp;quot;, ch);
+    *pc = &#39;w&#39;;//与上面的*意义不同
+    printf(&amp;quot;ch=%c\n&amp;quot;, ch);
+    //指针大小
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(char *)); //x64下为8个字节，win32为4个字节
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(short *)); //x64下为8个字节，win32为4个字节
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(int *)); //x64下为8个字节，win32为4个字节
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(double *)); //x64下为8个字节，win32为4个字节
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/1/指针结果.png&#34; alt=&#34;Image text&#34; /&gt;
+&lt;img src=&#34;../img/1/指针.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;结构体-描述复杂类型&#34;&gt;结构体 描述复杂类型&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+struct Stu
+{
+    char name[20]; //名字
+    int age;       //年龄
+    char sex[5];   //性别
+    char id[15];   //学号
+};
+int main()
+{
+    //打印结构体信息
+    struct Stu s = {&amp;quot;张三&amp;quot;, 20, &amp;quot;男&amp;quot;, &amp;quot;20180101&amp;quot;};
+    //.为结构成员访问操作符
+    printf(&amp;quot;name = %s age = %d sex = %s id = %s\n&amp;quot;, s.name, s.age, s.sex, s.id);
+    s.age = 18;
+    // s.name = &amp;quot;李四&amp;quot;;//err
+    strcpy(s.name, &amp;quot;李四&amp;quot;); //string-copy strcpy 字符串拷贝
+    printf(&amp;quot;name = %s age = %d sex = %s id = %s\n&amp;quot;, s.name, s.age, s.sex, s.id);
+    //-&amp;gt;操作符
+    struct Stu *ps = &amp;amp;s;
+    //.   结构体变量.成员
+    //-&amp;gt;  结构体指针-&amp;gt;成员
+    printf(&amp;quot;name = %s age = %d sex = %s id = %s\n&amp;quot;, (*ps).name, (*ps).age, (*ps).sex, (*ps).id);
+    printf(&amp;quot;name = %s age = %d sex = %s id = %s\n&amp;quot;, ps-&amp;gt;name, ps-&amp;gt;age, ps-&amp;gt;sex, ps-&amp;gt;id);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/1/结构体结果.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Page 1</title>
+      <link>https://cytgenkidu.github.io/tutorial/example/example1/</link>
+      <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/example/example1/</guid>
+      <description>
+
+&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;../img/三子棋/三子棋.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;基本流程&#34;&gt;基本流程&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;创建一个用户交互菜单；&lt;/li&gt;
+&lt;li&gt;创建一个棋盘并初始化；&lt;/li&gt;
+&lt;li&gt;打印一个棋盘；&lt;/li&gt;
+&lt;li&gt;玩家落子（玩家通过输入行列坐标落子）；&lt;/li&gt;
+&lt;li&gt;判定胜负关系；&lt;/li&gt;
+&lt;li&gt;电脑落子（电脑采用随机落子的方式落子）；&lt;/li&gt;
+&lt;li&gt;判定胜负关系；&lt;/li&gt;
+&lt;li&gt;游戏结束。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;test-c&#34;&gt;test.c&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define _CRT_SECURE_NO_WARNINGS 1
+
+//测试三子棋游戏
+
+
+#include &amp;quot;game.h&amp;quot;
+
+//打印菜单：1.开始游戏 0.退出游戏
+void menu()
+{
+    printf(&amp;quot;***************************\n&amp;quot;);
+    printf(&amp;quot;**** 1. play   0. exit*****\n&amp;quot;);
+    printf(&amp;quot;***************************\n&amp;quot;);
+}
+
+//   |   |   
+//---|---|---
+//   |   |  
+//---|---|---
+//   |   |   
+
+void test()
+{
+    int input = 0;
+    srand((unsigned int)time(NULL));//拿时间戳设置一个随机起点，设置一次就可以，不要频繁调用
+    do
+    {
+        menu();
+        printf(&amp;quot;请选择:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;input);
+        switch (input)
+        {
+        case 1:
+            game();
+            break;
+        case 0:
+            printf(&amp;quot;退出游戏\n&amp;quot;);
+            break;
+        default:
+            printf(&amp;quot;选择错误，请重新选择!\n&amp;quot;);
+            break;
+        }
+    } while (input);
+}
+
+int main()
+{
+    test();
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;game-h&#34;&gt;game.h&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define ROW 3
+#define COL 3
+
+#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;time.h&amp;gt;
+
+//声明
+void game();//游戏的整个算法实现
+void InitBoard(char board[ROW][COL], int row, int col);//初始化数组
+void DisplayBoard(char board[ROW][COL], int row, int col);//打印棋盘和棋子
+void PlayerMove(char board[ROW][COL], int row, int col);//玩家移动
+void ComputerMove(char board[ROW][COL], int row, int col);//电脑移动
+
+
+//告诉我们四种游戏的状态
+//玩家赢 - &#39;*&#39;
+//电脑赢 - &#39;#&#39;
+//平局   - &#39;Q&#39;
+//继续   - &#39;C&#39;
+
+char IsWin(char board[ROW][COL], int row, int col);//检查游戏是否结束
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;game-c&#34;&gt;game.c&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define _CRT_SECURE_NO_WARNINGS 1
+
+#include &amp;quot;game.h&amp;quot;
+
+//游戏的整个算法实现
+void game()
+{
+    char ret = 0;
+    //数组-存放走出的棋盘信息
+    char board[ROW][COL] = { 0 };//全部空格
+    //初始化棋盘
+    InitBoard(board, ROW, COL);
+    //打印棋盘
+    DisplayBoard(board, ROW, COL);
+    //下棋
+    while (1)
+    {
+        //玩家下棋
+        PlayerMove(board, ROW, COL);
+        DisplayBoard(board, ROW, COL);
+        //判断玩家是否赢
+        ret = IsWin(board, ROW, COL);
+        if (ret != &#39;C&#39;)
+        {
+            break;
+        }
+        //电脑下棋
+        ComputerMove(board, ROW, COL);
+        DisplayBoard(board, ROW, COL);
+        //判断电脑是否赢
+        ret = IsWin(board, ROW, COL);
+        if (ret != &#39;C&#39;)
+        {
+            break;
+        }
+    }
+    if (ret == &#39;*&#39;)
+    {
+        printf(&amp;quot;玩家赢\n&amp;quot;);
+    }
+    else if (ret == &#39;#&#39;)
+    {
+        printf(&amp;quot;电脑赢\n&amp;quot;);
+    }
+    else
+    {
+        printf(&amp;quot;平局\n&amp;quot;);
+    }
+}
+
+void InitBoard(char board[ROW][COL], int row, int col)
+{
+    int i = 0;
+    int j = 0;
+    for (i = 0; i &amp;lt; row; i++)
+    {
+        for (j = 0; j &amp;lt; col; j++)
+        {
+            board[i][j] = &#39; &#39;;
+        }
+    }
+}
+
+//void DisplayBoard(char board[ROW][COL], int row, int col)
+//{
+//  int i = 0;
+//  for (i = 0; i &amp;lt; row; i++)
+//  {
+//      //1. 打印一行的数据
+//      printf(&amp;quot; %c | %c | %c \n&amp;quot;, board[i][0], board[i][1], board[i][2]);
+//      //2. 打印分割行
+//      if (i &amp;lt; row - 1)
+//          printf(&amp;quot;---|---|---\n&amp;quot;);
+//  }
+//}
+
+//   |   |   
+//---|---|---
+//   |   |  
+//---|---|---
+//   |   |   
+void DisplayBoard(char board[ROW][COL], int row, int col)
+{
+    int i = 0;
+    for (i = 0; i &amp;lt; row; i++)
+    {
+        int j = 0;
+        for (j = 0; j &amp;lt; col; j++)
+        {
+            //1. 打印一行的数据。     |   |   
+            printf(&amp;quot; %c &amp;quot;, board[i][j]);
+            if (j &amp;lt; col - 1)
+                printf(&amp;quot;|&amp;quot;);
+        }
+        printf(&amp;quot;\n&amp;quot;);
+        //2. 打印分割行。 ---|---|---
+        if (i &amp;lt; row - 1)
+        {
+            for (j = 0; j &amp;lt; col; j++)
+            {
+                printf(&amp;quot;---&amp;quot;);
+                if (j &amp;lt; col - 1)
+                    printf(&amp;quot;|&amp;quot;);
+            }
+            printf(&amp;quot;\n&amp;quot;);
+        }
+    }
+}
+
+void PlayerMove(char board[ROW][COL], int row, int col)
+{
+    int x = 0;
+    int y = 0;
+    printf(&amp;quot;玩家走：&amp;gt;\n&amp;quot;);
+    while (1)
+    {
+        printf(&amp;quot;请输入要下的坐标:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;x, &amp;amp;y);
+        //判断x,y坐标的合法性
+        if (x &amp;gt;= 1 &amp;amp;&amp;amp; x &amp;lt;= row &amp;amp;&amp;amp; y &amp;gt;= 1 &amp;amp;&amp;amp; y &amp;lt;= col)
+        {
+            if (board[x - 1][y - 1] == &#39; &#39;)
+            {
+                board[x - 1][y - 1] = &#39;*&#39;;
+                break;
+            }
+            else
+            {
+                printf(&amp;quot;该坐标被占用\n&amp;quot;);
+            }
+        }
+        else
+        {
+            printf(&amp;quot;坐标非法，请重新输入!\n&amp;quot;);
+        }
+    }
+}
+
+void ComputerMove(char board[ROW][COL], int row, int col)
+{
+    int x = 0;
+    int y = 0;
+    printf(&amp;quot;电脑走:&amp;gt;\n&amp;quot;);
+    while (1)
+    {
+
+        x = rand() % row;
+        y = rand() % col;
+        if (board[x][y] == &#39; &#39;)
+        {
+            board[x][y] = &#39;#&#39;;
+            break;
+        }
+    }
+
+}
+//返回1表示棋盘满了
+//返回0，表示棋盘没满
+
+int IsFull(char board[ROW][COL], int row, int col)
+{
+    int i = 0;
+    int j = 0;
+    for (i = 0; i &amp;lt; row; i++)
+    {
+        for (j = 0; j &amp;lt; col; j++)
+        {
+            if (board[i][j] == &#39; &#39;)
+            {
+                return 0;//没满
+            }
+        }
+    }
+    return 1;//满了
+}
+
+char IsWin(char board[ROW][COL], int row, int col)
+{
+    int i = 0;
+    //横三行
+    for (i = 0; i &amp;lt; row; i++)
+    {
+        if (board[i][0] == board[i][1] &amp;amp;&amp;amp; board[i][1] == board[i][2] &amp;amp;&amp;amp; board[i][1] != &#39; &#39;)
+        {
+            return board[i][1];
+        }
+    }
+    //竖三列
+    for (i = 0; i &amp;lt; col; i++)
+    {
+        if (board[0][i] == board[1][i] &amp;amp;&amp;amp; board[1][i] == board[2][i] &amp;amp;&amp;amp; board[1][i] != &#39; &#39;)
+        {
+            return board[1][i];
+        }
+    }
+    //两个对角线
+    if (board[0][0] == board[1][1] &amp;amp;&amp;amp; board[1][1] == board[2][2] &amp;amp;&amp;amp; board[1][1] != &#39; &#39;)
+        return board[1][1];
+    if (board[2][0] == board[1][1] &amp;amp;&amp;amp; board[1][1] == board[0][2] &amp;amp;&amp;amp; board[1][1] != &#39; &#39;)
+        return board[1][1];
+    //判断是否平局
+    if (1 == IsFull(board, ROW, COL))
+    {
+        return &#39;Q&#39;;
+    }
+    //继续
+    return &#39;C&#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;../img/扫雷游戏/扫雷2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/扫雷游戏/扫雷3.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;基本流程&#34;&gt;基本流程&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/扫雷游戏/扫雷.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;test-c&#34;&gt;test.c&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define _CRT_SECURE_NO_WARNINGS 1
+
+#include &amp;quot;game.h&amp;quot;
+
+void menu()
+{
+    printf(&amp;quot;*****************************\n&amp;quot;);
+    printf(&amp;quot;*******    1. play     ******\n&amp;quot;);
+    printf(&amp;quot;*******    0. exit     ******\n&amp;quot;);
+    printf(&amp;quot;*****************************\n&amp;quot;);
+}
+
+void test()
+{
+    int input = 0;
+    srand((unsigned int)time(NULL));
+    do
+    {
+        menu();
+        printf(&amp;quot;请选择:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;input);
+        switch (input)
+        {
+        case 1:
+            game();
+            break;
+        case 0:
+            printf(&amp;quot;退出游戏\n&amp;quot;);
+            break;
+        default:
+            printf(&amp;quot;选择错误,重新选择!\n&amp;quot;);
+            break;
+        }
+    } while (input);
+}
+
+int main()
+{
+    test();
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;game-h&#34;&gt;game.h&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define ROW 9
+#define COL 9
+
+#define ROWS ROW+2
+#define COLS COL+2
+
+#define EASY_COUNT 10
+
+#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;time.h&amp;gt;
+
+void game();
+void InitBoard(char board[ROWS][COLS], int rows, int cols, char set);
+void DisplayBoard(char board[ROWS][COLS], int row, int col);
+void SetMine(char board[ROWS][COLS], int row, int col);
+void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;game-c&#34;&gt;game.c&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define _CRT_SECURE_NO_WARNINGS 1
+
+#include &amp;quot;game.h&amp;quot;
+
+void game()
+{
+    //雷的信息存储
+    //1. 布置好的雷的信息
+    char mine[ROWS][COLS] = { 0 };// 11 * 11   //记录地雷的数组
+    //2. 排查出的雷的信息
+    char show[ROWS][COLS] = { 0 }; //展示给玩家的数组
+    //初始化
+    InitBoard(mine, ROWS, COLS, &#39;0&#39;);//初始化
+    InitBoard(show, ROWS, COLS, &#39;*&#39;);
+    //打印棋盘
+    //DisplayBoard(mine, ROW, COL);
+    DisplayBoard(show, ROW, COL);
+    //布置雷
+    SetMine(mine, ROW, COL);
+    //DisplayBoard(mine, ROW, COL);
+    //扫雷
+    FindMine(mine, show, ROW, COL);
+}
+
+void InitBoard(char board[ROWS][COLS], int rows, int cols, char set)
+{
+    int i = 0;
+    int j = 0;
+    for (i = 0; i &amp;lt; rows; i++)
+    {
+        for (j = 0; j &amp;lt; cols; j++)
+        {
+            board[i][j] = set;
+        }
+    }
+}
+
+void DisplayBoard(char board[ROWS][COLS], int row, int col)
+{
+    int i = 0;
+    int j = 0;
+    //打印列号
+    for (i = 0; i &amp;lt;= col; i++)
+    {
+        printf(&amp;quot;%d &amp;quot;, i);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+    for (i = 1; i &amp;lt;= row; i++)
+    {
+        printf(&amp;quot;%d &amp;quot;, i);
+        for (j = 1; j &amp;lt;= col; j++)
+        {
+            printf(&amp;quot;%c &amp;quot;, board[i][j]);
+        }
+        printf(&amp;quot;\n&amp;quot;);
+    }
+}
+
+void SetMine(char board[ROWS][COLS], int row, int col)
+{
+    int count = EASY_COUNT;
+    while (count)
+    {
+        int x = rand() % row + 1;//1-9
+        int y = rand() % col + 1;//
+        if (board[x][y] == &#39;0&#39;)
+        {
+            board[x][y] = &#39;1&#39;;
+            count--;
+        }
+    }
+}
+//&#39;0&#39; - &#39;0&#39;=0
+//&#39;1&#39;-&#39;0&#39; = 1
+//&#39;3&#39;-&#39;0&#39; = 3
+
+int get_mine_count(char mine[ROWS][COLS], int x, int y)
+{
+    return mine[x - 1][y] +
+        mine[x - 1][y - 1] +
+        mine[x][y - 1] +
+        mine[x + 1][y - 1] +
+        mine[x + 1][y] +
+        mine[x + 1][y + 1] +
+        mine[x][y + 1] +
+        mine[x - 1][y + 1] - 8 * &#39;0&#39;;
+}
+
+void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
+{
+    int x = 0;
+    int y = 0;
+    int win = 0;
+    //9*9-10 = 71
+    while (win &amp;lt; row*col - EASY_COUNT)
+    {
+        printf(&amp;quot;请输入排查雷的坐标:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;x, &amp;amp;y);
+        if (x &amp;gt;= 1 &amp;amp;&amp;amp; x &amp;lt;= row &amp;amp;&amp;amp; y &amp;gt;= 1 &amp;amp;&amp;amp; y &amp;lt;= col)
+        {
+            //坐标合法
+            //1. 踩雷
+            if (mine[x][y] == &#39;1&#39;)
+            {
+                printf(&amp;quot;很遗憾，你被炸死了\n&amp;quot;);
+                DisplayBoard(mine, row, col);
+                break;
+            }
+            else //不是雷
+            {
+                //计算x,y坐标周围有几个雷
+                int count = get_mine_count(mine, x, y);
+                show[x][y] = count + &#39;0&#39;;
+                DisplayBoard(show, row, col);
+                win++;
+            }
+        }
+        else
+        {
+            printf(&amp;quot;输入坐标非法，请重新输入!\n&amp;quot;);
+        }
+    }
+    if (win == row * col - EASY_COUNT)
+    {
+        printf(&amp;quot;恭喜你，排雷成功\n&amp;quot;);
+        DisplayBoard(mine, row, col);
+    }
+}
+
+//展开功能的时候-递归
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/</guid>
+      <description>
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;相传在古印度圣庙中，有一种被称为汉诺塔(Hanoi)的游戏。该游戏是在一块铜板装置上，有三根杆(编号A、B、C)，在A杆自下而上、由大到小按顺序放置64个金盘(如下图)。游戏的目标：把A杆上的金盘全部移到C杆上，并仍保持原有顺序叠好。操作规则：每次只能移动一个盘子，并且在移动过程中三根杆上都始终保持大盘在下，小盘在上，操作过程中盘子可以置于A、B、C任一杆上。&lt;/p&gt;
+
+&lt;h2 id=&#34;思想&#34;&gt;思想&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/汉诺塔问题/1.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;c语言实现&#34;&gt;C语言实现&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;void hanoi(int n, char a, char b, char c)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;n - 为移动圆盘个数&lt;/p&gt;
+
+&lt;p&gt;a b c - 分别为三根针&lt;/p&gt;
+
+&lt;p&gt;实现功能 - a上的n个圆盘移动到c上&lt;/p&gt;
+
+&lt;p&gt;当只移动一个圆盘时，直接将圆盘从 A 针移动到 C 针。
+若移动的圆盘为 n(n&amp;gt;1)，则分成几步走：
+把 (n-1) 个圆盘从 A 针移动到 B 针（借助 C 针）；
+A 针上的最后一个圆盘移动到 C 针；
+B 针上的 (n-1) 个圆盘移动到 C 针（借助 A 针）。
+每做一遍，移动的圆盘少一个，逐次递减，最后当 n 为 1 时，完成整个移动过程。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+void hanoi(int n, char a, char b, char c)
+{
+    if (n &amp;gt;= 1)
+    {
+        hanoi(n - 1, a, c, b);//把n - 1个盘子从a移到c借助b
+        printf(&amp;quot;%c-- &amp;gt; %c\n&amp;quot;, a, c);
+        hanoi(n - 1, b, a, c);//把n - 1个盘子从b柱移到a柱借助c
+    }
+}
+void main()
+{
+    int  n;
+    printf(&amp;quot;请输入移动圆盘个数:\n &amp;quot;);
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;n);
+    hanoi(n, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/汉诺塔问题/2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/contact/</guid>
+      <description>
+
+&lt;h2 id=&#34;通讯录contact&#34;&gt;通讯录Contact&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;存放1000个好友的信息  ： 名字 电话 性别 住址 年龄&lt;/li&gt;
+&lt;li&gt;增加好友信息&lt;/li&gt;
+&lt;li&gt;删除指定名字的好友信息&lt;/li&gt;
+&lt;li&gt;查找好友信息&lt;/li&gt;
+&lt;li&gt;修改好友信息&lt;/li&gt;
+&lt;li&gt;打印好友信息&lt;/li&gt;
+&lt;li&gt;排序&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/通讯录/静态改动态.png&#34; alt=&#34;Image Text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简单流程&#34;&gt;简单流程&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210323211415121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;详细代码&#34;&gt;详细代码&lt;/h2&gt;
+
+&lt;h3 id=&#34;test-c-测试&#34;&gt;test.c 测试&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define _CRT_SECURE_NO_WARNINGS 1
+
+#include &amp;quot;contact.h&amp;quot;
+
+void menu()
+{
+    printf(&amp;quot;*****************************************\n&amp;quot;);
+    printf(&amp;quot;****** 1. add           2. del    *******\n&amp;quot;);
+    printf(&amp;quot;****** 3. search        4. modify *******\n&amp;quot;);
+    printf(&amp;quot;****** 5. show          6. sort   *******\n&amp;quot;);
+    printf(&amp;quot;****** 0. exit                    *******\n&amp;quot;);
+    printf(&amp;quot;*****************************************\n&amp;quot;);
+}
+
+int main()
+{
+    int input = 0;
+    //创建通讯录
+    struct Contact con;//con就是通讯录，里边包含：data指针和size，capacity
+    //初始化通讯录
+    InitContact(&amp;amp;con);
+    //
+    do
+    {
+        menu();
+        printf(&amp;quot;请选择:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;input);
+        switch (input)
+        {
+        case ADD:
+            AddContact(&amp;amp;con);
+            break;
+        case DEL:
+            DelContact(&amp;amp;con);
+            break;
+        case SEARCH:
+            SearchContact(&amp;amp;con);
+            break;
+        case MODIFY:
+            ModifyContact(&amp;amp;con);
+            break;
+        case SHOW:
+            ShowContact(&amp;amp;con);//即使是展示也要取地址，这种效率高
+            break;
+        case SORT:
+            SortContact(&amp;amp;con);
+            break;
+        case EXIT:
+            //销毁通讯录-释放动态开辟的内存
+            DestroyContact(&amp;amp;con);
+            printf(&amp;quot;退出通讯录\n&amp;quot;);
+            break;
+        default:
+            printf(&amp;quot;选择错误\n&amp;quot;);
+            break;
+        }
+    } while (input);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;contact-c-实现函数的功能&#34;&gt;contact.c 实现函数的功能&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define _CRT_SECURE_NO_WARNINGS 1
+
+#include &amp;quot;contact.h&amp;quot;
+
+void InitContact(struct Contact* ps)
+{
+    ps-&amp;gt;data = (struct PeoInfo*)malloc(DEFAULT_SZ * sizeof(struct PeoInfo));
+    if (ps-&amp;gt;data == NULL)
+    {
+        return;
+    }
+    ps-&amp;gt;size = 0;
+    ps-&amp;gt;capacity = DEFAULT_SZ;
+}
+
+
+void CheckCapacity(struct Contact* ps)
+{
+    if (ps-&amp;gt;size == ps-&amp;gt;capacity)
+    {
+        //增容
+        struct PeoInfo* ptr = realloc(ps-&amp;gt;data, (ps-&amp;gt;capacity + 2) * sizeof(PeoInfo));
+        if (ptr != NULL)
+        {
+            ps-&amp;gt;data = ptr;
+            ps-&amp;gt;capacity += 2;
+            printf(&amp;quot;增容成功\n&amp;quot;);
+        }
+        else
+        {
+            printf(&amp;quot;增容失败\n&amp;quot;);
+        }
+    }
+}
+
+void AddContact(struct Contact* ps)
+{
+    //检测当前通讯录的容量
+    //1. 如果满了，就增加空间
+    //2. 如果不满，啥事都不干
+    CheckCapacity(ps);
+    //增加数据
+    printf(&amp;quot;请输入名字:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[ps-&amp;gt;size].name);//数组
+    printf(&amp;quot;请输入年龄:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;(ps-&amp;gt;data[ps-&amp;gt;size].age));//int 要加&amp;amp;
+    printf(&amp;quot;请输入性别:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[ps-&amp;gt;size].sex);
+    printf(&amp;quot;请输入电话:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[ps-&amp;gt;size].tele);
+    printf(&amp;quot;请输入地址:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[ps-&amp;gt;size].addr);
+
+    ps-&amp;gt;size++;
+    printf(&amp;quot;添加成功\n&amp;quot;);
+}
+
+void ShowContact(const struct Contact* ps)
+{
+    if (ps-&amp;gt;size == 0)
+    {
+        printf(&amp;quot;通讯录为空格\n&amp;quot;);
+    }
+    else
+    {
+        int i = 0;
+        //标题
+        printf(&amp;quot;%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n&amp;quot;, &amp;quot;名字&amp;quot;, &amp;quot;年龄&amp;quot;, &amp;quot;性别&amp;quot;, &amp;quot;电话&amp;quot;, &amp;quot;地址&amp;quot;);
+        //数据
+        for (i = 0; i &amp;lt; ps-&amp;gt;size; i++)
+        {
+            printf(&amp;quot;%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n&amp;quot;,
+                ps-&amp;gt;data[i].name,
+                ps-&amp;gt;data[i].age,
+                ps-&amp;gt;data[i].sex,
+                ps-&amp;gt;data[i].tele,
+                ps-&amp;gt;data[i].addr);
+        }
+    }
+}
+//没有声明，并加上static 这个函数只能在该源文件内调用，不会暴露在外面
+static int FindByName(const struct Contact* ps, char name[MAX_NAME])
+{
+    int i = 0;
+    for (i = 0; i &amp;lt; ps-&amp;gt;size; i++)
+    {
+        if (0 == strcmp(ps-&amp;gt;data[i].name, name))
+        {
+            return i;
+        }
+    }
+
+    return -1;//找不到的情况
+}
+
+void DelContact(struct Contact* ps)
+{
+    char name[MAX_NAME];
+    int pos = 0;
+    printf(&amp;quot;请输入要删除人的名字:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, name);
+    //1. 查找要删除的人在什么位置
+    //找到了返回名字所在元素的下标
+    //找不到返回 -1
+    pos = FindByName(ps, name);
+    //2. 删除
+    if (pos == -1)
+    {
+        printf(&amp;quot;要删除的人不存在\n&amp;quot;);
+    }
+    else
+    {
+        //删除数据
+        int j = 0;
+        for (j = pos; j &amp;lt; ps-&amp;gt;size - 1; j++)
+        {
+            ps-&amp;gt;data[j] = ps-&amp;gt;data[j + 1];
+        }
+        ps-&amp;gt;size--;
+        printf(&amp;quot;删除成功\n&amp;quot;);
+    }
+}
+
+void SearchContact(const struct Contact* ps)
+{
+    int pos = 0;
+    char name[MAX_NAME];
+    printf(&amp;quot;请输入要查找人的名字:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, name);
+    pos = FindByName(ps, name);
+    if (pos == -1)
+    {
+        printf(&amp;quot;要查找的人不存在\n&amp;quot;);
+    }
+    else
+    {
+        printf(&amp;quot;%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n&amp;quot;, &amp;quot;名字&amp;quot;, &amp;quot;年龄&amp;quot;, &amp;quot;性别&amp;quot;, &amp;quot;电话&amp;quot;, &amp;quot;地址&amp;quot;);
+        printf(&amp;quot;%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n&amp;quot;,
+            ps-&amp;gt;data[pos].name,
+            ps-&amp;gt;data[pos].age,
+            ps-&amp;gt;data[pos].sex,
+            ps-&amp;gt;data[pos].tele,
+            ps-&amp;gt;data[pos].addr);
+    }
+}
+
+void ModifyContact(struct Contact* ps)
+{
+    int pos = 0;
+    char name[MAX_NAME];
+    printf(&amp;quot;请输入要修改人的名字:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, name);
+    pos = FindByName(ps, name);
+    if (pos == -1)
+    {
+        printf(&amp;quot;要修改人的信息不错在\n&amp;quot;);
+    }
+    else
+    {
+        printf(&amp;quot;请输入名字:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[pos].name);
+        printf(&amp;quot;请输入年龄:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;(ps-&amp;gt;data[pos].age));
+        printf(&amp;quot;请输入性别:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[pos].sex);
+        printf(&amp;quot;请输入电话:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[pos].tele);
+        printf(&amp;quot;请输入地址:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%s&amp;quot;, ps-&amp;gt;data[pos].addr);
+
+        printf(&amp;quot;修改完成\n&amp;quot;);
+    }
+}
+
+//冒泡排序
+void SortContact(struct Contact*ps)
+{
+    for (int i = 0; i &amp;lt; ps-&amp;gt;size; i++)//冒泡排序的趟数
+    {
+        int flag = 1; //假设这一趟要排序的数据已经有序
+        //每一趟冒泡排序
+        for (int j = 0; j &amp;lt; ps-&amp;gt;size - i - 1; j++)
+        {
+            if (strcmp(ps-&amp;gt;data[j].name, ps-&amp;gt;data[j + 1].name) &amp;gt; 0)
+            {
+                PeoInfo temp;
+                temp = ps-&amp;gt;data[j];
+                ps-&amp;gt;data[j] = ps-&amp;gt;data[j + 1];
+                ps-&amp;gt;data[j + 1] = temp;
+                flag = 0; //本趟排序的数据其实不完全有序
+            }
+        }
+        if (flag == 1)
+        {
+            break;// if不能break,这个break是跳出外层循环
+        }
+    }
+}
+
+void DestroyContact(Contact* ps)
+{
+    free(ps-&amp;gt;data);
+    ps-&amp;gt;data = NULL;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;contact-h-声明函数&#34;&gt;contact.h 声明函数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define _CRT_SECURE_NO_WARNINGS 1
+
+//#define MAX 1000
+
+#define DEFAULT_SZ 3
+
+
+#define MAX_NAME 20
+#define MAX_SEX 5
+#define MAX_TELE 12
+#define MAX_ADDR 30
+
+#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+
+enum Option
+{
+    EXIT,//0
+    ADD, //1
+    DEL, //2
+    SEARCH, //3
+    MODIFY, //4
+    SHOW, //5
+    SORT //6
+};
+
+typedef struct PeoInfo
+{
+    char name[MAX_NAME];
+    int age;
+    char sex[MAX_SEX];
+    char tele[MAX_TELE];
+    char addr[MAX_ADDR];
+}PeoInfo;
+
+//通讯录类型
+typedef struct Contact
+{
+    struct PeoInfo *data;//存放1000个信息
+    int size;//记录当前已经有的元素个数
+    int capacity;//当前通讯录的最大容量
+}Contact;
+
+
+
+//声明函数
+//初始化通讯录的函数
+void InitContact(struct Contact* ps);
+
+//增加一个信息到通讯录
+void AddContact(struct Contact* ps);
+
+//打印通讯录中的信息
+void ShowContact(const struct Contact* ps);
+
+//删除指定的联系人
+void DelContact(struct Contact* ps);
+
+//查找指定的人的信息
+void SearchContact(const struct Contact* ps);
+
+//修改指定联系人
+void ModifyContact(struct Contact* ps);
+
+//排序通讯录内容
+void SortContact(struct Contact*ps);
+
+void DestroyContact(Contact* ps);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/</guid>
+      <description>
+
+&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
+
+&lt;p&gt;一只青蛙一次可以跳上 1 级台阶，也可以跳上2 级。求该青蛙跳上一个n 级的台阶总共有多少种跳法。&lt;/p&gt;
+
+&lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
+
+&lt;p&gt;n - 台阶数&lt;/p&gt;
+
+&lt;p&gt;sum - 跳发&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;n&lt;/th&gt;
+&lt;th&gt;sum&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;13&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;21&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;34&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;55&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;89&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;……&lt;/td&gt;
+&lt;td&gt;……&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;n-2&lt;/td&gt;
+&lt;td&gt;f(n-2)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;n-1&lt;/td&gt;
+&lt;td&gt;f(n-1)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;n&lt;/td&gt;
+&lt;td&gt;f(n-1)+f(n-2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;可参考斐波那数&lt;/p&gt;
+
+&lt;h2 id=&#34;递归实现&#34;&gt;递归实现&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//1 2 3 5 8 13 21 34 55 89 ……
+//递归实现
+int D_Frog_jump(int n)
+{
+
+    if (n &amp;lt;3)
+        return n;
+    else
+        return D_Frog_jump(n - 1) + D_Frog_jump(n - 2);
+}
+int main()
+{
+    int n = 0;
+    int ret = 0;
+    printf(&amp;quot;请输入青蛙要跳的台阶数：&amp;quot;);
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;n);
+    ret = D_Frog_jump(n);
+    //ret = FD_Frog_jump(n);
+    printf(&amp;quot;%d\n&amp;quot;, ret);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;非递归实现&#34;&gt;非递归实现&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//非递归实现
+int FD_Frog_jump(int n)
+{
+    int res = 2;
+    int pre_res = 1;
+    int next_older_res = 0;
+    while (n &amp;gt; 2)
+    {
+        next_older_res = pre_res;
+        pre_res = res;
+        res = pre_res + next_older_res;
+        n--;
+    }
+    return res;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>分支语句和循环语句</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/2/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/2/</guid>
+      <description>
+
+&lt;h2 id=&#34;c语言是一门结构化的程序设计语言&#34;&gt;C语言是一门结构化的程序设计语言&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;顺序结构&lt;/li&gt;
+&lt;li&gt;选择结构&lt;/li&gt;
+&lt;li&gt;循环结构&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;什么是语句&#34;&gt;什么是语句&lt;/h2&gt;
+
+&lt;p&gt;C语言中由一个分号 ; 隔开的就是一条语句。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;printf(&amp;quot;hello&amp;quot;);
+;//是语句，空语句
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;分支语句-选择结构&#34;&gt;分支语句（选择结构）&lt;/h2&gt;
+
+&lt;h3 id=&#34;if&#34;&gt;if&lt;/h3&gt;
+
+&lt;h4 id=&#34;if语句语法&#34;&gt;if语句语法&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;if(表达式)
+    语句;
+if(表达式)
+    语句1;
+else
+    语句2;
+
+//多分支    
+if(表达式1)
+    语句1;
+else if(表达式2)
+    语句2;
+else
+    语句3;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;if语句示例&#34;&gt;if语句示例&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int age = 45;
+if (age &amp;lt; 18)
+    printf(&amp;quot;未成年\n&amp;quot;);
+else if (age &amp;gt;= 18 &amp;amp;&amp;amp; age &amp;lt; 28) // 18&amp;lt;=age&amp;lt;28 有问题
+    printf(&amp;quot;青年\n&amp;quot;);
+else if (age &amp;gt;= 28 &amp;amp;&amp;amp; age &amp;lt; 50)
+    printf(&amp;quot;壮年\n&amp;quot;);
+else if (age &amp;gt;= 50 &amp;amp;&amp;amp; age &amp;lt; 90)
+    printf(&amp;quot;老年&amp;quot;);
+else
+    printf(&amp;quot;长寿&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果表达式的结果为真，则语句执行。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在C语言中如何表示真假？&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;0表示假，非0表示真。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果条件成立，要执行多条语句，怎应该使用代码块&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    if(表达式)
+   {
+        语句列表1；
+   }
+    else
+   {
+        语句列表2；
+   }
+    return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;悬空else&#34;&gt;悬空else&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+//有问题
+int main()//什么也不打印
+{
+    int a = 0;
+    int b = 2;
+    if (a == 1)
+        if (b == 2)
+            printf(&amp;quot;hehe\n&amp;quot;);
+    else
+        printf(&amp;quot;haha\n&amp;quot;);
+    return 0;
+}
+
+//改正
+//适当的使用{}可以使代码的逻辑更加清楚。
+//代码风格很重要
+int main()
+{
+    int a = 0;
+    int b = 2;
+    if (a == 1)
+    {
+        if (b == 2)
+        {
+            printf(&amp;quot;hehe\n&amp;quot;);
+        }
+    }
+    else
+    {
+        printf(&amp;quot;haha\n&amp;quot;);
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;if书写形式的对比&#34;&gt;if书写形式的对比&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码1
+if (condition) {
+    return x;
+}
+return y;
+
+//代码2，和代码1 一致，但代码1 易产生误解，应避免
+if (condition) {
+    return x;
+}else{
+    return y;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码3
+int num = 1;
+if (num = 5)
+{                     // 一个=是赋值,不是判断相等
+    printf(&amp;quot;呵呵\n&amp;quot;); //打印呵呵
+}
+
+//代码4
+int num =1
+if (5 == num)
+{                     // 一个=是会报错
+    printf(&amp;quot;呵呵\n&amp;quot;); //打印呵呵
+}
+return 0;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;代码2和代码4更好，逻辑更加清晰，不容易出错。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;break 语句只能用于for 和switch,在if语句中不能使用，因为if不是循环语句，所以不能用break来结束。&lt;/p&gt;
+
+&lt;h4 id=&#34;if练习&#34;&gt;if练习&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;判断一个数是否为奇数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int num;
+printf(&amp;quot;输入一个数:&amp;quot;);
+scanf(&amp;quot;%d&amp;quot;, &amp;amp;num);
+
+if (0 == num % 2) // 判断这个数除以 2 的余数
+    printf(&amp;quot;%d 是偶数。&amp;quot;, num);
+else
+    printf(&amp;quot;%d 是奇数。&amp;quot;, num);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;输出1-100之间的奇数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 1;
+while (i &amp;lt;= 100)
+{
+    if (num &amp;amp; 1) // 判断这个数最后一位是1这为奇数
+    printf(&amp;quot;%d &amp;quot;, num);
+    i++;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;switch&#34;&gt;switch&lt;/h3&gt;
+
+&lt;p&gt;switch语句也是一种分支语句。 常常用于多分支的情况。&lt;/p&gt;
+
+&lt;h4 id=&#34;switch语法&#34;&gt;switch语法&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;switch(整型表达式)
+{
+    case 整型表达式:// 不能为变量
+      语句;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;switch示例&#34;&gt;switch示例&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int day;
+printf(&amp;quot;输入：&amp;quot;);
+scanf(&amp;quot;%d&amp;quot;, &amp;amp;day);
+switch (day)// ()内必须为整形
+{
+case 1:
+    printf(&amp;quot;Monday&amp;quot;);
+    break;
+case 2:
+    printf(&amp;quot;Tuesday&amp;quot;);
+    break;
+case 3:
+    printf(&amp;quot;Wednesday&amp;quot;);
+    break;
+case 4:
+    printf(&amp;quot;Thursday&amp;quot;);
+    break;
+case 5:
+    printf(&amp;quot;Friday&amp;quot;);
+    break;
+case 6:
+    printf(&amp;quot;Saturday&amp;quot;);
+    break;
+case 7:
+    printf(&amp;quot;Sunday&amp;quot;);
+    break;
+default:
+    printf(&amp;quot;输入有误，1-7&amp;quot;);
+    break;
+}
+
+switch (day)// ()内必须为整形
+{
+case 1:
+case 2:
+case 3:
+case 4:
+case 5:
+    printf(&amp;quot;weekday&amp;quot;);
+    break;
+case 6:
+case 7:
+    printf(&amp;quot;weekend&amp;quot;);
+    break;
+default:
+    printf(&amp;quot;输入有误，1-7&amp;quot;);
+    break;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;break&lt;/strong&gt;语句的实际效果是把语句列表划分为不同的部分。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;default&lt;/strong&gt;：
+写在任何一个case标签可以出现的位置。
+当 switch表达式的值并不匹配所有case标签的值时，这个default子句后面的语句就会执行。
+所以，每个switch语句中只能出现一条default子句。
+但是它可以出现在语句列表的任何位置，而且语句流会像贯穿一个case标签一样贯穿default子句。&lt;/p&gt;
+
+&lt;h4 id=&#34;switch练习&#34;&gt;switch练习&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int n = 1;
+int m = 2;
+switch (n)
+{
+case 1:  //没有break，符合case 1 完成case 1 继续执行case 2……
+    m++; //m=3,n=1
+case 2:
+    n++; //m=3,n=2
+case 3:
+    switch (n)
+    {       //switch允许嵌套使用
+    case 1: //未执行
+        n++;
+    case 2: //符合，执行，break，继续执行case 4
+        m++;
+        n++; //m=4,n=3
+        break;
+    }
+case 4:
+    m++; //m=5,n=3
+    break; //跳出 switch
+default: //未执行
+    break;
+}
+printf(&amp;quot;m = %d, n = %d\n&amp;quot;, m, n); //m = 5, n = 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;循环语句&#34;&gt;循环语句&lt;/h2&gt;
+
+&lt;h3 id=&#34;while&#34;&gt;while&lt;/h3&gt;
+
+&lt;h4 id=&#34;while语法&#34;&gt;while语法&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;//while 语法结构
+while(表达式)
+ 循环语句；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;while语句执行的流程&#34;&gt;while语句执行的流程&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/while执行流程.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;while示例&#34;&gt;while示例&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 1;
+while (i &amp;lt;= 10)
+{
+    printf(&amp;quot;%d\n&amp;quot;, i);
+    i++;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/while_result1.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 1;
+while (i &amp;lt;= 10)
+{
+    if (5 == i)
+        break;
+    printf(&amp;quot;%d &amp;quot;, i);
+    i++;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/while_result2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;break在while循环中的作用&lt;/strong&gt;：
+其实在循环中只要遇到break，就停止后期的所有的循环，直接终止循环。 所以：while中的
+break是用于永久终止循环的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;    int i = 1;
+    while (i &amp;lt;= 10)
+    {
+        if (5 == i)
+            continue;
+        printf(&amp;quot;%d &amp;quot;, i);
+        i++; //陷入死循环，应把i++放在if前
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/while_result3.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;continue在while循环中的作用就是&lt;/strong&gt;：
+continue是用于终止本次循环的，也就是本次循环中continue后边的代码不会再执行，而是直接跳转到while语句的判断部分。进行下一次循环的入口判断.&lt;/p&gt;
+
+&lt;h4 id=&#34;while练习&#34;&gt;while练习&lt;/h4&gt;
+
+&lt;p&gt;注：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int ch = getchar(); //getchar 接收键盘一个字符
+putchar(ch); //putchar 输出
+printf(&amp;quot;%c&amp;quot;, ch);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/getchar.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;代码1&#34;&gt;代码1&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码1
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int ch = 0;
+    //ctrl+z获取一个EOF -end of file-&amp;gt;-1
+    while ((ch = getchar()) != EOF) //直接输入EOF不会停止，读入一个字符在写一个字符，EOF是三个字符
+        putchar(ch);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/while代码1.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注：
+&lt;img src=&#34;../img/2/EOF.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int ret = 0;
+    char password[20] = {0};
+    printf(&amp;quot;请输入密码：&amp;quot;); //输入缓冲区：123456\n
+    scanf(&amp;quot;%s&amp;quot;, password);  //输入密码，存放在password数组中
+    //缓冲区还剩余一个\n,\n--&amp;gt;10
+    // printf(&amp;quot;%d&amp;quot;, &#39;\n&#39;); //10
+    getchar(); //读取\n
+    printf(&amp;quot;请确认（Y/N）?&amp;quot;);
+    ret = getchar(); //Y /N
+    if (ret == &#39;Y&#39;)
+    {
+        printf(&amp;quot;确认成功\n&amp;quot;);
+    }
+    else
+    {
+        printf(&amp;quot;放弃确认\n&amp;quot;);
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;若不加中间的&lt;strong&gt;getchar();&lt;/strong&gt;则
+&lt;img src=&#34;../img/2/确认密码错误.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;加了
+&lt;img src=&#34;../img/2/确认密码正确.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但还存在问题
+&lt;img src=&#34;../img/2/确认密码错误2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;修改代码为：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int ret = 0;
+    int ch = 0;
+    char password[20] = {0};
+    printf(&amp;quot;请输入密码：&amp;quot;); //输入缓冲区：123456\n
+    scanf(&amp;quot;%s&amp;quot;, password);  //输入密码，存放在password数组中
+    //缓冲区还剩余一个\n,\n--&amp;gt;10
+    // printf(&amp;quot;%d&amp;quot;, &#39;\n&#39;); //10
+    // getchar(); //读取\n
+    while ((ch = getchar()) != &#39;\n&#39;)
+    {
+        ; //空语句
+    }
+    printf(&amp;quot;请确认（Y/N）?&amp;quot;);
+    ret = getchar(); //Y /N
+
+    if (ret == &#39;Y&#39;)
+    {
+        printf(&amp;quot;确认成功\n&amp;quot;);
+    }
+    else
+    {
+        printf(&amp;quot;放弃确认\n&amp;quot;);
+    }
+    printf(&amp;quot;密码为：%s\n&amp;quot;, password);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/确认密码正确2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;代码2&#34;&gt;代码2&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码2
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int ch = 0;
+    //ctrl+z获取一个EOF -end of file-&amp;gt;-1
+    while ((ch = getchar()) != EOF)
+    {
+        if (ch &amp;lt; &#39;0&#39; || ch &amp;gt; &#39;9&#39;) //只打印字符0-9,否则跳走
+            continue;
+        putchar(ch);
+        printf(&amp;quot;\n&amp;quot;);
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/代码2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;for&#34;&gt;for&lt;/h3&gt;
+
+&lt;h4 id=&#34;语法&#34;&gt;语法&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;for(表达式1；表达式2；表达式3)
+ 循环语句；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;for执行流程&#34;&gt;for执行流程&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/for执行流程.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;for示例&#34;&gt;for示例&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;    int i = 0;
+    for (i = 1; i &amp;lt; 10; i++)
+    {
+        if (i == 5)
+            break;
+        printf(&amp;quot;%d &amp;quot;, i);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+    i = 1;
+    while (i &amp;lt;= 10)
+    {
+        if (5 == i)
+            break;
+        printf(&amp;quot;%d &amp;quot;, i);
+        i++;
+    }
+    printf(&amp;quot;\n&amp;quot;);
+    i = 0;
+    for (i = 1; i &amp;lt; 10; i++)
+    {
+        if (i == 5)
+            continue;
+        printf(&amp;quot;%d &amp;quot;, i);
+    }
+    i = 1;
+    printf(&amp;quot;\n&amp;quot;);
+    while (i &amp;lt;= 10)
+    {
+        if (5 == i)
+            continue;
+        printf(&amp;quot;%d &amp;quot;, i);
+        i++;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/for示例.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;break和continue在for循环中
+我们发现在for循环中也可以出现break和continue，他们的意义和在while循环中是一样的。 但是还是有些差异：&lt;/p&gt;
+
+&lt;h4 id=&#34;for语句的循环控制变量&#34;&gt;for语句的循环控制变量&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;一些建议&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;不可在for 循环体内修改循环变量，防止 for 循环失去控制。[如i=5]&lt;/li&gt;
+&lt;li&gt;建议for语句的循环控制变量的取值采用“前闭后开区间”写法。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 0;
+//前闭后开的写法,十次循环
+for(i=0; i&amp;lt;10; i++)
+{}
+//两边都是闭区间
+for(i=0; i&amp;lt;=9; i++)
+{}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;一些for循环的变种&#34;&gt;一些for循环的变种&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;变种1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int main()
+{
+    for (;;) //死循环
+    {
+        printf(&amp;quot;hehe\n&amp;quot;);
+    }
+    int i = 0;
+    int j = 0;
+    for (i = 0; i &amp;lt; 10; i++)
+    {
+        for (j = 0; j &amp;lt; 10; j++)
+        {
+            printf(&amp;quot;hehe\n&amp;quot;);
+        }
+    }
+    //10*10=100个hehe
+    int i = 0;
+    int j = 0;
+    for (; i &amp;lt; 10; i++)
+    {
+        for (; j &amp;lt; 10; j++)
+        {
+            printf(&amp;quot;hehe\n&amp;quot;);
+        }
+    }
+    //10个hehe
+    //i=0 时，j=0,1,2,3,5,6,7,9 打印10次hehe,最后j=10
+    //i=1时，j还是等于10,第二个for为假，不会打印hehe
+    //i++……
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;for循环的初始化、调整、判断 都可以省略.&lt;/li&gt;
+&lt;li&gt;但是：for循环的 判断部分 如果被省略，即判断条件就是：恒为正.
+如果不是非常熟练，不要轻易省略&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;变种2&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+
+    //变种2
+    int x, y;
+    for (x = 0, y = 0; x &amp;lt; 2 &amp;amp;&amp;amp; y &amp;lt; 5; ++x, y++)
+    {
+        printf(&amp;quot;hehe\n&amp;quot;);
+    }//打印两个hehe
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;for练习&#34;&gt;for练习&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//请问循环要循环多少次？
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0;
+    int k = 0;
+    for (i = 0, k = 0; k = 0; i++, k++)
+        //k=0，把0赋值为k，这个表达式的结果为k的值，即为0，为假，所以循环0次
+        k++;
+    for (i = 0, k = 0; k = 1; i++, k++) //k=1，2……不等于0，为真，死循环
+        k++;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;do-while&#34;&gt;do while&lt;/h3&gt;
+
+&lt;h4 id=&#34;do-while语句语法&#34;&gt;do while语句语法&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;do
+    循环语句；
+while(表达式)；
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;do-while执行流程&#34;&gt;do while执行流程&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/dowhile执行流程.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;do-while示例&#34;&gt;do while示例&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;    //循环至少执行一次，使用的场景有限，所以不是经常使用
+    int i = 10;
+    do
+    {
+        printf(&amp;quot;%d&amp;quot;, i);
+    } while (i &amp;lt; 10); //打印一个10
+    printf(&amp;quot;\n&amp;quot;);
+
+    i = 1;
+    do
+    {
+        printf(&amp;quot;%d &amp;quot;, i);
+        i++;
+    } while (i &amp;lt;= 10); //打印1 2 3 4 5 6 7 8 9 10
+    printf(&amp;quot;\n&amp;quot;);
+
+    i = 1;
+    do
+    {
+        if (i == 5)
+            break;
+        printf(&amp;quot;%d &amp;quot;, i);
+        i++;
+    } while (i &amp;lt;= 10); //打印1 2 3 4
+    printf(&amp;quot;\n&amp;quot;);
+
+    i = 1;
+    do
+    {
+        if (i == 5)
+            continue;
+        printf(&amp;quot;%d &amp;quot;, i);
+        i++;
+    } while (i &amp;lt;= 10); //打印1 2 3 4 死循环
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/dowhile示例.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
+
+&lt;p&gt;&amp;ndash; 计算 n的阶乘。&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash; 计算 1!+2!+3!+……+10!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int ret = 1, ret2 = 0;
+    int n = 0;
+    printf(&amp;quot;请输入n:\n&amp;quot;);
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;n);
+    int i = 1;
+    for (i = 1; i &amp;lt;= n; i++)
+    {
+        ret = ret * i;
+        ret2 = ret2 + ret;
+    }
+    printf(&amp;quot;%d!=%d\n&amp;quot;, n, ret); //计算 n的阶乘。
+    printf(&amp;quot;1!+2!+……+%d!=%d&amp;quot;, n, ret2); //1!+2!+……+n!
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ndash; 在一个有序数组中查找具体的某个数字n。
+编写int binsearch(int x, int v[], int n); 功能：在v[0]&amp;lt;=v[1]&amp;lt;=v[2]&amp;lt;= ….&amp;lt;=v[n-1]的数组中查找x.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int v[] = {1, 3, 6, 7, 9, 10, 12, 13, 16, 19};
+    int k = 7;
+    int i = 0;
+    int sz = sizeof(v) / sizeof(int);
+    //折半查找log2n
+    int left = 0;       //左下表
+    int right = sz - 1; //右下标
+    int mid = 0;
+    while (left &amp;lt;= right)
+    {
+        mid = (left + right) / 2;
+        if (v[mid] &amp;gt; k)
+        {
+            right = mid - 1;
+        }
+        else if (v[mid] &amp;lt; k)
+        {
+            left = mid + 1;
+        }
+        else
+            break;
+    }
+    if (left &amp;lt;= right)
+        printf(&amp;quot;找到了,下标是%d\n&amp;quot;, mid);
+    else
+        printf(&amp;quot;找不到\n&amp;quot;);
+    //时间复杂度为O(n)
+    // for (i = 0; i &amp;lt; sz; i++)
+    // {
+    //     if (k == v[i])
+    //     {
+    //         printf(&amp;quot;找到了,下标是%d\n&amp;quot;, i);
+    //         break;
+    //     }
+    // }
+    // if (sz == i)
+    // {
+    //     printf(&amp;quot;未找到&amp;quot;);
+    // }
+    return 0;
+}
+//如果实现一个二分查找函数：
+int bin_search(int arr[], int left, int right, int key)
+{
+    int mid = 0;
+    while (left &amp;lt;= right)
+    {
+        mid = (left + right) &amp;gt;&amp;gt; 1;
+        if (arr[mid] &amp;gt; key)
+        {
+            right = mid - 1;
+        }
+        else if (arr[mid] &amp;lt; key)
+        {
+            left = mid + 1;
+        }
+        else
+            return mid; //找到了，返回下标
+    }
+    return -1; //找不到
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ndash; 编写代码，演示多个字符从两端移动，向中间汇聚。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;windows.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    //welcome to China!!!!!!
+    //######################
+    //w####################!
+    //we##################!!
+    // ……
+    char arr1[] = &amp;quot;welcome to China!!!!!!&amp;quot;; //以\0未结束
+    char arr2[] = &amp;quot;######################&amp;quot;;
+    int left = 0;
+    //int right = sizeof(arr1) / sizeof(arr1[0]) - 2;
+    int right = strlen(arr1)-1;
+    while (left&amp;lt;= right)
+    {
+        arr2[left] = arr1[left];
+        arr2[right] = arr1[right];
+        printf(&amp;quot;%s\n&amp;quot;, arr2);
+        //休息1秒
+        Sleep(1000);
+        system(&amp;quot;cls&amp;quot;);//执行系统命令的一个函数-cls-清空屏幕
+        left++;
+        right--;
+    }
+    printf(&amp;quot;%s\n&amp;quot;, arr2);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/字符移动结果.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash; 编写代码实现，模拟用户登录情景，并且只能登录三次。（只允许输入三次密码，如果密码正确则提示登录成，如果三次均输入错误，则退出程序。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0;
+    char password[20] = {0};
+    for (i = 0; i &amp;lt; 3; i++)
+    {
+        printf(&amp;quot;请输入密码：&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%s&amp;quot;, password);
+        // if (password == &amp;quot;123456&amp;quot;)//== 不能用来比较两个字符串是否相等，应该使用一个库函数-strcmp
+        if (strcmp(password, &amp;quot;123456&amp;quot;) == 0)
+        {
+            printf(&amp;quot;登录成功\n&amp;quot;);
+            break;
+        }
+        else
+        {
+            printf(&amp;quot;密码错误\n&amp;quot;);
+        }
+    }
+    if (i == 3)
+        printf(&amp;quot;三次密码均错误，退出程序\n&amp;quot;);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/三次验证.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;练习2&#34;&gt;练习2&lt;/h2&gt;
+
+&lt;h3 id=&#34;从小到大输出三个数&#34;&gt;从小到大输出三个数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int a = 0, b = 0, c = 0;
+    scanf(&amp;quot;%d%d%d&amp;quot;, &amp;amp;a, &amp;amp;b, &amp;amp;c);
+    //算法实现a&amp;gt;b &amp;gt;c
+    if (a &amp;lt; b)
+    {
+        int tmp = a;
+        a = b;
+        b = tmp;
+    }
+    if (a &amp;lt; c)
+    {
+        int tmp = a;
+        a = c;
+        c = tmp;
+    }
+    if (b &amp;lt; c)
+    {
+        int tmp = b;
+        b = c;
+        c = tmp;
+    }
+    printf(&amp;quot;%d %d %d\n&amp;quot;, a, b, c);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;打印1-100之间所有3的倍数的数字&#34;&gt;打印1-100之间所有3的倍数的数字&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0;
+    for (i = 1; i &amp;lt;= 100; i++)
+    {
+        if (i % 3 == 0)
+        {
+            printf(&amp;quot;%d &amp;quot;, i);
+        }
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;给定两个数求最大公约数&#34;&gt;给定两个数求最大公约数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int m = 0;
+    int n = 0;
+    int r = 0;
+    scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;m, &amp;amp;n);
+    //辗转相除法
+    while (r = m % n)
+    {
+        m = n;
+        n = r;
+    }
+    printf(&amp;quot;%d\n&amp;quot;, n);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;打印1000-2000之间的闰年&#34;&gt;打印1000-2000之间的闰年&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0;
+    int count = 0;
+    for (i = 1000; i &amp;lt;= 2000; i++)
+    {
+        //判断year 是否为闰年
+        // 1. 能被4整除，且不能被100整除的是闰年
+        // 2. 能被400整除是闰年
+        // if (i % 4 == 0 &amp;amp;&amp;amp; i % 100 != 0)
+        // {
+        //     count++;
+        //     printf(&amp;quot;%d &amp;quot;, i);
+        // }
+        // else if (i % 400 == 0)
+        // {
+        //     count++;
+        //     printf(&amp;quot;%d &amp;quot;, i);
+        // }
+        if ((i % 4 == 0 &amp;amp;&amp;amp; i % 100 != 0) || i % 400 == 0)
+        {
+            count++;
+            printf(&amp;quot;%d &amp;quot;, i);
+        }
+    }
+    printf(&amp;quot;\ncount=%d\n&amp;quot;, count);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/打印闰年.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;打印100-200之间的素数-素数求解的n种境界&#34;&gt;打印100-200之间的素数《素数求解的n种境界》&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;math.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0;
+    int count = 0;
+    //sqrt - 开平方的数学库函数
+    for (i = 101; i &amp;lt;= 200; i += 2) //排除所有偶数
+    {
+        //判断i是否为素数
+        //素数判断的规则
+        //1. 试除法: 产生2-&amp;gt;i-1
+        // i=a*b    a和b中至少有一个数字≤开平方i
+        int j = 0;
+        for (j = 2; j &amp;lt;= sqrt(i); j++) //i/2也是对的
+        {
+            if (i % j == 0)
+            {
+                break;
+            }
+        }
+        if (j &amp;gt; sqrt(i))
+        {
+            count++;
+            printf(&amp;quot;%d &amp;quot;, i);
+        }
+    }
+    printf(&amp;quot;\ncount=%d\n&amp;quot;, count);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/素数.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;编写程序数1-100所有整数种出现多少个数字9&#34;&gt;编写程序数1-100所有整数种出现多少个数字9&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdlib.h&amp;gt; //itoa所需要的库函数
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0;
+    int j = 0;
+    int count = 1;
+    for (i = 1; i &amp;lt;= 100; i++)
+    {
+        // //法一：
+        // if (i % 10 == 9)
+        // {
+        //     count++;
+        // }
+        // if (i / 10 == 9)
+        // {
+        //     count++;
+        // }
+        //法二：使用itoa函数
+        char s[10] = {0};
+        itoa(i, s, 10); // itoa(int,char,要转换的进制数)
+        for (j = 0; j &amp;lt; strlen(s); j++)
+        {
+            if (s[j] == &#39;9&#39;)
+            {
+                count++;
+                printf(&amp;quot;%d &amp;quot;, i);
+                break;
+            }
+        }
+    }
+    printf(&amp;quot;\ncount=%d\n&amp;quot;, count);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/含9.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;计算1-1-1-2-1-3-1-4-1-100&#34;&gt;计算1/1-&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt;+&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt;-1/4……-&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;100&lt;/sub&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0;
+    double re = 0;
+    // int flag = 1;
+    // for (i = 1; i &amp;lt;= 100; i++)
+    // {
+    //     re = re + flag * (1.0 / i);
+    //     flag = flag * (-1);
+    // }
+    for (i = 1; i &amp;lt;= 100; i += 2)
+    {
+        re = re + 1.0 / i;
+    }
+    for (i = 2; i &amp;lt;= 100; i += 2)
+    {
+        re = re - 1.0 / i;
+    }
+    printf(&amp;quot;%lf&amp;quot;, re);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;求10个整数的最大值&#34;&gt;求10个整数的最大值&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int arr[] = {1, 23, 4, 5, 6, 7, 32, 13, 33, 54};
+    int i = 0;
+    int max = arr[0]; //如果max=0,则无法判断负数
+    for (i = 1; i &amp;lt; sizeof(arr) / sizeof(arr[0]); i++)
+    {
+        if (arr[i] &amp;gt; max)
+        {
+            max = arr[i];
+        }
+    }
+    printf(&amp;quot;max=%d\n&amp;quot;, max);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;乘法口诀表&#34;&gt;乘法口诀表&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 0, j = 0;
+    for (i = 1; i &amp;lt; 10; i++)
+    {
+        for (j = 1; j &amp;lt;= i; j++)
+        {
+            printf(&amp;quot;%d * %d = %-2d  &amp;quot;, j, i, i * j); //不够两位补空格
+        }
+        printf(&amp;quot;\n&amp;quot;);
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/乘法口诀表.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;猜数字游戏&#34;&gt;猜数字游戏&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;电脑会生成一个随机数&lt;/li&gt;
+&lt;li&gt;猜数字&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;注：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;时间戳：当前计算机时间-计算机的起始时间（1970.1.1.0：0：0）=（xxxx）秒
+rand() RAND_MAX-32767
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;time.h&amp;gt;
+void menu()
+{
+    printf(&amp;quot;**********************************\n&amp;quot;);
+    printf(&amp;quot;***********  1.play     **********\n&amp;quot;);
+    printf(&amp;quot;***********  0.exit     **********\n&amp;quot;);
+    printf(&amp;quot;**********************************\n&amp;quot;);
+}
+//TDD-测试驱动开发。
+//RAND_MAX--rand函数能返回随机数的最大值。
+void game()
+{
+    //生成随机数
+    int random_num = rand() % 100 + 1; //1-100之间的
+    int input = 0;                     //接收猜的数字
+    while (1)
+    {
+        printf(&amp;quot;请输入猜的数字&amp;gt;:&amp;quot;);
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;input);
+        if (input &amp;gt; random_num)
+        {
+            printf(&amp;quot;猜大了\n&amp;quot;);
+        }
+        else if (input &amp;lt; random_num)
+        {
+            printf(&amp;quot;猜小了\n&amp;quot;);
+        }
+        else
+        {
+            printf(&amp;quot;恭喜你，猜对了\n&amp;quot;);
+            break;
+        }
+    }
+}
+int main()
+{
+    int input = 0;
+    srand((unsigned)time(NULL)); //拿时间戳设置一个随机起点，设置一次就可以，不要频繁调用
+    do
+    {
+        menu();
+        printf(&amp;quot;请选择&amp;gt;:&amp;quot;);
+        scanf(&amp;quot;%d&amp;quot;, &amp;amp;input);
+        switch (input)
+        {
+        case 1:
+            game();
+            break;
+        case 0:
+            printf(&amp;quot;退出游戏!\n&amp;quot;);
+            break;
+        default:
+            printf(&amp;quot;选择错误,请重新输入!\n&amp;quot;);
+            break;
+        }
+    } while (input);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/2/猜数字游戏.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;goto语句&#34;&gt;goto语句&lt;/h2&gt;
+
+&lt;p&gt;C语言中提供了可以随意滥用的 goto语句和标记跳转的标号。 从理论上 goto语句是没有必要的，实践中没有goto语句也可以很容易的写出代码。
+但是某些场合下goto语句还是用得着的，最常见的用法就是终止程序在某些深度嵌套的结构的处理过 程，例如一次跳出两层或多层循环。
+这种情况使用break是达不到目的的。它只能从最内层循环退出到上一层的循环。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用场景&#34;&gt;使用场景&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;for (...)
+    for (...)
+    {
+        for (...)
+        {
+            if (disaster)
+                goto error;
+        }
+    }
+    … 
+error : 
+    if (disaster)
+          // 处理错误情况
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;示例&#34;&gt;示例&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    //死循环
+again:
+    printf(&amp;quot;hello&amp;quot;);
+    goto again;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;ndash; 一个关机程序&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    char input[10] = {0};
+    system(&amp;quot;shutdown -s -t 60&amp;quot;);//cmd 命令行关机。system 执行系统命令 
+again:
+    printf(&amp;quot;电脑将在1分钟内关机，如果输入：我是猪，就取消关机!\n请输入:&amp;gt;&amp;quot;);
+    scanf(&amp;quot;%s&amp;quot;, input);
+    if (0 == strcmp(input, &amp;quot;我是猪&amp;quot;))
+    {
+        system(&amp;quot;shutdown -a&amp;quot;);//取消关机
+    }
+    else
+    {
+        goto again;
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;而如果不适用goto语句，则可以使用循环&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+int main()
+{
+    char input[10] = {0};
+    system(&amp;quot;shutdown -s -t 60&amp;quot;);
+    while (1)
+    {
+        printf(&amp;quot;电脑将在1分钟内关机，如果输入：我是猪，就取消关机!\n请输入:&amp;gt;&amp;quot;);
+        scanf(&amp;quot;%s&amp;quot;, input);
+        if (0 == strcmp(input, &amp;quot;我是猪&amp;quot;))
+        {
+            system(&amp;quot;shutdown -a&amp;quot;);
+            break;
+        }
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Page 2</title>
+      <link>https://cytgenkidu.github.io/tutorial/example/example2/</link>
+      <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/example/example2/</guid>
+      <description>
+
+&lt;p&gt;Here are some more tips for getting started with Academic:&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-3&#34;&gt;Tip 3&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-4&#34;&gt;Tip 4&lt;/h2&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>函数</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/3/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/3/</guid>
+      <description>
+
+&lt;h2 id=&#34;函数是什么&#34;&gt;函数是什么&lt;/h2&gt;
+
+&lt;p&gt;维基百科中对函数的定义：子程序&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;- 在计算机科学中，子程序（英语：Subroutine, procedure, function, routine, method,subprogram, callable unit），是一个大型程序中的某部分代码， 由一个或多个语句块组成。它负责完成某项特定任务，而且相较于其他代码，具备相对的独立性。
+- 一般会有输入参数并有返回值，提供对过程的封装和细节的隐藏。这些代码通常被集成为软件库。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;c语言中函数的分类&#34;&gt;C语言中函数的分类&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;库函数&lt;/li&gt;
+&lt;li&gt;自定义函数&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;库函数&#34;&gt;库函数&lt;/h2&gt;
+
+&lt;p&gt;为什么会有库函数？&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;我们知道在我们学习C语言编程的时候，总是在一个代码编写完成之后迫不及待的想知道结果，想把这个结果打印到我们的屏幕上看看。这个时候我们会频繁的使用一个功能：将信息按照一定的格式打印到屏幕上（printf）。&lt;/li&gt;
+&lt;li&gt;在编程的过程中我们会频繁的做一些字符串的拷贝工作（strcpy）。&lt;/li&gt;
+&lt;li&gt;在编程是我们也计算，总是会计算n的k次方这样的运算（pow）。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;注：
+&lt;code&gt;http://www.cplusplus.com/&lt;/code&gt;
+&lt;code&gt;http://en.cppreference.com&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;常见库函数&#34;&gt;常见库函数&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;IO函数&lt;/li&gt;
+&lt;li&gt;字符串操作函数&lt;/li&gt;
+&lt;li&gt;字符操作函数&lt;/li&gt;
+&lt;li&gt;内存操作函数&lt;/li&gt;
+&lt;li&gt;时间/日期函数&lt;/li&gt;
+&lt;li&gt;数学函数&lt;/li&gt;
+&lt;li&gt;其他库函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.cplusplus.com/reference/cstring/strcpy/?kw=strcpy&#34; target=&#34;_blank&#34;&gt;strcpy&lt;/a&gt;-拷贝字符串&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char * strcpy ( char * destination, const char * source );
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    //strcpy - string copy -字符串拷贝
+    //strlen - string length -字符串长度有关
+    char arr1[] = &amp;quot;world&amp;quot;;
+    char arr2[] = &amp;quot;##########&amp;quot;;
+    printf(&amp;quot;%s\n&amp;quot;, arr2);
+    strcpy(arr2, arr1);
+    printf(&amp;quot;%s\n&amp;quot;, arr2);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/strcpy.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.cplusplus.com/reference/cstring/memset/?kw=memset&#34; target=&#34;_blank&#34;&gt;memset&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;void * memset ( void * ptr, int value, size_t num );
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    char arr[] = &amp;quot;hello world&amp;quot;;
+    memset(arr, &#39;*&#39;, 5);
+    printf(&amp;quot;%s\n&amp;quot;, arr); 
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/memset.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;自定义函数&#34;&gt;自定义函数&lt;/h2&gt;
+
+&lt;h3 id=&#34;函数的组成&#34;&gt;函数的组成&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;ret_type fun_name(para1, * )
+{
+ statement;//语句项
+}
+ret_type 返回类型
+fun_name 函数名
+para1    函数参数
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;例子-写一个函数可以找出两个整数中的最大值&#34;&gt;例子：写一个函数可以找出两个整数中的最大值&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+//get_max函数的设计
+int get_max(int x, int y)
+{
+    return (x &amp;gt; y) ? (x) : (y);
+}
+int main()
+{
+    int num1 = 10;
+    int num2 = 20;
+    int max = get_max(num1, num2);
+    printf(&amp;quot;max = %d\n&amp;quot;, max);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;例子-写一个函数可以交换两个整形变量的内容&#34;&gt;例子：写一个函数可以交换两个整形变量的内容&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+void Swap1(int x, int y)
+{
+    int tmp = 0;
+    tmp = x;
+    x = y;
+    y = tmp;
+}
+void Swap2(int *px, int *py)
+{
+    int tmp = 0;
+    tmp = *px; //*px - 解引用操作
+    *px = *py;
+    *py = tmp;
+}
+int main()
+{
+    int num1 = 1;
+    int num2 = 2;
+    Swap1(num1, num2); // 传值调用
+    printf(&amp;quot;Swap1::num1 = %d num2 = %d\n&amp;quot;, num1, num2); //没有交换
+    Swap2(&amp;amp;num1, &amp;amp;num2); // 传址调用
+    printf(&amp;quot;Swap2::num1 = %d num2 = %d\n&amp;quot;, num1, num2); //交换了
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/swap.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;函数参数&#34;&gt;函数参数&lt;/h2&gt;
+
+&lt;h3 id=&#34;实际参数-实参&#34;&gt;实际参数（实参）&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;真实传给函数的参数，叫实参。实参可以是：常量、变量、表达式、函数等。无论实参是何种类型的量，在进行函数调用时，它们都必须有确定的值，以便把这些值传送给形参.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;形式参数-形参&#34;&gt;形式参数（形参）&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;形式参数是指函数名后括号中的变量，因为形式参数只有在函数被调用的过程中才实例化（分配内存单元），所以叫形式参数。形式参数当函数调用完成之后就自动销毁了。因此形式参数只在函数中有效.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面Swap1和Swap2函数中的参数 x，y，px，py 都是形式参数。在main函数中传给Swap1的num1，num2和传给Swap2函数的&amp;amp;num1，&amp;amp;num2是实际参数。&lt;/p&gt;
+
+&lt;h2 id=&#34;函数调用&#34;&gt;函数调用&lt;/h2&gt;
+
+&lt;h3 id=&#34;传值调用&#34;&gt;传值调用&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;函数的形参和实参分别占有不同内存块，对形参的修改不会影响实参。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;传址调用&#34;&gt;传址调用&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;1.传址调用是把函数外部创建变量的内存地址传递给函数参数的一种调用函数的方式。
+2.这种传参方式可以让函数和函数外边的变量建立起正真的联系，也就是函数内部可以直接操作函数外部的变量.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;函数练习&#34;&gt;函数练习&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;写一个函数，每调用一次这个函数，就会将num的值增加1。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+void add(int *px)
+{
+    *px = *px + 1; // *p++ err
+}
+int main()
+{
+    int num = 0;
+    add(&amp;amp;num);
+    printf(&amp;quot;%d\n&amp;quot;, num);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;函数的嵌套调用和链式访问&#34;&gt;函数的嵌套调用和链式访问&lt;/h2&gt;
+
+&lt;p&gt;函数和函数之间可以有机的组合的&lt;/p&gt;
+
+&lt;h3 id=&#34;嵌套调用&#34;&gt;嵌套调用&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+void new_line()
+{
+    printf(&amp;quot;hehe\n&amp;quot;);
+}
+void three_line()
+{
+    int i = 0;
+    for (i = 0; i &amp;lt; 3; i++)
+    {
+        new_line();
+    }
+}
+int main()
+{
+    three_line();//打印三行hehe
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;链式访问&#34;&gt;链式访问&lt;/h3&gt;
+
+&lt;p&gt;把一个函数的返回值作为另外一个函数的参数.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+int main()
+{
+    char arr[20] = &amp;quot;hello&amp;quot;;
+    int ret = strlen(strcat(arr, &amp;quot;world&amp;quot;)); //strlen函数-字符长度,strcat函数-源字符串的副本追加到目标字符串
+    printf(&amp;quot;%d\n&amp;quot;, ret);                  // 10
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    printf(&amp;quot;%d&amp;quot;, printf(&amp;quot;%d&amp;quot;, printf(&amp;quot;%d&amp;quot;, 43)));//printf 返回 打印字符的个数
+    //结果是啥？4321
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;函数的声明和定义&#34;&gt;函数的声明和定义&lt;/h2&gt;
+
+&lt;h3 id=&#34;函数声明&#34;&gt;函数声明&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;告诉编译器有一个函数叫什么，参数是什么，返回类型是什么。但是具体是不是存在，无关紧要。&lt;/li&gt;
+&lt;li&gt;函数的声明一般出现在函数的使用之前。要满足先声明后使用。&lt;/li&gt;
+&lt;li&gt;函数的声明一般要放在头文件中的。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;函数定义&#34;&gt;函数定义&lt;/h3&gt;
+
+&lt;p&gt;函数的定义是指函数的具体实现，交待函数的功能实现。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/声明定义1.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;add.h的内容&lt;/strong&gt; 放置函数的声明&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#ifndef __ADD_H__
+#define __ADD_H__
+//函数Add的声明
+int Add(int x, int y);
+#endif //__ADD_H__
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;add.c的内容&lt;/strong&gt; 放置函数的定义&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//函数Add的定义
+int Add(int x, int y) {
+  int z = x + y;
+  return z;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;test.c的内容&lt;/strong&gt; 放置函数的实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;quot;add.h&amp;quot;
+//函数Add的实现
+int main()
+{
+    printf(&amp;quot;%d\n&amp;quot;, Add(1, 2)); //3
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;函数递归&#34;&gt;函数递归&lt;/h2&gt;
+
+&lt;h3 id=&#34;什么是递归&#34;&gt;什么是递归&lt;/h3&gt;
+
+&lt;p&gt;程序调用自身的编程技巧称为递归（ recursion）。 递归做为一种算法在程序设计语言中广泛应用。 一个过程或函数在其定义或说明中有直接或间接调用自身的一种方法，它通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解，递归策略只需少量的程序就可描述出解题过程所需要的多次重复计算，大大地减少了程序的代码量。 &lt;strong&gt;递归的主要思考方式在于：把大事化小&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;递归的两个必要条件&#34;&gt;递归的两个必要条件&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;存在限制条件，当满足这个限制条件的时候，递归便不再继续。&lt;/li&gt;
+&lt;li&gt;每次递归调用之后越来越接近这个限制条件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注：递归要找到条件，否则会溢出
+栈溢出：
+&lt;img src=&#34;../img/3/栈溢出0.png&#34; alt=&#34;Image text&#34; /&gt;
+&lt;img src=&#34;../img/3/栈溢出.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;递归练习&#34;&gt;递归练习&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;接受一个整型值（无符号），按照顺序打印它的每一位。 例如： 输入：1234，输出 1 2 3 4&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+void print(int n)
+{
+    if (n &amp;gt; 9)
+    {
+        print(n / 10);
+    }
+    printf(&amp;quot;%d &amp;quot;, n % 10);
+}
+int main()
+{
+    int num = 0;
+    printf(&amp;quot;输入-&amp;gt; &amp;quot;);
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;num);
+    printf(&amp;quot;输出-&amp;gt; &amp;quot;);
+    print(num);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/数字递归.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/print.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;编写函数不允许创建临时变量，求字符串的长度。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+int my_strlen(const char *str)
+{
+    //法一：记数方式
+    // int count = 0;
+    // while (*str != &amp;quot;\0&amp;quot;)
+    // {
+    //     count++;
+    //     str++;
+    // }
+    // return count;
+
+    //法二：递归方式
+    if (*str == &#39;\0&#39;) //*str就是字符
+        return 0;
+    else
+        return 1 + my_strlen(str + 1); //str +1 是str的下一个地址
+        
+    //法三：指针方式
+    // char* start = str;
+    // char* end = str;
+    // while (*end != &#39;\0&#39;)
+    // {
+    //  end++;
+    // }
+    // return end - start;//
+}
+int main()
+{
+    char arr[] = &amp;quot;hello&amp;quot;;
+    // int len = strlen(arr); // 求字符串长度
+    // char *p = &amp;quot;abcedke&amp;quot;;
+    // int len = my_strlen(p);//7
+    int len = my_strlen(arr); //arr是数组，数组传参，传过去的不是整个数组，而是第一个元素的地址
+    printf(&amp;quot;%d\n&amp;quot;, len);     //5
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;递归与迭代&#34;&gt;递归与迭代&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;求n的阶乘。（不考虑溢出）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int factorial(int n)
+{
+    if (n &amp;lt;= 1)
+        return 1;
+    else
+        return n * factorial(n - 1);
+}
+int main()
+{
+    int num = 0;
+    int ret = 0;
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;num);
+    ret = factorial(num);
+    printf(&amp;quot;%d\n&amp;quot;, ret);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;求第n个斐波那契数。（不考虑溢出）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/斐波那契数列.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;!-- &lt;div align=&#34;center&#34;&gt; &lt;img src=&#34;../img/3/斐波那契数列.png&#34; width=&#34;&#34;/&gt; &lt;/div&gt;&lt;br&gt; --&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+//斐波那契数列：1 1 2 3 5 8 13 21 34 55 …
+// int count = 0; //全局变量
+int fib(int n)
+{
+    // if (n == 3)//最后我们输出看看count，是一个很大很大的值。
+    //     count++;
+    if (n &amp;lt;= 2)
+        return 1;
+    else
+        return fib(n - 1) + fib(n - 2);
+}
+int main()
+{
+    int num = 0;
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;num);
+    printf(&amp;quot;%d&amp;quot;, fib(num));
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;问题&#34;&gt;问题&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在使用 fib 这个函数的时候如果我们要计算第50个斐波那契数字的时候特别耗费时间。&lt;/li&gt;
+&lt;li&gt;使用 factorial 函数求10000的阶乘（不考虑结果的正确性），程序会崩溃。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;为什么&#34;&gt;为什么&lt;/h4&gt;
+
+&lt;p&gt;我们发现 fib 函数在调用的过程中很多计算其实在一直重复。 如果我们把代码修改一下&lt;/p&gt;
+
+&lt;p&gt;那我们如何改进呢？
+在调试 factorial 函数的时候，如果你的参数比较大，那就会报错： `stack overflow（栈溢出） 这样的信息。 系统分配给程序的栈空间是有限的，但是如果出现了死循环，或者（死递归），这样有可能导致一直开辟栈空间，最终产生栈空间耗尽的情况，这样的现象我们称为栈溢出。&lt;/p&gt;
+
+&lt;h4 id=&#34;那如何解决上述的问题&#34;&gt;那如何解决上述的问题&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;将递归改写成非递归。&lt;/li&gt;
+&lt;li&gt;使用static对象替代nonstatic局部对象。在递归函数设计中，可以使用static对象替代nonstatic局部对象（即栈对象），这不仅可以减少每次递归调用和返回时产生和释放nonstatic对象的开销，而且static对象还可以保存递归调用的中间状态，并且可为各个调用层所访问.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;改进factorial&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int factorial(int n)
+{
+    int res = 1;
+    while (n &amp;gt; 1)
+    {
+        res *= n;
+        n -= 1;
+    }
+    return res;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;改进fib&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//斐波那契数列：1 1 2 3 5 8 13 21 34 55 …
+int fib(int n)
+{
+    int res = 1;
+    int pre_res = 1;
+    int next_older_res = 0;
+    while (n &amp;gt; 2)
+    {
+        next_older_res = pre_res;
+        pre_res = res;
+        res = pre_res + next_older_res;
+        n--;
+    }
+    return res;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;提示&#34;&gt;提示&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;许多问题是以递归的形式进行解释的，这只是因为它比非递归的形式更为清晰。&lt;/li&gt;
+&lt;li&gt;但是这些问题的迭代实现往往比递归实现效率更高，虽然代码的可读性稍微差些。&lt;/li&gt;
+&lt;li&gt;当一个问题相当复杂，难以用迭代实现时，此时递归实现的简洁性便可以补偿它所带来的运行时开销。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
+
+&lt;h3 id=&#34;字符串逆序-递归实现&#34;&gt;字符串逆序（递归实现）&lt;/h3&gt;
+
+&lt;p&gt;编写一个函数reverse_string(char* string)(递归实现)&lt;/p&gt;
+
+&lt;p&gt;实现：将参数字符串中的字符反向排列。&lt;/p&gt;
+
+&lt;p&gt;要求：不能使用C库函数中的字符串操作函数。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+int my_strlen(char* str)
+{
+    int count = 0;
+    while (*str != &#39;\0&#39;)
+    {
+        count++;
+        str++;
+    }
+    return count;
+}
+//……
+int main()
+{
+    char arr[] = &amp;quot;abcdefg&amp;quot;;//fedcba
+    reverse_string(arr);
+    printf(&amp;quot;%s\n&amp;quot;, arr);
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;非递归方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;void reverse_string(char arr[])
+{
+    int left = 0;
+    int right = my_strlen(arr)-1;
+
+    while (left&amp;lt;right)
+    {
+        int tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
+        left++;
+        right--;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;递归方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//abcdef
+// a和f的小环
+// 逆序reverse_string(&amp;quot;bcde&amp;quot;)
+void reverse_string(char* arr)
+{
+    char tmp = arr[0];//先放a
+    int len = my_strlen(arr);
+    arr[0] = arr[len - 1];
+    arr[len - 1] = &#39;\0&#39;;//把f位置替换为\0
+    if (my_strlen(arr+1) &amp;gt;=2)
+        reverse_string(arr+1);//reverse_string(&amp;quot;bcde\0&amp;quot;);
+    arr[len - 1] = tmp;//把f放在最后
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/3/reverse.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;计算一个数的每位之和-递归实现&#34;&gt;计算一个数的每位之和（递归实现）&lt;/h3&gt;
+
+&lt;p&gt;写一个递归函数DigitSum(n),输入一个非负整数，返回组成它的数字之后而&lt;/p&gt;
+
+&lt;p&gt;例如：调用 DigitSum(1729),则应该返回是1+7+2+9，它的和是19&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+//DigitSum(1729)
+//DigitSum(172) + 1729%10
+//DigitSum(17) + 172%10 + 1729%10
+//DigitSum(1) + 17%10 + ...
+//1+7+2+9
+int DigitSum(unsigned int num)
+{
+    if (num &amp;gt; 9)
+    {
+        return DigitSum(num / 10) + num % 10;
+    }
+    else
+    {
+        return num;
+    }
+}
+
+int main()
+{
+    unsigned int num = 0;
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;num);//1729
+    int ret = DigitSum(num);
+    printf(&amp;quot;ret = %d\n&amp;quot;, ret);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;递归实现n的k次方&#34;&gt;递归实现n的k次方&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+double Pow(int n, int k)
+{
+    //n^k = n* n^(k-1)
+    if (k &amp;lt; 0)
+        return (1.0 / (Pow(n, -k)));
+    else if (k == 0)
+        return 1;
+    else
+        return n*Pow(n, k - 1);
+}
+
+int main()
+{
+    int n = 0;
+    int k = 0;
+    scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;n, &amp;amp;k);
+
+    double ret = Pow(n, k);
+    printf(&amp;quot;ret = %lf\n&amp;quot;, ret);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>数组</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/4/</link>
+      <pubDate>Wed, 03 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/4/</guid>
+      <description>
+
+&lt;h2 id=&#34;一维数组的创建和初始化&#34;&gt;一维数组的创建和初始化&lt;/h2&gt;
+
+&lt;h3 id=&#34;数组的创建&#34;&gt;数组的创建&lt;/h3&gt;
+
+&lt;p&gt;数组是一组相同类型元素的集合。 数组的创建方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;type_t   arr_name   [const_n];
+//type_t 是指数组的元素类型
+//const_n 是一个常量表达式，用来指定数组的大小
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;素组创建的实例&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;：数组创建， [] 中要给一个常量才可以，不能使用变量。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//创建一个数组-存放整形-10个
+int arr[5] = {1, 2, 3}; //不完全初始化，剩下的元素默认初始化为0
+char arr2[5] = {&#39;a&#39;, &#39;b&#39;};
+char arr3[5] = &amp;quot;ab&amp;quot;;
+char arr4[] = &amp;quot;abcdef&amp;quot;;
+// int n = 5;
+// char ch[n];//err
+printf(&amp;quot;%d\n&amp;quot;, sizeof(arr4)); //7  sizeof 计算变量、数组、类型的大小-单位是字节- 操作符
+printf(&amp;quot;%d\n&amp;quot;, strlen(arr4)); //6  strlen 是求字符串长度的，只针对字符串求长度- 库函数-使用得引用头文件
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/数组创建.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;数组的初始化&#34;&gt;数组的初始化&lt;/h3&gt;
+
+&lt;p&gt;数组的初始化是指，在创建数组的同时给数组的内容一些合理初始值（初始化）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char arr1[] = &amp;quot;abc&amp;quot;;
+char arr2[] = {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;};
+printf(&amp;quot;%d\n&amp;quot;, sizeof(arr1)); //4
+printf(&amp;quot;%d\n&amp;quot;, sizeof(arr2)); //3
+printf(&amp;quot;%d\n&amp;quot;, strlen(arr1)); //3
+printf(&amp;quot;%d\n&amp;quot;, strlen(arr2)); //随机数，没有\0结束字符
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/数组创建2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;一维数组的使用&#34;&gt;一维数组的使用&lt;/h2&gt;
+
+&lt;p&gt;对于数组的使用我们之前介绍了一个操作符： [] ，下标引用操作符。它其实就数组访问的操作符。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char arr[] = &amp;quot;abcdef&amp;quot;; //[a][b][c][d][e][f][\0]
+printf(&amp;quot;%c\n&amp;quot;, arr[3]);//d
+int i = 0;
+for (i = 0; i &amp;lt; (int)strlen(arr); i++)
+{
+    printf(&amp;quot;%c &amp;quot;, arr[i]);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;总结:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;数组是使用下标来访问的，下标是从0开始。&lt;/li&gt;
+&lt;li&gt;数组的大小可以通过计算得到。&lt;code&gt;int sz = sizeof(arr) / sizeof(arr[0]);&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;一维数组在内存中的存储&#34;&gt;一维数组在内存中的存储&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[10] = {0}; // 数组在内存中是连续存放的。
+int i = 0;
+for (i = 0; i &amp;lt; sizeof(arr) / sizeof(arr[0]); ++i)
+{
+    printf(&amp;quot;&amp;amp;arr[%d] = %p\n&amp;quot;, i, &amp;amp;arr[i]); //10进制：0-9  16进制 0-9 a b c d e f
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/数组存储.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;数组在内存中是连续存放的。&lt;/strong&gt;
+&lt;img src=&#34;../img/4/数组存储2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;二维数组的创建和初始化&#34;&gt;二维数组的创建和初始化&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[3][4] = {1, 2, 3, 4, 5};
+int arr1[3][4] = {{1, 2, 3}, {4, 5}};
+// int arr2[][] = {1, 2, 3, 4, 5};//err
+// int arr3[][] = {{1, 2, 3}, {4, 5}};//err
+// int arr4[2][] = {{1, 2, 3}, {4, 5}};//err
+int arr5[][4] = {{1, 2, 3}, {4, 5}}; //行可以省略，列不可省略
+//char ch[5][6];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/二维数组创建.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;二维数组的使用&#34;&gt;二维数组的使用&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[3][4] = {0};
+int i = 0;
+//赋值
+for (i = 0; i &amp;lt; 3; i++)
+{
+    int j = 0;
+    for (j = 0; j &amp;lt; 4; j++)
+    {
+        arr[i][j] = i * 4 + j;
+    }
+}
+//使用
+for (i = 0; i &amp;lt; 3; i++)
+{
+    int j = 0;
+    for (j = 0; j &amp;lt; 4; j++)
+    {
+        printf(&amp;quot;%2d &amp;quot;, arr[i][j]);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/二维数组使用.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;二维数组在内存中的存储&#34;&gt;二维数组在内存中的存储&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[3][4] = {{1, 2, 3}, {4, 5}};
+int i = 0;
+//存储
+for (i = 0; i &amp;lt; 3; i++)
+{
+    int j = 0;
+    for (j = 0; j &amp;lt; 4; j++)
+    {
+        printf(&amp;quot;&amp;amp;arr[%d][%d] = %p\n&amp;quot;, i, j, &amp;amp;arr[i][j]);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/二维数组存储.png&#34; alt=&#34;Image text&#34; /&gt;
+&lt;strong&gt;二维数组在内存中也是连续存储的。&lt;/strong&gt;
+&lt;img src=&#34;../img/4/二维数组存储2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;数组作为函数参数&#34;&gt;数组作为函数参数&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;数组名是数组首元素的地址。（有两个例外）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;sizeof(数组名)，计算整个数组的大小，sizeof内部单独放一个数组名，数组名表示整个数组。&lt;/li&gt;
+&lt;li&gt;&amp;amp;数组名，取出的是数组的地址。&amp;amp;数组名，数组名表示整个数组。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;除此1,2两种情况之外，所有的数组名都表示数组首元素的地址。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[10] = {1, 2, 3, 4, 5};
+printf(&amp;quot;%p\n&amp;quot;, arr);
+printf(&amp;quot;%p\n&amp;quot;, arr + 1);
+
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr[0]);
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr[0] + 1);
+
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr);     //数组的地址≠数组首元素的地址
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr + 1); //意义不同，增加了5*4个字节，开始取的是1的地址，+1之后是取5后面的地址
+
+printf(&amp;quot;%d\n&amp;quot;, *arr);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/数组名.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;冒泡排序函数&#34;&gt;冒泡排序函数&lt;/h3&gt;
+
+&lt;p&gt;比较相邻的元素。如果第一个比第二个大，就交换他们两个。&lt;/p&gt;
+
+&lt;p&gt;对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。&lt;/p&gt;
+
+&lt;p&gt;针对所有的元素重复以上的步骤，除了最后一个。&lt;/p&gt;
+
+&lt;p&gt;持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/bubbleSort.gif&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+void bubble_sort(int arr[], int sz)//int *arr
+{
+    int i = 0; // 确定冒泡排序的趟数
+    // int sz = sizeof(arr) / sizeof(arr[0]); //这样对吗？ 不对
+    for (i = 0; i &amp;lt; sz - 1; i++)
+    {
+        int flag = 1; //假设这一趟要排序的数据已经有序
+        //每一趟冒泡排序
+        int j = 0;
+        for (j = 0; j &amp;lt; sz - i - 1; j++)
+        {
+            if (arr[j] &amp;gt; arr[j + 1])
+            {
+                int tmp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
+                flag = 0; //本趟排序的数据其实不完全有序
+            }
+        }
+        if (flag == 1)
+        {
+            break;// if不能break,这个break是跳出外层循环
+        }
+    }
+}
+int main()
+{
+    int arr[] = {3, 1, 7, 5, 8, 9, 0, 2, 4, 6}; //对arr进行排序，排成升序
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    // bubble_sort(arr);                           //是否可以正常排序？
+    // arr是数组，我们对数组arr进行传参，实际上传递过去的是数组arr首元素的地址 &amp;amp;arr[0]
+    bubble_sort(arr,sz); // 冒泡排序函数
+    int i = 0;
+    for (i = 0; i &amp;lt; sizeof(arr) / sizeof(arr[0]); i++)
+    {
+        printf(&amp;quot;%d &amp;quot;, arr[i]);
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/4/冒泡排序.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
+
+&lt;h3 id=&#34;创建一个整形数组-完成数组的操作&#34;&gt;创建一个整形数组，完成数组的操作&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;实现函数init()初始化数组为全0&lt;/li&gt;
+&lt;li&gt;实现print()打印数组的每个元素&lt;/li&gt;
+&lt;li&gt;实现reverse()完成数组元素的逆置&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;void Init(int arr[], int sz)
+{
+    int i = 0;
+    for (i = 0; i &amp;lt; sz; i++)
+    {
+        arr[i] = 0;
+    }
+}
+void Print(int arr[], int sz)
+{
+    int i = 0;
+    for (i = 0; i &amp;lt; sz; i++)
+    {
+        printf(&amp;quot;%d &amp;quot;, arr[i]);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+}
+void Reverse(int arr[], int sz)
+{
+    int left = 0;
+    int right = sz - 1;
+
+    while (left&amp;lt;right)
+    {
+        int tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
+        left++;
+        right--;
+    }
+}
+int main()
+{
+    int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    //Init(arr, sz);//把数组初始化0
+    Print(arr, sz);//打印  1 2 3 4 5 6 7 8 9 10
+    Reverse(arr, sz);
+    Print(arr, sz);//打印  10 9 8 7 6 5 4 3 2 1
+    return  0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;将数组a中的内容和数组b中的内容进行交换-数组一样大&#34;&gt;将数组A中的内容和数组B中的内容进行交换。（数组一样大）&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr1[] = { 1, 3, 5, 7, 9 };//不能直接与tmp[5]={0}交换，因为arr1存储的是arr1首元素地址
+int arr2[] = { 2, 4, 6, 8, 0 };
+int tmp = 0;
+int i = 0;
+int sz = sizeof(arr1) / sizeof(arr1[0]);
+for (i = 0; i &amp;lt; sz; i++)
+{
+    tmp = arr1[i];
+    arr1[i] = arr2[i];
+    arr2[i] = tmp;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>操作符详解</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/5/</link>
+      <pubDate>Wed, 03 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/5/</guid>
+      <description>
+
+&lt;h2 id=&#34;操作符&#34;&gt;操作符&lt;/h2&gt;
+
+&lt;h3 id=&#34;分类&#34;&gt;分类&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;算术操作符&lt;/li&gt;
+&lt;li&gt;移位操作符&lt;/li&gt;
+&lt;li&gt;位操作符&lt;/li&gt;
+&lt;li&gt;赋值操作符&lt;/li&gt;
+&lt;li&gt;单目操作符&lt;/li&gt;
+&lt;li&gt;关系操作符&lt;/li&gt;
+&lt;li&gt;逻辑操作符&lt;/li&gt;
+&lt;li&gt;条件操作符&lt;/li&gt;
+&lt;li&gt;逗号表达式&lt;/li&gt;
+&lt;li&gt;下标引用、函数调用和结构成员&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;算术操作符&#34;&gt;算术操作符&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;+   -   *   /   %
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;除了 % 操作符之外，其他的几个操作符可以作用于整数和浮点数。&lt;/li&gt;
+&lt;li&gt;对于 / 操作符如果两个操作数都为整数，执行整数除法。而只要有浮点数执行的就是浮点数除法。&lt;/li&gt;
+&lt;li&gt;% 操作符的两个操作数必须为整数。返回的是整除之后的余数。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;double a = 5 % 2;//商2余1
+printf(&amp;quot;a = %lf\n&amp;quot;, a);//1.000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;移位操作符-移动是二进制位-只能作用于整形&#34;&gt;移位操作符 ：移动是二进制位，只能作用于整形&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;&amp;lt; 左移操作符
+&amp;gt;&amp;gt; 右移操作符
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;左移操作符-移位规则&#34;&gt;左移操作符 移位规则：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;**左边抛弃、右边补0**
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/5/位移1.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 5;
+int b = a &amp;lt;&amp;lt; 1;
+//00000000000000000000000000000101
+//00000000000000000000000000001010
+printf(&amp;quot;%d\n&amp;quot;, b); //10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;右移操作符-移位规则-右移1位有除2的效果&#34;&gt;右移操作符 移位规则：[右移1位有除2的效果]&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;首先右移运算分两种：
+1. 逻辑移位 左边用0填充，右边丢弃
+2. 算术移位 左边用原该值的符号位填充，右边丢弃
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/5/位移2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 16;
+//&amp;gt;&amp;gt; -- 右移操作符
+//移动的是二进制位
+//00000000000000000000000000010000
+int b = a &amp;gt;&amp;gt; 2;
+//00000000000000000000000000000100
+printf(&amp;quot;%d\n&amp;quot;, b); //4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = -1;
+//整数的二进制表示有：原码、反码、补码
+//存储到内存的是补码
+//10000000000000000000000000000001 - 原码
+//11111111111111111111111111111110 - 反码
+//11111111111111111111111111111111 - 补码
+int b = a &amp;gt;&amp;gt; 1;
+printf(&amp;quot;%d\n&amp;quot;, b); //-1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;警告⚠ ： 对于移位运算符，不要移动负数位，这个是标准未定义的。 例如：&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int num = 10;
+num&amp;gt;&amp;gt;-1;//error
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;位操作符-只能作用于整数&#34;&gt;位操作符 : 只能作用于整数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;amp; //按位与
+| //按位或
+^ //按位异或
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;amp; - 按2进制位与
+对应的两个二进位均为1时，结果位才为1 ，否则为0。【补码形式比较】&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 3;   // 00000000000000000000000000000011
+int b = 5;   // 00000000000000000000000000000101
+int c = a&amp;amp;b; // 00000000000000000000000000000001
+printf(&amp;quot;%d\n&amp;quot;, c);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;| - 按2进制位或
+对应的两个二进位有一个为1时，结果位就为1。【补码形式比较】&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 3;     //00000000000000000000000000000011
+int b = 5;     //00000000000000000000000000000101
+int c = a | b; //00000000000000000000000000000111
+printf(&amp;quot;%d\n&amp;quot;, c); 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;^ 按2进制位异或: 相同为0，相异为1
+对应的两个二进位相异时，结果位为1。【补码形式比较】
+&lt;code&gt;C++
+int a = 3;     //00000000000000000000000000000011
+int b = 5;     //00000000000000000000000000000101
+int c = a ^ b; //00000000000000000000000000000110
+printf(&amp;quot;%d\n&amp;quot;, c);
+&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;赋值操作符&#34;&gt;赋值操作符&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int weight = 120;//体重
+weight = 89;//不满意就赋值
+double salary = 10000.0;
+salary = 20000.0;//使用赋值操作符赋值。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;赋值操作符可以连续使用，比如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;
+int x = 0;
+int y = 20;
+a = x = y+1;//连续赋值,避免使用 a=x=21
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;复合赋值符&#34;&gt;复合赋值符&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;+=
+-=
+*=
+/=
+%=
+&amp;gt;&amp;gt;=
+&amp;lt;&amp;lt;=
+&amp;amp;=
+|=
+^=
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;单目操作符&#34;&gt;单目操作符&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;!           逻辑反操作
+-           负值
++           正值
+&amp;amp;           取地址
+sizeof      操作数的类型长度（以字节为单位）
+~           对一个数的二进制按位取反
+--          前置、后置--
+++          前置、后置++
+*           间接访问操作符(解引用操作符)
+(类型)       强制类型转换
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;sizeof和数组&#34;&gt;sizeof和数组&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;
+char c = &#39;r&#39;;
+char *p = &amp;amp;c;
+int arr[10] = {0};
+//sizeof 计算的变量所占内存空间的大小，单位是字节
+printf(&amp;quot;%d\n&amp;quot;, sizeof a);    //4
+printf(&amp;quot;%d\n&amp;quot;, sizeof(int)); //4
+
+printf(&amp;quot;%d\n&amp;quot;, sizeof(c));    //1
+printf(&amp;quot;%d\n&amp;quot;, sizeof(char)); //1
+
+printf(&amp;quot;%d\n&amp;quot;, sizeof(p));      //4
+printf(&amp;quot;%d\n&amp;quot;, sizeof(char *)); //4
+
+printf(&amp;quot;%d\n&amp;quot;, sizeof(arr));     //40
+printf(&amp;quot;%d\n&amp;quot;, sizeof(int[10])); //40
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;sizeof 内部的表达式不参与运算&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;short s = 0;
+int a = 10;
+printf(&amp;quot;%d\n&amp;quot;, sizeof(s = a + 5)); //2
+printf(&amp;quot;%d\n&amp;quot;, s);                 //0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;练习&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;void test1(int arr[]) 
+{
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(arr)); //(2)  4/8
+}
+void test2(char ch[])
+{
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(ch)); //(4)  4/8
+}
+int main()
+{
+    int arr[10] = {0};
+    char ch[10] = {0};
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(arr)); //(1)  40
+    printf(&amp;quot;%d\n&amp;quot;, sizeof(ch));  //(3)  10
+    test1(arr); //传参是首元素地址，指针的大小4/8
+    test2(ch); //传参是首元素地址,指针的大小4/8
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;按位取反&#34;&gt;~ 按位取反&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 0;
+//~ 按（2进制）位取反
+//00000000000000000000000000000000 - 原码 0
+//11111111111111111111111111111111 - 补码
+//11111111111111111111111111111110 - 反码 -1
+//10000000000000000000000000000001 - 原码
+//-1
+printf(&amp;quot;%d\n&amp;quot;, ~a);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 11;
+a = a | (1 &amp;lt;&amp;lt; 2);
+printf(&amp;quot;%d\n&amp;quot;, a); //15
+a = a &amp;amp; (~(1 &amp;lt;&amp;lt; 2));
+printf(&amp;quot;%d\n&amp;quot;, a); //11
+//0000000000000000000000000000001011  - 11
+//0000000000000000000000000000000100  - (1 &amp;lt;&amp;lt; 2)
+//0000000000000000000000000000000001  - 1
+//
+//0000000000000000000000000000001111  - 或 结果
+//1111111111111111111111111111111011  - ~(1 &amp;lt;&amp;lt; 2)
+//0000000000000000000000000000000100
+//0000000000000000000000000000001011  - 且 结果
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;和-运算符&#34;&gt;++和&amp;ndash;运算符&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;
+//printf(&amp;quot;%d\n&amp;quot;, ++a);//前置++，先++，后使用
+printf(&amp;quot;%d\n&amp;quot;, a++);//后置++，先使用，再++
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;类型&#34;&gt;（类型）&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = (int)3.14;
+//int a = int(3.14);//err
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;关系操作符&#34;&gt;关系操作符&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;
+&amp;gt;=
+&amp;lt;
+&amp;lt;=
+!=   用于测试“不相等”
+==      用于测试“相等
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;警告： 在编程的过程中== 和=不小心写错，会导致的错误。&lt;/p&gt;
+
+&lt;h3 id=&#34;逻辑操作符&#34;&gt;逻辑操作符&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;amp;&amp;amp;     逻辑与
+||     逻辑或
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;amp;&amp;amp;     逻辑与：两个条件都同时成立的情况下“逻辑与”的运算结果才为“真”。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;当逻辑与左边为false(假)，则不再进行逻辑与右边的判断，结果为false(假)&lt;/li&gt;
+&lt;li&gt;当逻辑与左边为true(真)则进行右边判断，右边为false(假)，结果为false(假)&lt;/li&gt;
+&lt;li&gt;当逻辑与左边为true(真)则进行右边判断，右边也为true(真)，则结果为true(真)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;||        逻辑或：任一或多个条件成立的情况下“逻辑或”的运算才为“真”。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;当逻辑或左边为false(假)，继续逻辑或右边的判断，如果也为false(假)，结果为false(假)&lt;/li&gt;
+&lt;li&gt;当逻辑或左边为false(假)，继续逻辑或右边的判断，如果为true(真)，结果为true(真)&lt;/li&gt;
+&lt;li&gt;当逻辑或左边为true(真)，则不再进行逻辑或右边的判断，结果为true(真)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;区分逻辑与和按位与 区分逻辑或和按位或&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1&amp;amp;2-----&amp;gt;0
+1&amp;amp;&amp;amp;2----&amp;gt;1
+1|2-----&amp;gt;3
+1||2----&amp;gt;1
+
+//00000000000000000000000000000001  -1
+//00000000000000000000000000000010  -2
+//00000000000000000000000000000000  -1&amp;amp;2 
+//00000000000000000000000000000011  -1|2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 0, a = 0, b = 2, c = 3, d = 4;
+i = a++ &amp;amp;&amp;amp; ++b &amp;amp;&amp;amp; d++;  //a++ 是后置++，先使用再++。a=0 为假，后面不管是什么都不算了，a++
+printf(&amp;quot; a = %d\n b = %d\n c = %d\n d = %d\n&amp;quot;, a, b, c, d); //1 2 3 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 0, a = 1, b = 2, c = 3, d = 4;
+i = a++ &amp;amp;&amp;amp; ++b &amp;amp;&amp;amp; d++;//a=1为真，a++,++b是前置++，先加在使用，b=3为真，d=4为真，d++
+printf(&amp;quot; a = %d\n b = %d\n c = %d\n d = %d\n&amp;quot;, a, b, c, d); //2 3 3 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 0, a = 0, b = 2, c = 3, d = 4;
+i = a++ || ++b || d++; //a=0为假，a++,b++,b=3为真，结束
+printf(&amp;quot; a = %d\n b = %d\n c = %d\n d = %d\n&amp;quot;, a, b, c, d); //1 3 3 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int i = 0, a = 1, b = 2, c = 3, d = 4;
+i = a++ || ++b || d++; //a=1为真，结束。a++
+printf(&amp;quot; a = %d\n b = %d\n c = %d\n d = %d\n&amp;quot;, a, b, c, d); //2 2 3 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;条件操作符&#34;&gt;条件操作符&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;exp1 ? exp2 : exp3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;if (a &amp;gt; 5)
+    b = 3;
+else
+    b = -3;
+
+b = (a &amp;gt; 5 ? 3 : -3);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;
+int b = 20;
+int max = 0;
+
+if (a &amp;gt; b)
+    max = a;
+else
+    max = b;
+
+max = (a &amp;gt; b ? a : b);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;逗号表达式&#34;&gt;逗号表达式&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;exp1, exp2, exp3, …expN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;逗号表达式，就是用逗号隔开的多个表达式。 逗号表达式，从左向右依次执行。整个表达式的结果是最后一个表达式的结果。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码1
+    int a = 1;
+    int b = 2;
+    int c = (a &amp;gt; b, a = b + 10, a, b = a + 1); //逗号表达式，c=13
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码2
+    if (a = b + 1, c = a / 2, d &amp;gt; 0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码3
+    a = get_val();
+    count_val(a);
+    while (a &amp;gt; 0)
+    {
+        //业务处理
+        a = get_val();
+        count_val(a);
+    }
+
+//如果使用逗号表达式，改写:
+    while (a = get_val(), count_val(a), a &amp;gt; 0)
+    {
+        //业务处理
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;下标引用-函数调用和结构成员&#34;&gt;下标引用、函数调用和结构成员&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;[]下标引用操作符
+操作数：一个数组名+一个索引值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[10];//创建数组
+arr[9] = 10;//实用下标引用操作符。
+[ ]的两个操作数是arr和9。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;( ) 函数调用操作符 接受一个或者多个操作数：第一个操作数是函数名，剩余的操作数就是传递给函数的参数。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;void test1()
+{
+    printf(&amp;quot;hehe\n&amp;quot;);
+}
+void test2(const char *str)
+{
+    printf(&amp;quot;%s\n&amp;quot;, str);
+}
+int main()
+{
+    test1();            //实用（）作为函数调用操作符。
+    test2(&amp;quot;hello world.&amp;quot;);//实用（）作为函数调用操作符。
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;访问一个结构的成员&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;. 结构体.成员名
+-&amp;gt; 结构体指针-&amp;gt;成员名
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//创建一个结构体类型-struct Stu
+struct Stu
+{
+    //成员变量
+    char name[20];
+    int age;
+    char id[20];
+};
+
+int main()
+{
+    //使用struct Stu这个类型创建了一个学生对象s1，并初始化
+    struct Stu s1 = {&amp;quot;张三&amp;quot;, 20, &amp;quot;2019010305&amp;quot;};
+    struct Stu *ps = &amp;amp;s1;
+
+    printf(&amp;quot;%s\n&amp;quot;, ps-&amp;gt;name);
+    printf(&amp;quot;%d\n&amp;quot;, ps-&amp;gt;age);
+    //结构体指针-&amp;gt;成员名
+
+    /*printf(&amp;quot;%s\n&amp;quot;, (*ps).name);
+    printf(&amp;quot;%d\n&amp;quot;, (*ps).age);*/
+
+    /*printf(&amp;quot;%s\n&amp;quot;, s1.name);
+    printf(&amp;quot;%d\n&amp;quot;, s1.age);
+    printf(&amp;quot;%s\n&amp;quot;, s1.id);*/
+    //结构体变量.成员名
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;表达式求值&#34;&gt;表达式求值&lt;/h2&gt;
+
+&lt;p&gt;表达式求值的顺序一部分是由操作符的优先级和结合性决定。
+同样，有些表达式的操作数在求值的过程中可能需要转换为其他类型。&lt;/p&gt;
+
+&lt;h3 id=&#34;隐式类型转换&#34;&gt;隐式类型转换&lt;/h3&gt;
+
+&lt;p&gt;C的整型算术运算总是至少以缺省整型类型的精度来进行的。
+为了获得这个精度，表达式中的字符和短整型操作数在使用之前被转换为普通整型，这种转换称为&lt;code&gt;整型提升&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;整型提升的意义：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;表达式的整型运算要在CPU的相应运算器件内执行，CPU内整型运算器(ALU)的操作数的字节长度一般就是int的字节长度，同时也是CPU的通用寄存器的长度。&lt;/p&gt;
+
+&lt;p&gt;因此，即使两个char类型的相加，在CPU执行时实际上也要先转换为CPU内整型操作数的标准长度。&lt;/p&gt;
+
+&lt;p&gt;通用CPU（general-purpose CPU）是难以直接实现两个8比特字节直接相加运算（虽然机器指令中可能有这种字节相加指令）。所以，表达式中各种长度可能小于int长度的整型值，都必须先转换为int或unsigned int，然后才能送入CPU去执行运算。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;负数的整形提升&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;char c1 = -1;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;变量c1的二进制位(补码)中只有8个比特位：
+1111111
+因为 char 为有符号的 char
+所以整形提升的时候，高位补充符号位，即为1
+提升之后的结果是：
+11111111111111111111111111111111 - 补码=反码+1
+11111111111111111111111111111110 - 反码
+10000000000000000000000000000001 - 原码
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;正数的整形提升&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char c2 = 1;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;变量c2的二进制位(补码)中只有8个比特位：
+00000001
+因为 char 为有符号的 char
+所以整形提升的时候，高位补充符号位，即为0
+提升之后的结果是：
+00000000000000000000000000000001
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;无符号整形提升，高位补0&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;两个整形提升的变量如何相加&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char a = 3;
+//00000000000000000000000000000011
+//00000011 - a
+//
+char b = 127;
+//‭00000000000000000000000001111111
+//‬01111111 - b
+
+//a和b如何相加
+//00000000000000000000000000000011
+//00000000000000000000000001111111
+//00000000000000000000000010000010
+//
+char c = a + b;
+//10000010 - c
+//11111111111111111111111110000010 - 补码 有符号数补1，无符号数补0
+//11111111111111111111111110000001 - 反码 =补码-1
+//10000000000000000000000001111110 - 原码 
+//-126
+printf(&amp;quot;%d\n&amp;quot;, c);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;整体提升&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;整形提升是按照变量的数据类型的符号位来提升的
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;整形提升的例子&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;// 实例1:
+//a,b要进行整形提升,但是c不需要整形提升 a,b整形提升之后,变成了负数
+//c不发生整形提升,则表达式 c==0xb6000000 的结果是真
+int main()
+{
+    char a = 0xb6; //10110110
+    short b = 0xb600;
+    int c = 0xb6000000;
+    if (a == 0xb6)
+        printf(&amp;quot;a&amp;quot;);
+    if (b == 0xb600)
+        printf(&amp;quot;b&amp;quot;);
+    if (c == 0xb6000000)
+        printf(&amp;quot;c&amp;quot;); //C
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/5/整形提升.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//实例2
+//c只要参与表达式运算,就会发生整形提升,表达式 +c ,就会发生提升,所以 sizeof(+c) 是4个字节.
+//表达式 -c 也会发生整形提升,所以 sizeof(-c) 是4个字节,但是 sizeof(c) ,就是1个字节
+int main()
+{
+    char c = 1;
+    printf(&amp;quot;%u\n&amp;quot;, sizeof(c));  //1
+    printf(&amp;quot;%u\n&amp;quot;, sizeof(+c)); //4
+    printf(&amp;quot;%u\n&amp;quot;, sizeof(!c)); //1
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;算术转换&#34;&gt;算术转换&lt;/h3&gt;
+
+&lt;p&gt;如果某个操作符的各个操作数属于不同的类型，那么除非其中一个操作数的转换为另一个操作数的类型，否则操作就无法进行。下面的层次体系称为寻常算术转换.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;long double
+double
+float
+unsigned long int
+long int
+unsigned int
+int
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果某个操作数的类型在上面这个列表中排名较低，那么首先要转换为另外一个操作数的类型后执行运算。
+&lt;code&gt;警告：&lt;/code&gt; 但是算术转换要合理，要不然会有一些潜在的问题。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;float f = 3.14;
+int num = f;//隐式转换，会有精度丢失
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;操作符的属性&#34;&gt;操作符的属性&lt;/h3&gt;
+
+&lt;p&gt;复杂表达式的求值有三个影响的因素。
+1. 操作符的优先级
+2. 操作符的结合性
+3. 是否控制求值顺序。&lt;/p&gt;
+
+&lt;p&gt;两个相邻的操作符先执行哪个？取决于他们的优先级。如果两者的优先级相同，取决于他们的结合性。&lt;/p&gt;
+
+&lt;h4 id=&#34;操作符优先级-越靠前-优先级越高&#34;&gt;操作符优先级【越靠前，优先级越高】&lt;/h4&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;操作符&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;描述&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;用法示例&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;结果类型&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;结合性&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;是否控制求值顺序&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;（）&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;聚组&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;（表达式）&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;与表达式同&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;（）&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;函数调用&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp （ rexp ，&amp;hellip;, rexp ）&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;[ ]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;下标引用&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp [ rexp ]&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;.&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;访问结构成员&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp .member_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;-&amp;gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;访问结构指针成员&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp -&amp;gt;member_name&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;++&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;后缀自增&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp ++&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;ndash;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;后缀自减&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp &amp;ndash;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;!&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;逻辑反&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;! rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;~&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;按位取反&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;~ rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;+&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;单目，表示正值&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;+ rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;-&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;单目，表示负值&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;- rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;++&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;前缀自增&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;++ lexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;ndash;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;前缀自减&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;ndash; lexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;间接访问&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;* rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;amp;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;取地址&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;amp; lexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;sizeof&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;取其长度，以字节表示&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;sizeof rexp sizeof(类型)&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;(类型）&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;类型转换&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;(类型) rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;*&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;乘法&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp * rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;/&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;除法&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp / rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;整数取余&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp % rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;+&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;加法&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp + rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;-&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;减法&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp - rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;lt;&amp;lt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;左移位&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;lt;&amp;lt; rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;gt;&amp;gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;右移位&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;gt;&amp;gt; rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;大于&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;gt; rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;gt;=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;大于等于&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;gt;= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;lt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;小于&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;lt; rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;lt;=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;小于等于&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;lt;= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;==&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;等于&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp == rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;!=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;不等于&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp != rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;amp;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;位与&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;amp; rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;^&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;位异或&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp ^ rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;||&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;位或&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp || rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;amp;&amp;amp;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;逻辑与&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp &amp;amp;&amp;amp; rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;||&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;逻辑或&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp || rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;?:&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;条件操作符&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp ? rexp : rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;N/A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;赋值&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp = rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;+=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;加&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp += rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;-=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;减&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp -= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;*=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;乘&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp *= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;/=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;除&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp /= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;%=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;取模&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp %= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;lt;&amp;lt;=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;左移&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp &amp;lt;&amp;lt;= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;gt;&amp;gt;=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;右移&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp &amp;gt;&amp;gt;= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;&amp;amp;=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;与&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp &amp;amp;= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;^=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;异或&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp ^= rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;|=&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;以&amp;hellip;或&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;lexp = rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;R-L&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;，&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;逗号&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp ， rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;rexp&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;L-R&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;是&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;问题表达式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;表达式的求值部分由操作符的优先级决定。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;表达式1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;a*b + c*d + e*f
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;代码1在计算的时候，由于比+的优先级高，只能保证，的计算是比+早，但是优先级并不能决定第三个*比第一个+早执行。&lt;/p&gt;
+
+&lt;p&gt;计算机顺序可能是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;a*b
+c*d
+a*b + c*d
+e*f
+a*b + c*d + e*f
+    
+或者：
+a*b
+c*d
+e*f
+a*b + c*d
+a*b + c*d + e*f
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;表达式2&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;c + --c;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;同上，操作符的优先级只能决定自减 &amp;ldquo;&amp;ndash;&amp;rdquo; 的运算在+的运算的前面，但是我们并没有办法得知，+操作符的左操作数的获取在右操作数之前还是之后求值，所以结果是不可预测的，是有歧义的。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;表达式3-非法表达式：表达式3在不同编译器中测试结果不同&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int main()
+{
+    int i = 10;
+    i = i-- - --i * ( i = -3 ) * i++ + ++i;
+    printf(&amp;quot;i = %d\n&amp;quot;, i);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;表达式4&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//answer = fun() - fun() * fun(); 中我们只能通过操作符的优先级得知：先算乘法，再算减法。
+//函数的调用先后顺序无法通过操作符的优先级确定
+int fun()
+{
+     static int count = 1;
+     return ++count;
+}
+int main()
+{
+     int answer;
+     answer = fun() - fun() * fun();
+     printf( &amp;quot;%d\n&amp;quot;, answer);//输出多少？
+     return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;表达式5&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//代码5
+#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+    int i = 1;
+    int ret = (++i) + (++i) + (++i);
+    printf(&amp;quot;%d\n&amp;quot;, ret);
+    printf(&amp;quot;%d\n&amp;quot;, i);
+    return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;linux 环境gcc编译器 :10 4&lt;/p&gt;
+
+&lt;p&gt;VS2013环境下都执行  :12 4&lt;/p&gt;
+
+&lt;p&gt;第一个 + 在执行的时候，第三个++是否执行，这个是不确定的，因为依靠操作符的优先级和结合性是无法决定第一个 + 和第三个前置 ++ 的先后顺序。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;总结&lt;/strong&gt;
+我们写出的表达式如果不能通过操作符的属性确定唯一的计算路径，那这个表达式就是存在问题的。&lt;/p&gt;
+
+&lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
+
+&lt;h3 id=&#34;题目1&#34;&gt;题目1&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int i;//全局变量-不初始化-默认是0。如果为局部变量为随机值
+int main()
+{
+    i--;
+    //-1
+    //10000000000000000000000000000001  - 原码
+    //11111111111111111111111111111110  - 反码（符号位不变，其余取反）
+    //11111111111111111111111111111111  - 补码 （反码+1）
+    //放在内存里是补码，但高位就不再是符号位，一个超大数
+    //因为sizeof 返回的是无符号数，所以将i也转变成无符号数，i的最高位将不是符号位，而是有效位
+    if (i &amp;gt; sizeof(i))//sizeof()-计算变量/类型所占内存的大小 &amp;gt;=0 无符号数
+    {
+        printf(&amp;quot;&amp;gt;\n&amp;quot;);//&amp;gt;
+    }
+    else
+    {
+        printf(&amp;quot;&amp;lt;\n&amp;quot;);
+    }
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;题目2&#34;&gt;题目2&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a, b, c;
+a = 5;
+c = ++a;// c=6 a=6
+b = ++c, c++, ++a, a++;//c=7 ,c=8 ,a=7,b=7,a=8
+b += a++ + c;//a=8,c=8,b=7,b=7+8+8=23,a=9   
+printf(&amp;quot;a = %d b = %d c = %d\n:&amp;quot;, a, b, c);//9 23 8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;统计二进制中1的个数-补码的二进制有几个1&#34;&gt;统计二进制中1的个数【补码的二进制有几个1】&lt;/h3&gt;
+
+&lt;p&gt;写一个函数返回参数二进制中1的个数&lt;/p&gt;
+
+&lt;p&gt;比如：15   00001111 4个1&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主函数&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+int main()
+{
+    int a = 0;
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;a);
+    //写一个函数求a的二进制（补码）表示中有几个1
+    int count = count_bit_one(a);
+    printf(&amp;quot;count = %d\n&amp;quot;, count);
+    //system(&amp;quot;pause&amp;quot;);//system库函数-执行系统命令-pause（暂停）
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;count_bit_one 法一&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//13
+//000000000000000000000000000001101
+//-1
+//100000000000000000000000000000001 原码
+//111111111111111111111111111111110 反码
+//111111111111111111111111111111111 补码
+int count_bit_one(unsigned int n) // 无符号，解决负数
+{
+    int count = 0;
+    while (n)
+    {
+        if (n % 2 == 1)
+        {
+            count++;
+        }
+        n = n / 2;
+    }
+    return count;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;count_bit_one 法二&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;// -1
+//111111111111111111111111111111111 补码 
+//000000000000000000000000000000001 
+int count_bit_one(int n)
+{
+    int count = 0;
+    int i = 0;
+    for (i = 0; i &amp;lt; 32; i++)
+    {
+        if (((n &amp;gt;&amp;gt; i) &amp;amp; 1) == 1)// 每一位移到最低位，按位与1
+        {
+            count++;
+        }
+    }
+    return count;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;count_bit_one&lt;/code&gt; 法三（最佳，高效）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//n = n&amp;amp;(n-1)
+//n
+//13
+//1101 n      count++
+//1100 n-1
+//1100 n      count++
+//1011 n-1
+//1000 n      count++
+//0111 n-1
+//0000 n       跳出
+int count_bit_one(int n)
+{
+    int count = 0;
+    while (n)
+    {
+        n = n &amp;amp; (n - 1);
+        count++;
+    }
+    return count;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;求二进制中不同位的个数&#34;&gt;求二进制中不同位的个数&lt;/h3&gt;
+
+&lt;p&gt;两个int (32位)的整数m和n的二进制表达中有多少个位（bit）不同？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;输入例子：1999 2299 
+输出例子：7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+int get_diff_bit(int m, int n)
+{
+    int tmp = m^n;// ^ 按位异或同为0,相异为1
+    int count = 0;
+    //return count_bit_one(tmp);
+    while (tmp)
+    {
+        tmp = tmp&amp;amp;(tmp - 1);
+        count++;
+    }
+    return count;
+}
+
+int main()
+{
+    int m = 0;
+    int n = 0;
+    scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;m, &amp;amp;n);
+    int count = get_diff_bit(m, n);
+    printf(&amp;quot;count = %d\n&amp;quot;, count);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;打印二进制的奇数位和偶数位&#34;&gt;打印二进制的奇数位和偶数位&lt;/h3&gt;
+
+&lt;p&gt;获取一个整数二进制序列中所有的偶数位和奇数位，分别打印出二进制序列&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+//00000000000000000000000000001010
+void print(int m)
+{
+    int i = 0;
+    printf(&amp;quot;奇数位：\n&amp;quot;);
+    for (i = 30; i &amp;gt;= 0; i -= 2)
+    {
+        printf(&amp;quot;%d &amp;quot;, (m &amp;gt;&amp;gt; i) &amp;amp; 1);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+    printf(&amp;quot;偶数位：\n&amp;quot;);
+    for (i = 31; i &amp;gt;= 1; i -= 2)
+    {
+        printf(&amp;quot;%d &amp;quot;, (m &amp;gt;&amp;gt; i) &amp;amp; 1);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+}
+
+int main()
+{
+    int m = 0;
+    scanf(&amp;quot;%d&amp;quot;, &amp;amp;m);
+    print(m);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/5/打印奇偶位.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;交换两个变量-不创建临时变量&#34;&gt;交换两个变量（不创建临时变量）&lt;/h3&gt;
+
+&lt;p&gt;不允许创建临时变量，交换两个整数的内容&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;临时变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 3;
+int b = 5;
+int tmp = 0;//临时变量
+printf(&amp;quot;before: a=%d b=%d\n&amp;quot;, a, b);
+tmp = a;
+a = b;
+b = tmp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;加减法-可能会溢出&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 3;
+int b = 5;
+a = a + b; //8
+b = a - b; //3
+a = a - b; //5
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;异或的方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 3; //011
+int b = 5; //101
+a = a^b;   //110
+b = a^b;   //011
+a = a^b;   //101
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>指针</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/6/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/6/</guid>
+      <description>
+
+&lt;h2 id=&#34;指针是什么&#34;&gt;指针是什么&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;在计算机科学中，指针（Pointer）是编程语言中的一个对象，利用地址，它的值直接指向
+（points to）存在电脑存储器中另一个地方的值。由于通过地址能找到所需的变量单元，可以
+说，地址指向该变量单元。因此，将地址形象化的称为“指针”。意思是通过它能找到以它为地址
+的内存单元。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/1/内存.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;//在内存中开辟一块空间
+int *p = &amp;amp;a;//这里我们对变量a，取出它的地址，可以使用&amp;amp;操作符。
+            //将a的地址存放在p变量中，p就是一个之指针变量
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;总结：&lt;/strong&gt;指针就是变量，用来存放地址的变量。（存放在指针中的值都被当成地址处理）。指针就是地址.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;一个小的单元到底是多大？（1个字节）&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如何编址？&lt;/p&gt;
+
+&lt;p&gt;经过仔细的计算和权衡我们发现一个字节给一个对应的地址是比较合适的。
+对于32位的机器，假设有32根地址线，那么假设每根地址线在寻址的是产生一个电信号正电/负电（1或者0）&lt;/p&gt;
+
+&lt;p&gt;那么32根地址线产生的地址就会是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;00000000 00000000 00000000 00000000
+00000000 00000000 00000000 00000001
+...
+11111111 11111111 11111111 11111111
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里就有2的32次方个地址。&lt;/p&gt;
+
+&lt;p&gt;每个地址标识一个字节，那我们就可以给 （2^32Byte == 2^32/1024KB ==2^32/1024/1024MB==2^32/1024/1024/1024GB == 4GB） 4G的空闲进行编址。&lt;/p&gt;
+
+&lt;p&gt;同样的方法，那64位机器，如果给64根地址线，那能编址多大空间，自己计算。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;总结：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;指针是用来存放地址的，地址是唯一标示一块地址空间的。&lt;/li&gt;
+&lt;li&gt;指针的大小在32位平台是4个字节，在64位平台是8个字节。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;指针和指针类型&#34;&gt;指针和指针类型&lt;/h2&gt;
+
+&lt;h3 id=&#34;指针-整数&#34;&gt;指针+-整数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int n = 10;
+char *pc = (char *)&amp;amp;n;
+int *pi = &amp;amp;n;
+
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;n);     //000000000061FE0C
+printf(&amp;quot;%p\n&amp;quot;, pc);     //000000000061FE0C
+printf(&amp;quot;%p\n&amp;quot;, pc + 1); //000000000061FE0D 
+printf(&amp;quot;%p\n&amp;quot;, pi);     //000000000061FE0C
+printf(&amp;quot;%p\n&amp;quot;, pi + 1); //000000000061FE10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;总结：&lt;/strong&gt;指针的类型决定了指针向前或者向后走一步有多大（距离单位是字节）(指针的步长)。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;int* p; p+1 --&amp;gt;4
+char* p; p+1 --&amp;gt;1
+double* p; p+1 --&amp;gt;8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;指针的解引用&#34;&gt;指针的解引用&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 0x11223344;
+int* pa = &amp;amp;a;
+*pa = 0;
+/*char *pc = &amp;amp;a;
+*pc = 0;*/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/指针内存变化.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;总结：&lt;/strong&gt; 指针的类型决定了，对指针解引用的时候有多大的权限（能操作几个字节）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;int* p; *p 能够访问4个字节
+char* p; *p 能够访问1个字节
+double* p; *p 能够访问8个字节
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;示例-指针类型的意义&#34;&gt;示例:指针类型的意义&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[10] = { 0 };
+int* p = arr;//数组名-首元素的地址
+//char*p = arr;
+int i = 0;
+for (i = 0; i &amp;lt; 10; i++)
+{
+    *(p + i) = 1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;int* p = arr;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/指针1.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;char*p = arr;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/指针2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;野指针&#34;&gt;野指针&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;概念： 野指针就是指针指向的位置是不可知的（随机的、不正确的、没有明确限制的）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;野指针成因&#34;&gt;野指针成因&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;指针未初始化&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//int a;//局部变量不初始化，默认是随机值
+int *p;//局部的指针变量，就被初始化随机值
+*p = 20;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;指针越界访问&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a[10] = { 0 };
+int i = 0;
+int* p = a;
+for (i = 0; i &amp;lt;= 12; i++)
+{
+    //*p = i;
+    //p++;
+    *p++ = i;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;指针指向的空间释放（详见动态内存开辟）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int* test()
+{
+    int a = 10; //局部变量
+    return &amp;amp;a; 
+}
+int main()
+{
+    int *p = test();//test指向的空间被释放了
+    *p = 20; //访问就是非法的
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;如何避免野指针&#34;&gt;如何避免野指针&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;指针初始化&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int b = 0;//
+int a = 10;
+int*pa = &amp;amp;a;//初始化
+int* p = NULL;//NULL- 用来初始化指针的，给指针赋值
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;小心指针越界&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;指针指向空间释放即使置NULL&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;
+int *pa = &amp;amp;a;
+*pa = 20;
+//
+pa = NULL;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;指针使用之前检查有效性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;if (pa != NULL)
+{
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;指针运算&#34;&gt;指针运算&lt;/h2&gt;
+
+&lt;h3 id=&#34;指针-整数-1&#34;&gt;指针+- 整数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+int i = 0;
+int sz = sizeof(arr) / sizeof(arr[0]);
+int* p = arr;
+for (i = 0; i &amp;lt; sz; i++)
+{
+    printf(&amp;quot;%d &amp;quot;, *p); // 1 2 3 4 5 6 7 8 9 10
+    p++;//p+=1
+}
+printf(&amp;quot;\n&amp;quot;);
+int* p1 = &amp;amp;arr[9];
+for (i = 0; i &amp;lt; 5; i++)
+{
+    printf(&amp;quot;%d &amp;quot;, *p1); //10 8 6 4 2
+    p1-=2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;指针-指针&#34;&gt;指针-指针&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;char ch[5] = {0};
+int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 15 };
+printf(&amp;quot;%d\n&amp;quot;, &amp;amp;arr[9] - &amp;amp;arr[0]);//9,指针之间元素的个数
+printf(&amp;quot;%d\n&amp;quot;, &amp;amp;arr[0] - &amp;amp;arr[9]);//|-9|,指针之间元素的个数
+//printf(&amp;quot;%d\n&amp;quot;, &amp;amp;arr[9] - &amp;amp;ch[0]);//err
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;计算字符串长度[1.计数器的方式1;  2.递归的方式2  3.指针的方式3]&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int my_strlen(char* str)
+{
+    char* start = str;
+    char* end = str;
+    while (*end != &#39;\0&#39;)
+    {
+        end++;
+    }
+    return end - start;//
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;指针的关系运算&#34;&gt;指针的关系运算&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#define N_VALUES 5
+float values[N_VALUES];
+float *vp;
+//指针+-整数；指针的关系运算
+for (vp = &amp;amp;values[0]; vp &amp;lt; &amp;amp;values[N_VALUES])
+{
+     *vp++ = 0;
+}
+//下面代码是应该避免这样写，因为标准并不保证它可行。
+for(vp = &amp;amp;values[N_VALUES-1]; vp &amp;gt;= &amp;amp;values[0];vp--)
+{
+    *vp = 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;标准规定：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;允许指向数组元素的指针与指向数组最后一个元素后面的那个内存位置的指针比较，但是不允许与指向第一个元素之前的那个内存位置的指针进行比较。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/指针运算.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;指针和数组&#34;&gt;指针和数组&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[10] = { 0 };
+printf(&amp;quot;%p\n&amp;quot;, arr);//地址-首元素的地址
+printf(&amp;quot;%p\n&amp;quot;, arr+1);
+
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr[0]);//首元素地址
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr[0]+1);
+
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr);//不是首元素地址，是整个数组地址
+printf(&amp;quot;%p\n&amp;quot;, &amp;amp;arr + 1);
+
+//1. &amp;amp;arr- &amp;amp;数组名- 数组名不是首元素的地址-数组名表示整个数组 - &amp;amp;数组名 取出的是整个数组的地址
+//2. sizeof(arr) - sizeof(数组名) - 数组名表示的整个数组- sizeof(数组名)计算的是整个数组的大小
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/首元素.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;结论：&lt;/strong&gt;数组名表示的是数组首元素的地址。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[10] = { 0 };
+int* p = arr;
+int i = 0;
+for (i = 0; i &amp;lt; 10; i++)
+{
+    *(p + i) = i;
+}
+
+for (i = 0; i &amp;lt; 10; i++)
+{
+    printf(&amp;quot;%d &amp;quot;, *(p + i)); //0 1 2 3 4 5 6 7 8 9
+}
+printf(&amp;quot;\n\n&amp;quot;);
+for (i = 0; i &amp;lt; 10; i++)
+{
+    printf(&amp;quot;&amp;amp;arr[%d] = %p   &amp;lt;====&amp;gt; p+%d = %p\n&amp;quot;, i, &amp;amp;arr[i], i, p + i);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/指针运用.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;二级指针&#34;&gt;二级指针&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;
+int * pa = &amp;amp;a;// *表示pa是指针，int表示pa指向的对象类型是int
+int* * ppa = &amp;amp;pa;//ppa就是二级指针,存放一级指针变量的地址
+//int* 表示ppa指向的对象类型是int* ，第二个*表示ppa是个指针
+**ppa = 20;
+printf(&amp;quot;%d\n&amp;quot;, **ppa);//20
+printf(&amp;quot;%d\n&amp;quot;, a);//20
+
+//int** * pppa = &amp;amp;ppa;// 三级指针
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/二级指针.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;指针数组&#34;&gt;指针数组&lt;/h2&gt;
+
+&lt;p&gt;指针数组是指针还是数组？&lt;/p&gt;
+
+&lt;p&gt;答案：是数组，是存放指针的数组。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 10;
+int b = 20;
+int c = 30;
+//int* pa = &amp;amp;a;
+//int* pb = &amp;amp;b;
+//int* pc = &amp;amp;c;
+//整形数组 - 存放整形
+//字符数组 - 存放字符
+//指针数组 - 存放指针
+//int arr[10];
+int* arr2[3] = {&amp;amp;a, &amp;amp;b, &amp;amp;c};//整形指针数组
+int i = 0;
+for (i = 0; i &amp;lt; 3; i++)
+{
+    printf(&amp;quot;%d &amp;quot;, *(arr2[i])); //10 20 30
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
+
+&lt;h3 id=&#34;题目1&#34;&gt;题目1&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int arr[] = { 1, 2, 3, 4, 5 };
+short *p = (short*)arr;
+int i = 0;
+for (i = 0; i&amp;lt;4; i++)
+{
+    *(p + i) = 0;
+}
+
+for (i = 0; i&amp;lt;5; i++)
+{
+    printf(&amp;quot;%d &amp;quot;, arr[i]);//0 0 3 4 5
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/判断打印1.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;题目2&#34;&gt;题目2&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 0x11223344;
+char *pc = (char*)&amp;amp;a;
+*pc = 0;
+printf(&amp;quot;%x\n&amp;quot;, a);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/题目2.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;使用指针打印数组内容&#34;&gt;使用指针打印数组内容&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+void print(int *p, int sz)
+{
+    int i = 0;
+    for (i = 0; i &amp;lt; sz; i++)
+    {
+        printf(&amp;quot;%d &amp;quot;, *(p + i));
+    }
+}
+int main()
+{
+    int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    print(arr, sz);
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;指针-指针得到指针之间元素的个数，非字节数&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;写一个函数逆序字符串的内容&#34;&gt;写一个函数逆序字符串的内容&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;assert.h&amp;gt;
+
+void reverse(char *str)
+{
+    assert(str); //判断指针的有效性
+    int len = strlen(str);
+
+    char *left = str;
+    char *right = str + len - 1;
+
+    while (left &amp;lt; right)
+    {
+        char tmp = *left;
+        *left = *right;
+        *right = tmp;
+        left++;
+        right--;
+    }
+}
+
+int main()
+{
+    char arr[256] = {0};
+    //scanf(&amp;quot;%s&amp;quot;, arr);//abcdef ---&amp;gt; fedcba scanf读取遇到空格就会结束
+    gets(arr); //读取一行
+    //逆序函数
+    reverse(arr);
+
+    printf(&amp;quot;逆序后的字符串：%s\n&amp;quot;, arr); //
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/6/指针相关2-9.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;计算求和-sn-a-aa-aaa-aaaa-aaaaa的前5项之和-其中a是一个数字&#34;&gt;计算求和 Sn=a+aa+aaa+aaaa+aaaaa的前5项之和，其中a是一个数字。&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int a = 0;
+int n = 0;
+scanf(&amp;quot;%d%d&amp;quot;, &amp;amp;a, &amp;amp;n);//2 5
+int sum = 0;
+int i = 0;
+int ret = 0;
+//2 22 222 2222 22222
+//
+for (i = 0; i &amp;lt; n; i++)
+{
+    ret = ret * 10 + a;
+    sum += ret;
+}
+
+printf(&amp;quot;%d\n&amp;quot;, sum);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;判断i是否为水仙花数-自幂数&#34;&gt;判断i是否为水仙花数（自幂数）&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;math.h&amp;gt;
+
+int main()
+{
+    int i = 0;
+    for (i = 0; i &amp;lt;= 100000; i++)
+    {
+        //判断i是否为水仙花数（自幂数）
+        //1. 计算i的位数 - n位数
+        int n = 1;
+        int tmp = i;
+        int sum = 0;
+        while (tmp /= 10)
+        {
+            n++;
+        }
+        //2. 计算i的每一位的n次方之和 sum
+        tmp = i;
+        while (tmp)
+        {
+            sum += pow(tmp % 10, n);
+            tmp /= 10;
+        }
+        //3. 比较i == sum
+        if (i == sum)
+        {
+            printf(&amp;quot;%d &amp;quot;, i);
+        }
+    }
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;打印菱形&#34;&gt;打印菱形&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;      *
+     ***
+    *****
+   *******
+  *********
+ ***********
+*************
+ ***********
+  *********
+   *******
+    *****
+     ***
+      *
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;课上代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int line = 0;
+scanf(&amp;quot;%d&amp;quot;, &amp;amp;line);//7
+//打印上半部分
+int i = 0;
+for (i = 0; i &amp;lt; line; i++)
+{
+    //打印空格
+    int j = 0;
+    for (j = 0; j &amp;lt; line-1-i; j++)
+    {
+        printf(&amp;quot; &amp;quot;);
+    }
+    //打印*
+    for (j = 0; j &amp;lt;2*i+1; j++)
+    {
+        printf(&amp;quot;*&amp;quot;);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+}
+
+//打印下半部分
+for (i = 0; i &amp;lt; line - 1; i++)
+{
+    int j = 0;
+    //打印空格
+    for (j = 0; j &amp;lt;=i; j++)
+    {
+        printf(&amp;quot; &amp;quot;);
+    }
+    //打印*
+    for (j = 0; j &amp;lt;2*(line-1-i)-1; j++)
+    {
+        printf(&amp;quot;*&amp;quot;);
+    }
+    printf(&amp;quot;\n&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;喝汽水问题&#34;&gt;喝汽水问题&lt;/h3&gt;
+
+&lt;p&gt;喝汽水，一瓶汽水1元，2个空瓶可以换一瓶汽水，给20元,可以多少汽水？（编程实现）&lt;/p&gt;
+
+&lt;p&gt;total=2*m-1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int m = 0;//money
+int n = 0;//总数量
+int k = 0;//空瓶
+scanf(&amp;quot;%d&amp;quot;, &amp;amp;m);
+n = m;
+k = m;
+while (k &amp;gt;1) {
+    n += k / 2;
+    k = k / 2 + k % 2;
+}
+printf(&amp;quot;%d&amp;quot;, n);
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>结构体</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/7/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/7/</guid>
+      <description>
+
+&lt;h2 id=&#34;结构体类型的声明&#34;&gt;结构体类型的声明&lt;/h2&gt;
+
+&lt;h3 id=&#34;结构的基础知识&#34;&gt;结构的基础知识&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;结构是一些值的集合，这些值称为成员变量。结构的每个成员可以是不同类型的变量。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;结构的声明&#34;&gt;结构的声明&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;struct tag
+{
+ member-list;
+}variable-list;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;例如描述一个学生 :名字,年龄,电话,性别&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//定义结构体类型
+//struct 结构体关键字   Stu - 结构体标签   struct Stu - 结构体类型
+struct Stu
+{
+    //成员变量
+    char name[20];
+    short age;
+    char tele[12];
+    char sex[5];
+}s1, s2, s3;//s1,s2,s3 是三个全局的结构体变量，//分号不能丢
+
+//创建结构体变量
+struct Stu s2 = {&amp;quot;旺财&amp;quot;, 30, &amp;quot;15596668862&amp;quot;, &amp;quot;保密&amp;quot;};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;//typedef给结构体类型struct Stu重新命名为Stu
+typedef struct Stu
+{
+    //成员变量
+    char name[20];
+    short age;
+    char tele[12];
+    char sex[5];
+}Stu;//分号不能丢
+
+//创建结构体变量
+Stu s1 = {&amp;quot;张三&amp;quot;, 20, &amp;quot;15249287076&amp;quot;, &amp;quot;男&amp;quot;};//局部变量
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;结构成员的类型&#34;&gt;结构成员的类型&lt;/h3&gt;
+
+&lt;p&gt;结构的成员可以是标量、数组、指针，甚至是其他结构体。&lt;/p&gt;
+
+&lt;h2 id=&#34;结构体变量的定义和初始化&#34;&gt;结构体变量的定义和初始化&lt;/h2&gt;
+
+&lt;p&gt;有了结构体类型，那如何定义变量，其实很简单。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;struct Point
+{
+ int x;
+ int y;
+}p1; //声明类型的同时定义变量p1
+struct Point p2; //定义结构体变量p2
+
+//初始化：定义变量的同时赋初值。
+struct Point p3 = {x, y};
+
+struct Stu        //类型声明
+{
+ char name[15];//名字
+ int age;      //年龄
+};
+struct Stu s = {&amp;quot;zhangsan&amp;quot;, 20};//初始化
+
+struct Node
+{
+ int data;
+ struct Point p;
+ struct Node* next;
+}n1 = {10, {4,5}, NULL}; //结构体嵌套初始化
+
+struct Node n2 = {20, {5, 6}, NULL};//结构体嵌套初始化
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;结构体成员的访问-结构体传参&#34;&gt;结构体成员的访问  结构体传参&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;结构体变量访问成员 结构变量的成员是通过点操作符（.）访问的。点操作符接受两个操作数。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;结构体指针访问指向变量的成员 有时候我们得到的不是一个结构体变量，而是指向一个结构体的指针&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;typedef struct Stu
+{
+    //成员变量
+    char name[20];
+    short age;
+    char tele[12];
+    char sex[5];
+}Stu;
+
+
+void Print1(Stu tmp)
+{
+    printf(&amp;quot;name: %s\n&amp;quot;, tmp.name);
+    printf(&amp;quot;age:  %d\n&amp;quot;, tmp.age);
+    printf(&amp;quot;tele: %s\n&amp;quot;, tmp.tele);
+    printf(&amp;quot;sex:  %s\n&amp;quot;, tmp.sex);
+}
+
+void Print2(Stu* ps)
+{
+    printf(&amp;quot;name: %s\n&amp;quot;, ps-&amp;gt;name);
+    printf(&amp;quot;age : %d\n&amp;quot;, ps-&amp;gt;age);
+    printf(&amp;quot;tele: %s\n&amp;quot;, ps-&amp;gt;tele);
+    printf(&amp;quot;sex : %s\n&amp;quot;, ps-&amp;gt;sex);
+}
+
+int main()
+{
+    Stu s = { &amp;quot;李四&amp;quot;, 40, &amp;quot;15598886688&amp;quot;, &amp;quot;男&amp;quot; };
+    //打印结构体数据
+    Print1(s); //传结构体
+    Print2(&amp;amp;s); //传地址
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的 print1 和 print2 函数哪个好些？&lt;/p&gt;
+
+&lt;p&gt;答案是：首选print2函数。 原因：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;函数传参的时候，参数是需要压栈的。 如果传递一个结构体对象的时候，结构体过大，参数压栈
+的系统开销比较大，所以会导致性能的下降。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;结论：&lt;/strong&gt; 结构体传参的时候，要传结构体的地址。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;压栈&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C++&#34;&gt;int Add(int x, int y)
+{
+    int z = 0;
+    z = x + y;
+    return z;
+}
+int main()
+{
+    int a = 10;
+    int b = 20;
+    int ret = 0;
+    ret = Add(a, b);
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../img/7/压栈.png&#34; alt=&#34;Image text&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;参考：函数栈帧的创建和销毁&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

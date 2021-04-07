@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PostgreSQL on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/postgresql/</link>
+    <description>Recent content in PostgreSQL on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Sun, 24 Mar 2019 12:41:05 -0500</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>基于Spring Boot &#43; AngularJS的ERP系统升级</title>
+      <link>https://cytgenkidu.github.io/project/springboot-angular-erp/</link>
+      <pubDate>Sun, 24 Mar 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/springboot-angular-erp/</guid>
+      <description>项目介绍： 对原本使用.NET Framework框架的ERP系统进行升级。
+开发过程： JHipster快速构建一个基于Spring Boot + AngularJS的项目，并在此基础上进行开发。
+客户端：  单页面应用AngularJS、Bootstrap、HTML5、I18N、Sass 通过npm来安装额外的JavaScript库 通过webpack构建、优化、实时重载 支持Thtmeleaf模板引擎  服务端：  使用易于配置的Spring Boot框架，通过Gradle对项目进行管理和构建 使用Spring Security OAuth2进行认证授权 使用Mybatis Generator根据数据库自动生成映射文件和Dao 使用Spring data JPA实现动态查询 使用Liquibase初始化数据库信息及数据库源代码版本控制 使用Lombok简化Java代码  生产环境：  支持使用Docker Compose管理Docker多容器，完成部署。  结果： 项目还在进行中，部分功能已测试，其他功能待迁移。</description>
+    </item>
+    
+  </channel>
+</rss>

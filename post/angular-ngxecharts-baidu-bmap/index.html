@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="@TOC
+安装插件 npm install echarts npm install ngx-echarts  配置ngx-echarts import { NgxEchartsModule } from &#39;ngx-echarts&#39;; @NgModule({ imports: [ ..., NgxEchartsModule ], }) export class AppModule { }  引入百度地图 申请百度地图密钥 申请链接：http://lbsyun.baidu.com/index.php?title=jspopular/guide/getkey） 记住ak码，在浏览器端使用，请选择“浏览器端AK”，例如JavaScript API只支持浏览器类型AK。
+在index.html中引入 &lt;script type=&quot;text/javascript&quot; src=&quot;https://api.map.baidu.com/api?v=2.0&amp;ak=xxxxxxxxxxxxx&quot;&gt;&lt;/script&gt;  注：百度地图必须在根组件index.html页面引入，否则会报错
+新建组件，显示地图 修改echarts的effectScatter-bmap示例https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap
+HTML &lt;div echarts [options]=&quot;Options&quot; (chartInit)=&quot;onChartInit($event)&quot; class=&quot;chart-container&quot;&gt;&lt;/div&gt;  ts import { Component, OnInit } from &quot;@angular/core&quot;; @Component({ selector: &quot;bmap&quot;, templateUrl: &quot;./bmap.component.html&quot;, styleUrls: [&quot;./bmap.component.scss&quot;] }) export class BmapComponent implements OnInit { constructor() { } Options: any; Intance: any; data: any = [ { name: &#39;海门&#39;, value: 9 }, { name: &#39;鄂尔多斯&#39;, value: 12 }, { name: &#39;招远&#39;, value: 12 }, { name: &#39;舟山&#39;, value: 12 }, { name: &#39;齐齐哈尔&#39;, value: 14 }, { name: &#39;盐城&#39;, value: 15 }, { name: &#39;赤峰&#39;, value: 16 }, { name: &#39;青岛&#39;, value: 18 }, { name: &#39;乳山&#39;, value: 18 }, { name: &#39;金昌&#39;, value: 19 }, { name: &#39;泉州&#39;, value: 21 }, { name: &#39;莱西&#39;, value: 21 }, { name: &#39;日照&#39;, value: 21 }, { name: &#39;胶南&#39;, value: 22 }, { name: &#39;南通&#39;, value: 23 }, { name: &#39;拉萨&#39;, value: 24 }, { name: &#39;云浮&#39;, value: 24 }, { name: &#39;梅州&#39;, value: 25 }, { name: &#39;文登&#39;, value: 25 }, { name: &#39;上海&#39;, value: 25 }, { name: &#39;攀枝花&#39;, value: 25 }, { name: &#39;威海&#39;, value: 25 }, { name: &#39;承德&#39;, value: 25 }, { name: &#39;厦门&#39;, value: 26 }, { name: &#39;汕尾&#39;, value: 26 }, { name: &#39;潮州&#39;, value: 26 }, { name: &#39;丹东&#39;, value: 27 }, { name: &#39;太仓&#39;, value: 27 }, { name: &#39;曲靖&#39;, value: 27 }, { name: &#39;烟台&#39;, value: 28 }, { name: &#39;福州&#39;, value: 29 }, { name: &#39;瓦房店&#39;, value: 30 }, { name: &#39;即墨&#39;, value: 30 }, { name: &#39;抚顺&#39;, value: 31 }, { name: &#39;玉溪&#39;, value: 31 }, { name: &#39;张家口&#39;, value: 31 }, { name: &#39;阳泉&#39;, value: 31 }, { name: &#39;莱州&#39;, value: 32 }, { name: &#39;湖州&#39;, value: 32 }, { name: &#39;汕头&#39;, value: 32 }, { name: &#39;昆山&#39;, value: 33 }, { name: &#39;宁波&#39;, value: 33 }, { name: &#39;湛江&#39;, value: 33 }, { name: &#39;揭阳&#39;, value: 34 }, { name: &#39;荣成&#39;, value: 34 }, { name: &#39;连云港&#39;, value: 35 }, { name: &#39;葫芦岛&#39;, value: 35 }, { name: &#39;常熟&#39;, value: 36 }, { name: &#39;东莞&#39;, value: 36 }, { name: &#39;河源&#39;, value: 36 }, { name: &#39;淮安&#39;, value: 36 }, { name: &#39;泰州&#39;, value: 36 }, { name: &#39;南宁&#39;, value: 37 }, { name: &#39;营口&#39;, value: 37 }, { name: &#39;惠州&#39;, value: 37 }, { name: &#39;江阴&#39;, value: 37 }, { name: &#39;蓬莱&#39;, value: 37 }, { name: &#39;韶关&#39;, value: 38 }, { name: &#39;嘉峪关&#39;, value: 38 }, { name: &#39;广州&#39;, value: 38 }, { name: &#39;延安&#39;, value: 38 }, { name: &#39;太原&#39;, value: 39 }, { name: &#39;清远&#39;, value: 39 }, { name: &#39;中山&#39;, value: 39 }, { name: &#39;昆明&#39;, value: 39 }, { name: &#39;寿光&#39;, value: 40 }, { name: &#39;盘锦&#39;, value: 40 }, { name: &#39;长治&#39;, value: 41 }, { name: &#39;深圳&#39;, value: 41 }, { name: &#39;珠海&#39;, value: 42 }, { name: &#39;宿迁&#39;, value: 43 }, { name: &#39;咸阳&#39;, value: 43 }, { name: &#39;铜川&#39;, value: 44 }, { name: &#39;平度&#39;, value: 44 }, { name: &#39;佛山&#39;, value: 44 }, { name: &#39;海口&#39;, value: 44 }, { name: &#39;江门&#39;, value: 45 }, { name: &#39;章丘&#39;, value: 45 }, { name: &#39;肇庆&#39;, value: 46 }, { name: &#39;大连&#39;, value: 47 }, { name: &#39;临汾&#39;, value: 47 }, { name: &#39;吴江&#39;, value: 47 }, { name: &#39;石嘴山&#39;, value: 49 }, { name: &#39;沈阳&#39;, value: 50 }, { name: &#39;苏州&#39;, value: 50 }, { name: &#39;茂名&#39;, value: 50 }, { name: &#39;嘉兴&#39;, value: 51 }, { name: &#39;长春&#39;, value: 51 }, { name: &#39;胶州&#39;, value: 52 }, { name: &#39;银川&#39;, value: 52 }, { name: &#39;张家港&#39;, value: 52 }, { name: &#39;三门峡&#39;, value: 53 }, { name: &#39;锦州&#39;, value: 54 }, { name: &#39;南昌&#39;, value: 54 }, { name: &#39;柳州&#39;, value: 54 }, { name: &#39;三亚&#39;, value: 54 }, { name: &#39;自贡&#39;, value: 56 }, { name: &#39;吉林&#39;, value: 56 }, { name: &#39;阳江&#39;, value: 57 }, { name: &#39;泸州&#39;, value: 57 }, { name: &#39;西宁&#39;, value: 57 }, { name: &#39;宜宾&#39;, value: 58 }, { name: &#39;呼和浩特&#39;, value: 58 }, { name: &#39;成都&#39;, value: 58 }, { name: &#39;大同&#39;, value: 58 }, { name: &#39;镇江&#39;, value: 59 }, { name: &#39;桂林&#39;, value: 59 }, { name: &#39;张家界&#39;, value: 59 }, { name: &#39;宜兴&#39;, value: 59 }, { name: &#39;北海&#39;, value: 60 }, { name: &#39;西安&#39;, value: 61 }, { name: &#39;金坛&#39;, value: 62 }, { name: &#39;东营&#39;, value: 62 }, { name: &#39;牡丹江&#39;, value: 63 }, { name: &#39;遵义&#39;, value: 63 }, { name: &#39;绍兴&#39;, value: 63 }, { name: &#39;扬州&#39;, value: 64 }, { name: &#39;常州&#39;, value: 64 }, { name: &#39;潍坊&#39;, value: 65 }, { name: &#39;重庆&#39;, value: 66 }, { name: &#39;台州&#39;, value: 67 }, { name: &#39;南京&#39;, value: 67 }, { name: &#39;滨州&#39;, value: 70 }, { name: &#39;贵阳&#39;, value: 71 }, { name: &#39;无锡&#39;, value: 71 }, { name: &#39;本溪&#39;, value: 71 }, { name: &#39;克拉玛依&#39;, value: 72 }, { name: &#39;渭南&#39;, value: 72 }, { name: &#39;马鞍山&#39;, value: 72 }, { name: &#39;宝鸡&#39;, value: 72 }, { name: &#39;焦作&#39;, value: 75 }, { name: &#39;句容&#39;, value: 75 }, { name: &#39;北京&#39;, value: 79 }, { name: &#39;徐州&#39;, value: 79 }, { name: &#39;衡水&#39;, value: 80 }, { name: &#39;包头&#39;, value: 80 }, { name: &#39;绵阳&#39;, value: 80 }, { name: &#39;乌鲁木齐&#39;, value: 84 }, { name: &#39;枣庄&#39;, value: 84 }, { name: &#39;杭州&#39;, value: 84 }, { name: &#39;淄博&#39;, value: 85 }, { name: &#39;鞍山&#39;, value: 86 }, { name: &#39;溧阳&#39;, value: 86 }, { name: &#39;库尔勒&#39;, value: 86 }, { name: &#39;安阳&#39;, value: 90 }, { name: &#39;开封&#39;, value: 90 }, { name: &#39;济南&#39;, value: 92 }, { name: &#39;德阳&#39;, value: 93 }, { name: &#39;温州&#39;, value: 95 }, { name: &#39;九江&#39;, value: 96 }, { name: &#39;邯郸&#39;, value: 98 }, { name: &#39;临安&#39;, value: 99 }, { name: &#39;兰州&#39;, value: 99 }, { name: &#39;沧州&#39;, value: 100 }, { name: &#39;临沂&#39;, value: 103 }, { name: &#39;南充&#39;, value: 104 }, { name: &#39;天津&#39;, value: 105 }, { name: &#39;富阳&#39;, value: 106 }, { name: &#39;泰安&#39;, value: 112 }, { name: &#39;诸暨&#39;, value: 112 }, { name: &#39;郑州&#39;, value: 113 }, { name: &#39;哈尔滨&#39;, value: 114 }, { name: &#39;聊城&#39;, value: 116 }, { name: &#39;芜湖&#39;, value: 117 }, { name: &#39;唐山&#39;, value: 119 }, { name: &#39;平顶山&#39;, value: 119 }, { name: &#39;邢台&#39;, value: 119 }, { name: &#39;德州&#39;, value: 120 }, { name: &#39;济宁&#39;, value: 120 }, { name: &#39;荆州&#39;, value: 127 }, { name: &#39;宜昌&#39;, value: 130 }, { name: &#39;义乌&#39;, value: 132 }, { name: &#39;丽水&#39;, value: 133 }, { name: &#39;洛阳&#39;, value: 134 }, { name: &#39;秦皇岛&#39;, value: 136 }, { name: &#39;株洲&#39;, value: 143 }, { name: &#39;石家庄&#39;, value: 147 }, { name: &#39;莱芜&#39;, value: 148 }, { name: &#39;常德&#39;, value: 152 }, { name: &#39;保定&#39;, value: 153 }, { name: &#39;湘潭&#39;, value: 154 }, { name: &#39;金华&#39;, value: 157 }, { name: &#39;岳阳&#39;, value: 169 }, { name: &#39;长沙&#39;, value: 175 }, { name: &#39;衢州&#39;, value: 177 }, { name: &#39;廊坊&#39;, value: 193 }, { name: &#39;菏泽&#39;, value: 194 }, { name: &#39;合肥&#39;, value: 229 }, { name: &#39;武汉&#39;, value: 273 }, { name: &#39;大庆&#39;, value: 279 } ]; geoCoordMap: any = { &#39;海门&#39;: [121.">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/post/angular-ngxecharts-baidu-bmap/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/post/angular-ngxecharts-baidu-bmap/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/post/angular-ngxecharts-baidu-bmap/">
+  <meta property="og:title" content="Angular Ngxecharts Baidu Bmap | Cytgenkidu">
+  <meta property="og:description" content="@TOC
+安装插件 npm install echarts npm install ngx-echarts  配置ngx-echarts import { NgxEchartsModule } from &#39;ngx-echarts&#39;; @NgModule({ imports: [ ..., NgxEchartsModule ], }) export class AppModule { }  引入百度地图 申请百度地图密钥 申请链接：http://lbsyun.baidu.com/index.php?title=jspopular/guide/getkey） 记住ak码，在浏览器端使用，请选择“浏览器端AK”，例如JavaScript API只支持浏览器类型AK。
+在index.html中引入 &lt;script type=&quot;text/javascript&quot; src=&quot;https://api.map.baidu.com/api?v=2.0&amp;ak=xxxxxxxxxxxxx&quot;&gt;&lt;/script&gt;  注：百度地图必须在根组件index.html页面引入，否则会报错
+新建组件，显示地图 修改echarts的effectScatter-bmap示例https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap
+HTML &lt;div echarts [options]=&quot;Options&quot; (chartInit)=&quot;onChartInit($event)&quot; class=&quot;chart-container&quot;&gt;&lt;/div&gt;  ts import { Component, OnInit } from &quot;@angular/core&quot;; @Component({ selector: &quot;bmap&quot;, templateUrl: &quot;./bmap.component.html&quot;, styleUrls: [&quot;./bmap.component.scss&quot;] }) export class BmapComponent implements OnInit { constructor() { } Options: any; Intance: any; data: any = [ { name: &#39;海门&#39;, value: 9 }, { name: &#39;鄂尔多斯&#39;, value: 12 }, { name: &#39;招远&#39;, value: 12 }, { name: &#39;舟山&#39;, value: 12 }, { name: &#39;齐齐哈尔&#39;, value: 14 }, { name: &#39;盐城&#39;, value: 15 }, { name: &#39;赤峰&#39;, value: 16 }, { name: &#39;青岛&#39;, value: 18 }, { name: &#39;乳山&#39;, value: 18 }, { name: &#39;金昌&#39;, value: 19 }, { name: &#39;泉州&#39;, value: 21 }, { name: &#39;莱西&#39;, value: 21 }, { name: &#39;日照&#39;, value: 21 }, { name: &#39;胶南&#39;, value: 22 }, { name: &#39;南通&#39;, value: 23 }, { name: &#39;拉萨&#39;, value: 24 }, { name: &#39;云浮&#39;, value: 24 }, { name: &#39;梅州&#39;, value: 25 }, { name: &#39;文登&#39;, value: 25 }, { name: &#39;上海&#39;, value: 25 }, { name: &#39;攀枝花&#39;, value: 25 }, { name: &#39;威海&#39;, value: 25 }, { name: &#39;承德&#39;, value: 25 }, { name: &#39;厦门&#39;, value: 26 }, { name: &#39;汕尾&#39;, value: 26 }, { name: &#39;潮州&#39;, value: 26 }, { name: &#39;丹东&#39;, value: 27 }, { name: &#39;太仓&#39;, value: 27 }, { name: &#39;曲靖&#39;, value: 27 }, { name: &#39;烟台&#39;, value: 28 }, { name: &#39;福州&#39;, value: 29 }, { name: &#39;瓦房店&#39;, value: 30 }, { name: &#39;即墨&#39;, value: 30 }, { name: &#39;抚顺&#39;, value: 31 }, { name: &#39;玉溪&#39;, value: 31 }, { name: &#39;张家口&#39;, value: 31 }, { name: &#39;阳泉&#39;, value: 31 }, { name: &#39;莱州&#39;, value: 32 }, { name: &#39;湖州&#39;, value: 32 }, { name: &#39;汕头&#39;, value: 32 }, { name: &#39;昆山&#39;, value: 33 }, { name: &#39;宁波&#39;, value: 33 }, { name: &#39;湛江&#39;, value: 33 }, { name: &#39;揭阳&#39;, value: 34 }, { name: &#39;荣成&#39;, value: 34 }, { name: &#39;连云港&#39;, value: 35 }, { name: &#39;葫芦岛&#39;, value: 35 }, { name: &#39;常熟&#39;, value: 36 }, { name: &#39;东莞&#39;, value: 36 }, { name: &#39;河源&#39;, value: 36 }, { name: &#39;淮安&#39;, value: 36 }, { name: &#39;泰州&#39;, value: 36 }, { name: &#39;南宁&#39;, value: 37 }, { name: &#39;营口&#39;, value: 37 }, { name: &#39;惠州&#39;, value: 37 }, { name: &#39;江阴&#39;, value: 37 }, { name: &#39;蓬莱&#39;, value: 37 }, { name: &#39;韶关&#39;, value: 38 }, { name: &#39;嘉峪关&#39;, value: 38 }, { name: &#39;广州&#39;, value: 38 }, { name: &#39;延安&#39;, value: 38 }, { name: &#39;太原&#39;, value: 39 }, { name: &#39;清远&#39;, value: 39 }, { name: &#39;中山&#39;, value: 39 }, { name: &#39;昆明&#39;, value: 39 }, { name: &#39;寿光&#39;, value: 40 }, { name: &#39;盘锦&#39;, value: 40 }, { name: &#39;长治&#39;, value: 41 }, { name: &#39;深圳&#39;, value: 41 }, { name: &#39;珠海&#39;, value: 42 }, { name: &#39;宿迁&#39;, value: 43 }, { name: &#39;咸阳&#39;, value: 43 }, { name: &#39;铜川&#39;, value: 44 }, { name: &#39;平度&#39;, value: 44 }, { name: &#39;佛山&#39;, value: 44 }, { name: &#39;海口&#39;, value: 44 }, { name: &#39;江门&#39;, value: 45 }, { name: &#39;章丘&#39;, value: 45 }, { name: &#39;肇庆&#39;, value: 46 }, { name: &#39;大连&#39;, value: 47 }, { name: &#39;临汾&#39;, value: 47 }, { name: &#39;吴江&#39;, value: 47 }, { name: &#39;石嘴山&#39;, value: 49 }, { name: &#39;沈阳&#39;, value: 50 }, { name: &#39;苏州&#39;, value: 50 }, { name: &#39;茂名&#39;, value: 50 }, { name: &#39;嘉兴&#39;, value: 51 }, { name: &#39;长春&#39;, value: 51 }, { name: &#39;胶州&#39;, value: 52 }, { name: &#39;银川&#39;, value: 52 }, { name: &#39;张家港&#39;, value: 52 }, { name: &#39;三门峡&#39;, value: 53 }, { name: &#39;锦州&#39;, value: 54 }, { name: &#39;南昌&#39;, value: 54 }, { name: &#39;柳州&#39;, value: 54 }, { name: &#39;三亚&#39;, value: 54 }, { name: &#39;自贡&#39;, value: 56 }, { name: &#39;吉林&#39;, value: 56 }, { name: &#39;阳江&#39;, value: 57 }, { name: &#39;泸州&#39;, value: 57 }, { name: &#39;西宁&#39;, value: 57 }, { name: &#39;宜宾&#39;, value: 58 }, { name: &#39;呼和浩特&#39;, value: 58 }, { name: &#39;成都&#39;, value: 58 }, { name: &#39;大同&#39;, value: 58 }, { name: &#39;镇江&#39;, value: 59 }, { name: &#39;桂林&#39;, value: 59 }, { name: &#39;张家界&#39;, value: 59 }, { name: &#39;宜兴&#39;, value: 59 }, { name: &#39;北海&#39;, value: 60 }, { name: &#39;西安&#39;, value: 61 }, { name: &#39;金坛&#39;, value: 62 }, { name: &#39;东营&#39;, value: 62 }, { name: &#39;牡丹江&#39;, value: 63 }, { name: &#39;遵义&#39;, value: 63 }, { name: &#39;绍兴&#39;, value: 63 }, { name: &#39;扬州&#39;, value: 64 }, { name: &#39;常州&#39;, value: 64 }, { name: &#39;潍坊&#39;, value: 65 }, { name: &#39;重庆&#39;, value: 66 }, { name: &#39;台州&#39;, value: 67 }, { name: &#39;南京&#39;, value: 67 }, { name: &#39;滨州&#39;, value: 70 }, { name: &#39;贵阳&#39;, value: 71 }, { name: &#39;无锡&#39;, value: 71 }, { name: &#39;本溪&#39;, value: 71 }, { name: &#39;克拉玛依&#39;, value: 72 }, { name: &#39;渭南&#39;, value: 72 }, { name: &#39;马鞍山&#39;, value: 72 }, { name: &#39;宝鸡&#39;, value: 72 }, { name: &#39;焦作&#39;, value: 75 }, { name: &#39;句容&#39;, value: 75 }, { name: &#39;北京&#39;, value: 79 }, { name: &#39;徐州&#39;, value: 79 }, { name: &#39;衡水&#39;, value: 80 }, { name: &#39;包头&#39;, value: 80 }, { name: &#39;绵阳&#39;, value: 80 }, { name: &#39;乌鲁木齐&#39;, value: 84 }, { name: &#39;枣庄&#39;, value: 84 }, { name: &#39;杭州&#39;, value: 84 }, { name: &#39;淄博&#39;, value: 85 }, { name: &#39;鞍山&#39;, value: 86 }, { name: &#39;溧阳&#39;, value: 86 }, { name: &#39;库尔勒&#39;, value: 86 }, { name: &#39;安阳&#39;, value: 90 }, { name: &#39;开封&#39;, value: 90 }, { name: &#39;济南&#39;, value: 92 }, { name: &#39;德阳&#39;, value: 93 }, { name: &#39;温州&#39;, value: 95 }, { name: &#39;九江&#39;, value: 96 }, { name: &#39;邯郸&#39;, value: 98 }, { name: &#39;临安&#39;, value: 99 }, { name: &#39;兰州&#39;, value: 99 }, { name: &#39;沧州&#39;, value: 100 }, { name: &#39;临沂&#39;, value: 103 }, { name: &#39;南充&#39;, value: 104 }, { name: &#39;天津&#39;, value: 105 }, { name: &#39;富阳&#39;, value: 106 }, { name: &#39;泰安&#39;, value: 112 }, { name: &#39;诸暨&#39;, value: 112 }, { name: &#39;郑州&#39;, value: 113 }, { name: &#39;哈尔滨&#39;, value: 114 }, { name: &#39;聊城&#39;, value: 116 }, { name: &#39;芜湖&#39;, value: 117 }, { name: &#39;唐山&#39;, value: 119 }, { name: &#39;平顶山&#39;, value: 119 }, { name: &#39;邢台&#39;, value: 119 }, { name: &#39;德州&#39;, value: 120 }, { name: &#39;济宁&#39;, value: 120 }, { name: &#39;荆州&#39;, value: 127 }, { name: &#39;宜昌&#39;, value: 130 }, { name: &#39;义乌&#39;, value: 132 }, { name: &#39;丽水&#39;, value: 133 }, { name: &#39;洛阳&#39;, value: 134 }, { name: &#39;秦皇岛&#39;, value: 136 }, { name: &#39;株洲&#39;, value: 143 }, { name: &#39;石家庄&#39;, value: 147 }, { name: &#39;莱芜&#39;, value: 148 }, { name: &#39;常德&#39;, value: 152 }, { name: &#39;保定&#39;, value: 153 }, { name: &#39;湘潭&#39;, value: 154 }, { name: &#39;金华&#39;, value: 157 }, { name: &#39;岳阳&#39;, value: 169 }, { name: &#39;长沙&#39;, value: 175 }, { name: &#39;衢州&#39;, value: 177 }, { name: &#39;廊坊&#39;, value: 193 }, { name: &#39;菏泽&#39;, value: 194 }, { name: &#39;合肥&#39;, value: 229 }, { name: &#39;武汉&#39;, value: 273 }, { name: &#39;大庆&#39;, value: 279 } ]; geoCoordMap: any = { &#39;海门&#39;: [121.">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2021-04-07T14:48:36&#43;08:00">
+  
+  
+  <meta property="article:modified_time" content="2021-04-07T14:48:36&#43;08:00">
+  
+  
+
+  
+
+  
+
+  <title>Angular Ngxecharts Baidu Bmap | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Angular Ngxecharts Baidu Bmap</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2021-04-07 14:48:36 &#43;0800 CST" itemprop="datePublished">
+<meta content="2021-04-07 14:48:36 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2021-04-07</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    11 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/angular/">Angular</a>, 
+    
+    <a href="/categories/echarts/">ECharts</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Angular%20Ngxecharts%20Baidu%20Bmap&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fangular-ngxecharts-baidu-bmap%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fangular-ngxecharts-baidu-bmap%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fangular-ngxecharts-baidu-bmap%2f&amp;title=Angular%20Ngxecharts%20Baidu%20Bmap"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fangular-ngxecharts-baidu-bmap%2f&amp;title=Angular%20Ngxecharts%20Baidu%20Bmap"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Angular%20Ngxecharts%20Baidu%20Bmap&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fangular-ngxecharts-baidu-bmap%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>@<a href="Angular使用ngx-echarts组件 -引入百度地图Bmap图表【改echarts的effectScatter-bmap示例】" target="_blank">TOC</a></p>
+
+<h1 id="安装插件">安装插件</h1>
+
+<pre><code class="language-cmd">npm install echarts
+npm install ngx-echarts
+</code></pre>
+
+<h1 id="配置ngx-echarts">配置ngx-echarts</h1>
+
+<pre><code class="language-ts">import { NgxEchartsModule } from 'ngx-echarts';
+
+@NgModule({
+  imports: [
+    ...,
+    NgxEchartsModule
+  ],
+})
+export class AppModule { }
+</code></pre>
+
+<h1 id="引入百度地图">引入百度地图</h1>
+
+<h2 id="申请百度地图密钥">申请百度地图密钥</h2>
+
+<p>申请链接：<a href="http://lbsyun.baidu.com/index.php?title=jspopular/guide/getkey）" target="_blank">http://lbsyun.baidu.com/index.php?title=jspopular/guide/getkey）</a>
+记住ak码，在浏览器端使用，请选择“浏览器端AK”，例如JavaScript API只支持浏览器类型AK。</p>
+
+<h2 id="在index-html中引入">在index.html中引入</h2>
+
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot; src=&quot;https://api.map.baidu.com/api?v=2.0&amp;ak=xxxxxxxxxxxxx&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/20210406154657786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" />
+<code>注：百度地图必须在根组件index.html页面引入，否则会报错</code></p>
+
+<h1 id="新建组件-显示地图">新建组件，显示地图</h1>
+
+<p>修改echarts的effectScatter-bmap示例<a href="https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap" target="_blank">https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap</a></p>
+
+<h2 id="html">HTML</h2>
+
+<pre><code class="language-html"> &lt;div echarts [options]=&quot;Options&quot; (chartInit)=&quot;onChartInit($event)&quot; class=&quot;chart-container&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<h2 id="ts">ts</h2>
+
+<pre><code class="language-ts">import { Component, OnInit } from &quot;@angular/core&quot;;
+@Component({
+  selector: &quot;bmap&quot;,
+  templateUrl: &quot;./bmap.component.html&quot;,
+  styleUrls: [&quot;./bmap.component.scss&quot;]
+})
+export class BmapComponent implements OnInit {
+  constructor() { }
+
+  Options: any;
+  Intance: any;
+
+  data: any = [
+    { name: '海门', value: 9 },
+    { name: '鄂尔多斯', value: 12 },
+    { name: '招远', value: 12 },
+    { name: '舟山', value: 12 },
+    { name: '齐齐哈尔', value: 14 },
+    { name: '盐城', value: 15 },
+    { name: '赤峰', value: 16 },
+    { name: '青岛', value: 18 },
+    { name: '乳山', value: 18 },
+    { name: '金昌', value: 19 },
+    { name: '泉州', value: 21 },
+    { name: '莱西', value: 21 },
+    { name: '日照', value: 21 },
+    { name: '胶南', value: 22 },
+    { name: '南通', value: 23 },
+    { name: '拉萨', value: 24 },
+    { name: '云浮', value: 24 },
+    { name: '梅州', value: 25 },
+    { name: '文登', value: 25 },
+    { name: '上海', value: 25 },
+    { name: '攀枝花', value: 25 },
+    { name: '威海', value: 25 },
+    { name: '承德', value: 25 },
+    { name: '厦门', value: 26 },
+    { name: '汕尾', value: 26 },
+    { name: '潮州', value: 26 },
+    { name: '丹东', value: 27 },
+    { name: '太仓', value: 27 },
+    { name: '曲靖', value: 27 },
+    { name: '烟台', value: 28 },
+    { name: '福州', value: 29 },
+    { name: '瓦房店', value: 30 },
+    { name: '即墨', value: 30 },
+    { name: '抚顺', value: 31 },
+    { name: '玉溪', value: 31 },
+    { name: '张家口', value: 31 },
+    { name: '阳泉', value: 31 },
+    { name: '莱州', value: 32 },
+    { name: '湖州', value: 32 },
+    { name: '汕头', value: 32 },
+    { name: '昆山', value: 33 },
+    { name: '宁波', value: 33 },
+    { name: '湛江', value: 33 },
+    { name: '揭阳', value: 34 },
+    { name: '荣成', value: 34 },
+    { name: '连云港', value: 35 },
+    { name: '葫芦岛', value: 35 },
+    { name: '常熟', value: 36 },
+    { name: '东莞', value: 36 },
+    { name: '河源', value: 36 },
+    { name: '淮安', value: 36 },
+    { name: '泰州', value: 36 },
+    { name: '南宁', value: 37 },
+    { name: '营口', value: 37 },
+    { name: '惠州', value: 37 },
+    { name: '江阴', value: 37 },
+    { name: '蓬莱', value: 37 },
+    { name: '韶关', value: 38 },
+    { name: '嘉峪关', value: 38 },
+    { name: '广州', value: 38 },
+    { name: '延安', value: 38 },
+    { name: '太原', value: 39 },
+    { name: '清远', value: 39 },
+    { name: '中山', value: 39 },
+    { name: '昆明', value: 39 },
+    { name: '寿光', value: 40 },
+    { name: '盘锦', value: 40 },
+    { name: '长治', value: 41 },
+    { name: '深圳', value: 41 },
+    { name: '珠海', value: 42 },
+    { name: '宿迁', value: 43 },
+    { name: '咸阳', value: 43 },
+    { name: '铜川', value: 44 },
+    { name: '平度', value: 44 },
+    { name: '佛山', value: 44 },
+    { name: '海口', value: 44 },
+    { name: '江门', value: 45 },
+    { name: '章丘', value: 45 },
+    { name: '肇庆', value: 46 },
+    { name: '大连', value: 47 },
+    { name: '临汾', value: 47 },
+    { name: '吴江', value: 47 },
+    { name: '石嘴山', value: 49 },
+    { name: '沈阳', value: 50 },
+    { name: '苏州', value: 50 },
+    { name: '茂名', value: 50 },
+    { name: '嘉兴', value: 51 },
+    { name: '长春', value: 51 },
+    { name: '胶州', value: 52 },
+    { name: '银川', value: 52 },
+    { name: '张家港', value: 52 },
+    { name: '三门峡', value: 53 },
+    { name: '锦州', value: 54 },
+    { name: '南昌', value: 54 },
+    { name: '柳州', value: 54 },
+    { name: '三亚', value: 54 },
+    { name: '自贡', value: 56 },
+    { name: '吉林', value: 56 },
+    { name: '阳江', value: 57 },
+    { name: '泸州', value: 57 },
+    { name: '西宁', value: 57 },
+    { name: '宜宾', value: 58 },
+    { name: '呼和浩特', value: 58 },
+    { name: '成都', value: 58 },
+    { name: '大同', value: 58 },
+    { name: '镇江', value: 59 },
+    { name: '桂林', value: 59 },
+    { name: '张家界', value: 59 },
+    { name: '宜兴', value: 59 },
+    { name: '北海', value: 60 },
+    { name: '西安', value: 61 },
+    { name: '金坛', value: 62 },
+    { name: '东营', value: 62 },
+    { name: '牡丹江', value: 63 },
+    { name: '遵义', value: 63 },
+    { name: '绍兴', value: 63 },
+    { name: '扬州', value: 64 },
+    { name: '常州', value: 64 },
+    { name: '潍坊', value: 65 },
+    { name: '重庆', value: 66 },
+    { name: '台州', value: 67 },
+    { name: '南京', value: 67 },
+    { name: '滨州', value: 70 },
+    { name: '贵阳', value: 71 },
+    { name: '无锡', value: 71 },
+    { name: '本溪', value: 71 },
+    { name: '克拉玛依', value: 72 },
+    { name: '渭南', value: 72 },
+    { name: '马鞍山', value: 72 },
+    { name: '宝鸡', value: 72 },
+    { name: '焦作', value: 75 },
+    { name: '句容', value: 75 },
+    { name: '北京', value: 79 },
+    { name: '徐州', value: 79 },
+    { name: '衡水', value: 80 },
+    { name: '包头', value: 80 },
+    { name: '绵阳', value: 80 },
+    { name: '乌鲁木齐', value: 84 },
+    { name: '枣庄', value: 84 },
+    { name: '杭州', value: 84 },
+    { name: '淄博', value: 85 },
+    { name: '鞍山', value: 86 },
+    { name: '溧阳', value: 86 },
+    { name: '库尔勒', value: 86 },
+    { name: '安阳', value: 90 },
+    { name: '开封', value: 90 },
+    { name: '济南', value: 92 },
+    { name: '德阳', value: 93 },
+    { name: '温州', value: 95 },
+    { name: '九江', value: 96 },
+    { name: '邯郸', value: 98 },
+    { name: '临安', value: 99 },
+    { name: '兰州', value: 99 },
+    { name: '沧州', value: 100 },
+    { name: '临沂', value: 103 },
+    { name: '南充', value: 104 },
+    { name: '天津', value: 105 },
+    { name: '富阳', value: 106 },
+    { name: '泰安', value: 112 },
+    { name: '诸暨', value: 112 },
+    { name: '郑州', value: 113 },
+    { name: '哈尔滨', value: 114 },
+    { name: '聊城', value: 116 },
+    { name: '芜湖', value: 117 },
+    { name: '唐山', value: 119 },
+    { name: '平顶山', value: 119 },
+    { name: '邢台', value: 119 },
+    { name: '德州', value: 120 },
+    { name: '济宁', value: 120 },
+    { name: '荆州', value: 127 },
+    { name: '宜昌', value: 130 },
+    { name: '义乌', value: 132 },
+    { name: '丽水', value: 133 },
+    { name: '洛阳', value: 134 },
+    { name: '秦皇岛', value: 136 },
+    { name: '株洲', value: 143 },
+    { name: '石家庄', value: 147 },
+    { name: '莱芜', value: 148 },
+    { name: '常德', value: 152 },
+    { name: '保定', value: 153 },
+    { name: '湘潭', value: 154 },
+    { name: '金华', value: 157 },
+    { name: '岳阳', value: 169 },
+    { name: '长沙', value: 175 },
+    { name: '衢州', value: 177 },
+    { name: '廊坊', value: 193 },
+    { name: '菏泽', value: 194 },
+    { name: '合肥', value: 229 },
+    { name: '武汉', value: 273 },
+    { name: '大庆', value: 279 }
+  ];
+
+  geoCoordMap: any = {
+    '海门': [121.15, 31.89],
+    '鄂尔多斯': [109.781327, 39.608266],
+    '招远': [120.38, 37.35],
+    '舟山': [122.207216, 29.985295],
+    '齐齐哈尔': [123.97, 47.33],
+    '盐城': [120.13, 33.38],
+    '赤峰': [118.87, 42.28],
+    '青岛': [120.33, 36.07],
+    '乳山': [121.52, 36.89],
+    '金昌': [102.188043, 38.520089],
+    '泉州': [118.58, 24.93],
+    '莱西': [120.53, 36.86],
+    '日照': [119.46, 35.42],
+    '胶南': [119.97, 35.88],
+    '南通': [121.05, 32.08],
+    '拉萨': [91.11, 29.97],
+    '云浮': [112.02, 22.93],
+    '梅州': [116.1, 24.55],
+    '文登': [122.05, 37.2],
+    '上海': [121.48, 31.22],
+    '攀枝花': [101.718637, 26.582347],
+    '威海': [122.1, 37.5],
+    '承德': [117.93, 40.97],
+    '厦门': [118.1, 24.46],
+    '汕尾': [115.375279, 22.786211],
+    '潮州': [116.63, 23.68],
+    '丹东': [124.37, 40.13],
+    '太仓': [121.1, 31.45],
+    '曲靖': [103.79, 25.51],
+    '烟台': [121.39, 37.52],
+    '福州': [119.3, 26.08],
+    '瓦房店': [121.979603, 39.627114],
+    '即墨': [120.45, 36.38],
+    '抚顺': [123.97, 41.97],
+    '玉溪': [102.52, 24.35],
+    '张家口': [114.87, 40.82],
+    '阳泉': [113.57, 37.85],
+    '莱州': [119.942327, 37.177017],
+    '湖州': [120.1, 30.86],
+    '汕头': [116.69, 23.39],
+    '昆山': [120.95, 31.39],
+    '宁波': [121.56, 29.86],
+    '湛江': [110.359377, 21.270708],
+    '揭阳': [116.35, 23.55],
+    '荣成': [122.41, 37.16],
+    '连云港': [119.16, 34.59],
+    '葫芦岛': [120.836932, 40.711052],
+    '常熟': [120.74, 31.64],
+    '东莞': [113.75, 23.04],
+    '河源': [114.68, 23.73],
+    '淮安': [119.15, 33.5],
+    '泰州': [119.9, 32.49],
+    '南宁': [108.33, 22.84],
+    '营口': [122.18, 40.65],
+    '惠州': [114.4, 23.09],
+    '江阴': [120.26, 31.91],
+    '蓬莱': [120.75, 37.8],
+    '韶关': [113.62, 24.84],
+    '嘉峪关': [98.289152, 39.77313],
+    '广州': [113.23, 23.16],
+    '延安': [109.47, 36.6],
+    '太原': [112.53, 37.87],
+    '清远': [113.01, 23.7],
+    '中山': [113.38, 22.52],
+    '昆明': [102.73, 25.04],
+    '寿光': [118.73, 36.86],
+    '盘锦': [122.070714, 41.119997],
+    '长治': [113.08, 36.18],
+    '深圳': [114.07, 22.62],
+    '珠海': [113.52, 22.3],
+    '宿迁': [118.3, 33.96],
+    '咸阳': [108.72, 34.36],
+    '铜川': [109.11, 35.09],
+    '平度': [119.97, 36.77],
+    '佛山': [113.11, 23.05],
+    '海口': [110.35, 20.02],
+    '江门': [113.06, 22.61],
+    '章丘': [117.53, 36.72],
+    '肇庆': [112.44, 23.05],
+    '大连': [121.62, 38.92],
+    '临汾': [111.5, 36.08],
+    '吴江': [120.63, 31.16],
+    '石嘴山': [106.39, 39.04],
+    '沈阳': [123.38, 41.8],
+    '苏州': [120.62, 31.32],
+    '茂名': [110.88, 21.68],
+    '嘉兴': [120.76, 30.77],
+    '长春': [125.35, 43.88],
+    '胶州': [120.03336, 36.264622],
+    '银川': [106.27, 38.47],
+    '张家港': [120.555821, 31.875428],
+    '三门峡': [111.19, 34.76],
+    '锦州': [121.15, 41.13],
+    '南昌': [115.89, 28.68],
+    '柳州': [109.4, 24.33],
+    '三亚': [109.511909, 18.252847],
+    '自贡': [104.778442, 29.33903],
+    '吉林': [126.57, 43.87],
+    '阳江': [111.95, 21.85],
+    '泸州': [105.39, 28.91],
+    '西宁': [101.74, 36.56],
+    '宜宾': [104.56, 29.77],
+    '呼和浩特': [111.65, 40.82],
+    '成都': [104.06, 30.67],
+    '大同': [113.3, 40.12],
+    '镇江': [119.44, 32.2],
+    '桂林': [110.28, 25.29],
+    '张家界': [110.479191, 29.117096],
+    '宜兴': [119.82, 31.36],
+    '北海': [109.12, 21.49],
+    '西安': [108.95, 34.27],
+    '金坛': [119.56, 31.74],
+    '东营': [118.49, 37.46],
+    '牡丹江': [129.58, 44.6],
+    '遵义': [106.9, 27.7],
+    '绍兴': [120.58, 30.01],
+    '扬州': [119.42, 32.39],
+    '常州': [119.95, 31.79],
+    '潍坊': [119.1, 36.62],
+    '重庆': [106.54, 29.59],
+    '台州': [121.420757, 28.656386],
+    '南京': [118.78, 32.04],
+    '滨州': [118.03, 37.36],
+    '贵阳': [106.71, 26.57],
+    '无锡': [120.29, 31.59],
+    '本溪': [123.73, 41.3],
+    '克拉玛依': [84.77, 45.59],
+    '渭南': [109.5, 34.52],
+    '马鞍山': [118.48, 31.56],
+    '宝鸡': [107.15, 34.38],
+    '焦作': [113.21, 35.24],
+    '句容': [119.16, 31.95],
+    '北京': [116.46, 39.92],
+    '徐州': [117.2, 34.26],
+    '衡水': [115.72, 37.72],
+    '包头': [110, 40.58],
+    '绵阳': [104.73, 31.48],
+    '乌鲁木齐': [87.68, 43.77],
+    '枣庄': [117.57, 34.86],
+    '杭州': [120.19, 30.26],
+    '淄博': [118.05, 36.78],
+    '鞍山': [122.85, 41.12],
+    '溧阳': [119.48, 31.43],
+    '库尔勒': [86.06, 41.68],
+    '安阳': [114.35, 36.1],
+    '开封': [114.35, 34.79],
+    '济南': [117, 36.65],
+    '德阳': [104.37, 31.13],
+    '温州': [120.65, 28.01],
+    '九江': [115.97, 29.71],
+    '邯郸': [114.47, 36.6],
+    '临安': [119.72, 30.23],
+    '兰州': [103.73, 36.03],
+    '沧州': [116.83, 38.33],
+    '临沂': [118.35, 35.05],
+    '南充': [106.110698, 30.837793],
+    '天津': [117.2, 39.13],
+    '富阳': [119.95, 30.07],
+    '泰安': [117.13, 36.18],
+    '诸暨': [120.23, 29.71],
+    '郑州': [113.65, 34.76],
+    '哈尔滨': [126.63, 45.75],
+    '聊城': [115.97, 36.45],
+    '芜湖': [118.38, 31.33],
+    '唐山': [118.02, 39.63],
+    '平顶山': [113.29, 33.75],
+    '邢台': [114.48, 37.05],
+    '德州': [116.29, 37.45],
+    '济宁': [116.59, 35.38],
+    '荆州': [112.239741, 30.335165],
+    '宜昌': [111.3, 30.7],
+    '义乌': [120.06, 29.32],
+    '丽水': [119.92, 28.45],
+    '洛阳': [112.44, 34.7],
+    '秦皇岛': [119.57, 39.95],
+    '株洲': [113.16, 27.83],
+    '石家庄': [114.48, 38.03],
+    '莱芜': [117.67, 36.19],
+    '常德': [111.69, 29.05],
+    '保定': [115.48, 38.85],
+    '湘潭': [112.91, 27.87],
+    '金华': [119.64, 29.12],
+    '岳阳': [113.09, 29.37],
+    '长沙': [113, 28.21],
+    '衢州': [118.88, 28.97],
+    '廊坊': [116.7, 39.53],
+    '菏泽': [115.480656, 35.23375],
+    '合肥': [117.27, 31.86],
+    '武汉': [114.31, 30.52],
+    '大庆': [125.03, 46.58]
+  };
+
+  convertData(data: any) {
+    var res = [];
+    for (var i = 0; i &lt; data.length; i++) {
+      var geoCoord = this.geoCoordMap[data[i].name];
+      if (geoCoord) {
+        res.push({
+          name: data[i].name,
+          value: geoCoord.concat(data[i].value)
+        });
+      }
+    }
+    return res;
+  }
+
+  ngOnInit(): void {
+    this.Options =
+    {
+      title: {
+        text: '全国主要城市空气质量 - 百度地图',
+        subtext: 'data from PM25.in',
+        sublink: 'http://www.pm25.in',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      bmap: {
+        center: [104.114129, 37.550339],
+        zoom: 5,
+        roam: true,
+        mapStyle: {
+          styleJson: [{
+            'featureType': 'water',
+            'elementType': 'all',
+            'stylers': {
+              'color': '#d1d1d1'
+            }
+          }, {
+            'featureType': 'land',
+            'elementType': 'all',
+            'stylers': {
+              'color': '#f3f3f3'
+            }
+          }, {
+            'featureType': 'railway',
+            'elementType': 'all',
+            'stylers': {
+              'visibility': 'off'
+            }
+          }, {
+            'featureType': 'highway',
+            'elementType': 'all',
+            'stylers': {
+              'color': '#fdfdfd'
+            }
+          }, {
+            'featureType': 'highway',
+            'elementType': 'labels',
+            'stylers': {
+              'visibility': 'off'
+            }
+          }, {
+            'featureType': 'arterial',
+            'elementType': 'geometry',
+            'stylers': {
+              'color': '#fefefe'
+            }
+          }, {
+            'featureType': 'arterial',
+            'elementType': 'geometry.fill',
+            'stylers': {
+              'color': '#fefefe'
+            }
+          }, {
+            'featureType': 'poi',
+            'elementType': 'all',
+            'stylers': {
+              'visibility': 'off'
+            }
+          }, {
+            'featureType': 'green',
+            'elementType': 'all',
+            'stylers': {
+              'visibility': 'off'
+            }
+          }, {
+            'featureType': 'subway',
+            'elementType': 'all',
+            'stylers': {
+              'visibility': 'off'
+            }
+          }, {
+            'featureType': 'manmade',
+            'elementType': 'all',
+            'stylers': {
+              'color': '#d1d1d1'
+            }
+          }, {
+            'featureType': 'local',
+            'elementType': 'all',
+            'stylers': {
+              'color': '#d1d1d1'
+            }
+          }, {
+            'featureType': 'arterial',
+            'elementType': 'labels',
+            'stylers': {
+              'visibility': 'off'
+            }
+          }, {
+            'featureType': 'boundary',
+            'elementType': 'all',
+            'stylers': {
+              'color': '#fefefe'
+            }
+          }, {
+            'featureType': 'building',
+            'elementType': 'all',
+            'stylers': {
+              'color': '#d1d1d1'
+            }
+          }, {
+            'featureType': 'label',
+            'elementType': 'labels.text.fill',
+            'stylers': {
+              'color': '#999999'
+            }
+          }]
+        }
+      },
+      series: [
+        {
+          name: 'pm2.5',
+          type: 'scatter',
+          coordinateSystem: 'bmap',
+          data: this.convertData(this.data),
+          symbolSize: function (val) {
+            return val[2] / 10;
+          },
+          encode: {
+            value: 2
+          },
+          label: {
+            formatter: '{b}',
+            position: 'right',
+            show: false
+          },
+          emphasis: {
+            label: {
+              show: true
+            }
+          }
+        },
+        {
+          name: 'Top 5',
+          type: 'effectScatter',
+          coordinateSystem: 'bmap',
+          data: this.convertData(this.data.sort(function (a, b) {
+            return b.value - a.value;
+          }).slice(0, 6)),
+          symbolSize: function (val) {
+            return val[2] / 10;
+          },
+          encode: {
+            value: 2
+          },
+          showEffectOn: 'render',
+          rippleEffect: {
+            brushType: 'stroke'
+          },
+          hoverAnimation: true,
+          label: {
+            formatter: '{b}',
+            position: 'right',
+            show: true
+          },
+          itemStyle: {
+            shadowBlur: 10,
+            shadowColor: '#333'
+          },
+          zlevel: 1
+        }
+      ]
+    };
+    this.Intance.setOption(this.Options, true);
+  }
+
+  onChartInit(ec: any) {
+    this.Intance = ec;
+  }
+}
+</code></pre>
+
+<h1 id="展示效果">展示效果</h1>
+
+<h2 id="官网示例-https-echarts-apache-org-examples-zh-editor-html-c-effectscatter-bmap">官网示例[<a href="https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap" target="_blank">https://echarts.apache.org/examples/zh/editor.html?c=effectScatter-bmap</a>]</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20210406165551281.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+
+<h2 id="实现效果">实现效果</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20210406165657755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/angular/">Angular</a>
+  
+  <a class="badge badge-light" href="/tags/echarts/">ECharts</a>
+  
+  <a class="badge badge-light" href="/tags/bmap/">Bmap</a>
+  
+</div>
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/project/springboot-angular-erp/">基于Spring Boot &#43; AngularJS的ERP系统升级</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/post/python%E7%94%9F%E6%88%90word/" rel="next">Python生成word</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/post/mysql%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AEcsv/" rel="prev">mysql导入数据【mysql 配置环境变量、处理中文乱码】</a>
+  </div>
+  
+</div>
+
+
+    </div>
+    
+
+    
+
+    
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

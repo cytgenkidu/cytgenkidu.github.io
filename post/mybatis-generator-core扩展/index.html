@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="如果你想在mybatis generator 自动生成mapper xml model等的时候，调整生成java的数据库类型（数据类型转换）、生成分页语句、or连接的多列模糊查询、含中文特殊字符处理。末尾有源码的地址和jar.
+准备工作 下载源码：https://github.com/mybatis/generator 其中，mybatis-generator-core目录 是该项目的源码，主要修改这里。 注：本例是对mybatis-generator-core1.4.1的扩展，其他版本修改过程类似。 目录如下： 修改 mybatis-generator 中数据库类型和 Java 类型的映射关系 本例是将原本数据库的TIMESTAMP 映射为 Date 类型， 改为 数据库的TIMESTAMP 映射为 LocalDateTime类型。
+注： 仅为示例，其他类型修改类似。 mybatis generator 本身可直接将TIMESTAMP映射为LocalDateTime。具体使用方法请参考http://mybatis.org/generator/configreference/javaTypeResolver.html
+修改文件位置为src\main\java\org\mybatis\generator\internal\types\JavaTypeResolverDefaultImpl.java // typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&quot;TIMESTAMP&quot;, //$NON-NLS-1$ // new FullyQualifiedJavaType(Date.class.getName()))); typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&quot;TIMESTAMP&quot;, //$NON-NLS-1$ new FullyQualifiedJavaType(LocalDateTime.class.getName())));  这样就会将数据库的TIMESTAMP映射为java的LocalDateTime。
+增加物理分页 适用于targetRuntime=&ldquo;MyBatis3&rdquo;
+增加代码位置 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithBLOBsElementGenerator.java 和 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithoutBLOBsElementGenerator.java
+ifElement = new XmlElement(&quot;if&quot;); //$NON-NLS-1$ ifElement.addAttribute(new Attribute(&quot;test&quot;, &quot;limitStart &gt;= 0 and limitEnd &gt; 0&quot;)); //$NON-NLS-1$ //$NON-NLS-2$ ifElement.addElement(new TextElement(&quot;limit ${limitStart},${limitEnd}&quot;)); //$NON-NLS-1$ answer.">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/">
+  <meta property="og:title" content="mybatis generator插件自定义修改-[修改数据类型与java类型映射关系&#43;增加分页&#43;增加多字段模糊查询&#43;增加中文字段特殊字符转化] | Cytgenkidu">
+  <meta property="og:description" content="如果你想在mybatis generator 自动生成mapper xml model等的时候，调整生成java的数据库类型（数据类型转换）、生成分页语句、or连接的多列模糊查询、含中文特殊字符处理。末尾有源码的地址和jar.
+准备工作 下载源码：https://github.com/mybatis/generator 其中，mybatis-generator-core目录 是该项目的源码，主要修改这里。 注：本例是对mybatis-generator-core1.4.1的扩展，其他版本修改过程类似。 目录如下： 修改 mybatis-generator 中数据库类型和 Java 类型的映射关系 本例是将原本数据库的TIMESTAMP 映射为 Date 类型， 改为 数据库的TIMESTAMP 映射为 LocalDateTime类型。
+注： 仅为示例，其他类型修改类似。 mybatis generator 本身可直接将TIMESTAMP映射为LocalDateTime。具体使用方法请参考http://mybatis.org/generator/configreference/javaTypeResolver.html
+修改文件位置为src\main\java\org\mybatis\generator\internal\types\JavaTypeResolverDefaultImpl.java // typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&quot;TIMESTAMP&quot;, //$NON-NLS-1$ // new FullyQualifiedJavaType(Date.class.getName()))); typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&quot;TIMESTAMP&quot;, //$NON-NLS-1$ new FullyQualifiedJavaType(LocalDateTime.class.getName())));  这样就会将数据库的TIMESTAMP映射为java的LocalDateTime。
+增加物理分页 适用于targetRuntime=&ldquo;MyBatis3&rdquo;
+增加代码位置 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithBLOBsElementGenerator.java 和 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithoutBLOBsElementGenerator.java
+ifElement = new XmlElement(&quot;if&quot;); //$NON-NLS-1$ ifElement.addAttribute(new Attribute(&quot;test&quot;, &quot;limitStart &gt;= 0 and limitEnd &gt; 0&quot;)); //$NON-NLS-1$ //$NON-NLS-2$ ifElement.addElement(new TextElement(&quot;limit ${limitStart},${limitEnd}&quot;)); //$NON-NLS-1$ answer.">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2021-04-04T10:38:53&#43;08:00">
+  
+  
+  <meta property="article:modified_time" content="2021-04-04T10:38:53&#43;08:00">
+  
+  
+
+  
+
+  
+
+  <title>mybatis generator插件自定义修改-[修改数据类型与java类型映射关系&#43;增加分页&#43;增加多字段模糊查询&#43;增加中文字段特殊字符转化] | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">mybatis generator插件自定义修改-[修改数据类型与java类型映射关系&#43;增加分页&#43;增加多字段模糊查询&#43;增加中文字段特殊字符转化]</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2021-04-04 10:38:53 &#43;0800 CST" itemprop="datePublished">
+<meta content="2021-04-04 10:38:53 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      
+        <a href="/authors/admin/">Tgenkidu Cy</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2021-04-04</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/java/">java</a>, 
+    
+    <a href="/categories/mybatis/">mybatis</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=mybatis%20generator%e6%8f%92%e4%bb%b6%e8%87%aa%e5%ae%9a%e4%b9%89%e4%bf%ae%e6%94%b9-%5b%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e4%b8%8ejava%e7%b1%bb%e5%9e%8b%e6%98%a0%e5%b0%84%e5%85%b3%e7%b3%bb%2b%e5%a2%9e%e5%8a%a0%e5%88%86%e9%a1%b5%2b%e5%a2%9e%e5%8a%a0%e5%a4%9a%e5%ad%97%e6%ae%b5%e6%a8%a1%e7%b3%8a%e6%9f%a5%e8%af%a2%2b%e5%a2%9e%e5%8a%a0%e4%b8%ad%e6%96%87%e5%ad%97%e6%ae%b5%e7%89%b9%e6%ae%8a%e5%ad%97%e7%ac%a6%e8%bd%ac%e5%8c%96%5d&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fmybatis-generator-core%25E6%2589%25A9%25E5%25B1%2595%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fmybatis-generator-core%25E6%2589%25A9%25E5%25B1%2595%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fmybatis-generator-core%25E6%2589%25A9%25E5%25B1%2595%2f&amp;title=mybatis%20generator%e6%8f%92%e4%bb%b6%e8%87%aa%e5%ae%9a%e4%b9%89%e4%bf%ae%e6%94%b9-%5b%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e4%b8%8ejava%e7%b1%bb%e5%9e%8b%e6%98%a0%e5%b0%84%e5%85%b3%e7%b3%bb%2b%e5%a2%9e%e5%8a%a0%e5%88%86%e9%a1%b5%2b%e5%a2%9e%e5%8a%a0%e5%a4%9a%e5%ad%97%e6%ae%b5%e6%a8%a1%e7%b3%8a%e6%9f%a5%e8%af%a2%2b%e5%a2%9e%e5%8a%a0%e4%b8%ad%e6%96%87%e5%ad%97%e6%ae%b5%e7%89%b9%e6%ae%8a%e5%ad%97%e7%ac%a6%e8%bd%ac%e5%8c%96%5d"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fmybatis-generator-core%25E6%2589%25A9%25E5%25B1%2595%2f&amp;title=mybatis%20generator%e6%8f%92%e4%bb%b6%e8%87%aa%e5%ae%9a%e4%b9%89%e4%bf%ae%e6%94%b9-%5b%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e4%b8%8ejava%e7%b1%bb%e5%9e%8b%e6%98%a0%e5%b0%84%e5%85%b3%e7%b3%bb%2b%e5%a2%9e%e5%8a%a0%e5%88%86%e9%a1%b5%2b%e5%a2%9e%e5%8a%a0%e5%a4%9a%e5%ad%97%e6%ae%b5%e6%a8%a1%e7%b3%8a%e6%9f%a5%e8%af%a2%2b%e5%a2%9e%e5%8a%a0%e4%b8%ad%e6%96%87%e5%ad%97%e6%ae%b5%e7%89%b9%e6%ae%8a%e5%ad%97%e7%ac%a6%e8%bd%ac%e5%8c%96%5d"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=mybatis%20generator%e6%8f%92%e4%bb%b6%e8%87%aa%e5%ae%9a%e4%b9%89%e4%bf%ae%e6%94%b9-%5b%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e4%b8%8ejava%e7%b1%bb%e5%9e%8b%e6%98%a0%e5%b0%84%e5%85%b3%e7%b3%bb%2b%e5%a2%9e%e5%8a%a0%e5%88%86%e9%a1%b5%2b%e5%a2%9e%e5%8a%a0%e5%a4%9a%e5%ad%97%e6%ae%b5%e6%a8%a1%e7%b3%8a%e6%9f%a5%e8%af%a2%2b%e5%a2%9e%e5%8a%a0%e4%b8%ad%e6%96%87%e5%ad%97%e6%ae%b5%e7%89%b9%e6%ae%8a%e5%ad%97%e7%ac%a6%e8%bd%ac%e5%8c%96%5d&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fmybatis-generator-core%25E6%2589%25A9%25E5%25B1%2595%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>如果你想在mybatis generator 自动生成mapper xml model等的时候，调整生成java的数据库类型（数据类型转换）、生成分页语句、or连接的多列模糊查询、含中文特殊字符处理。末尾有源码的地址和jar.</p>
+
+<h1 id="准备工作">准备工作</h1>
+
+<p>下载源码：<a href="https://github.com/mybatis/generator" target="_blank">https://github.com/mybatis/generator</a>
+其中，mybatis-generator-core目录 是该项目的源码，主要修改这里。
+注：本例是对mybatis-generator-core1.4.1的扩展，其他版本修改过程类似。
+目录如下：
+<img src="https://img-blog.csdnimg.cn/20210329150818398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h1 id="修改-mybatis-generator-中数据库类型和-java-类型的映射关系">修改 mybatis-generator 中数据库类型和 Java 类型的映射关系</h1>
+
+<p>本例是将原本数据库的TIMESTAMP 映射为 Date 类型，
+改为 数据库的TIMESTAMP 映射为 LocalDateTime类型。</p>
+
+<p>注：
+仅为示例，其他类型修改类似。
+mybatis generator 本身可直接将TIMESTAMP映射为LocalDateTime。具体使用方法请参考<a href="http://mybatis.org/generator/configreference/javaTypeResolver.html" target="_blank">http://mybatis.org/generator/configreference/javaTypeResolver.html</a></p>
+
+<h2 id="修改文件位置为src-main-java-org-mybatis-generator-internal-types-javatyperesolverdefaultimpl-java">修改文件位置为src\main\java\org\mybatis\generator\internal\types\JavaTypeResolverDefaultImpl.java</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329152323194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<pre><code class="language-java">// typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&quot;TIMESTAMP&quot;, //$NON-NLS-1$
+//         new FullyQualifiedJavaType(Date.class.getName())));
+typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&quot;TIMESTAMP&quot;, //$NON-NLS-1$
+         new FullyQualifiedJavaType(LocalDateTime.class.getName())));
+</code></pre>
+
+<p>这样就会将数据库的TIMESTAMP映射为java的LocalDateTime。</p>
+
+<h1 id="增加物理分页">增加物理分页</h1>
+
+<p>适用于targetRuntime=&ldquo;MyBatis3&rdquo;</p>
+
+<h2 id="增加代码位置">增加代码位置</h2>
+
+<p>src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithBLOBsElementGenerator.java
+<img src="https://img-blog.csdnimg.cn/20210329154241155.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" />
+<img src="https://img-blog.csdnimg.cn/20210329154247139.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<p>和
+src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithoutBLOBsElementGenerator.java</p>
+
+<pre><code class="language-java">ifElement = new XmlElement(&quot;if&quot;); //$NON-NLS-1$
+ifElement.addAttribute(new Attribute(&quot;test&quot;, &quot;limitStart &gt;= 0 and limitEnd &gt; 0&quot;)); //$NON-NLS-1$ //$NON-NLS-2$
+ifElement.addElement(new TextElement(&quot;limit ${limitStart},${limitEnd}&quot;)); //$NON-NLS-1$
+answer.addElement(ifElement);
+</code></pre>
+
+<h2 id="生成效果">生成效果</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329155226866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h1 id="增加-or连接的多列模糊查询-getmultiseriateorlike和-and连接的多列模糊查询-getmultiseriateandlike">增加“or连接的多列模糊查询”getMultiseriateOrLike和“and连接的多列模糊查询”getMultiseriateAndLike</h1>
+
+<h2 id="增加代码位置src-main-java-org-mybatis-generator-codegen-mybatis3-model-examplegenerator-java">增加代码位置src\main\java\org\mybatis\generator\codegen\mybatis3\model\ExampleGenerator.java</h2>
+
+<p>找到<code>getSetNotLikeMethod</code>方法，在起下面或上面增加getMultiseriateOrLike方法和getMultiseriateAndLike，代码如下</p>
+
+<h3 id="getmultiseriateandlike">getMultiseriateAndLike</h3>
+
+<pre><code class="language-java">
+         // Generate the multiseriateAndLike() method
+         private Method getMultiseriateAndLike() {
+                // Set method name
+                StringBuilder sb = new StringBuilder();
+                sb.append(&quot;andMultiseriateAndLike&quot;);
+
+                Method method = new Method(sb.toString());
+                // Sets the access level of the method
+                method.setVisibility(JavaVisibility.PUBLIC);
+                // Sets the method's parameters, which are of type hashMap and named map
+                method.addParameter(
+                                new Parameter(new FullyQualifiedJavaType(&quot;java.util.HashMap&lt;String, String&gt;&quot;), &quot;map&quot;)); //$NON-NLS-1$
+                // Sets the return type of the method
+                method.setReturnType(FullyQualifiedJavaType.getCriteriaInstance());
+
+                // clear sb;
+                sb.setLength(0);
+
+                method.addBodyLine(&quot;if(map.isEmpty()) return (Criteria) this;&quot;);
+                method.addBodyLine(&quot;StringBuilder sb = new StringBuilder();&quot;);
+                method.addBodyLine(&quot;sb.append(\&quot;(\&quot;);&quot;);
+                method.addBodyLine(&quot;java.util.Set&lt;String&gt; keySet = map.keySet();&quot;);
+                method.addBodyLine(&quot;for (String str : keySet) {&quot;);
+                method.addBodyLine(&quot;sb.append(\&quot; and \&quot;+str+\&quot; like '%%\&quot;+map.get(str)+\&quot;%%'\&quot;);&quot;);
+                method.addBodyLine(&quot;}&quot;);
+                method.addBodyLine(&quot;sb.append(\&quot;)\&quot;);&quot;);
+                method.addBodyLine(&quot;int index = sb.indexOf(\&quot;and\&quot;);&quot;);
+                method.addBodyLine(&quot;sb.delete(index, index+3);&quot;);
+                method.addBodyLine(&quot;addCriterion(sb.toString());&quot;);
+                method.addBodyLine(&quot;return (Criteria) this;&quot;);
+
+                return method;
+        }
+</code></pre>
+
+<h3 id="getmultiseriateorlike">getMultiseriateOrLike</h3>
+
+<pre><code class="language-java">        // Generate the multiseriateOrLike() method
+        private Method getMultiseriateOrLike() {
+                // Set method name
+                StringBuilder sb = new StringBuilder();
+                sb.append(&quot;andMultiseriateOrLike&quot;);
+
+                Method method = new Method(sb.toString());
+                // Sets the access level of the method
+                method.setVisibility(JavaVisibility.PUBLIC);
+                // Sets the method's parameters, which are of type hashMap and named map
+                method.addParameter(
+                                new Parameter(new FullyQualifiedJavaType(&quot;java.util.HashMap&lt;String, String&gt;&quot;), &quot;map&quot;)); //$NON-NLS-1$
+                // Sets the return type of the method
+                method.setReturnType(FullyQualifiedJavaType.getCriteriaInstance());
+
+                // clear sb;
+                sb.setLength(0);
+
+                method.addBodyLine(&quot;if(map.isEmpty()) return (Criteria) this;&quot;);
+                method.addBodyLine(&quot;StringBuilder sb = new StringBuilder();&quot;);
+                method.addBodyLine(&quot;sb.append(\&quot;(\&quot;);&quot;);
+                method.addBodyLine(&quot;java.util.Set&lt;String&gt; keySet = map.keySet();&quot;);
+                method.addBodyLine(&quot;for (String str : keySet) {&quot;);
+                method.addBodyLine(&quot;sb.append(\&quot; or \&quot;+str+\&quot; like '%%\&quot;+map.get(str)+\&quot;%%'\&quot;);&quot;);
+                method.addBodyLine(&quot;}&quot;);
+                method.addBodyLine(&quot;sb.append(\&quot;)\&quot;);&quot;);
+                method.addBodyLine(&quot;int index = sb.indexOf(\&quot;or\&quot;);&quot;);
+                method.addBodyLine(&quot;sb.delete(index, index+2);&quot;);
+                method.addBodyLine(&quot;addCriterion(sb.toString());&quot;);
+                method.addBodyLine(&quot;return (Criteria) this;&quot;);
+
+                return method;
+        }
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329165821607.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h3 id="修改getgeneratedcriteriainnerclass方法内代码">修改getGeneratedCriteriaInnerClass方法内代码</h3>
+
+<p>找到<code>getGeneratedCriteriaInnerClass</code>代码位置，在方法<code>return anwer;</code>之前加入以下代码</p>
+
+<pre><code class="language-java">                answer.addMethod(getMultiseriateOrLike());
+                answer.addMethod(getMultiseriateAndLike());
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329165835600.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="效果">效果</h2>
+
+<p>example文件将会增加一个andMultiseriateAndLike() 方法和andMultiseriateOrLike()方法。
+<img src="https://img-blog.csdnimg.cn/20210329165845620.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="使用">使用</h2>
+
+<p>andMultiseriateAndLike() 方法和andMultiseriateOrLike()方法
+接收一个HashMap<String,String>类型的参数，
+里面的key值为要查询的字段名，
+对应的value即为模糊查询的条件。</p>
+
+<p>使用此方法与使用example其他方法一样：</p>
+
+<pre><code class="language-java">        TestgenExample example = new TestgenExample();
+        TestgenExample.Criteria criteria = example.createCriteria();
+        HashMap&lt;String, String&gt; map = new HashMap&lt;&gt;();
+        Field[] fileds = filter.getClass().getDeclaredFields();
+        map.put(&quot;col1&quot;, &quot;h&quot;);
+        map.put(&quot;col2&quot;, &quot;a&quot;);
+        criteria.andMultiseriateAndLike(map);
+        mapper.selectByExample(example)
+</code></pre>
+
+<h1 id="增加中文字段特殊字符转化">增加中文字段特殊字符转化</h1>
+
+<p>特殊字符替换，中文转拼音首字母大写，重复加“_”</p>
+
+<h2 id="先增加标记数据库对象名的符号">先增加标记数据库对象名的符号</h2>
+
+<p>beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号；
+<img src="https://img-blog.csdnimg.cn/20210329180259719.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="增加处理中文字段特殊字符转化的标记">增加处理中文字段特殊字符转化的标记</h2>
+
+<p>修改路径
+src\main\java\org\mybatis\generator\config\PropertyRegistry.java</p>
+
+<pre><code class="language-java">    public static final String TABLE_USE_GG_COLUMN_NAMES = &quot;useGGColumnNames&quot;; //$NON-NLS-1$
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329180229553.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="增加chinesechartoen-java">增加ChineseCharToEn.java</h2>
+
+<p>在src\main\java\org\mybatis\generator\internal\util下增加ChineseCharToEn.java
+<img src="https://img-blog.csdnimg.cn/20210329180154982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<pre><code class="language-java">package org.mybatis.generator.internal.util;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public final class ChineseCharToEn {
+    /**
+     * 汉字转拼音缩写
+     * 
+     * @param str 要转换的汉字字符串
+     * @return String 拼音缩写
+     */
+    public static String getPYString(String str) {
+        String tempStr = &quot;&quot;;
+        str = matchCheck(str);
+        for (int i = 0; i &lt; str.length(); i++) {
+            char c = str.charAt(i);
+            if (c &gt;= 33 &amp;&amp; c &lt;= 126) {// 字母和符号原样保留
+                tempStr += String.valueOf(c);
+            } else {// 累加拼音声母
+                tempStr += getPYChar(String.valueOf(c));
+            }
+        }
+        return tempStr;
+    }
+
+    /**
+     * 取单个字符的拼音声母
+     * 
+     * @param c //要转换的单个汉字
+     * @return String 拼音声母
+     */
+    public static String getPYChar(String c) {
+        byte[] array = new byte[2];
+        array = String.valueOf(c).getBytes();
+        int i = (short) (array[0] - '\0' + 256) * 256 + ((short) (array[1] - '\0' + 256));
+        if (i &lt; 0xB0A1)
+            return &quot;_&quot;;
+        if (i &lt; 0xB0C5)
+            return &quot;A&quot;;
+        if (i &lt; 0xB2C1)
+            return &quot;B&quot;;
+        if (i &lt; 0xB4EE)
+            return &quot;C&quot;;
+        if (i &lt; 0xB6EA)
+            return &quot;D&quot;;
+        if (i &lt; 0xB7A2)
+            return &quot;E&quot;;
+        if (i &lt; 0xB8C1)
+            return &quot;F&quot;;
+        if (i &lt; 0xB9FE)
+            return &quot;G&quot;;
+        if (i &lt; 0xBBF7)
+            return &quot;H&quot;;
+        if (i &lt; 0xBFA6)
+            return &quot;J&quot;;
+        if (i &lt; 0xC0AC)
+            return &quot;K&quot;;
+        if (i &lt; 0xC2E8)
+            return &quot;L&quot;;
+        if (i &lt; 0xC4C3)
+            return &quot;M&quot;;
+        if (i &lt; 0xC5B6)
+            return &quot;N&quot;;
+        if (i &lt; 0xC5BE)
+            return &quot;O&quot;;
+        if (i &lt; 0xC6DA)
+            return &quot;P&quot;;
+        if (i &lt; 0xC8BB)
+            return &quot;Q&quot;;
+        if (i &lt; 0xC8F6)
+            return &quot;R&quot;;
+        if (i &lt; 0xCBFA)
+            return &quot;S&quot;;
+        if (i &lt; 0xCDDA)
+            return &quot;T&quot;;
+        if (i &lt; 0xCEF4)
+            return &quot;W&quot;;
+        if (i &lt; 0xD1B9)
+            return &quot;X&quot;;
+        if (i &lt; 0xD4D1)
+            return &quot;Y&quot;;
+        if (i &lt; 0xD7FA)
+            return &quot;Z&quot;;
+        return &quot;_&quot;;
+    }
+
+    public static String matchCheck(String a) {
+        // 正则表达式
+
+        // String regEx =
+        // &quot;[\n`~!@#$%^&amp;*()+=\\-|{}':;',\\[\\].&lt;&gt;/?~！@#￥%……&amp;*（）——+|{}【】‘；：”“’。， 、？]&quot;;
+        Pattern pattern = Pattern.compile(&quot;[^\\x{4e00}-\\x{9fa5}a-zA-Z0-9_]&quot;);
+        Matcher matcher = pattern.matcher(a);
+        StringBuffer buffer = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(buffer, &quot;&quot;);
+        }
+        // 合法部分添加到缓冲区
+        matcher.appendTail(buffer);
+        return buffer.toString();
+    }
+}
+</code></pre>
+
+<h2 id="修改src-main-java-org-mybatis-generator-internal-db-databaseintrospector-java">修改src\main\java\org\mybatis\generator\internal\db\DatabaseIntrospector.java</h2>
+
+<h3 id="增加calculateextracolumninformationprocessingduplicatevalues方法">增加calculateExtraColumnInformationProcessingDuplicateValues方法</h3>
+
+<p>在calculateExtraColumnInformation方法下方增加calculateExtraColumnInformationProcessingDuplicateValues方法</p>
+
+<pre><code class="language-java">    private void calculateExtraColumnInformationProcessingDuplicateValues(String introspectedColumnJavaProperty,
+            Map.Entry&lt;ActualTableName, List&lt;IntrospectedColumn&gt;&gt; entry) {
+        int count = 0;
+        for (IntrospectedColumn introspectedColumn : entry.getValue()) {
+            if (introspectedColumn.getJavaProperty().equals(introspectedColumnJavaProperty)) {
+                count++;
+                if (count &gt; 1) {
+                    introspectedColumn.setJavaProperty(introspectedColumnJavaProperty + &quot;_&quot;);
+                    calculateExtraColumnInformationProcessingDuplicateValues(introspectedColumnJavaProperty + &quot;_&quot;,
+                            entry);
+                }
+            }
+        }
+    }
+
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329180128687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h3 id="修改calculateextracolumninformation方法">修改calculateExtraColumnInformation方法</h3>
+
+<pre><code class="language-java">                else if (isTrue(tc.getProperty(PropertyRegistry.TABLE_USE_GG_COLUMN_NAMES))) {
+                    introspectedColumn.setJavaProperty(ChineseCharToEn.getPYString(calculatedColumnName));
+                    introspectedColumn.setColumnNameDelimited(true);
+                }
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329180037988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<pre><code class="language-java">            for (IntrospectedColumn introspectedColumn : entry.getValue()) {
+                calculateExtraColumnInformationProcessingDuplicateValues(introspectedColumn.getJavaProperty(), entry);
+            }
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/2021032918010012.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="使用-1">使用</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329175824120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="效果-1">效果</h2>
+
+<p>使用前
+<img src="https://img-blog.csdnimg.cn/2021032917590595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<p>使用后
+<img src="https://img-blog.csdnimg.cn/20210329175923592.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h1 id="mvn打包">mvn打包</h1>
+
+<h2 id="修改pom-xml">修改pom.xml</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329182539678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="打包">打包</h2>
+
+<pre><code class="language-cmd">mvn clean install
+或
+mvn package
+</code></pre>
+
+<p><img src="https://img-blog.csdnimg.cn/20210329182551909.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" />
+<img src="https://img-blog.csdnimg.cn/20210329182600372.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h1 id="使用-2">使用</h1>
+
+<h2 id="使用jar包">使用jar包</h2>
+
+<p>mysql-connector-java-8.0.19.jar <a href="https://dev.mysql.com/downloads/connector/j/?os=26" target="_blank">下载地址</a>
+刚刚生成好的mybatis-generator-core-1.4.1-GG2.jar <a href="https://download.csdn.net/download/qq_37746855/16215025" target="_blank">下载地址</a>
+<img src="https://img-blog.csdnimg.cn/20210329210746333.png" alt="在这里插入图片描述" /></p>
+
+<h2 id="generatorconfig-xml">generatorConfig.xml</h2>
+
+<p>详细写法请参考<a href="http://mybatis.org/generator/configreference/xmlconfig.html" target="_blank">http://mybatis.org/generator/configreference/xmlconfig.html</a></p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE generatorConfiguration PUBLIC &quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;&gt;
+&lt;generatorConfiguration&gt;
+    &lt;classPathEntry location=&quot;mysql-connector-java-8.0.19.jar&quot; /&gt;
+    &lt;context id=&quot;MySql&quot; defaultModelType=&quot;flat&quot; targetRuntime=&quot;MyBatis3&quot;&gt;
+        &lt;property name=&quot;mergeable&quot; value=&quot;false&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;beginningDelimiter&quot; value=&quot;`&quot; /&gt;&lt;!-- 增加标记` --&gt;
+        &lt;property name=&quot;endingDelimiter&quot; value=&quot;`&quot; /&gt;
+        &lt;plugin type=&quot;org.mybatis.generator.plugins.ToStringPlugin&quot; /&gt;
+        &lt;plugin type=&quot;org.mybatis.generator.plugins.SerializablePlugin&quot; /&gt;
+        &lt;commentGenerator&gt;
+            &lt;property name=&quot;suppressDate&quot; value=&quot;true&quot; /&gt;
+            &lt;property name=&quot;suppressAllComments&quot; value=&quot;true&quot; /&gt;
+        &lt;/commentGenerator&gt;
+    &lt;jdbcConnection driverClass=&quot;com.mysql.cj.jdbc.Driver&quot; connectionURL=&quot;jdbc:mysql://localhost:3306/gen-test?characterEncoding=utf-8&amp;amp;serverTimezone=GMT%2B8&amp;amp;useSSL=false&amp;amp;allowPublicKeyRetrieval=true&quot; userId=&quot;root&quot; password=&quot;123456&quot;&gt;
+        &lt;property name=&quot;nullCatalogMeansCurrent&quot; value=&quot;true&quot;/&gt;
+        &lt;/jdbcConnection&gt;
+        &lt;javaModelGenerator targetPackage=&quot;com.gen.springbootserver.mybatis.model&quot; targetProject=&quot;../src/main/java&quot;&gt;&lt;/javaModelGenerator&gt;
+        &lt;sqlMapGenerator targetPackage=&quot;mapper&quot; targetProject=&quot;../src/main/resources&quot;&gt;&lt;/sqlMapGenerator&gt;
+        &lt;javaClientGenerator targetPackage=&quot;com.gen.springbootserver.mybatis.dao&quot; targetProject=&quot;../src/main/java&quot; type=&quot;XMLMAPPER&quot;&gt;&lt;/javaClientGenerator&gt;
+        &lt;table tableName=&quot;testgen&quot; domainObjectName=&quot;Testgen&quot;&gt;
+            &lt;property name=&quot;modelOnly&quot; value=&quot;false&quot;/&gt;
+            &lt;property name=&quot;useGGColumnNames&quot; value=&quot;true&quot; /&gt;&lt;!-- 中文字段转首字母大写，特殊字符替换 --&gt;
+           &lt;generatedKey column=&quot;id&quot; sqlStatement=&quot;Mysql&quot; identity=&quot;true&quot;/&gt; &lt;!-- 插入或修改返回主键 --&gt;
+        &lt;/table&gt;  
+    &lt;/context&gt;
+&lt;/generatorConfiguration&gt;    
+</code></pre>
+
+<h2 id="执行命令">执行命令</h2>
+
+<p>进入目标文件目录，cmd执行</p>
+
+<pre><code class="language-cmd">java -jar mybatis-generator-core-1.4.1-GG.jar -configfile generatorConfig.xml -overwrite
+</code></pre>
+
+<p>源码<a href="https://download.csdn.net/download/qq_37746855/16215617" target="_blank">下载地址</a></p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/java/">java</a>
+  
+  <a class="badge badge-light" href="/tags/mybatis/">mybatis</a>
+  
+</div>
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/author/admin/avatar_hu9af2cef82de808ab65e058f484976a2c_58561_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/authors/admin">Tgenkidu Cy</a></h5>
+    <h6 class="card-subtitle">程序员呀哈哈哈</h6>
+    <p class="card-text" itemprop="description">目前专注于 java 开发。</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://weibo.com/u/3024883347?nick=top%e7%a5%8e%e8%a7%81%e5%80%be%e5%bf%83&amp;is_hot=1" target="_blank" rel="noopener">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/cytgenkidu" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/">VSCode搭建java环境</a></li>
+          
+          <li><a href="/project/springboot-angular-erp/">基于Spring Boot &#43; AngularJS的ERP系统升级</a></li>
+          
+          <li><a href="/project/weizu-gongzhonghao/">微租社群—基于Spring Boot的微信公众号开发</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/post/mysql%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AEcsv/" rel="next">mysql导入数据【mysql 配置环境变量、处理中文乱码】</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/post/%E6%80%9D%E7%BB%B4%E9%A2%98%E6%99%BA%E5%8A%9B%E9%A2%98/" rel="prev">思维题智力题</a>
+  </div>
+  
+</div>
+
+
+    </div>
+    
+
+    
+
+    
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demo on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/demo/</link>
+    <description>Recent content in Demo on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Sat, 01 Dec 2018 12:41:05 -0500</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/demo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CareDriver Initial Plan关爱出行初步方案设计与调研</title>
+      <link>https://cytgenkidu.github.io/project/weizu-caredriver/</link>
+      <pubDate>Sat, 01 Dec 2018 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-caredriver/</guid>
+      <description> 项目介绍： 公司计划与德国大众上汽斯柯达汽车公司合作，设计关爱出行实施方案，提前为项目做准备，确保方案及关键技术能够行得通。
+开发过程： 快速了解简单需求后，参考市场上已有案例Uber Health和Lyft Bussiness，调研现有网约车平台，在此基础上结合需求设计出三种不同的实施方案，包括各方案运行流程、优缺点、基础设施预算、关键技术、关键页面原型等，并对关键技术进行简单测试，确保能够实施。
+需求  三种方案流程图  结果： 项目资金审批暂未通过，项目搁置。
+效果图  </description>
+    </item>
+    
+  </channel>
+</rss>

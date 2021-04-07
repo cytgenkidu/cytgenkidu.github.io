@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="为什么存在动态内存分配 当前已经知道的内存的使用方式： 1. 创建一个变量 int a=10;//局部变量 - 栈区 int g_a=10;//全局变量 - 静态区 2. 创建一个数组 int arr[10];//局部/全局
+但是上述的开辟空间的方式有两个特点： 1. 空间开辟大小是固定的。 2. 数组在申明的时候，必须指定数组的长度，它所需要的内存在编译时分配。
+但是对于空间的需求，不仅仅是上述的情况。有时候我们需要的空间大小在程序运行的时候才能知道，那数组的编译时开辟空间的方式就不能满足了。 这时候就只能试试动态存开辟了。
+动态内存函数的介绍 malloc-动态内存开辟 和 free-动态内存的释放和回收 void* malloc (size_t size);//动态内存开辟的函数   这个函数向内存申请一块连续可用的空间，并返回指向这块空间的指针。 如果开辟成功，则返回一个指向开辟好空间的指针。 如果开辟失败，则返回一个NULL指针，因此malloc的返回值一定要做检查。 返回值的类型是 void* ，所以malloc函数并不知道开辟空间的类型，具体在使用的时候使用者自己来决定。 如果参数 size 为0，malloc的行为是标准是未定义的，取决于编译器。  void free (void* ptr);//动态内存的释放和回收的函数   free函数用来释放动态开辟的内存。 如果参数 ptr 指向的空间不是动态开辟的，那free函数的行为是未定义的。 如果参数 ptr 是NULL指针，则函数什么事都不做。  malloc和free都声明在 stdlib.h 头文件中。
+#include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;errno.h&gt; #include &lt;stdio.h&gt; int main() { //向内存申请10个整形的空间 //int* p = (int*)malloc(INT_MAX); int* p = (int*)malloc(10*sizeof(int));//动态内存开辟 if (p == NULL) { //打印错误原因的一个方式 printf(&quot;%s\n&quot;, strerror(errno)); } else { //正常使用空间 int i = 0; for (i = 0; i &lt; 10; i&#43;&#43;) { *(p &#43; i) = i; } for (i = 0; i &lt; 10; i&#43;&#43;) { printf(&quot;%d &quot;, *(p &#43; i)); } } //当动态申请的空间不再使用的时候 //就应该还给操作系统 free(p);//释放ptr所指向的动态内存 p = NULL;//必要 return 0; }  calloc-动态内存分配 void* calloc (size_t num, size_t size);   函数的功能是为 num 个大小为 size 的元素开辟一块空间，并且把空间的每个字节初始化为0。 与函数 malloc 的区别只在于 calloc 会在返回地址之前把申请的空间的每个字节初始化为全0。  #include &lt;stdlib.">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/13/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/13/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/13/">
+  <meta property="og:title" content=" | Cytgenkidu">
+  <meta property="og:description" content="为什么存在动态内存分配 当前已经知道的内存的使用方式： 1. 创建一个变量 int a=10;//局部变量 - 栈区 int g_a=10;//全局变量 - 静态区 2. 创建一个数组 int arr[10];//局部/全局
+但是上述的开辟空间的方式有两个特点： 1. 空间开辟大小是固定的。 2. 数组在申明的时候，必须指定数组的长度，它所需要的内存在编译时分配。
+但是对于空间的需求，不仅仅是上述的情况。有时候我们需要的空间大小在程序运行的时候才能知道，那数组的编译时开辟空间的方式就不能满足了。 这时候就只能试试动态存开辟了。
+动态内存函数的介绍 malloc-动态内存开辟 和 free-动态内存的释放和回收 void* malloc (size_t size);//动态内存开辟的函数   这个函数向内存申请一块连续可用的空间，并返回指向这块空间的指针。 如果开辟成功，则返回一个指向开辟好空间的指针。 如果开辟失败，则返回一个NULL指针，因此malloc的返回值一定要做检查。 返回值的类型是 void* ，所以malloc函数并不知道开辟空间的类型，具体在使用的时候使用者自己来决定。 如果参数 size 为0，malloc的行为是标准是未定义的，取决于编译器。  void free (void* ptr);//动态内存的释放和回收的函数   free函数用来释放动态开辟的内存。 如果参数 ptr 指向的空间不是动态开辟的，那free函数的行为是未定义的。 如果参数 ptr 是NULL指针，则函数什么事都不做。  malloc和free都声明在 stdlib.h 头文件中。
+#include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;errno.h&gt; #include &lt;stdio.h&gt; int main() { //向内存申请10个整形的空间 //int* p = (int*)malloc(INT_MAX); int* p = (int*)malloc(10*sizeof(int));//动态内存开辟 if (p == NULL) { //打印错误原因的一个方式 printf(&quot;%s\n&quot;, strerror(errno)); } else { //正常使用空间 int i = 0; for (i = 0; i &lt; 10; i&#43;&#43;) { *(p &#43; i) = i; } for (i = 0; i &lt; 10; i&#43;&#43;) { printf(&quot;%d &quot;, *(p &#43; i)); } } //当动态申请的空间不再使用的时候 //就应该还给操作系统 free(p);//释放ptr所指向的动态内存 p = NULL;//必要 return 0; }  calloc-动态内存分配 void* calloc (size_t num, size_t size);   函数的功能是为 num 个大小为 size 的元素开辟一块空间，并且把空间的每个字节初始化为0。 与函数 malloc 的区别只在于 calloc 会在返回地址之前把申请的空间的每个字节初始化为全0。  #include &lt;stdlib.">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  
+  
+
+  
+
+  
+
+  <title> | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#为什么存在动态内存分配">为什么存在动态内存分配</a></li>
+<li><a href="#动态内存函数的介绍">动态内存函数的介绍</a>
+<ul>
+<li><a href="#malloc-http-www-cplusplus-com-reference-cstdlib-malloc-kw-malloc-动态内存开辟-和-free-http-www-cplusplus-com-reference-cstdlib-free-kw-malloc-动态内存的释放和回收"><a href="http://www.cplusplus.com/reference/cstdlib/malloc/?kw=malloc" target="_blank">malloc</a>-动态内存开辟 和 <a href="http://www.cplusplus.com/reference/cstdlib/free/?kw=malloc" target="_blank">free</a>-动态内存的释放和回收</a></li>
+<li><a href="#calloc-http-www-cplusplus-com-reference-cstdlib-calloc-动态内存分配"><a href="http://www.cplusplus.com/reference/cstdlib/calloc/" target="_blank">calloc</a>-动态内存分配</a></li>
+<li><a href="#realloc-http-www-cplusplus-com-reference-cstdlib-realloc-kw-realloc-重新分配内存块"><a href="http://www.cplusplus.com/reference/cstdlib/realloc/?kw=realloc" target="_blank">realloc</a>-重新分配内存块</a></li>
+</ul></li>
+<li><a href="#常见的动态内存错误">常见的动态内存错误</a>
+<ul>
+<li><a href="#对null指针的解引用操作">对NULL指针的解引用操作</a></li>
+<li><a href="#对动态开辟空间的越界访问">对动态开辟空间的越界访问</a></li>
+<li><a href="#对非动态开辟内存使用free释放">对非动态开辟内存使用free释放</a></li>
+<li><a href="#使用free释放一块动态开辟内存的一部分">使用free释放一块动态开辟内存的一部分</a></li>
+<li><a href="#对同一块动态内存多次释放-谁申请谁回收">对同一块动态内存多次释放 [谁申请谁回收]</a></li>
+<li><a href="#动态开辟内存忘记释放-内存泄漏">动态开辟内存忘记释放（内存泄漏）</a></li>
+</ul></li>
+<li><a href="#几个经典的笔试题">几个经典的笔试题</a>
+<ul>
+<li><a href="#题目1">题目1</a></li>
+<li><a href="#题目2">题目2</a></li>
+<li><a href="#题目3">题目3</a></li>
+<li><a href="#题目4">题目4</a></li>
+</ul></li>
+<li><a href="#c-c-程序的内存开辟">C/C++程序的内存开辟</a></li>
+<li><a href="#柔性数组">柔性数组</a>
+<ul>
+<li><a href="#柔性数组的特点">柔性数组的特点</a></li>
+<li><a href="#柔性数组的使用">柔性数组的使用</a></li>
+</ul></li>
+<li><a href="#练习">练习</a>
+<ul>
+<li><a href="#法一">法一</a></li>
+<li><a href="#法二-异或">法二：异或</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name"></h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="为什么存在动态内存分配">为什么存在动态内存分配</h2>
+
+<p>当前已经知道的内存的使用方式：
+1. 创建一个变量
+    int a=10;//局部变量 - 栈区
+    int g_a=10;//全局变量 - 静态区
+2. 创建一个数组
+    int arr[10];//局部/全局</p>
+
+<p>但是上述的开辟空间的方式有两个特点：
+1. 空间开辟大小是固定的。
+2. 数组在申明的时候，必须指定数组的长度，它所需要的内存在编译时分配。</p>
+
+<p>但是对于空间的需求，不仅仅是上述的情况。有时候我们需要的空间大小在程序运行的时候才能知道，那数组的编译时开辟空间的方式就不能满足了。 这时候就只能试试动态存开辟了。</p>
+
+<h2 id="动态内存函数的介绍">动态内存函数的介绍</h2>
+
+<h3 id="malloc-http-www-cplusplus-com-reference-cstdlib-malloc-kw-malloc-动态内存开辟-和-free-http-www-cplusplus-com-reference-cstdlib-free-kw-malloc-动态内存的释放和回收"><a href="http://www.cplusplus.com/reference/cstdlib/malloc/?kw=malloc" target="_blank">malloc</a>-动态内存开辟 和 <a href="http://www.cplusplus.com/reference/cstdlib/free/?kw=malloc" target="_blank">free</a>-动态内存的释放和回收</h3>
+
+<pre><code>void* malloc (size_t size);//动态内存开辟的函数
+</code></pre>
+
+<ul>
+<li>这个函数向内存申请一块<strong>连续可用</strong>的空间，并返回指向这块空间的指针。</li>
+<li>如果开辟成功，则返回一个指向开辟好空间的指针。</li>
+<li>如果开辟失败，则返回一个NULL指针，因此malloc的返回值一定要做检查。</li>
+<li>返回值的类型是 void* ，所以malloc函数并不知道开辟空间的类型，具体在使用的时候使用者自己来决定。</li>
+<li>如果参数 size 为0，malloc的行为是标准是未定义的，取决于编译器。</li>
+</ul>
+
+<pre><code>void free (void* ptr);//动态内存的释放和回收的函数
+</code></pre>
+
+<ul>
+<li>free函数用来释放动态开辟的内存。</li>
+<li>如果参数 ptr 指向的空间不是动态开辟的，那free函数的行为是未定义的。</li>
+<li>如果参数 ptr 是NULL指针，则函数什么事都不做。</li>
+</ul>
+
+<p>malloc和free都声明在 stdlib.h 头文件中。</p>
+
+<pre><code class="language-C++">#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    //向内存申请10个整形的空间
+    //int* p = (int*)malloc(INT_MAX);
+    int* p = (int*)malloc(10*sizeof(int));//动态内存开辟
+    if (p == NULL)
+    {
+        //打印错误原因的一个方式
+        printf(&quot;%s\n&quot;, strerror(errno));
+    }
+    else
+    {
+        //正常使用空间
+        int i = 0;
+        for (i = 0; i &lt; 10; i++)
+        {
+            *(p + i) = i;
+        }
+        for (i = 0; i &lt; 10; i++)
+        {
+            printf(&quot;%d &quot;, *(p + i));
+        }
+    }
+    //当动态申请的空间不再使用的时候
+    //就应该还给操作系统
+    free(p);//释放ptr所指向的动态内存
+    p = NULL;//必要
+
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/13/malloc.png" alt="Image text" /></p>
+
+<h3 id="calloc-http-www-cplusplus-com-reference-cstdlib-calloc-动态内存分配"><a href="http://www.cplusplus.com/reference/cstdlib/calloc/" target="_blank">calloc</a>-动态内存分配</h3>
+
+<pre><code>void* calloc (size_t num, size_t size);
+</code></pre>
+
+<ul>
+<li>函数的功能是为 num 个大小为 size 的元素开辟一块空间，并且把空间的每个字节初始化为0。</li>
+<li>与函数 malloc 的区别只在于 calloc 会在返回地址之前把申请的空间的每个字节初始化为全0。</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+int main()
+{
+    //malloc(10*sizeof(int))
+    int*p = (int*)calloc(10, sizeof(int));
+    if (p == NULL)
+    {
+        printf(&quot;%s\n&quot;, strerror(errno));
+    }
+    else
+    {
+        int i = 0;
+        for (i = 0; i &lt; 10; i++)
+        {
+            *(p + i) = i;
+        }
+        for (i = 0; i &lt; 10; i++)
+        {
+            printf(&quot;%d &quot;, *(p + i));
+        }
+    }
+    //释放空间
+    //free函数是用来释放动态开辟的空间的
+    free(p);
+    p = NULL;
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/13/calloc.png" alt="Image text" /></p>
+
+<h3 id="realloc-http-www-cplusplus-com-reference-cstdlib-realloc-kw-realloc-重新分配内存块"><a href="http://www.cplusplus.com/reference/cstdlib/realloc/?kw=realloc" target="_blank">realloc</a>-重新分配内存块</h3>
+
+<ul>
+<li>realloc函数调整动态开辟内存空间的大小。</li>
+<li>有时会我们发现过去申请的空间太小了，有时候我们又会觉得申请的空间过大了，那为了合理的时候内存，</li>
+<li>我们一定会对内存的大小做灵活的调整。那 realloc 函数就可以做到对动态开辟内存大小的调整。</li>
+</ul>
+
+<pre><code class="language-C++">void* realloc (void* ptr, size_t size);
+//int *p = realloc(NULL, 40);//malloc(40)
+</code></pre>
+
+<ul>
+<li>ptr 是要调整的内存地址</li>
+<li>size 调整之后新大小</li>
+<li>返回值为调整之后的内存起始位置。</li>
+
+<li><p>这个函数调整原内存空间大小的基础上，还会将原来内存中的数据移动到 <strong>新</strong> 的空间。</p></li>
+
+<li><p>realloc使用的注意事项：</p>
+
+<ol>
+<li>如果p指向的空间之后有足够的内存空间可以追加，则直接追加，后返回p.</li>
+<li>如果p指向的空间之后没有足够的内存空间可以追加，则realloc函数会重新找一个新的内存区域开辟一块满足需求的空间，并且把原来内存中的数据拷贝回来，释放旧的内存空间,最后返回新开辟的内存空间地址.</li>
+<li>得用一个新的变量来接受realloc函数的返回值.</li>
+</ol></li>
+</ul>
+
+<p><img src="../img/13/ralloc.png" alt="Image text" /></p>
+
+<pre><code class="language-C++">#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+int main()
+{
+    int *p = (int*)malloc(20);
+    if (p == NULL)
+    {
+        printf(&quot;%s\n&quot;, strerror(errno));
+    }
+    else
+    {
+        int i = 0;
+        for (i = 0; i &lt; 5; i++)
+        {
+            *(p + i) = i;
+        }
+    }
+    //就是在使用malloc开辟的20个字节空间
+    //假设这里，20个自字节不能满足我们的使用了,希望我们能够有40个字节的空间
+    //这里就可以使用realloc来调整动态开辟的内存
+    int*ptr = realloc(p, 40);
+    //int*ptr = realloc(p, INT_MAX);//会开辟失败
+    if (ptr != NULL)
+    {
+        p = ptr;
+        int i = 0;
+        for (i = 5; i &lt; 10; i++)
+        {
+            *(p + i) = i;
+        }
+        for (i = 0; i &lt; 10; i++)
+        {
+            printf(&quot;%d &quot;, *(p + i));
+        }
+    }
+    //释放内存
+    free(p);
+    p = NULL;
+    return 0;
+}
+</code></pre>
+
+<h2 id="常见的动态内存错误">常见的动态内存错误</h2>
+
+<h3 id="对null指针的解引用操作">对NULL指针的解引用操作</h3>
+
+<pre><code class="language-C++">int *p = (int*)malloc(40);
+//万一malloc失败了，p就被赋值为NULL
+*p = 0;//err
+
+int i = 0;
+for (i = 0; i &lt; 10; i++)
+{
+    *(p + i) = i;//err
+}
+free(p);
+p = NULL;
+</code></pre>
+
+<h3 id="对动态开辟空间的越界访问">对动态开辟空间的越界访问</h3>
+
+<pre><code class="language-C++">int *p = (int*)malloc(5 * sizeof(int));
+if (p == NULL)
+{
+    return 0;
+}
+else
+{
+    int i = 0;
+    for (i = 0; i &lt; 10; i++)//err 越界
+    {
+        *(p + i) = i;
+    }
+}
+//
+free(p);
+p = NULL;
+</code></pre>
+
+<h3 id="对非动态开辟内存使用free释放">对非动态开辟内存使用free释放</h3>
+
+<pre><code class="language-C++">int a = 10;
+int* p = &amp;a;
+*p = 20;
+free(p);//err 对非动态开辟内存使用free释放
+p = NULL;
+</code></pre>
+
+<h3 id="使用free释放一块动态开辟内存的一部分">使用free释放一块动态开辟内存的一部分</h3>
+
+<pre><code class="language-C++">int*p = (int*)malloc(40);
+if (p == NULL)
+{
+    return 0;
+}
+int i = 0;
+for (i = 0; i &lt; 5; i++)
+{
+    *p++ = i;
+}
+//回收空间
+// 使用free释放动态开辟内存的一部分
+free(p);
+p =NULL;
+</code></pre>
+
+<h3 id="对同一块动态内存多次释放-谁申请谁回收">对同一块动态内存多次释放 [谁申请谁回收]</h3>
+
+<pre><code class="language-C++">int *p = (int*)malloc(40);
+if (p == NULL)
+{
+    return 0;
+}
+//使用
+//释放
+free(p);
+p = NULL;
+free(p);
+</code></pre>
+
+<h3 id="动态开辟内存忘记释放-内存泄漏">动态开辟内存忘记释放（内存泄漏）</h3>
+
+<pre><code class="language-C++">while (1)
+{
+    malloc(1);//会导致内存消耗
+}
+</code></pre>
+
+<p><strong>忘记释放不再使用的动态开辟的空间会造成内存泄漏。</strong> 切记： 动态开辟的空间一定要释放，并且正确释放。</p>
+
+<h2 id="几个经典的笔试题">几个经典的笔试题</h2>
+
+<h3 id="题目1">题目1</h3>
+
+<pre><code class="language-C++">void GetMemory(char *p)
+{
+    p = (char *)malloc(100);//没有free,存在内存泄露的可能
+}
+void Test(void)
+{
+    char *str = NULL;
+    GetMemory(str);
+    strcpy(str, &quot;hello world&quot;);
+    printf(str);//==printf(&quot;%s&quot;,str);
+}
+</code></pre>
+
+<p>请问运行Test 函数会有什么样的结果？程序崩溃</p>
+
+<p><img src="../img/13/题目1.png" alt="Image Text" /></p>
+
+<p><strong>改正1</strong></p>
+
+<pre><code class="language-C++">void GetMemory(char **p)
+{
+    *p = (char *)malloc(100);
+}
+
+void Test(void)
+{
+    char *str = NULL;
+    GetMemory(&amp;str);
+    strcpy(str, &quot;hello world&quot;);
+    printf(str);
+    free(str);
+    str = NULL;
+}
+</code></pre>
+
+<p><strong>改正2</strong></p>
+
+<pre><code class="language-C++">char* GetMemory(char *p)
+{
+    p = (char *)malloc(100);
+    return p;
+}
+
+void Test(void)
+{
+    char *str = NULL;
+    str = GetMemory(str);
+    strcpy(str, &quot;hello world&quot;);
+    printf(str);
+    free(str);
+    str = NULL;
+}
+</code></pre>
+
+<h3 id="题目2">题目2</h3>
+
+<pre><code class="language-C++">char *GetMemory(void)
+{
+    char p[] = &quot;hello world&quot;;
+    return p;
+}
+
+void Test(void)
+{
+    char *str = NULL;
+    str = GetMemory();
+    printf(str);
+}
+
+int main()
+{
+    Test();
+    return 0;
+}
+</code></pre>
+
+<p>请问运行Test 函数会有什么样的结果？打印随机值，非法访问内存</p>
+
+<p><img src="../img/13/题目2.png" alt="Image Text" /></p>
+
+<h3 id="题目3">题目3</h3>
+
+<pre><code class="language-C++">void GetMemory(char **p, int num)
+{
+    *p = (char *)malloc(num);
+}
+void Test(void)
+{
+    char *str = NULL;
+    GetMemory(&amp;str, 100);
+    strcpy(str, &quot;hello&quot;);
+    printf(str);
+    str = NULL;
+}
+</code></pre>
+
+<p>请问运行Test 函数会有什么样的结果？打印hello，但存在内存泄露</p>
+
+<p><strong>改正</strong></p>
+
+<pre><code class="language-C++">void GetMemory(char **p, int num)
+{
+    *p = (char *)malloc(num);
+}
+void Test(void)
+{
+    char *str = NULL;
+    GetMemory(&amp;str, 100);
+    strcpy(str, &quot;hello&quot;);
+    printf(str);
+    //忘记释放动态开辟的内存，会导致内存泄露
+    free(str);
+    str = NULL;
+}
+</code></pre>
+
+<h3 id="题目4">题目4</h3>
+
+<pre><code class="language-C++">void Test(void)
+{
+    char *str = (char *)malloc(100);
+    strcpy(str, &quot;hello&quot;);
+    free(str);
+    if (str != NULL)
+    {
+        strcpy(str, &quot;world&quot;);
+        printf(str);
+    }
+}
+</code></pre>
+
+<p>请问运行Test 函数会有什么样的结果？打印world,非法访问内存</p>
+
+<p><img src="../img/13/题目3.png" alt="Image Text" /></p>
+
+<p><strong>改正</strong></p>
+
+<pre><code class="language-C++">void Test(void)
+{
+    char *str = (char *)malloc(100);
+    strcpy(str, &quot;hello&quot;);
+    free(str);//free释放str指向的空间后，并不会把str置为NULL
+    str = NULL;
+    if (str != NULL)
+    {
+        strcpy(str, &quot;world&quot;);
+        printf(str);
+    }
+}
+</code></pre>
+
+<h2 id="c-c-程序的内存开辟">C/C++程序的内存开辟</h2>
+
+<p><img src="../img/13/内存区域划分.png" alt="Image Text" /></p>
+
+<ol>
+<li>栈区（stack）：在执行函数时，函数内局部变量的存储单元都可以在栈上创建，函数执行结束时这些存储单元自动被释放。栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。 栈区主要存放运行函数而分配的局部变量、函数参数、返回数据、返回地址等。</li>
+<li>堆区（heap）：一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。分配方式类似于链表。</li>
+<li>数据段（静态区）（static）存放全局变量、静态数据。程序结束后由系统释放。</li>
+<li>代码段：存放函数体（类成员函数和全局函数）的二进制代码。</li>
+</ol>
+
+<p><strong>有了这幅图，我们就可以更好的理解在《C语言初识》中讲的static关键字修饰局部变量的例子了。</strong></p>
+
+<ul>
+<li>实际上普通的局部变量是在栈区分配空间的，栈区的特点是在上面创建的变量出了作用域就销毁。</li>
+<li>但是被static修饰的变量存放在数据段（静态区），数据段的特点是在上面创建的变量，直到程序结束才销毁</li>
+<li>所以生命周期变长。</li>
+</ul>
+
+<h2 id="柔性数组">柔性数组</h2>
+
+<p>也许你从来没有听说过柔性数组（flexible array）这个概念，但是它确实是存在的。 C99 中，结构中的最后一个元素允许是未知大小的数组，这就叫做『柔性数组』成员。</p>
+
+<p>如：</p>
+
+<pre><code class="language-C++">struct S
+{
+    int n;
+    int arr[];//未知大小的,//柔性数组成员
+};
+</code></pre>
+
+<p>或</p>
+
+<pre><code class="language-C++">struct S
+{
+    int n;
+    int arr[0];//未知大小的-柔性数组成员-数组的大小是可以调整的
+};
+</code></pre>
+
+<p><img src="../img/13/柔性数组.png" alt="Image Text" /></p>
+
+<h3 id="柔性数组的特点">柔性数组的特点</h3>
+
+<ul>
+<li>结构中的柔性数组成员前面必须至少一个其他成员。</li>
+<li>sizeof 返回的这种结构大小不包括柔性数组的内存。</li>
+<li>包含柔性数组成员的结构用malloc ()函数进行内存的动态分配，并且分配的内存应该大于结构的大小，以适应柔性数组的预期大小。</li>
+</ul>
+
+<h3 id="柔性数组的使用">柔性数组的使用</h3>
+
+<p><strong>代码1</strong></p>
+
+<pre><code class="language-C++">//柔性数组，开辟连续空间，空间上也更节省。内存利用率高
+struct S
+{
+    int n;
+    int arr[0];//未知大小的-柔性数组成员-数组的大小是可以调整的
+};
+
+int main()
+{
+    //struct S s;
+    //printf(&quot;%d\n&quot;, sizeof(s));//4
+    struct S* ps = (struct S*)malloc(sizeof(struct S)+5*sizeof(int));//连续的空间
+    ps-&gt;n = 100;
+
+    int i = 0;
+    for (i = 0; i &lt; 5; i++)
+    {
+        ps-&gt;arr[i] = i;//0 1 2 3 4
+    }
+    struct S* ptr = realloc(ps, 44);
+    if (ptr != NULL)
+    {
+        ps = ptr;
+    }
+    for (i = 5; i &lt; 10; i++)
+    {
+        ps-&gt;arr[i] = i;
+    }
+
+    for (i = 0; i &lt; 10; i++)
+    {
+        printf(&quot;%d &quot;, ps-&gt;arr[i]);
+    }
+
+    //释放
+    free(ps);
+    ps = NULL;
+
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/13/柔性数组2.png" alt="Image Text" /></p>
+
+<p><strong>代码2</strong></p>
+
+<p><img src="../img/13/柔性数组3.png" alt="Image Text" /></p>
+
+<pre><code class="language-C++">struct S
+{
+    int n;
+    int* arr;
+};
+int main()
+{
+    struct S*ps = (struct S*)malloc(sizeof(struct S));
+    ps-&gt;arr = malloc(5 * sizeof(int));
+
+    int i = 0;
+    for (i = 0; i &lt; 5; i++)
+    {
+        ps-&gt;arr[i] = i;
+    }
+    for (i = 0; i &lt; 5; i++)
+    {
+        printf(&quot;%d &quot;, ps-&gt;arr[i]);
+    }
+    //调整大小
+    int *ptr = realloc(ps-&gt;arr, 10 * sizeof(int));
+    if (ptr != NULL)
+    {
+        ps-&gt;arr = ptr;
+    }
+    for (i = 5; i &lt; 10; i++)
+    {
+        ps-&gt;arr[i] = i;
+    }
+    for (i = 0; i &lt; 10; i++)
+    {
+        printf(&quot;%d &quot;, ps-&gt;arr[i]);
+    }
+    //释放内存
+    free(ps-&gt;arr);
+    ps-&gt;arr = NULL;
+    free(ps);//两次free容易出错
+    ps = NULL;
+
+    return 0;
+}
+</code></pre>
+
+<p>上述 代码1 和 代码2 可以完成同样的功能，但是 方法1 的实现有两个好处：</p>
+
+<ul>
+<li><p>第一个好处是：方便内存释放</p>
+
+<p>如果我们的代码是在一个给别人用的函数中，你在里面做了二次内存分配，并把整个结构体返回给用户。用户调用free可以释放结构体，但是用户并不知道这个结构体内的成员也需要free，所以你不能指望用户来发现这个事。所以，如果我们把结构体的内存以及其成员要的内存一次性分配好了，并返回给用户一个结构体指针，用户做一次free就可以把所有的内存也给释放掉.</p></li>
+
+<li><p>第二个好处是：有利于访问速度</p>
+
+<p>连续的内存有益于提高访问速度，也有益于减少内存碎片。</p>
+
+<p><img src="../img/13/柔性数组4.png" alt="Image Text" /></p></li>
+
+<li><p>第三个好处是：有益于减少内存碎片</p>
+
+<p>若使用指针的结构体开辟的空间是不连续的，这样多次使用之后，就会造成许多内存碎片。有益于减少内存碎片。</p></li>
+</ul>
+
+<p><strong>扩展</strong></p>
+
+<p><a href="https://coolshell.cn/articles/11377.html" target="_blank">C语言结构体里的成员数组和指针</a></p>
+
+<h2 id="练习">练习</h2>
+
+<p>找出单身狗</p>
+
+<p>一个数组中只有两个数字是出现一次，其他所有数字都出现了两次</p>
+
+<p>编写一个函数找出这两个只出现一次的数字。</p>
+
+<h3 id="法一">法一</h3>
+
+<pre><code class="language-C++">#include &lt;Windows.h&gt;
+#include &lt;stdlib.h&gt;
+void find_num(int arr[], int sz)
+{
+    int i, j, k = 0;
+    for (i = 0; i &lt; sz; i++)
+    {
+        k = 0;
+        for (j = 0; j &lt; sz; j++)
+        {
+            if (arr[j] == arr[i])
+                k++;
+        }
+        if (k == 1)
+            printf(&quot;单数为 %d\n&quot;, arr[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+int main()
+{
+    int arr[] = { 1, 2, 3, 4, 1, 2, 3, 5 };
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    find_num(arr, sz);
+    system(&quot;pause&quot;);
+    return 0;
+}
+</code></pre>
+
+<h3 id="法二-异或">法二：异或</h3>
+
+<pre><code>异或运算相同为0，相异为1，则：
+a ^ a = 0; (1)
+0 ^ a = a; (2)
+a ^ b ^ a  =  b; (3)
+1 ^ 2 ^ 1 = 2
+2 ^ 2  = 0
+0 ^ 3 = 3
+</code></pre>
+
+<p>将数组里面所有的数字异或一遍，最终得到的那个数字就是只出现一次的数。</p>
+
+<pre><code class="language-C++">void FindAppearOnce(int arr[], int len, int* pn1, int* pn2)
+{
+    int num = 0;//记录整组异或的结果，即两个一次出现的数异或的结果
+    int i = 0;
+    int k = 1;
+
+    for (i = 0; i &lt; len; i++)  //得出整组异或的结果，即两个一次出现的数异或的结果
+    {
+        num = num ^ arr[i];
+    }
+
+    while (num &amp; 1 != 1)    //找出异或结果中第一个为1的bit位
+    {
+        k++;
+        num = num &gt;&gt; 1;
+    }
+
+    for (i = 0; i &lt; len; i++)//将原数组分为两组，分别求出每组中出现一次的数字
+    {
+        int k_bit = (arr[i] &gt;&gt; (k - 1)) &amp; 1; //arr[i]第k位的值
+        if (k_bit == 1)
+        {
+            *pn1 = *pn1^arr[i];
+        }
+        else
+        {
+            *pn2 = *pn2^arr[i];
+        }
+    }
+}
+int main()
+{
+    int num1 = 0;
+    int num2 = 0;
+    int arr[] = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 8 };
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    FindAppearOnce(arr, sz, &amp;num1, &amp;num2);
+    printf(&quot;%d,%d\n&quot;, num1, num2);
+    system(&quot;pause&quot;);
+    return 0;
+}
+</code></pre>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/12/" rel="next"></a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/14/" rel="prev"></a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 0001-01-01
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

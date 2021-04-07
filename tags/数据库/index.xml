@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Tue, 12 Dec 2017 12:41:05 -0500</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>环境保险风险评估服务平台—基于.NET的ERP系统设计与开发</title>
+      <link>https://cytgenkidu.github.io/project/huanjing-erp/</link>
+      <pubDate>Tue, 12 Dec 2017 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/huanjing-erp/</guid>
+      <description> 项目介绍 为提高企业环境风险评估效率，结合人保机构和评估机构对企业风险评估的管理标准和要求，而设计开发的ERP管理系统。
+开发过程 针对环境责任保险风险评估服务管理工作，根据环境责任保险风险评估模型的说明文档，设计出各行业标准的数据结构及整理出各标准的评估模型计算方法。为确保计算速度及可维护性，最后选择将复杂的评估模型算法编写成存储过程进行计算。
+用例图  流程图  跨职能流程图  结果 全面覆盖环境责任保险风险评估模型的说明文档中的所有风险评估模型，简化了企业风险评估过程，提高评估公司评估效率，实现了对评估项目的分配、录入、评分、统计等统一化管理。
+效果图  </description>
+    </item>
+    
+  </channel>
+</rss>

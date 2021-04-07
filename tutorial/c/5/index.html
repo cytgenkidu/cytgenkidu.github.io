@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="操作符 分类  算术操作符 移位操作符 位操作符 赋值操作符 单目操作符 关系操作符 逻辑操作符 条件操作符 逗号表达式 下标引用、函数调用和结构成员  算术操作符 &#43; - * / %   除了 % 操作符之外，其他的几个操作符可以作用于整数和浮点数。 对于 / 操作符如果两个操作数都为整数，执行整数除法。而只要有浮点数执行的就是浮点数除法。 % 操作符的两个操作数必须为整数。返回的是整除之后的余数。  double a = 5 % 2;//商2余1 printf(&quot;a = %lf\n&quot;, a);//1.000000  移位操作符 ：移动是二进制位，只能作用于整形 &lt;&lt; 左移操作符 &gt;&gt; 右移操作符  左移操作符 移位规则： **左边抛弃、右边补0**  int a = 5; int b = a &lt;&lt; 1; //00000000000000000000000000000101 //00000000000000000000000000001010 printf(&quot;%d\n&quot;, b); //10  右移操作符 移位规则：[右移1位有除2的效果] 首先右移运算分两种： 1.">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/5/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/5/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/5/">
+  <meta property="og:title" content="操作符详解 | Cytgenkidu">
+  <meta property="og:description" content="操作符 分类  算术操作符 移位操作符 位操作符 赋值操作符 单目操作符 关系操作符 逻辑操作符 条件操作符 逗号表达式 下标引用、函数调用和结构成员  算术操作符 &#43; - * / %   除了 % 操作符之外，其他的几个操作符可以作用于整数和浮点数。 对于 / 操作符如果两个操作数都为整数，执行整数除法。而只要有浮点数执行的就是浮点数除法。 % 操作符的两个操作数必须为整数。返回的是整除之后的余数。  double a = 5 % 2;//商2余1 printf(&quot;a = %lf\n&quot;, a);//1.000000  移位操作符 ：移动是二进制位，只能作用于整形 &lt;&lt; 左移操作符 &gt;&gt; 右移操作符  左移操作符 移位规则： **左边抛弃、右边补0**  int a = 5; int b = a &lt;&lt; 1; //00000000000000000000000000000101 //00000000000000000000000000001010 printf(&quot;%d\n&quot;, b); //10  右移操作符 移位规则：[右移1位有除2的效果] 首先右移运算分两种： 1.">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2021-02-03T00:00:00&#43;01:00">
+  
+  
+  <meta property="article:modified_time" content="2021-02-03T00:00:00&#43;01:00">
+  
+  
+
+  
+
+  
+
+  <title>操作符详解 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#操作符">操作符</a>
+<ul>
+<li><a href="#分类">分类</a></li>
+<li><a href="#算术操作符">算术操作符</a></li>
+<li><a href="#移位操作符-移动是二进制位-只能作用于整形">移位操作符 ：移动是二进制位，只能作用于整形</a>
+<ul>
+<li><a href="#左移操作符-移位规则">左移操作符 移位规则：</a></li>
+<li><a href="#右移操作符-移位规则-右移1位有除2的效果">右移操作符 移位规则：[右移1位有除2的效果]</a></li>
+</ul></li>
+<li><a href="#位操作符-只能作用于整数">位操作符 : 只能作用于整数</a></li>
+<li><a href="#赋值操作符">赋值操作符</a></li>
+<li><a href="#复合赋值符">复合赋值符</a></li>
+<li><a href="#单目操作符">单目操作符</a>
+<ul>
+<li><a href="#sizeof和数组">sizeof和数组</a></li>
+<li><a href="#按位取反">~ 按位取反</a></li>
+<li><a href="#和-运算符">++和&ndash;运算符</a></li>
+<li><a href="#类型">（类型）</a></li>
+</ul></li>
+<li><a href="#关系操作符">关系操作符</a></li>
+<li><a href="#逻辑操作符">逻辑操作符</a></li>
+<li><a href="#条件操作符">条件操作符</a></li>
+<li><a href="#逗号表达式">逗号表达式</a></li>
+<li><a href="#下标引用-函数调用和结构成员">下标引用、函数调用和结构成员</a></li>
+</ul></li>
+<li><a href="#表达式求值">表达式求值</a>
+<ul>
+<li><a href="#隐式类型转换">隐式类型转换</a></li>
+<li><a href="#算术转换">算术转换</a></li>
+<li><a href="#操作符的属性">操作符的属性</a>
+<ul>
+<li><a href="#操作符优先级-越靠前-优先级越高">操作符优先级【越靠前，优先级越高】</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#练习">练习</a>
+<ul>
+<li><a href="#题目1">题目1</a></li>
+<li><a href="#题目2">题目2</a></li>
+<li><a href="#统计二进制中1的个数-补码的二进制有几个1">统计二进制中1的个数【补码的二进制有几个1】</a></li>
+<li><a href="#求二进制中不同位的个数">求二进制中不同位的个数</a></li>
+<li><a href="#打印二进制的奇数位和偶数位">打印二进制的奇数位和偶数位</a></li>
+<li><a href="#交换两个变量-不创建临时变量">交换两个变量（不创建临时变量）</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name">操作符详解</h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="操作符">操作符</h2>
+
+<h3 id="分类">分类</h3>
+
+<ul>
+<li>算术操作符</li>
+<li>移位操作符</li>
+<li>位操作符</li>
+<li>赋值操作符</li>
+<li>单目操作符</li>
+<li>关系操作符</li>
+<li>逻辑操作符</li>
+<li>条件操作符</li>
+<li>逗号表达式</li>
+<li>下标引用、函数调用和结构成员</li>
+</ul>
+
+<h3 id="算术操作符">算术操作符</h3>
+
+<pre><code>+   -   *   /   %
+</code></pre>
+
+<ol>
+<li>除了 % 操作符之外，其他的几个操作符可以作用于整数和浮点数。</li>
+<li>对于 / 操作符如果两个操作数都为整数，执行整数除法。而只要有浮点数执行的就是浮点数除法。</li>
+<li>% 操作符的两个操作数必须为整数。返回的是整除之后的余数。</li>
+</ol>
+
+<pre><code class="language-C++">double a = 5 % 2;//商2余1
+printf(&quot;a = %lf\n&quot;, a);//1.000000
+</code></pre>
+
+<h3 id="移位操作符-移动是二进制位-只能作用于整形">移位操作符 ：移动是二进制位，只能作用于整形</h3>
+
+<pre><code>&lt;&lt; 左移操作符
+&gt;&gt; 右移操作符
+</code></pre>
+
+<h4 id="左移操作符-移位规则">左移操作符 移位规则：</h4>
+
+<pre><code>**左边抛弃、右边补0**
+</code></pre>
+
+<p><img src="../img/5/位移1.png" alt="Image text" /></p>
+
+<pre><code class="language-C++">int a = 5;
+int b = a &lt;&lt; 1;
+//00000000000000000000000000000101
+//00000000000000000000000000001010
+printf(&quot;%d\n&quot;, b); //10
+</code></pre>
+
+<h4 id="右移操作符-移位规则-右移1位有除2的效果">右移操作符 移位规则：[右移1位有除2的效果]</h4>
+
+<pre><code>首先右移运算分两种：
+1. 逻辑移位 左边用0填充，右边丢弃
+2. 算术移位 左边用原该值的符号位填充，右边丢弃
+</code></pre>
+
+<p><img src="../img/5/位移2.png" alt="Image text" /></p>
+
+<pre><code class="language-C++">int a = 16;
+//&gt;&gt; -- 右移操作符
+//移动的是二进制位
+//00000000000000000000000000010000
+int b = a &gt;&gt; 2;
+//00000000000000000000000000000100
+printf(&quot;%d\n&quot;, b); //4
+</code></pre>
+
+<pre><code class="language-C++">int a = -1;
+//整数的二进制表示有：原码、反码、补码
+//存储到内存的是补码
+//10000000000000000000000000000001 - 原码
+//11111111111111111111111111111110 - 反码
+//11111111111111111111111111111111 - 补码
+int b = a &gt;&gt; 1;
+printf(&quot;%d\n&quot;, b); //-1
+</code></pre>
+
+<p><code>警告⚠ ： 对于移位运算符，不要移动负数位，这个是标准未定义的。 例如：</code></p>
+
+<pre><code class="language-C++">int num = 10;
+num&gt;&gt;-1;//error
+</code></pre>
+
+<h3 id="位操作符-只能作用于整数">位操作符 : 只能作用于整数</h3>
+
+<pre><code>&amp; //按位与
+| //按位或
+^ //按位异或
+</code></pre>
+
+<ul>
+<li>&amp; - 按2进制位与
+对应的两个二进位均为1时，结果位才为1 ，否则为0。【补码形式比较】</li>
+</ul>
+
+<pre><code class="language-C++">int a = 3;   // 00000000000000000000000000000011
+int b = 5;   // 00000000000000000000000000000101
+int c = a&amp;b; // 00000000000000000000000000000001
+printf(&quot;%d\n&quot;, c);
+</code></pre>
+
+<ul>
+<li>| - 按2进制位或
+对应的两个二进位有一个为1时，结果位就为1。【补码形式比较】</li>
+</ul>
+
+<pre><code class="language-C++">int a = 3;     //00000000000000000000000000000011
+int b = 5;     //00000000000000000000000000000101
+int c = a | b; //00000000000000000000000000000111
+printf(&quot;%d\n&quot;, c); 
+</code></pre>
+
+<ul>
+<li>^ 按2进制位异或: 相同为0，相异为1
+对应的两个二进位相异时，结果位为1。【补码形式比较】
+<code>C++
+int a = 3;     //00000000000000000000000000000011
+int b = 5;     //00000000000000000000000000000101
+int c = a ^ b; //00000000000000000000000000000110
+printf(&quot;%d\n&quot;, c);
+</code></li>
+</ul>
+
+<h3 id="赋值操作符">赋值操作符</h3>
+
+<pre><code class="language-C++">int weight = 120;//体重
+weight = 89;//不满意就赋值
+double salary = 10000.0;
+salary = 20000.0;//使用赋值操作符赋值。
+</code></pre>
+
+<p>赋值操作符可以连续使用，比如：</p>
+
+<pre><code class="language-C++">int a = 10;
+int x = 0;
+int y = 20;
+a = x = y+1;//连续赋值,避免使用 a=x=21
+</code></pre>
+
+<h3 id="复合赋值符">复合赋值符</h3>
+
+<pre><code>+=
+-=
+*=
+/=
+%=
+&gt;&gt;=
+&lt;&lt;=
+&amp;=
+|=
+^=
+</code></pre>
+
+<h3 id="单目操作符">单目操作符</h3>
+
+<pre><code>!           逻辑反操作
+-           负值
++           正值
+&amp;           取地址
+sizeof      操作数的类型长度（以字节为单位）
+~           对一个数的二进制按位取反
+--          前置、后置--
+++          前置、后置++
+*           间接访问操作符(解引用操作符)
+(类型)       强制类型转换
+</code></pre>
+
+<h4 id="sizeof和数组">sizeof和数组</h4>
+
+<pre><code class="language-C++">int a = 10;
+char c = 'r';
+char *p = &amp;c;
+int arr[10] = {0};
+//sizeof 计算的变量所占内存空间的大小，单位是字节
+printf(&quot;%d\n&quot;, sizeof a);    //4
+printf(&quot;%d\n&quot;, sizeof(int)); //4
+
+printf(&quot;%d\n&quot;, sizeof(c));    //1
+printf(&quot;%d\n&quot;, sizeof(char)); //1
+
+printf(&quot;%d\n&quot;, sizeof(p));      //4
+printf(&quot;%d\n&quot;, sizeof(char *)); //4
+
+printf(&quot;%d\n&quot;, sizeof(arr));     //40
+printf(&quot;%d\n&quot;, sizeof(int[10])); //40
+</code></pre>
+
+<p><code>sizeof 内部的表达式不参与运算</code></p>
+
+<pre><code class="language-C++">short s = 0;
+int a = 10;
+printf(&quot;%d\n&quot;, sizeof(s = a + 5)); //2
+printf(&quot;%d\n&quot;, s);                 //0
+</code></pre>
+
+<p>练习</p>
+
+<pre><code class="language-C++">void test1(int arr[]) 
+{
+    printf(&quot;%d\n&quot;, sizeof(arr)); //(2)  4/8
+}
+void test2(char ch[])
+{
+    printf(&quot;%d\n&quot;, sizeof(ch)); //(4)  4/8
+}
+int main()
+{
+    int arr[10] = {0};
+    char ch[10] = {0};
+    printf(&quot;%d\n&quot;, sizeof(arr)); //(1)  40
+    printf(&quot;%d\n&quot;, sizeof(ch));  //(3)  10
+    test1(arr); //传参是首元素地址，指针的大小4/8
+    test2(ch); //传参是首元素地址,指针的大小4/8
+    return 0;
+}
+</code></pre>
+
+<h4 id="按位取反">~ 按位取反</h4>
+
+<pre><code class="language-C++">int a = 0;
+//~ 按（2进制）位取反
+//00000000000000000000000000000000 - 原码 0
+//11111111111111111111111111111111 - 补码
+//11111111111111111111111111111110 - 反码 -1
+//10000000000000000000000000000001 - 原码
+//-1
+printf(&quot;%d\n&quot;, ~a);
+</code></pre>
+
+<pre><code class="language-C++">int a = 11;
+a = a | (1 &lt;&lt; 2);
+printf(&quot;%d\n&quot;, a); //15
+a = a &amp; (~(1 &lt;&lt; 2));
+printf(&quot;%d\n&quot;, a); //11
+//0000000000000000000000000000001011  - 11
+//0000000000000000000000000000000100  - (1 &lt;&lt; 2)
+//0000000000000000000000000000000001  - 1
+//
+//0000000000000000000000000000001111  - 或 结果
+//1111111111111111111111111111111011  - ~(1 &lt;&lt; 2)
+//0000000000000000000000000000000100
+//0000000000000000000000000000001011  - 且 结果
+</code></pre>
+
+<h4 id="和-运算符">++和&ndash;运算符</h4>
+
+<pre><code class="language-C++">int a = 10;
+//printf(&quot;%d\n&quot;, ++a);//前置++，先++，后使用
+printf(&quot;%d\n&quot;, a++);//后置++，先使用，再++
+</code></pre>
+
+<h4 id="类型">（类型）</h4>
+
+<pre><code class="language-C++">int a = (int)3.14;
+//int a = int(3.14);//err
+</code></pre>
+
+<h3 id="关系操作符">关系操作符</h3>
+
+<pre><code>&gt;
+&gt;=
+&lt;
+&lt;=
+!=   用于测试“不相等”
+==      用于测试“相等
+</code></pre>
+
+<p>警告： 在编程的过程中== 和=不小心写错，会导致的错误。</p>
+
+<h3 id="逻辑操作符">逻辑操作符</h3>
+
+<pre><code>&amp;&amp;     逻辑与
+||     逻辑或
+</code></pre>
+
+<p>&amp;&amp;     逻辑与：两个条件都同时成立的情况下“逻辑与”的运算结果才为“真”。</p>
+
+<ol>
+<li>当逻辑与左边为false(假)，则不再进行逻辑与右边的判断，结果为false(假)</li>
+<li>当逻辑与左边为true(真)则进行右边判断，右边为false(假)，结果为false(假)</li>
+<li>当逻辑与左边为true(真)则进行右边判断，右边也为true(真)，则结果为true(真)</li>
+</ol>
+
+<p>||        逻辑或：任一或多个条件成立的情况下“逻辑或”的运算才为“真”。</p>
+
+<ol>
+<li>当逻辑或左边为false(假)，继续逻辑或右边的判断，如果也为false(假)，结果为false(假)</li>
+<li>当逻辑或左边为false(假)，继续逻辑或右边的判断，如果为true(真)，结果为true(真)</li>
+<li>当逻辑或左边为true(真)，则不再进行逻辑或右边的判断，结果为true(真)</li>
+</ol>
+
+<p><strong>区分逻辑与和按位与 区分逻辑或和按位或</strong></p>
+
+<pre><code>1&amp;2-----&gt;0
+1&amp;&amp;2----&gt;1
+1|2-----&gt;3
+1||2----&gt;1
+
+//00000000000000000000000000000001  -1
+//00000000000000000000000000000010  -2
+//00000000000000000000000000000000  -1&amp;2 
+//00000000000000000000000000000011  -1|2
+</code></pre>
+
+<pre><code class="language-C++">int i = 0, a = 0, b = 2, c = 3, d = 4;
+i = a++ &amp;&amp; ++b &amp;&amp; d++;  //a++ 是后置++，先使用再++。a=0 为假，后面不管是什么都不算了，a++
+printf(&quot; a = %d\n b = %d\n c = %d\n d = %d\n&quot;, a, b, c, d); //1 2 3 4
+</code></pre>
+
+<pre><code class="language-C++">int i = 0, a = 1, b = 2, c = 3, d = 4;
+i = a++ &amp;&amp; ++b &amp;&amp; d++;//a=1为真，a++,++b是前置++，先加在使用，b=3为真，d=4为真，d++
+printf(&quot; a = %d\n b = %d\n c = %d\n d = %d\n&quot;, a, b, c, d); //2 3 3 5
+</code></pre>
+
+<pre><code class="language-C++">int i = 0, a = 0, b = 2, c = 3, d = 4;
+i = a++ || ++b || d++; //a=0为假，a++,b++,b=3为真，结束
+printf(&quot; a = %d\n b = %d\n c = %d\n d = %d\n&quot;, a, b, c, d); //1 3 3 4
+</code></pre>
+
+<pre><code class="language-C++">int i = 0, a = 1, b = 2, c = 3, d = 4;
+i = a++ || ++b || d++; //a=1为真，结束。a++
+printf(&quot; a = %d\n b = %d\n c = %d\n d = %d\n&quot;, a, b, c, d); //2 2 3 4
+</code></pre>
+
+<h3 id="条件操作符">条件操作符</h3>
+
+<pre><code>exp1 ? exp2 : exp3
+</code></pre>
+
+<pre><code class="language-C++">if (a &gt; 5)
+    b = 3;
+else
+    b = -3;
+
+b = (a &gt; 5 ? 3 : -3);
+</code></pre>
+
+<pre><code class="language-C++">int a = 10;
+int b = 20;
+int max = 0;
+
+if (a &gt; b)
+    max = a;
+else
+    max = b;
+
+max = (a &gt; b ? a : b);
+</code></pre>
+
+<h3 id="逗号表达式">逗号表达式</h3>
+
+<pre><code>exp1, exp2, exp3, …expN
+</code></pre>
+
+<p>逗号表达式，就是用逗号隔开的多个表达式。 逗号表达式，从左向右依次执行。整个表达式的结果是最后一个表达式的结果。</p>
+
+<pre><code class="language-C++">//代码1
+    int a = 1;
+    int b = 2;
+    int c = (a &gt; b, a = b + 10, a, b = a + 1); //逗号表达式，c=13
+</code></pre>
+
+<pre><code class="language-C++">//代码2
+    if (a = b + 1, c = a / 2, d &gt; 0)
+</code></pre>
+
+<pre><code class="language-C++">//代码3
+    a = get_val();
+    count_val(a);
+    while (a &gt; 0)
+    {
+        //业务处理
+        a = get_val();
+        count_val(a);
+    }
+
+//如果使用逗号表达式，改写:
+    while (a = get_val(), count_val(a), a &gt; 0)
+    {
+        //业务处理
+    }
+</code></pre>
+
+<h3 id="下标引用-函数调用和结构成员">下标引用、函数调用和结构成员</h3>
+
+<ol>
+<li><p>[]下标引用操作符
+操作数：一个数组名+一个索引值</p>
+
+<pre><code class="language-C++">int arr[10];//创建数组
+arr[9] = 10;//实用下标引用操作符。
+[ ]的两个操作数是arr和9。
+</code></pre></li>
+
+<li><p>( ) 函数调用操作符 接受一个或者多个操作数：第一个操作数是函数名，剩余的操作数就是传递给函数的参数。</p>
+
+<pre><code class="language-C++">void test1()
+{
+    printf(&quot;hehe\n&quot;);
+}
+void test2(const char *str)
+{
+    printf(&quot;%s\n&quot;, str);
+}
+int main()
+{
+    test1();            //实用（）作为函数调用操作符。
+    test2(&quot;hello world.&quot;);//实用（）作为函数调用操作符。
+    return 0;
+}
+</code></pre></li>
+
+<li><p>访问一个结构的成员</p>
+
+<pre><code>. 结构体.成员名
+-&gt; 结构体指针-&gt;成员名
+</code></pre>
+
+<pre><code class="language-C++">//创建一个结构体类型-struct Stu
+struct Stu
+{
+    //成员变量
+    char name[20];
+    int age;
+    char id[20];
+};
+
+int main()
+{
+    //使用struct Stu这个类型创建了一个学生对象s1，并初始化
+    struct Stu s1 = {&quot;张三&quot;, 20, &quot;2019010305&quot;};
+    struct Stu *ps = &amp;s1;
+
+    printf(&quot;%s\n&quot;, ps-&gt;name);
+    printf(&quot;%d\n&quot;, ps-&gt;age);
+    //结构体指针-&gt;成员名
+
+    /*printf(&quot;%s\n&quot;, (*ps).name);
+    printf(&quot;%d\n&quot;, (*ps).age);*/
+
+    /*printf(&quot;%s\n&quot;, s1.name);
+    printf(&quot;%d\n&quot;, s1.age);
+    printf(&quot;%s\n&quot;, s1.id);*/
+    //结构体变量.成员名
+    return 0;
+}
+</code></pre></li>
+</ol>
+
+<h2 id="表达式求值">表达式求值</h2>
+
+<p>表达式求值的顺序一部分是由操作符的优先级和结合性决定。
+同样，有些表达式的操作数在求值的过程中可能需要转换为其他类型。</p>
+
+<h3 id="隐式类型转换">隐式类型转换</h3>
+
+<p>C的整型算术运算总是至少以缺省整型类型的精度来进行的。
+为了获得这个精度，表达式中的字符和短整型操作数在使用之前被转换为普通整型，这种转换称为<code>整型提升</code>。</p>
+
+<p><strong>整型提升的意义：</strong></p>
+
+<p>表达式的整型运算要在CPU的相应运算器件内执行，CPU内整型运算器(ALU)的操作数的字节长度一般就是int的字节长度，同时也是CPU的通用寄存器的长度。</p>
+
+<p>因此，即使两个char类型的相加，在CPU执行时实际上也要先转换为CPU内整型操作数的标准长度。</p>
+
+<p>通用CPU（general-purpose CPU）是难以直接实现两个8比特字节直接相加运算（虽然机器指令中可能有这种字节相加指令）。所以，表达式中各种长度可能小于int长度的整型值，都必须先转换为int或unsigned int，然后才能送入CPU去执行运算。</p>
+
+<p><strong>负数的整形提升</strong></p>
+
+<pre><code class="language-c++">char c1 = -1;
+</code></pre>
+
+<pre><code class="language-txt">变量c1的二进制位(补码)中只有8个比特位：
+1111111
+因为 char 为有符号的 char
+所以整形提升的时候，高位补充符号位，即为1
+提升之后的结果是：
+11111111111111111111111111111111 - 补码=反码+1
+11111111111111111111111111111110 - 反码
+10000000000000000000000000000001 - 原码
+</code></pre>
+
+<p><strong>正数的整形提升</strong></p>
+
+<pre><code class="language-C++">char c2 = 1;
+</code></pre>
+
+<pre><code>变量c2的二进制位(补码)中只有8个比特位：
+00000001
+因为 char 为有符号的 char
+所以整形提升的时候，高位补充符号位，即为0
+提升之后的结果是：
+00000000000000000000000000000001
+</code></pre>
+
+<p><strong>无符号整形提升，高位补0</strong></p>
+
+<p><strong>两个整形提升的变量如何相加</strong></p>
+
+<pre><code class="language-C++">char a = 3;
+//00000000000000000000000000000011
+//00000011 - a
+//
+char b = 127;
+//‭00000000000000000000000001111111
+//‬01111111 - b
+
+//a和b如何相加
+//00000000000000000000000000000011
+//00000000000000000000000001111111
+//00000000000000000000000010000010
+//
+char c = a + b;
+//10000010 - c
+//11111111111111111111111110000010 - 补码 有符号数补1，无符号数补0
+//11111111111111111111111110000001 - 反码 =补码-1
+//10000000000000000000000001111110 - 原码 
+//-126
+printf(&quot;%d\n&quot;, c);
+</code></pre>
+
+<p><strong>整体提升</strong></p>
+
+<pre><code>整形提升是按照变量的数据类型的符号位来提升的
+</code></pre>
+
+<p><strong>整形提升的例子</strong></p>
+
+<pre><code class="language-c++">// 实例1:
+//a,b要进行整形提升,但是c不需要整形提升 a,b整形提升之后,变成了负数
+//c不发生整形提升,则表达式 c==0xb6000000 的结果是真
+int main()
+{
+    char a = 0xb6; //10110110
+    short b = 0xb600;
+    int c = 0xb6000000;
+    if (a == 0xb6)
+        printf(&quot;a&quot;);
+    if (b == 0xb600)
+        printf(&quot;b&quot;);
+    if (c == 0xb6000000)
+        printf(&quot;c&quot;); //C
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/5/整形提升.png" alt="Image text" /></p>
+
+<pre><code class="language-C++">//实例2
+//c只要参与表达式运算,就会发生整形提升,表达式 +c ,就会发生提升,所以 sizeof(+c) 是4个字节.
+//表达式 -c 也会发生整形提升,所以 sizeof(-c) 是4个字节,但是 sizeof(c) ,就是1个字节
+int main()
+{
+    char c = 1;
+    printf(&quot;%u\n&quot;, sizeof(c));  //1
+    printf(&quot;%u\n&quot;, sizeof(+c)); //4
+    printf(&quot;%u\n&quot;, sizeof(!c)); //1
+    return 0;
+}
+</code></pre>
+
+<h3 id="算术转换">算术转换</h3>
+
+<p>如果某个操作符的各个操作数属于不同的类型，那么除非其中一个操作数的转换为另一个操作数的类型，否则操作就无法进行。下面的层次体系称为寻常算术转换.</p>
+
+<pre><code>long double
+double
+float
+unsigned long int
+long int
+unsigned int
+int
+</code></pre>
+
+<p>如果某个操作数的类型在上面这个列表中排名较低，那么首先要转换为另外一个操作数的类型后执行运算。
+<code>警告：</code> 但是算术转换要合理，要不然会有一些潜在的问题。</p>
+
+<pre><code class="language-C++">float f = 3.14;
+int num = f;//隐式转换，会有精度丢失
+</code></pre>
+
+<h3 id="操作符的属性">操作符的属性</h3>
+
+<p>复杂表达式的求值有三个影响的因素。
+1. 操作符的优先级
+2. 操作符的结合性
+3. 是否控制求值顺序。</p>
+
+<p>两个相邻的操作符先执行哪个？取决于他们的优先级。如果两者的优先级相同，取决于他们的结合性。</p>
+
+<h4 id="操作符优先级-越靠前-优先级越高">操作符优先级【越靠前，优先级越高】</h4>
+
+<table>
+<thead>
+<tr>
+<th align="left">操作符</th>
+<th align="left">描述</th>
+<th align="left">用法示例</th>
+<th align="left">结果类型</th>
+<th align="left">结合性</th>
+<th align="left">是否控制求值顺序</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">（）</td>
+<td align="left">聚组</td>
+<td align="left">（表达式）</td>
+<td align="left">与表达式同</td>
+<td align="left">N/A</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">（）</td>
+<td align="left">函数调用</td>
+<td align="left">rexp （ rexp ，&hellip;, rexp ）</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">[ ]</td>
+<td align="left">下标引用</td>
+<td align="left">rexp [ rexp ]</td>
+<td align="left">lexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">.</td>
+<td align="left">访问结构成员</td>
+<td align="left">lexp .member_name</td>
+<td align="left">lexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">-&gt;</td>
+<td align="left">访问结构指针成员</td>
+<td align="left">rexp -&gt;member_name</td>
+<td align="left">lexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">++</td>
+<td align="left">后缀自增</td>
+<td align="left">lexp ++</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;</td>
+<td align="left">后缀自减</td>
+<td align="left">lexp &ndash;</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">!</td>
+<td align="left">逻辑反</td>
+<td align="left">! rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">~</td>
+<td align="left">按位取反</td>
+<td align="left">~ rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">+</td>
+<td align="left">单目，表示正值</td>
+<td align="left">+ rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">-</td>
+<td align="left">单目，表示负值</td>
+<td align="left">- rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">++</td>
+<td align="left">前缀自增</td>
+<td align="left">++ lexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;</td>
+<td align="left">前缀自减</td>
+<td align="left">&ndash; lexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">*</td>
+<td align="left">间接访问</td>
+<td align="left">* rexp</td>
+<td align="left">lexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&amp;</td>
+<td align="left">取地址</td>
+<td align="left">&amp; lexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">sizeof</td>
+<td align="left">取其长度，以字节表示</td>
+<td align="left">sizeof rexp sizeof(类型)</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">(类型）</td>
+<td align="left">类型转换</td>
+<td align="left">(类型) rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">*</td>
+<td align="left">乘法</td>
+<td align="left">rexp * rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">/</td>
+<td align="left">除法</td>
+<td align="left">rexp / rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">%</td>
+<td align="left">整数取余</td>
+<td align="left">rexp % rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">+</td>
+<td align="left">加法</td>
+<td align="left">rexp + rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">-</td>
+<td align="left">减法</td>
+<td align="left">rexp - rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&lt;&lt;</td>
+<td align="left">左移位</td>
+<td align="left">rexp &lt;&lt; rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&gt;&gt;</td>
+<td align="left">右移位</td>
+<td align="left">rexp &gt;&gt; rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&gt;</td>
+<td align="left">大于</td>
+<td align="left">rexp &gt; rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&gt;=</td>
+<td align="left">大于等于</td>
+<td align="left">rexp &gt;= rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&lt;</td>
+<td align="left">小于</td>
+<td align="left">rexp &lt; rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&lt;=</td>
+<td align="left">小于等于</td>
+<td align="left">rexp &lt;= rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">==</td>
+<td align="left">等于</td>
+<td align="left">rexp == rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">!=</td>
+<td align="left">不等于</td>
+<td align="left">rexp != rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&amp;</td>
+<td align="left">位与</td>
+<td align="left">rexp &amp; rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">^</td>
+<td align="left">位异或</td>
+<td align="left">rexp ^ rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">||</td>
+<td align="left">位或</td>
+<td align="left">rexp || rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&amp;&amp;</td>
+<td align="left">逻辑与</td>
+<td align="left">rexp &amp;&amp; rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">是</td>
+</tr>
+
+<tr>
+<td align="left">||</td>
+<td align="left">逻辑或</td>
+<td align="left">rexp || rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">是</td>
+</tr>
+
+<tr>
+<td align="left">?:</td>
+<td align="left">条件操作符</td>
+<td align="left">rexp ? rexp : rexp</td>
+<td align="left">rexp</td>
+<td align="left">N/A</td>
+<td align="left">是</td>
+</tr>
+
+<tr>
+<td align="left">=</td>
+<td align="left">赋值</td>
+<td align="left">lexp = rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">+=</td>
+<td align="left">以&hellip;加</td>
+<td align="left">lexp += rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">-=</td>
+<td align="left">以&hellip;减</td>
+<td align="left">lexp -= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">*=</td>
+<td align="left">以&hellip;乘</td>
+<td align="left">lexp *= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">/=</td>
+<td align="left">以&hellip;除</td>
+<td align="left">lexp /= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">%=</td>
+<td align="left">以&hellip;取模</td>
+<td align="left">lexp %= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&lt;&lt;=</td>
+<td align="left">以&hellip;左移</td>
+<td align="left">lexp &lt;&lt;= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&gt;&gt;=</td>
+<td align="left">以&hellip;右移</td>
+<td align="left">lexp &gt;&gt;= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">&amp;=</td>
+<td align="left">以&hellip;与</td>
+<td align="left">lexp &amp;= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">^=</td>
+<td align="left">以&hellip;异或</td>
+<td align="left">lexp ^= rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">|=</td>
+<td align="left">以&hellip;或</td>
+<td align="left">lexp = rexp</td>
+<td align="left">rexp</td>
+<td align="left">R-L</td>
+<td align="left">否</td>
+</tr>
+
+<tr>
+<td align="left">，</td>
+<td align="left">逗号</td>
+<td align="left">rexp ， rexp</td>
+<td align="left">rexp</td>
+<td align="left">L-R</td>
+<td align="left">是</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>问题表达式</strong></p>
+
+<p>表达式的求值部分由操作符的优先级决定。</p>
+
+<ol>
+<li><p>表达式1</p>
+
+<pre><code class="language-C++">a*b + c*d + e*f
+</code></pre>
+
+<p>代码1在计算的时候，由于比+的优先级高，只能保证，的计算是比+早，但是优先级并不能决定第三个*比第一个+早执行。</p>
+
+<p>计算机顺序可能是</p>
+
+<pre><code>a*b
+c*d
+a*b + c*d
+e*f
+a*b + c*d + e*f
+    
+或者：
+a*b
+c*d
+e*f
+a*b + c*d
+a*b + c*d + e*f
+</code></pre></li>
+
+<li><p>表达式2</p>
+
+<pre><code class="language-C++">c + --c;
+</code></pre>
+
+<p>同上，操作符的优先级只能决定自减 &ldquo;&ndash;&rdquo; 的运算在+的运算的前面，但是我们并没有办法得知，+操作符的左操作数的获取在右操作数之前还是之后求值，所以结果是不可预测的，是有歧义的。</p></li>
+
+<li><p>表达式3-非法表达式：表达式3在不同编译器中测试结果不同</p>
+
+<pre><code class="language-C++">int main()
+{
+    int i = 10;
+    i = i-- - --i * ( i = -3 ) * i++ + ++i;
+    printf(&quot;i = %d\n&quot;, i);
+    return 0;
+}
+</code></pre></li>
+
+<li><p>表达式4</p>
+
+<pre><code class="language-C++">//answer = fun() - fun() * fun(); 中我们只能通过操作符的优先级得知：先算乘法，再算减法。
+//函数的调用先后顺序无法通过操作符的优先级确定
+int fun()
+{
+     static int count = 1;
+     return ++count;
+}
+int main()
+{
+     int answer;
+     answer = fun() - fun() * fun();
+     printf( &quot;%d\n&quot;, answer);//输出多少？
+     return 0;
+}
+</code></pre></li>
+
+<li><p>表达式5</p>
+
+<pre><code class="language-C++">//代码5
+#include &lt;stdio.h&gt;
+int main()
+{
+    int i = 1;
+    int ret = (++i) + (++i) + (++i);
+    printf(&quot;%d\n&quot;, ret);
+    printf(&quot;%d\n&quot;, i);
+    return 0;
+}
+
+</code></pre>
+
+<p>linux 环境gcc编译器 :10 4</p>
+
+<p>VS2013环境下都执行  :12 4</p>
+
+<p>第一个 + 在执行的时候，第三个++是否执行，这个是不确定的，因为依靠操作符的优先级和结合性是无法决定第一个 + 和第三个前置 ++ 的先后顺序。</p></li>
+</ol>
+
+<p><strong>总结</strong>
+我们写出的表达式如果不能通过操作符的属性确定唯一的计算路径，那这个表达式就是存在问题的。</p>
+
+<h2 id="练习">练习</h2>
+
+<h3 id="题目1">题目1</h3>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int i;//全局变量-不初始化-默认是0。如果为局部变量为随机值
+int main()
+{
+    i--;
+    //-1
+    //10000000000000000000000000000001  - 原码
+    //11111111111111111111111111111110  - 反码（符号位不变，其余取反）
+    //11111111111111111111111111111111  - 补码 （反码+1）
+    //放在内存里是补码，但高位就不再是符号位，一个超大数
+    //因为sizeof 返回的是无符号数，所以将i也转变成无符号数，i的最高位将不是符号位，而是有效位
+    if (i &gt; sizeof(i))//sizeof()-计算变量/类型所占内存的大小 &gt;=0 无符号数
+    {
+        printf(&quot;&gt;\n&quot;);//&gt;
+    }
+    else
+    {
+        printf(&quot;&lt;\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+
+<h3 id="题目2">题目2</h3>
+
+<pre><code class="language-C++">int a, b, c;
+a = 5;
+c = ++a;// c=6 a=6
+b = ++c, c++, ++a, a++;//c=7 ,c=8 ,a=7,b=7,a=8
+b += a++ + c;//a=8,c=8,b=7,b=7+8+8=23,a=9   
+printf(&quot;a = %d b = %d c = %d\n:&quot;, a, b, c);//9 23 8
+</code></pre>
+
+<h3 id="统计二进制中1的个数-补码的二进制有几个1">统计二进制中1的个数【补码的二进制有几个1】</h3>
+
+<p>写一个函数返回参数二进制中1的个数</p>
+
+<p>比如：15   00001111 4个1</p>
+
+<ul>
+<li>主函数</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main()
+{
+    int a = 0;
+    scanf(&quot;%d&quot;, &amp;a);
+    //写一个函数求a的二进制（补码）表示中有几个1
+    int count = count_bit_one(a);
+    printf(&quot;count = %d\n&quot;, count);
+    //system(&quot;pause&quot;);//system库函数-执行系统命令-pause（暂停）
+    return 0;
+}
+</code></pre>
+
+<ol>
+<li><p>count_bit_one 法一</p>
+
+<pre><code class="language-C++">//13
+//000000000000000000000000000001101
+//-1
+//100000000000000000000000000000001 原码
+//111111111111111111111111111111110 反码
+//111111111111111111111111111111111 补码
+int count_bit_one(unsigned int n) // 无符号，解决负数
+{
+    int count = 0;
+    while (n)
+    {
+        if (n % 2 == 1)
+        {
+            count++;
+        }
+        n = n / 2;
+    }
+    return count;
+}
+</code></pre></li>
+
+<li><p>count_bit_one 法二</p>
+
+<pre><code class="language-C++">// -1
+//111111111111111111111111111111111 补码 
+//000000000000000000000000000000001 
+int count_bit_one(int n)
+{
+    int count = 0;
+    int i = 0;
+    for (i = 0; i &lt; 32; i++)
+    {
+        if (((n &gt;&gt; i) &amp; 1) == 1)// 每一位移到最低位，按位与1
+        {
+            count++;
+        }
+    }
+    return count;
+}
+</code></pre></li>
+
+<li><p><code>count_bit_one</code> 法三（最佳，高效）</p>
+
+<pre><code class="language-C++">//n = n&amp;(n-1)
+//n
+//13
+//1101 n      count++
+//1100 n-1
+//1100 n      count++
+//1011 n-1
+//1000 n      count++
+//0111 n-1
+//0000 n       跳出
+int count_bit_one(int n)
+{
+    int count = 0;
+    while (n)
+    {
+        n = n &amp; (n - 1);
+        count++;
+    }
+    return count;
+}
+</code></pre></li>
+</ol>
+
+<h3 id="求二进制中不同位的个数">求二进制中不同位的个数</h3>
+
+<p>两个int (32位)的整数m和n的二进制表达中有多少个位（bit）不同？</p>
+
+<pre><code>输入例子：1999 2299 
+输出例子：7
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int get_diff_bit(int m, int n)
+{
+    int tmp = m^n;// ^ 按位异或同为0,相异为1
+    int count = 0;
+    //return count_bit_one(tmp);
+    while (tmp)
+    {
+        tmp = tmp&amp;(tmp - 1);
+        count++;
+    }
+    return count;
+}
+
+int main()
+{
+    int m = 0;
+    int n = 0;
+    scanf(&quot;%d%d&quot;, &amp;m, &amp;n);
+    int count = get_diff_bit(m, n);
+    printf(&quot;count = %d\n&quot;, count);
+    return 0;
+}
+</code></pre>
+
+<h3 id="打印二进制的奇数位和偶数位">打印二进制的奇数位和偶数位</h3>
+
+<p>获取一个整数二进制序列中所有的偶数位和奇数位，分别打印出二进制序列</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+//00000000000000000000000000001010
+void print(int m)
+{
+    int i = 0;
+    printf(&quot;奇数位：\n&quot;);
+    for (i = 30; i &gt;= 0; i -= 2)
+    {
+        printf(&quot;%d &quot;, (m &gt;&gt; i) &amp; 1);
+    }
+    printf(&quot;\n&quot;);
+    printf(&quot;偶数位：\n&quot;);
+    for (i = 31; i &gt;= 1; i -= 2)
+    {
+        printf(&quot;%d &quot;, (m &gt;&gt; i) &amp; 1);
+    }
+    printf(&quot;\n&quot;);
+}
+
+int main()
+{
+    int m = 0;
+    scanf(&quot;%d&quot;, &amp;m);
+    print(m);
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/5/打印奇偶位.png" alt="Image text" /></p>
+
+<h3 id="交换两个变量-不创建临时变量">交换两个变量（不创建临时变量）</h3>
+
+<p>不允许创建临时变量，交换两个整数的内容</p>
+
+<ol>
+<li><p>临时变量</p>
+
+<pre><code class="language-C++">int a = 3;
+int b = 5;
+int tmp = 0;//临时变量
+printf(&quot;before: a=%d b=%d\n&quot;, a, b);
+tmp = a;
+a = b;
+b = tmp;
+</code></pre></li>
+
+<li><p>加减法-可能会溢出</p>
+
+<pre><code class="language-C++">int a = 3;
+int b = 5;
+a = a + b; //8
+b = a - b; //3
+a = a - b; //5
+</code></pre></li>
+
+<li><p>异或的方法</p>
+
+<pre><code class="language-C++">int a = 3; //011
+int b = 5; //101
+a = a^b;   //110
+b = a^b;   //011
+a = a^b;   //101
+</code></pre></li>
+</ol>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/4/" rel="next">数组</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/6/" rel="prev">指针</a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 2021-02-03
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

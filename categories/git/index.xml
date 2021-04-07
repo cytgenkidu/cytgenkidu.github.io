@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/categories/git/</link>
+    <description>Recent content in Git on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Wed, 10 Apr 2019 13:57:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/categories/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git简要说明</title>
+      <link>https://cytgenkidu.github.io/post/git-guide/</link>
+      <pubDate>Wed, 10 Apr 2019 13:57:00 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/git-guide/</guid>
+      <description>安装  下载git Mac OS X 版 下载git Windows版 下载git Linux 和 Unix版  配置Git 设置名字和邮箱地址
+git config --global user.name cytgenkidu git config --global user.email tgenkidu@163.com  检查配置信息,执行 git config --list
+ 更多自定义配置请查看。
+创建新仓库（repository） 创建repository(仓库)  建立本地新仓库 创建新文件夹，打开，然后执行 git init 创建新的 git 仓库。
+存储库克隆到新目录  创建一个本地仓库的克隆版本 git clone /path/to/repository 创建一个远程仓库的克隆版本 git clone username@host:/path/to/repository  Git工作流 Git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。 由此引出三个工作区域的概念：Git 仓库、工作目录以及暂存区域(Index)。
+ Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。 工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。 暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作`‘索引’&amp;rsquo;，不过一般说法还是叫暂存区域。   基本的 Git 工作流程如下：</description>
+    </item>
+    
+  </channel>
+</rss>

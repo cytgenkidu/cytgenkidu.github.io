@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JHipster on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/categories/jhipster/</link>
+    <description>Recent content in JHipster on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Fri, 12 Apr 2019 10:38:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/categories/jhipster/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序-实体建模</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/</link>
+      <pubDate>Fri, 12 Apr 2019 10:38:53 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/</guid>
+      <description>在本章中，我们将看到如何使用业务实体和模型。
+使用命令行生成实体 &amp;gt; jhipster entity Invoice  使用JHipster域语言进行实体建模 JHipster Domain Language (JDL)用于为JHipster应用程序创建域模型。它提供了一个简单且用户友好的DSL来描述实体及其关系(仅适用于SQL数据库)。
+JDL是为应用程序创建实体的推荐方法，它可以替代JHipster提供的实体生成器，在创建大量实体时，可能很难使用JHipster提供的实体生成器。JDL通常写在一个或多个扩展名为.jh的文件中。
+使用JDL进行实体建模 实体声明语法
+entity &amp;lt;entity name&amp;gt; ([&amp;lt;table name&amp;gt;]) { &amp;lt;field name&amp;gt; &amp;lt;type&amp;gt; [&amp;lt;validation&amp;gt;*] }   &amp;lt;entity name&amp;gt;是实体的名称，将用于类名和表名。可以使用可选的&amp;lt;Table name&amp;gt;参数重写表名。 &amp;lt;field name&amp;gt;是您希望用于实体的字段(属性)的名称，&amp;lt;type&amp;gt;是字段类型，如String、Integer等。  请参考JHipster 域语言 (JDL)，查看所有支持类型。
+ ID字段将自动创建，因此不需要在JDL中指定。 &amp;lt;validation&amp;gt;是可选的，可以根据字段类型支持的验证指定一个或多个字段的&amp;lt;validation&amp;gt;。对于max length和pattern等验证，可以在大括号中指定值。  示例如下：
+entity Customer { /** Name field */ name String required, age Integer, address String maxlength(100) pattern(/[a-Z0-9]+/) }  枚举也可以使用以下语法声明:
+enum &amp;lt;enum name&amp;gt; { &amp;lt;VALUE&amp;gt;* }  示例如下：</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序-文件结构与部分代码</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monolithic-structure/</link>
+      <pubDate>Thu, 11 Apr 2019 15:33:41 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monolithic-structure/</guid>
+      <description>文件结构   src: 这是源文件夹，其中包含主应用程序源文件和测试源文件。 webpack: 这个文件夹包含用于开发、生产和测试的所有webpack客户端构建配置。 gradle: 这个文件夹有gradle包装器和额外的gradle构建脚本，这些脚本将由主要的gradle构建文件使用(如果选择Maven, JHipster也提供了类似的包装器)。 build.gradle: 这是gradle构建文件，它指定了应用程序的构建生命周期。它还指定了服务器端依赖项。构建使用gradle中定义的gradle.properties。还可以找到一个名为gradlew (gradlew.bat，用于Windows)的可执行文件，它允许您使用Gradle而无需安装它。 .yo-rc.json: 这是JHipster的配置文件。这个文件存储了我们在创建应用程序时选择的选项，并用于应用程序的更新和升级。 package.json: 这是NPM配置文件，它指定了所有客户端依赖项、客户端构建依赖项和任务。 tsconfig.json: 这是Typescript的配置。还有tsconfig-aot.json,用于Angular AOT (Ahead-of-Time) compilation。 tslint.json: 这是Typescript的lint配置。  src src文件夹内结构
+main  docker: 保存应用程序的Dockerfile，并保存所选选项的docker配置。 java: 保存应用程序的主要java源代码。 resources: 保存Spring引导配置文件、Liquibase更改日志以及应用程序使用的静态资源，如服务器端i18n文件和电子邮件模板。 webapp: 保存Angular应用程序源代码和客户端静态内容，如图像、样式表、i18n文件等。  test  java:保存服务器端单元和集成测试源。 javascript:为客户端应用程序保存Karma单元测试规范和量角器端到端规范。 resources:保存应用程序用于测试的Spring配置文件和静态资源，如服务器端i18n文件和电子邮件模板。  服务端src/main/java src/main/java文件夹内重要部分。
+ ShopApp.java 这是应用程序的主入口类。由于这是一个Spring引导应用程序，主类是可执行的，您可以通过在IDE中运行这个类来启动应用程序。
+注解 Spring JavaConfig注解
+@SpringBootApplication @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})   @SpringBootApplication:是一个复合注解，包括@ComponentScan，和@SpringBootConfiguration，@EnableAutoConfiguration。  @ComponentScan：扫描当前包及其子包下被@Component，@Controller，@Service，@Repository注解标记的类并纳入到spring容器中进行管理。 @EnableAutoConfiguration：作用是启动自动的配置，意思就是Springboot根据你添加的jar包来配置你项目的默认配置。 @SpringBootConfiguration：继承自@Configuration，二者功能也一致，标注当前类是配置类，并会将当前类内声明的一个或多个以@Bean注解标记的方法的实例纳入到srping容器中，并且实例名就是方法名。  @EnableConfigurationProperties：帮助通过属性文件注册应用程序的其他配置。  main方法 public static void main(String[] args) { SpringApplication app = new SpringApplication(ShopApp.</description>
+    </item>
+    
+    <item>
+      <title>使用JHipster构建单一的Web应用程序</title>
+      <link>https://cytgenkidu.github.io/post/jhipster-monolithic-build/</link>
+      <pubDate>Wed, 10 Apr 2019 11:30:47 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/jhipster-monolithic-build/</guid>
+      <description>准备 从Oracle网站安装Java 8。
+从Node.js网站安装Node.js（LTS 64位版本，不支持非LTS版本）。
+如使用docker，请从docker网站安装docker。
+安装JHipster 使用yarn安装，在终端运行:
+yarn add global generator-jhipster
+使用npm安装,在终端运行：
+npm install -g generator-jhipster
+等待安装完毕，执行jhipster --version ，你将会看到版本信息。
+ 生成应用 在此之前,可以先准备一个github repository(仓库)，之后将在这个仓库上创建许多Git Branchs(分支)。
+可以查看本博客关于Git简要说明。
+准备工作区 为工作区创建一个新文件夹,导航到该文件夹。
+mkdir my-test-app cd my-test-app  为应用创建一个文件夹，导航到该文件夹。
+mkdir my-shop cd my-shop  在开始前执行jhipster --version确保准备完成，最好使用最新版本的工具,执行yarn global upgrade generator-jhipster或npm update -g generator-jhipster更新版本。
+使用JHipster生成代码 生成代码只需要在应用文件夹下终端执行jhipster命令，终端将输出。
+ JHipster将询问一些问题，以获得有关所需的不同选项输入。
+? (1/19) Which *type* of application would you like to create? (Use arrow keys) //选择创建的应用类型 &amp;gt; Monolithic application (recommended for simple projects) //综合应用 Microservice application //微服务应用 Microservice gateway //微服务网关 [BETA] JHipster UAA server (for microservice OAuth2 authentication) //微服务OAuth2的身份认证服务  服务器选择 ?</description>
+    </item>
+    
+  </channel>
+</rss>

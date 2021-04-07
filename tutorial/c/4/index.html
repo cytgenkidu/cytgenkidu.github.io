@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="一维数组的创建和初始化 数组的创建 数组是一组相同类型元素的集合。 数组的创建方式
+type_t arr_name [const_n]; //type_t 是指数组的元素类型 //const_n 是一个常量表达式，用来指定数组的大小  素组创建的实例
+注：数组创建， [] 中要给一个常量才可以，不能使用变量。
+//创建一个数组-存放整形-10个 int arr[5] = {1, 2, 3}; //不完全初始化，剩下的元素默认初始化为0 char arr2[5] = {&#39;a&#39;, &#39;b&#39;}; char arr3[5] = &quot;ab&quot;; char arr4[] = &quot;abcdef&quot;; // int n = 5; // char ch[n];//err printf(&quot;%d\n&quot;, sizeof(arr4)); //7 sizeof 计算变量、数组、类型的大小-单位是字节- 操作符 printf(&quot;%d\n&quot;, strlen(arr4)); //6 strlen 是求字符串长度的，只针对字符串求长度- 库函数-使用得引用头文件  数组的初始化 数组的初始化是指，在创建数组的同时给数组的内容一些合理初始值（初始化）。
+char arr1[] = &quot;abc&quot;; char arr2[] = {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;}; printf(&quot;%d\n&quot;, sizeof(arr1)); //4 printf(&quot;%d\n&quot;, sizeof(arr2)); //3 printf(&quot;%d\n&quot;, strlen(arr1)); //3 printf(&quot;%d\n&quot;, strlen(arr2)); //随机数，没有\0结束字符  一维数组的使用 对于数组的使用我们之前介绍了一个操作符： [] ，下标引用操作符。它其实就数组访问的操作符。">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/4/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/4/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/4/">
+  <meta property="og:title" content="数组 | Cytgenkidu">
+  <meta property="og:description" content="一维数组的创建和初始化 数组的创建 数组是一组相同类型元素的集合。 数组的创建方式
+type_t arr_name [const_n]; //type_t 是指数组的元素类型 //const_n 是一个常量表达式，用来指定数组的大小  素组创建的实例
+注：数组创建， [] 中要给一个常量才可以，不能使用变量。
+//创建一个数组-存放整形-10个 int arr[5] = {1, 2, 3}; //不完全初始化，剩下的元素默认初始化为0 char arr2[5] = {&#39;a&#39;, &#39;b&#39;}; char arr3[5] = &quot;ab&quot;; char arr4[] = &quot;abcdef&quot;; // int n = 5; // char ch[n];//err printf(&quot;%d\n&quot;, sizeof(arr4)); //7 sizeof 计算变量、数组、类型的大小-单位是字节- 操作符 printf(&quot;%d\n&quot;, strlen(arr4)); //6 strlen 是求字符串长度的，只针对字符串求长度- 库函数-使用得引用头文件  数组的初始化 数组的初始化是指，在创建数组的同时给数组的内容一些合理初始值（初始化）。
+char arr1[] = &quot;abc&quot;; char arr2[] = {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;}; printf(&quot;%d\n&quot;, sizeof(arr1)); //4 printf(&quot;%d\n&quot;, sizeof(arr2)); //3 printf(&quot;%d\n&quot;, strlen(arr1)); //3 printf(&quot;%d\n&quot;, strlen(arr2)); //随机数，没有\0结束字符  一维数组的使用 对于数组的使用我们之前介绍了一个操作符： [] ，下标引用操作符。它其实就数组访问的操作符。">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2021-02-03T00:00:00&#43;01:00">
+  
+  
+  <meta property="article:modified_time" content="2021-02-03T00:00:00&#43;01:00">
+  
+  
+
+  
+
+  
+
+  <title>数组 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#一维数组的创建和初始化">一维数组的创建和初始化</a>
+<ul>
+<li><a href="#数组的创建">数组的创建</a></li>
+<li><a href="#数组的初始化">数组的初始化</a></li>
+</ul></li>
+<li><a href="#一维数组的使用">一维数组的使用</a></li>
+<li><a href="#一维数组在内存中的存储">一维数组在内存中的存储</a></li>
+<li><a href="#二维数组的创建和初始化">二维数组的创建和初始化</a></li>
+<li><a href="#二维数组的使用">二维数组的使用</a></li>
+<li><a href="#二维数组在内存中的存储">二维数组在内存中的存储</a></li>
+<li><a href="#数组作为函数参数">数组作为函数参数</a>
+<ul>
+<li><a href="#冒泡排序函数">冒泡排序函数</a></li>
+</ul></li>
+<li><a href="#练习">练习</a>
+<ul>
+<li><a href="#创建一个整形数组-完成数组的操作">创建一个整形数组，完成数组的操作</a></li>
+<li><a href="#将数组a中的内容和数组b中的内容进行交换-数组一样大">将数组A中的内容和数组B中的内容进行交换。（数组一样大）</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name">数组</h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="一维数组的创建和初始化">一维数组的创建和初始化</h2>
+
+<h3 id="数组的创建">数组的创建</h3>
+
+<p>数组是一组相同类型元素的集合。 数组的创建方式</p>
+
+<pre><code class="language-C++">type_t   arr_name   [const_n];
+//type_t 是指数组的元素类型
+//const_n 是一个常量表达式，用来指定数组的大小
+</code></pre>
+
+<p>素组创建的实例</p>
+
+<p><strong>注</strong>：数组创建， [] 中要给一个常量才可以，不能使用变量。</p>
+
+<pre><code class="language-C++">//创建一个数组-存放整形-10个
+int arr[5] = {1, 2, 3}; //不完全初始化，剩下的元素默认初始化为0
+char arr2[5] = {'a', 'b'};
+char arr3[5] = &quot;ab&quot;;
+char arr4[] = &quot;abcdef&quot;;
+// int n = 5;
+// char ch[n];//err
+printf(&quot;%d\n&quot;, sizeof(arr4)); //7  sizeof 计算变量、数组、类型的大小-单位是字节- 操作符
+printf(&quot;%d\n&quot;, strlen(arr4)); //6  strlen 是求字符串长度的，只针对字符串求长度- 库函数-使用得引用头文件
+</code></pre>
+
+<p><img src="../img/4/数组创建.png" alt="Image text" /></p>
+
+<h3 id="数组的初始化">数组的初始化</h3>
+
+<p>数组的初始化是指，在创建数组的同时给数组的内容一些合理初始值（初始化）。</p>
+
+<pre><code class="language-C++">char arr1[] = &quot;abc&quot;;
+char arr2[] = {'a', 'b', 'c'};
+printf(&quot;%d\n&quot;, sizeof(arr1)); //4
+printf(&quot;%d\n&quot;, sizeof(arr2)); //3
+printf(&quot;%d\n&quot;, strlen(arr1)); //3
+printf(&quot;%d\n&quot;, strlen(arr2)); //随机数，没有\0结束字符
+</code></pre>
+
+<p><img src="../img/4/数组创建2.png" alt="Image text" /></p>
+
+<h2 id="一维数组的使用">一维数组的使用</h2>
+
+<p>对于数组的使用我们之前介绍了一个操作符： [] ，下标引用操作符。它其实就数组访问的操作符。</p>
+
+<pre><code class="language-C++">char arr[] = &quot;abcdef&quot;; //[a][b][c][d][e][f][\0]
+printf(&quot;%c\n&quot;, arr[3]);//d
+int i = 0;
+for (i = 0; i &lt; (int)strlen(arr); i++)
+{
+    printf(&quot;%c &quot;, arr[i]);
+}
+</code></pre>
+
+<p><strong>总结:</strong></p>
+
+<ol>
+<li>数组是使用下标来访问的，下标是从0开始。</li>
+<li>数组的大小可以通过计算得到。<code>int sz = sizeof(arr) / sizeof(arr[0]);</code></li>
+</ol>
+
+<h2 id="一维数组在内存中的存储">一维数组在内存中的存储</h2>
+
+<pre><code class="language-C++">int arr[10] = {0}; // 数组在内存中是连续存放的。
+int i = 0;
+for (i = 0; i &lt; sizeof(arr) / sizeof(arr[0]); ++i)
+{
+    printf(&quot;&amp;arr[%d] = %p\n&quot;, i, &amp;arr[i]); //10进制：0-9  16进制 0-9 a b c d e f
+}
+</code></pre>
+
+<p><img src="../img/4/数组存储.png" alt="Image text" /></p>
+
+<p><strong>数组在内存中是连续存放的。</strong>
+<img src="../img/4/数组存储2.png" alt="Image text" /></p>
+
+<h2 id="二维数组的创建和初始化">二维数组的创建和初始化</h2>
+
+<pre><code class="language-C++">int arr[3][4] = {1, 2, 3, 4, 5};
+int arr1[3][4] = {{1, 2, 3}, {4, 5}};
+// int arr2[][] = {1, 2, 3, 4, 5};//err
+// int arr3[][] = {{1, 2, 3}, {4, 5}};//err
+// int arr4[2][] = {{1, 2, 3}, {4, 5}};//err
+int arr5[][4] = {{1, 2, 3}, {4, 5}}; //行可以省略，列不可省略
+//char ch[5][6];
+</code></pre>
+
+<p><img src="../img/4/二维数组创建.png" alt="Image text" /></p>
+
+<h2 id="二维数组的使用">二维数组的使用</h2>
+
+<pre><code class="language-C++">int arr[3][4] = {0};
+int i = 0;
+//赋值
+for (i = 0; i &lt; 3; i++)
+{
+    int j = 0;
+    for (j = 0; j &lt; 4; j++)
+    {
+        arr[i][j] = i * 4 + j;
+    }
+}
+//使用
+for (i = 0; i &lt; 3; i++)
+{
+    int j = 0;
+    for (j = 0; j &lt; 4; j++)
+    {
+        printf(&quot;%2d &quot;, arr[i][j]);
+    }
+    printf(&quot;\n&quot;);
+}
+</code></pre>
+
+<p><img src="../img/4/二维数组使用.png" alt="Image text" /></p>
+
+<h2 id="二维数组在内存中的存储">二维数组在内存中的存储</h2>
+
+<pre><code class="language-C++">int arr[3][4] = {{1, 2, 3}, {4, 5}};
+int i = 0;
+//存储
+for (i = 0; i &lt; 3; i++)
+{
+    int j = 0;
+    for (j = 0; j &lt; 4; j++)
+    {
+        printf(&quot;&amp;arr[%d][%d] = %p\n&quot;, i, j, &amp;arr[i][j]);
+    }
+}
+</code></pre>
+
+<p><img src="../img/4/二维数组存储.png" alt="Image text" />
+<strong>二维数组在内存中也是连续存储的。</strong>
+<img src="../img/4/二维数组存储2.png" alt="Image text" /></p>
+
+<h2 id="数组作为函数参数">数组作为函数参数</h2>
+
+<p><strong>数组名是数组首元素的地址。（有两个例外）</strong></p>
+
+<ol>
+<li>sizeof(数组名)，计算整个数组的大小，sizeof内部单独放一个数组名，数组名表示整个数组。</li>
+<li>&amp;数组名，取出的是数组的地址。&amp;数组名，数组名表示整个数组。</li>
+</ol>
+
+<p>除此1,2两种情况之外，所有的数组名都表示数组首元素的地址。</p>
+
+<pre><code class="language-C++">int arr[10] = {1, 2, 3, 4, 5};
+printf(&quot;%p\n&quot;, arr);
+printf(&quot;%p\n&quot;, arr + 1);
+
+printf(&quot;%p\n&quot;, &amp;arr[0]);
+printf(&quot;%p\n&quot;, &amp;arr[0] + 1);
+
+printf(&quot;%p\n&quot;, &amp;arr);     //数组的地址≠数组首元素的地址
+printf(&quot;%p\n&quot;, &amp;arr + 1); //意义不同，增加了5*4个字节，开始取的是1的地址，+1之后是取5后面的地址
+
+printf(&quot;%d\n&quot;, *arr);
+</code></pre>
+
+<p><img src="../img/4/数组名.png" alt="Image text" /></p>
+
+<h3 id="冒泡排序函数">冒泡排序函数</h3>
+
+<p>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</p>
+
+<p>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。</p>
+
+<p>针对所有的元素重复以上的步骤，除了最后一个。</p>
+
+<p>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</p>
+
+<p><img src="../img/4/bubbleSort.gif" alt="Image text" /></p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+void bubble_sort(int arr[], int sz)//int *arr
+{
+    int i = 0; // 确定冒泡排序的趟数
+    // int sz = sizeof(arr) / sizeof(arr[0]); //这样对吗？ 不对
+    for (i = 0; i &lt; sz - 1; i++)
+    {
+        int flag = 1; //假设这一趟要排序的数据已经有序
+        //每一趟冒泡排序
+        int j = 0;
+        for (j = 0; j &lt; sz - i - 1; j++)
+        {
+            if (arr[j] &gt; arr[j + 1])
+            {
+                int tmp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
+                flag = 0; //本趟排序的数据其实不完全有序
+            }
+        }
+        if (flag == 1)
+        {
+            break;// if不能break,这个break是跳出外层循环
+        }
+    }
+}
+int main()
+{
+    int arr[] = {3, 1, 7, 5, 8, 9, 0, 2, 4, 6}; //对arr进行排序，排成升序
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    // bubble_sort(arr);                           //是否可以正常排序？
+    // arr是数组，我们对数组arr进行传参，实际上传递过去的是数组arr首元素的地址 &amp;arr[0]
+    bubble_sort(arr,sz); // 冒泡排序函数
+    int i = 0;
+    for (i = 0; i &lt; sizeof(arr) / sizeof(arr[0]); i++)
+    {
+        printf(&quot;%d &quot;, arr[i]);
+    }
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/4/冒泡排序.png" alt="Image text" /></p>
+
+<h2 id="练习">练习</h2>
+
+<h3 id="创建一个整形数组-完成数组的操作">创建一个整形数组，完成数组的操作</h3>
+
+<ol>
+<li>实现函数init()初始化数组为全0</li>
+<li>实现print()打印数组的每个元素</li>
+<li>实现reverse()完成数组元素的逆置</li>
+</ol>
+
+<pre><code class="language-C++">void Init(int arr[], int sz)
+{
+    int i = 0;
+    for (i = 0; i &lt; sz; i++)
+    {
+        arr[i] = 0;
+    }
+}
+void Print(int arr[], int sz)
+{
+    int i = 0;
+    for (i = 0; i &lt; sz; i++)
+    {
+        printf(&quot;%d &quot;, arr[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+void Reverse(int arr[], int sz)
+{
+    int left = 0;
+    int right = sz - 1;
+
+    while (left&lt;right)
+    {
+        int tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
+        left++;
+        right--;
+    }
+}
+int main()
+{
+    int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+    int sz = sizeof(arr) / sizeof(arr[0]);
+    //Init(arr, sz);//把数组初始化0
+    Print(arr, sz);//打印  1 2 3 4 5 6 7 8 9 10
+    Reverse(arr, sz);
+    Print(arr, sz);//打印  10 9 8 7 6 5 4 3 2 1
+    return  0;
+}
+</code></pre>
+
+<h3 id="将数组a中的内容和数组b中的内容进行交换-数组一样大">将数组A中的内容和数组B中的内容进行交换。（数组一样大）</h3>
+
+<pre><code class="language-C++">int arr1[] = { 1, 3, 5, 7, 9 };//不能直接与tmp[5]={0}交换，因为arr1存储的是arr1首元素地址
+int arr2[] = { 2, 4, 6, 8, 0 };
+int tmp = 0;
+int i = 0;
+int sz = sizeof(arr1) / sizeof(arr1[0]);
+for (i = 0; i &lt; sz; i++)
+{
+    tmp = arr1[i];
+    arr1[i] = arr2[i];
+    arr2[i] = tmp;
+}
+</code></pre>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/3/" rel="next">函数</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/5/" rel="prev">操作符详解</a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 2021-02-03
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

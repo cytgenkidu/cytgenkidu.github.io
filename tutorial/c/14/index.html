@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="什么是文件 磁盘上的文件是文件。
+但是在程序设计中，我们一般谈的文件有两种：程序文件、数据文件
+程序文件 包括源程序文件（后缀为.c）,目标文件（windows环境后缀为.obj）,可执行程序（windows环境后缀为.exe）。
+数据文件 文件的内容不一定是程序，而是程序运行时读写的数据，比如程序运行需要从中读取数据的文件，或者输出内容的文件。
+本章讨论的是数据文件。
+在以前各章所处理数据的输入输出都是以终端为对象的，即从终端的键盘输入数据，运行结果显示到显示器上。
+其实有时候我们会把信息输出到磁盘上，当需要的时候再从磁盘上把数据读取到内存中使用，这里处理的就是磁盘上文件。
+文件名 一个文件要有一个唯一的文件标识，以便用户识别和引用。
+文件名包含3部分：文件路径&#43;文件名主干&#43;文件后缀
+例如：c:\code\test.txt 为了方便起见，文件标识常被称为文件名。
+文件类型 根据数据的组织形式，数据文件被称为文本文件或者二进制文件。
+数据在内存中以二进制的形式存储，如果不加转换的输出到外存，就是二进制文件。如果要求在外存上以ASCII码的形式存储，则需要在存储前转换。以ASCII字符的形式存储的文件就是文本文件。
+一个数据在内存中是怎么存储的呢？
+字符一律以ASCII形式存储，数值型数据既可以用ASCII形式存储，也可以使用二进制形式存储。
+如有整数10000，如果以ASCII码的形式输出到磁盘，则磁盘中占用5个字节（每个字符一个字节），而二进制形式输出，则在磁盘上只占4个字节（VS2017测试）。
+#include &lt;stdio.h&gt; int main() { int a = 10000; FILE* pf = fopen(&quot;test.txt&quot;, &quot;wb&quot;); fwrite(&amp;a, 4, 1, pf);//二进制的形式写到文件中 fclose(pf); pf = NULL; return 0; }  文件缓冲区 ANSIC 标准采用“缓冲文件系统”处理的数据文件的，所谓缓冲文件系统是指系统自动地在内存中为程序中每一个正在使用的文件开辟一块“文件缓冲区”。从内存向磁盘输出数据会先送到内存中的缓冲区，装满缓冲区后才一起送到磁盘上。如果从磁盘向计算机读入数据，则从磁盘文件中读取数据输入到内存缓冲区（充满缓冲区），然后再从缓冲区逐个地将数据送到程序数据区（程序变量等）。缓冲区的大小根据C编译系统决定的。
+文件指针 缓冲文件系统中，关键的概念是“文件类型指针”，简称“文件指针”。
+每个被使用的文件都在内存中开辟了一个相应的文件信息区，用来存放文件的相关信息（如文件的名字，文件状态及文件当前的位置等）。这些信息是保存在一个结构体变量中的。该结构体类型是有系统声明的，取名FILE.
+struct _iobuf { char *_ptr; int _cnt; char *_base; int _flag; int _file; int _charbuf; int _bufsiz; char *_tmpfname; }; typedef struct _iobuf FILE;  不同的C编译器的FILE类型包含的内容不完全相同，但是大同小异。">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/14/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/14/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/14/">
+  <meta property="og:title" content=" | Cytgenkidu">
+  <meta property="og:description" content="什么是文件 磁盘上的文件是文件。
+但是在程序设计中，我们一般谈的文件有两种：程序文件、数据文件
+程序文件 包括源程序文件（后缀为.c）,目标文件（windows环境后缀为.obj）,可执行程序（windows环境后缀为.exe）。
+数据文件 文件的内容不一定是程序，而是程序运行时读写的数据，比如程序运行需要从中读取数据的文件，或者输出内容的文件。
+本章讨论的是数据文件。
+在以前各章所处理数据的输入输出都是以终端为对象的，即从终端的键盘输入数据，运行结果显示到显示器上。
+其实有时候我们会把信息输出到磁盘上，当需要的时候再从磁盘上把数据读取到内存中使用，这里处理的就是磁盘上文件。
+文件名 一个文件要有一个唯一的文件标识，以便用户识别和引用。
+文件名包含3部分：文件路径&#43;文件名主干&#43;文件后缀
+例如：c:\code\test.txt 为了方便起见，文件标识常被称为文件名。
+文件类型 根据数据的组织形式，数据文件被称为文本文件或者二进制文件。
+数据在内存中以二进制的形式存储，如果不加转换的输出到外存，就是二进制文件。如果要求在外存上以ASCII码的形式存储，则需要在存储前转换。以ASCII字符的形式存储的文件就是文本文件。
+一个数据在内存中是怎么存储的呢？
+字符一律以ASCII形式存储，数值型数据既可以用ASCII形式存储，也可以使用二进制形式存储。
+如有整数10000，如果以ASCII码的形式输出到磁盘，则磁盘中占用5个字节（每个字符一个字节），而二进制形式输出，则在磁盘上只占4个字节（VS2017测试）。
+#include &lt;stdio.h&gt; int main() { int a = 10000; FILE* pf = fopen(&quot;test.txt&quot;, &quot;wb&quot;); fwrite(&amp;a, 4, 1, pf);//二进制的形式写到文件中 fclose(pf); pf = NULL; return 0; }  文件缓冲区 ANSIC 标准采用“缓冲文件系统”处理的数据文件的，所谓缓冲文件系统是指系统自动地在内存中为程序中每一个正在使用的文件开辟一块“文件缓冲区”。从内存向磁盘输出数据会先送到内存中的缓冲区，装满缓冲区后才一起送到磁盘上。如果从磁盘向计算机读入数据，则从磁盘文件中读取数据输入到内存缓冲区（充满缓冲区），然后再从缓冲区逐个地将数据送到程序数据区（程序变量等）。缓冲区的大小根据C编译系统决定的。
+文件指针 缓冲文件系统中，关键的概念是“文件类型指针”，简称“文件指针”。
+每个被使用的文件都在内存中开辟了一个相应的文件信息区，用来存放文件的相关信息（如文件的名字，文件状态及文件当前的位置等）。这些信息是保存在一个结构体变量中的。该结构体类型是有系统声明的，取名FILE.
+struct _iobuf { char *_ptr; int _cnt; char *_base; int _flag; int _file; int _charbuf; int _bufsiz; char *_tmpfname; }; typedef struct _iobuf FILE;  不同的C编译器的FILE类型包含的内容不完全相同，但是大同小异。">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  
+  
+
+  
+
+  
+
+  <title> | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#什么是文件">什么是文件</a>
+<ul>
+<li><a href="#程序文件">程序文件</a></li>
+<li><a href="#数据文件">数据文件</a></li>
+</ul></li>
+<li><a href="#文件名">文件名</a></li>
+<li><a href="#文件类型">文件类型</a></li>
+<li><a href="#文件缓冲区">文件缓冲区</a></li>
+<li><a href="#文件指针">文件指针</a></li>
+<li><a href="#文件的打开和关闭">文件的打开和关闭</a></li>
+<li><a href="#文件的顺序读写">文件的顺序读写</a>
+<ul>
+<li><a href="#对比一组函数">对比一组函数</a></li>
+<li><a href="#fputc-http-www-cplusplus-com-reference-cstdio-fputc-kw-fputc"><a href="http://www.cplusplus.com/reference/cstdio/fputc/?kw=fputc" target="_blank">fputc</a></a></li>
+<li><a href="#fgetc-http-www-cplusplus-com-reference-cstdio-fgetc-kw-fgetc"><a href="http://www.cplusplus.com/reference/cstdio/fgetc/?kw=fgetc" target="_blank">fgetc</a></a></li>
+<li><a href="#fgets-http-www-cplusplus-com-reference-cstdio-fgets-kw-fgets"><a href="http://www.cplusplus.com/reference/cstdio/fgets/?kw=fgets" target="_blank">fgets</a></a></li>
+<li><a href="#fputs-http-www-cplusplus-com-reference-cstdio-fputs-kw-fputs"><a href="http://www.cplusplus.com/reference/cstdio/fputs/?kw=fputs" target="_blank">fputs</a></a></li>
+<li><a href="#fscanf-http-www-cplusplus-com-reference-cstdio-fscanf-kw-fscanf"><a href="http://www.cplusplus.com/reference/cstdio/fscanf/?kw=fscanf" target="_blank">fscanf</a></a></li>
+<li><a href="#fprintf-http-www-cplusplus-com-reference-cstdio-fprintf-kw-fprintf"><a href="http://www.cplusplus.com/reference/cstdio/fprintf/?kw=fprintf" target="_blank">fprintf</a></a></li>
+<li><a href="#sscanf-http-www-cplusplus-com-reference-cstdio-sscanf-kw-sscanf-和-sprintf-http-www-cplusplus-com-reference-cstdio-sprintf-kw-sprintf"><a href="http://www.cplusplus.com/reference/cstdio/sscanf/?kw=sscanf" target="_blank">sscanf</a> 和 <a href="http://www.cplusplus.com/reference/cstdio/sprintf/?kw=sprintf" target="_blank">sprintf</a></a></li>
+<li><a href="#fwrite-http-www-cplusplus-com-reference-cstdio-fwrite-kw-fwrite"><a href="http://www.cplusplus.com/reference/cstdio/fwrite/?kw=fwrite" target="_blank">fwrite</a></a></li>
+<li><a href="#fread-http-www-cplusplus-com-reference-cstdio-fread-kw-fread"><a href="http://www.cplusplus.com/reference/cstdio/fread/?kw=fread" target="_blank">fread</a></a></li>
+</ul></li>
+<li><a href="#文件的随机读写">文件的随机读写</a>
+<ul>
+<li><a href="#fseek-http-www-cplusplus-com-reference-cstdio-fseek-kw-fseek"><a href="http://www.cplusplus.com/reference/cstdio/fseek/?kw=fseek" target="_blank">fseek</a></a></li>
+<li><a href="#ftell-http-www-cplusplus-com-reference-cstdio-ftell-kw-ftell"><a href="http://www.cplusplus.com/reference/cstdio/ftell/?kw=ftell" target="_blank">ftell</a></a></li>
+<li><a href="#rewind-http-www-cplusplus-com-reference-cstdio-rewind-kw-rewind"><a href="http://www.cplusplus.com/reference/cstdio/rewind/?kw=rewind" target="_blank">rewind</a></a></li>
+</ul></li>
+<li><a href="#文件结束的判定">文件结束的判定</a>
+<ul>
+<li><a href="#被错误使用的-feof-http-www-cplusplus-com-reference-cstdio-feof-kw-feof">被错误使用的 <a href="http://www.cplusplus.com/reference/cstdio/feof/?kw=feof" target="_blank">feof</a></a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name"></h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="什么是文件">什么是文件</h2>
+
+<p>磁盘上的文件是文件。</p>
+
+<p>但是在程序设计中，我们一般谈的文件有两种：程序文件、数据文件</p>
+
+<h3 id="程序文件">程序文件</h3>
+
+<p>包括源程序文件（后缀为.c）,目标文件（windows环境后缀为.obj）,可执行程序（windows环境后缀为.exe）。</p>
+
+<h3 id="数据文件">数据文件</h3>
+
+<p>文件的内容不一定是程序，而是程序运行时读写的数据，比如程序运行需要从中读取数据的文件，或者输出内容的文件。</p>
+
+<p>本章讨论的是数据文件。</p>
+
+<p>在以前各章所处理数据的输入输出都是以终端为对象的，即从终端的键盘输入数据，运行结果显示到显示器上。</p>
+
+<p>其实有时候我们会把信息输出到磁盘上，当需要的时候再从磁盘上把数据读取到内存中使用，这里处理的就是磁盘上文件。</p>
+
+<h2 id="文件名">文件名</h2>
+
+<p>一个文件要有一个唯一的文件标识，以便用户识别和引用。</p>
+
+<p>文件名包含3部分：文件路径+文件名主干+文件后缀</p>
+
+<p>例如：<code>c:\code\test.txt</code>
+为了方便起见，文件标识常被称为文件名。</p>
+
+<h2 id="文件类型">文件类型</h2>
+
+<p>根据数据的组织形式，数据文件被称为<strong>文本文件</strong>或者<strong>二进制文件</strong>。</p>
+
+<p>数据在内存中以二进制的形式存储，如果不加转换的输出到外存，就是<strong>二进制文件</strong>。如果要求在外存上以ASCII码的形式存储，则需要在存储前转换。以ASCII字符的形式存储的文件就是<strong>文本文件</strong>。</p>
+
+<p>一个数据在内存中是怎么存储的呢？</p>
+
+<p>字符一律以ASCII形式存储，数值型数据既可以用ASCII形式存储，也可以使用二进制形式存储。</p>
+
+<p>如有整数10000，如果以ASCII码的形式输出到磁盘，则磁盘中占用5个字节（每个字符一个字节），而二进制形式输出，则在磁盘上只占4个字节（VS2017测试）。</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 10000;
+    FILE* pf = fopen(&quot;test.txt&quot;, &quot;wb&quot;);
+    fwrite(&amp;a, 4, 1, pf);//二进制的形式写到文件中
+    fclose(pf);
+    pf = NULL;
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/14/10000.png" alt="Image Text" />
+<img src="../img/14/打开方式.png" alt="Image Text" />
+<img src="../img/14/test.png" alt="Image Text" /></p>
+
+<h2 id="文件缓冲区">文件缓冲区</h2>
+
+<p>ANSIC 标准采用“缓冲文件系统”处理的数据文件的，所谓缓冲文件系统是指系统自动地在内存中为程序中每一个正在使用的文件开辟一块“文件缓冲区”。从内存向磁盘输出数据会先送到内存中的缓冲区，装满缓冲区后才一起送到磁盘上。如果从磁盘向计算机读入数据，则从磁盘文件中读取数据输入到内存缓冲区（充满缓冲区），然后再从缓冲区逐个地将数据送到程序数据区（程序变量等）。缓冲区的大小根据C编译系统决定的。</p>
+
+<p><img src="../img/14/缓冲区.png" alt="Image Text" /></p>
+
+<h2 id="文件指针">文件指针</h2>
+
+<p>缓冲文件系统中，关键的概念是“<strong>文件类型指针</strong>”，简称“<strong>文件指针</strong>”。</p>
+
+<p>每个被使用的文件都在内存中开辟了一个相应的文件信息区，用来存放文件的相关信息（如文件的名字，文件状态及文件当前的位置等）。这些信息是保存在一个结构体变量中的。该结构体类型是有系统声明的，取名<strong>FILE</strong>.</p>
+
+<pre><code class="language-C++">struct _iobuf {
+        char *_ptr;
+        int   _cnt;
+        char *_base;
+        int   _flag;
+        int   _file;
+        int   _charbuf;
+        int   _bufsiz;
+        char *_tmpfname;
+       };
+typedef struct _iobuf FILE;
+</code></pre>
+
+<p>不同的C编译器的FILE类型包含的内容不完全相同，但是大同小异。</p>
+
+<p>每当打开一个文件的时候，系统会根据文件的情况自动创建一个FILE结构的变量，并填充其中的信息，使用者不必关心细节。</p>
+
+<p>一般都是通过一个<code>FILE的指针来维护这个FILE结构的变量，这样使用起来更加方便。</code>
+下面我们可以创建一个FILE*的指针变量:</p>
+
+<pre><code class="language-C++">FILE* pf;//文件指针变量
+</code></pre>
+
+<p>定义pf是一个指向FILE类型数据的指针变量。可以使pf指向某个文件的文件信息区（是一个结构体变量）。通过该文件信息区中的信息就能够访问该文件。也就是说，通过文件指针变量能够找到与它关联的文件。
+比如：</p>
+
+<p><img src="../img/14/文件信息区.png" alt="Image Text" /></p>
+
+<h2 id="文件的打开和关闭">文件的打开和关闭</h2>
+
+<p>文件在读写之前应该先<strong>打开文件</strong>，在使用结束之后应该<strong>关闭文件</strong>。</p>
+
+<p>在编写程序的时候，在打开文件的同时，都会返回一个FILE*的指针变量指向该文件，也相当于建立了指针和文件的关系。</p>
+
+<p>ANSIC 规定使用<a href="http://www.cplusplus.com/reference/cstdio/fopen/?kw=fopen" target="_blank">fopen</a>函数来打开文件，<a href="http://www.cplusplus.com/reference/cstdio/fclose/?kw=fclose" target="_blank">fclose</a>来关闭文件。</p>
+
+<pre><code class="language-C++">FILE * fopen ( const char * filename, const char * mode );
+int fclose ( FILE * stream );
+</code></pre>
+
+<p>打开方式如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">使用方式</th>
+<th align="left">含义</th>
+<th align="left">如果指定文件不存在</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">&ldquo;r”（只读）</td>
+<td align="left">为了输入数据，打开一个已经存在的文本文件</td>
+<td align="left">出错</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;w”（只写）</td>
+<td align="left">为了输出数据，打开一个文本文件</td>
+<td align="left">建立一个新的文件</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;a”（追加）</td>
+<td align="left">向文本文件尾添加数据</td>
+<td align="left">出错</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;rb”（只读）</td>
+<td align="left">为了输入数据，打开一个二进制文件</td>
+<td align="left">出错</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;wb”（只写）</td>
+<td align="left">为了输出数据，打开一个二进制文件</td>
+<td align="left">建立一个新的文件</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;ab”（追加）</td>
+<td align="left">向一个二进制文件尾添加数据</td>
+<td align="left">出错</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;r+”（读写）</td>
+<td align="left">为了读和写，打开一个文本文件</td>
+<td align="left">出错</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;w+”（读写）</td>
+<td align="left">为了读和写，建议一个新的文件</td>
+<td align="left">建立一个新的文件</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;a+”（读写）</td>
+<td align="left">打开一个文件，在文件尾进行读写</td>
+<td align="left">建立一个新的文件</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;rb+”（读写）</td>
+<td align="left">为了读和写打开一个二进制文件</td>
+<td align="left">出错</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;wb+”（读写）</td>
+<td align="left">为了读和写，新建一个新的二进制文件</td>
+<td align="left">建立一个新的文件</td>
+</tr>
+
+<tr>
+<td align="left">&ldquo;ab+”（读写）</td>
+<td align="left">打开一个二进制文件，在文件尾进行读和写</td>
+<td align="left">建立一个新的文件</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-C++">#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    //打开文件test.txt
+    //相对路径
+    //.. 表示上一级路径
+    //.  表示当前路径
+    //fopen(&quot;../../test.txt&quot;, &quot;r&quot;)
+    //fopen(&quot;test.txt&quot;, &quot;r&quot;);
+    
+    //绝对路径的写法
+    //fopen(&quot;D:\\A-yan\\C\Project1\\Project1\\test.txt&quot;, &quot;r&quot;);
+
+    FILE* pf = fopen(&quot;test.txt&quot;, &quot;w&quot;);
+    if(pf == NULL)
+    {
+        printf(&quot;%s\n&quot;, strerror(errno));
+        return 0;
+    }
+    //打开成功
+    //读文件
+
+    //关闭文件
+    fclose(pf);
+    pf = NULL;
+
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/14/fopen.png" alt="Image Text" /></p>
+
+<h2 id="文件的顺序读写">文件的顺序读写</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">函数名</th>
+<th align="left">适用于</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">字符输入函数</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fgetc/?kw=fgetc" target="_blank">fgetc</a></td>
+<td align="left">所有输入流</td>
+</tr>
+
+<tr>
+<td align="left">字符输出函数</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fputc/?kw=fputc" target="_blank">fputc</a></td>
+<td align="left">所有输出流</td>
+</tr>
+
+<tr>
+<td align="left">文本行输入函数</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fgets/?kw=fgets" target="_blank">fgets</a></td>
+<td align="left">所有输入流</td>
+</tr>
+
+<tr>
+<td align="left">文本行输出函数</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fputs/?kw=fputs" target="_blank">fputs</a></td>
+<td align="left">所有输出流</td>
+</tr>
+
+<tr>
+<td align="left">格式化输入函数</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fscanf/?kw=fscanf" target="_blank">fscanf</a></td>
+<td align="left">所有输入流</td>
+</tr>
+
+<tr>
+<td align="left">格式化输出函数</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fprintf/?kw=fprintf" target="_blank">fprintf</a></td>
+<td align="left">所有输出流</td>
+</tr>
+
+<tr>
+<td align="left">二进制输入</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fread/?kw=fread" target="_blank">fread</a></td>
+<td align="left">文件</td>
+</tr>
+
+<tr>
+<td align="left">二进制输出</td>
+<td align="left"><a href="http://www.cplusplus.com/reference/cstdio/fwrite/?kw=fwrite" target="_blank">fwrite</a></td>
+<td align="left">文件</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="对比一组函数">对比一组函数</h3>
+
+<pre><code>scanf/fscanf/sscanf
+printf/fprintf/sprintf
+</code></pre>
+
+<pre><code>scanf/printf 是针对标准输入流/标准输出流 格式化输入/输出语句
+fscanf/fprintf 是针对所有输入流/所有输出流 格式化输入/输出语句
+sscanf/sprintf 是从字符串中读取格式化数据/把格式化数据输出成（存储成）字符串
+</code></pre>
+
+<h3 id="fputc-http-www-cplusplus-com-reference-cstdio-fputc-kw-fputc"><a href="http://www.cplusplus.com/reference/cstdio/fputc/?kw=fputc" target="_blank">fputc</a></h3>
+
+<pre><code class="language-C++">FILE* pfWrite = fopen(&quot;test.txt&quot;, &quot;w&quot;);
+if(pfWrite == NULL)
+{
+  printf(&quot;%s\n&quot;, strerror(errno));
+  return 0;
+}
+//写文件
+fputc('H', pfWrite);
+fputc('I', pfWrite);
+fputc('!', pfWrite);
+//关闭文件
+fclose(pfWrite);
+pfWrite = NULL;
+</code></pre>
+
+<h3 id="fgetc-http-www-cplusplus-com-reference-cstdio-fgetc-kw-fgetc"><a href="http://www.cplusplus.com/reference/cstdio/fgetc/?kw=fgetc" target="_blank">fgetc</a></h3>
+
+<pre><code class="language-C++">FILE* pfRead = fopen(&quot;test.txt&quot;, &quot;r&quot;);
+if(pfRead == NULL)
+{
+  printf(&quot;%s\n&quot;, strerror(errno));
+  return 0;
+}
+//读文件
+printf(&quot;%c&quot;, fgetc(pfRead));//b
+printf(&quot;%c&quot;, fgetc(pfRead));//i
+printf(&quot;%c&quot;, fgetc(pfRead));//t
+
+//关闭文件
+fclose(pfRead);
+pfRead = NULL;
+</code></pre>
+
+<p>注：</p>
+
+<p>从键盘输入、输出到屏幕.    键盘&amp;屏幕都是外部设备</p>
+
+<pre><code>键盘-标准输入设备- stdin
+屏幕-标准输出设备- stdout
+</code></pre>
+
+<p>是一个程序默认打开的两个流设备</p>
+
+<pre><code>stdin FILE*
+stdout FILE*
+stderr FILE*
+</code></pre>
+
+<h3 id="fgets-http-www-cplusplus-com-reference-cstdio-fgets-kw-fgets"><a href="http://www.cplusplus.com/reference/cstdio/fgets/?kw=fgets" target="_blank">fgets</a></h3>
+
+<pre><code class="language-C++">int ch = fgetc(stdin);
+fputc(ch, stdout);
+</code></pre>
+
+<pre><code class="language-C++">char buf[1024] = { 0 };
+
+FILE* pf = fopen(&quot;test.txt&quot;, &quot;r&quot;);
+if (pf == NULL)
+{
+  return 0;
+}
+//读文件
+fgets(buf, 1024, pf);
+puts(buf);//自动换行 ==printf(&quot;%s\n&quot;, buf);
+
+fclose(pf);
+pf = NULL;
+</code></pre>
+
+<h3 id="fputs-http-www-cplusplus-com-reference-cstdio-fputs-kw-fputs"><a href="http://www.cplusplus.com/reference/cstdio/fputs/?kw=fputs" target="_blank">fputs</a></h3>
+
+<pre><code class="language-C++">char buf[1024] = { 0 };
+FILE* pf = fopen(&quot;test.txt&quot;, &quot;w&quot;);
+if (pf == NULL)
+{
+  return 0;
+}
+//写文件
+fputs(&quot;hello\n&quot;, pf);
+fputs(&quot;world\n&quot;, pf);
+
+
+fclose(pf);
+pf = NULL;
+</code></pre>
+
+<h3 id="fscanf-http-www-cplusplus-com-reference-cstdio-fscanf-kw-fscanf"><a href="http://www.cplusplus.com/reference/cstdio/fscanf/?kw=fscanf" target="_blank">fscanf</a></h3>
+
+<pre><code class="language-C++">struct S
+{
+    int n;
+    float score;
+    char arr[10];
+};
+
+int main()
+{
+    struct S s = {0};
+
+    FILE* pf = fopen(&quot;test.txt&quot;, &quot;r&quot;);
+    if (pf == NULL)
+    {
+        return 0;
+    }
+    //格式化的输入数据
+    fscanf(pf, &quot;%d %f %s&quot;, &amp;(s.n), &amp;(s.score), s.arr);
+    printf(&quot;%d %f %s\n&quot;, s.n, s.score, s.arr);
+
+    fclose(pf);
+    pf = NULL;
+    return 0;
+}
+</code></pre>
+
+<h3 id="fprintf-http-www-cplusplus-com-reference-cstdio-fprintf-kw-fprintf"><a href="http://www.cplusplus.com/reference/cstdio/fprintf/?kw=fprintf" target="_blank">fprintf</a></h3>
+
+<pre><code class="language-C++">struct S
+{
+    int n;
+    float score;
+    char arr[10];
+};
+
+int main()
+{
+    struct S s = { 100, 3.14f, &quot;bit&quot; };
+    FILE* pf = fopen(&quot;test.txt&quot;, &quot;w&quot;);
+    if (pf == NULL)
+    {
+        return 0;
+    }
+    //格式化的形式写文件
+    fprintf(pf, &quot;%d %f %s&quot;, s.n, s.score, s.arr);
+
+    fclose(pf);
+    pf = NULL;
+    return 0;
+}
+</code></pre>
+
+<h3 id="sscanf-http-www-cplusplus-com-reference-cstdio-sscanf-kw-sscanf-和-sprintf-http-www-cplusplus-com-reference-cstdio-sprintf-kw-sprintf"><a href="http://www.cplusplus.com/reference/cstdio/sscanf/?kw=sscanf" target="_blank">sscanf</a> 和 <a href="http://www.cplusplus.com/reference/cstdio/sprintf/?kw=sprintf" target="_blank">sprintf</a></h3>
+
+<pre><code class="language-C++">struct S
+{
+    int n;
+    float score;
+    char arr[10];
+};
+
+
+int main()
+{
+    struct S s = { 100, 3.14f, &quot;abcdef&quot; };
+    struct S tmp = {0};
+    char buf[1024] = { 0 };
+    //把格式化的数据转换成字符串存储到buf
+    sprintf(buf, &quot;%d %f %s&quot;, s.n, s.score, s.arr);
+    //printf(&quot;%s\n&quot;, buf);
+    //从buf中读取格式化的数据到tmp中
+    sscanf(buf, &quot;%d %f %s&quot;, &amp;(tmp.n), &amp;(tmp.score), tmp.arr);
+
+    printf(&quot;%d %f %s\n&quot;, tmp.n, tmp.score, tmp.arr);
+
+    return 0;
+}
+</code></pre>
+
+<h3 id="fwrite-http-www-cplusplus-com-reference-cstdio-fwrite-kw-fwrite"><a href="http://www.cplusplus.com/reference/cstdio/fwrite/?kw=fwrite" target="_blank">fwrite</a></h3>
+
+<pre><code class="language-C++">struct S
+{
+    char name[20];
+    int age;
+    double score;
+};
+
+int main()
+{
+    struct S s = { &quot;张三&quot;, 20, 55.6 };
+
+    FILE* pf = fopen(&quot;test.txt&quot;, &quot;wb&quot;);
+    if (pf == NULL)
+    {
+        return 0;
+    }
+    //二进制的形式写文件
+    fwrite(&amp;s, sizeof(struct S), 1, pf);
+
+    fclose(pf);
+    pf = NULL;
+    return 0;
+}
+</code></pre>
+
+<h3 id="fread-http-www-cplusplus-com-reference-cstdio-fread-kw-fread"><a href="http://www.cplusplus.com/reference/cstdio/fread/?kw=fread" target="_blank">fread</a></h3>
+
+<pre><code class="language-C++">struct S
+{
+    char name[20];
+    int age;
+    double score;
+};
+
+int main()
+{
+    //struct S s = { &quot;张三&quot;, 20, 55.6 };
+    struct S tmp = { 0 };
+
+    FILE* pf = fopen(&quot;test.txt&quot;, &quot;rb&quot;);
+    if (pf == NULL)
+    {
+        return 0;
+    }
+    //二进制的形式都文件
+    fread(&amp;tmp, sizeof(struct S), 1, pf);
+    printf(&quot;%s %d %lf\n&quot;, tmp.name, tmp.age, tmp.score);
+
+    fclose(pf);
+    pf = NULL;
+    return 0;
+}
+</code></pre>
+
+<h2 id="文件的随机读写">文件的随机读写</h2>
+
+<h3 id="fseek-http-www-cplusplus-com-reference-cstdio-fseek-kw-fseek"><a href="http://www.cplusplus.com/reference/cstdio/fseek/?kw=fseek" target="_blank">fseek</a></h3>
+
+<p>根据文件指针的位置和偏移量来定位文件指针。</p>
+
+<pre><code class="language-C++">int fseek ( FILE * stream, long int offset, int origin ); 
+//offset 偏移量
+// origin 文件指针当前位置
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">Constant</th>
+<th align="left">Reference position</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">SEEK_SET</td>
+<td align="left">文件开头</td>
+</tr>
+
+<tr>
+<td align="left">SEEK_CUR</td>
+<td align="left">文件指点的当前位置</td>
+</tr>
+
+<tr>
+<td align="left">SEEK_END</td>
+<td align="left">文件结束</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-C++">FILE* pf = fopen(&quot;test.txt&quot;, &quot;r&quot;);//abcdefg
+if (pf == NULL)
+{
+  return 0;
+}
+//1.定位文件指针
+fseek(pf, -2, SEEK_END);//f
+//2.读取文件
+int ch = fgetc(pf);
+printf(&quot;%c\n&quot;, ch);
+
+fclose(pf);
+pf = NULL;
+</code></pre>
+
+<h3 id="ftell-http-www-cplusplus-com-reference-cstdio-ftell-kw-ftell"><a href="http://www.cplusplus.com/reference/cstdio/ftell/?kw=ftell" target="_blank">ftell</a></h3>
+
+<p>返回文件指针相对于起始位置的偏移量</p>
+
+<pre><code class="language-C++">long int ftell ( FILE * stream );
+</code></pre>
+
+<pre><code class="language-C++">FILE* pf = fopen(&quot;test.txt&quot;, &quot;r&quot;);//abcdef
+if (pf == NULL)
+{
+  return 0;
+}
+//1.定位文件指针
+//fseek(pf, -2, SEEK_END);
+int ch = fgetc(pf);//
+printf(&quot;%c\n&quot;, ch);//a
+int pos = ftell(pf);//
+printf(&quot;%d\n&quot;, pos);//1
+fclose(pf);
+pf = NULL;
+</code></pre>
+
+<h3 id="rewind-http-www-cplusplus-com-reference-cstdio-rewind-kw-rewind"><a href="http://www.cplusplus.com/reference/cstdio/rewind/?kw=rewind" target="_blank">rewind</a></h3>
+
+<p>让文件指针的位置回到文件的起始位置</p>
+
+<pre><code class="language-C++">FILE* pf = fopen(&quot;test.txt&quot;, &quot;r&quot;);//abcdefg
+if (pf == NULL)
+{
+  return 0;
+}
+//1.定位文件指针
+//fseek(pf, -2, SEEK_END);
+int ch = fgetc(pf);
+printf(&quot;%c\n&quot;, ch);//a
+rewind(pf);
+ch = fgetc(pf);
+printf(&quot;%c\n&quot;, ch);//a
+
+fclose(pf);
+pf = NULL;
+</code></pre>
+
+<h2 id="文件结束的判定">文件结束的判定</h2>
+
+<h3 id="被错误使用的-feof-http-www-cplusplus-com-reference-cstdio-feof-kw-feof">被错误使用的 <a href="http://www.cplusplus.com/reference/cstdio/feof/?kw=feof" target="_blank">feof</a></h3>
+
+<pre><code class="language-C++">//EOF
+//feof();//EOF - end of file - 文件结束标志
+FILE* pf = fopen(&quot;test.txt&quot;, &quot;r&quot;);//空文件
+if (pf == NULL)
+  return 0;
+int ch = fgetc(pf);
+printf(&quot;%d\n&quot;, ch);//-1
+
+fclose(pf);
+pf = NULL;
+</code></pre>
+
+<p><strong>牢记</strong>：在文件读取过程中，不能用feof函数的返回值直接用来判断文件的是否结束。
+而是<strong>应用于当文件读取结束的时候，判断是读取失败结束，还是遇到文件尾结束</strong>。</p>
+
+<ol>
+<li><p>文本文件读取是否结束，判断返回值是否为EOF （fgetc），或者NULL（fgets）</p>
+
+<p>例如：</p>
+
+<pre><code>fgetc判断是否为EOF.
+fgets判断返回值是否为NULL.
+</code></pre></li>
+
+<li><p>二进制文件的读取结束判断，判断返回值是否小于实际要读的个数。</p>
+
+<p>例如：</p>
+
+<pre><code>fread判断返回值是否小于实际要读的个数。
+</code></pre></li>
+</ol>
+
+<p><strong>正确的使用</strong></p>
+
+<p>文本文件的例子：</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main(void)
+{
+  //strerror - 把错误码对应的错误信息的字符串地址返回
+    int c;
+     // 注意：int，非char，要求处理EOF
+    FILE* fp = fopen(&quot;test.txt&quot;, &quot;r&quot;);
+    if(!fp) {
+        perror(&quot;File opening failed&quot;);
+        return EXIT_FAILURE;
+   }
+ //fgetc 当读取失败的时候或者遇到文件结束的时候，都会返回EOF
+    while ((c = fgetc(fp)) != EOF) // 标准C I/O读取文件循环
+   { 
+       putchar(c);
+   }
+ //判断是什么原因结束的
+    if (ferror(fp))
+        puts(&quot;I/O error when reading&quot;);
+    else if (feof(fp))
+        puts(&quot;End of file reached successfully&quot;);
+    fclose(fp);
+}
+</code></pre>
+
+<p>二进制文件的例子：</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+enum
+{
+    SIZE = 5
+};
+int main(void)
+{
+    double a[SIZE] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    double b = 0.0;
+    size_t ret_code = 0;
+    FILE *fp = fopen(&quot;test.bin&quot;, &quot;wb&quot;); // 必须用二进制模式
+    fwrite(a, sizeof(*a), SIZE, fp);    // 写 double 的数组
+    fclose(fp);
+    fp = fopen(&quot;test.bin&quot;, &quot;rb&quot;);
+    // 读 double 的数组
+    while ((ret_code = fread(&amp;b, sizeof(double), 1, fp)) &gt;= 1)
+    {
+        printf(&quot;%lf\n&quot;, b);
+    }
+    if (feof(fp))
+        printf(&quot;Error reading test.bin: unexpected end of file\n&quot;);
+    else if (ferror(fp))
+    {
+        perror(&quot;Error reading test.bin&quot;);
+    }
+    fclose(fp);
+    fp = NULL;
+}
+</code></pre>
+
+<p>参考链接：<a href="https://zh.cppreference.com/w/c" target="_blank">https://zh.cppreference.com/w/c</a></p>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/13/" rel="next"></a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/15/" rel="prev"></a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 0001-01-01
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

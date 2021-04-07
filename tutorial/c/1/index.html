@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="什么是C语言？ C语言是一门计算机语言
+计算机语言是什么？人和计算机交流的语言 C/C&#43;&#43;/java/python
+语言的发展：低级语言→高级语言
+ 010001000-机器语言【二进制语言 硬件-电-正电/负电】 汇编语言 B语言 C语言、C&#43;&#43;&mdash;高级语言  C语言→早期不是很成熟→成熟→流行 国际标准ANSIC-C89/C90 、 C99/C11并不流行
+#include &lt;stdio.h&gt; int main() //main函数是程序的入口,一个工程中main函数有且仅有一个 { printf(&quot;hello\n&quot;); printf(&quot;he he\n&quot;); return 0; }  数据类型  char - 字符数据类型 1 short - 短整型 2 int - 整形 4 long - 长整型 4 long long -更长的整形 8 float -单精度浮点数 4 double -双精度浮点数 8  char ch = &#39;As&#39;; int a = 0; float b = 1.">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/1/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/1/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/1/">
+  <meta property="og:title" content="初识C语言 | Cytgenkidu">
+  <meta property="og:description" content="什么是C语言？ C语言是一门计算机语言
+计算机语言是什么？人和计算机交流的语言 C/C&#43;&#43;/java/python
+语言的发展：低级语言→高级语言
+ 010001000-机器语言【二进制语言 硬件-电-正电/负电】 汇编语言 B语言 C语言、C&#43;&#43;&mdash;高级语言  C语言→早期不是很成熟→成熟→流行 国际标准ANSIC-C89/C90 、 C99/C11并不流行
+#include &lt;stdio.h&gt; int main() //main函数是程序的入口,一个工程中main函数有且仅有一个 { printf(&quot;hello\n&quot;); printf(&quot;he he\n&quot;); return 0; }  数据类型  char - 字符数据类型 1 short - 短整型 2 int - 整形 4 long - 长整型 4 long long -更长的整形 8 float -单精度浮点数 4 double -双精度浮点数 8  char ch = &#39;As&#39;; int a = 0; float b = 1.">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2021-01-17T00:00:00&#43;01:00">
+  
+  
+  <meta property="article:modified_time" content="2021-01-17T00:00:00&#43;01:00">
+  
+  
+
+  
+
+  
+
+  <title>初识C语言 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li class="active">
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#什么是c语言">什么是C语言？</a></li>
+<li><a href="#数据类型">数据类型</a></li>
+<li><a href="#变量-常量">变量、常量</a>
+<ul>
+<li><a href="#变量">变量</a>
+<ul>
+<li><a href="#分类">分类</a></li>
+<li><a href="#如何使用">如何使用</a></li>
+<li><a href="#作用域-限定的这个名字的可用性的代码范围">作用域：（限定的这个名字的可用性的代码范围）</a></li>
+<li><a href="#生命周期-变量的生命周期指的是变量的创建到变量的销毁之间的一个时间段">生命周期：变量的生命周期指的是变量的创建到变量的销毁之间的一个时间段</a></li>
+</ul></li>
+<li><a href="#常量">常量</a></li>
+</ul></li>
+<li><a href="#字符串-转义字符-注释">字符串、转义字符、注释</a>
+<ul>
+<li><a href="#字符串-s-n">字符串(%s\n)</a>
+<ul>
+<li><a href="#这种由双引号-double-quote-引起来的一串字符称为字符串字面值-string-literal-或者建成字符串">这种由双引号（Double Quote）引起来的一串字符称为字符串字面值（String Literal）,或者建成字符串</a></li>
+</ul></li>
+<li><a href="#转义字符">转义字符【\】</a></li>
+<li><a href="#注释">注释</a>
+<ul>
+<li><a href="#作用">作用</a></li>
+<li><a href="#形式">形式</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#选择语句">选择语句</a></li>
+<li><a href="#循环语句">循环语句</a></li>
+<li><a href="#函数-特点是简化代码-代码复用">函数：特点是简化代码，代码复用</a></li>
+<li><a href="#数组">数组</a>
+<ul>
+<li><a href="#定义-一组相同类型元素的集合">定义：一组相同类型元素的集合</a></li>
+<li><a href="#使用">使用</a></li>
+</ul></li>
+<li><a href="#操作符">操作符</a></li>
+<li><a href="#关键字">关键字</a>
+<ul>
+<li><a href="#常见关键字">常见关键字</a></li>
+<li><a href="#typedef-类型定义">typedef:类型定义</a></li>
+<li><a href="#static修饰变量和函数">static修饰变量和函数</a></li>
+</ul></li>
+<li><a href="#define定义常量和宏">#define定义常量和宏</a>
+<ul>
+<li><a href="#定义标识符常量-define-max-1000">定义标识符常量：#define MAX 1000</a></li>
+<li><a href="#定义宏">定义宏</a></li>
+</ul></li>
+<li><a href="#指针">指针</a>
+<ul>
+<li><a href="#内存">内存</a></li>
+<li><a href="#指针变量">指针变量</a></li>
+</ul></li>
+<li><a href="#结构体-描述复杂类型">结构体 描述复杂类型</a></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name">初识C语言</h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="什么是c语言">什么是C语言？</h2>
+
+<p>C语言是一门计算机语言</p>
+
+<p>计算机语言是什么？人和计算机交流的语言 C/C++/java/python</p>
+
+<p>语言的发展：低级语言→高级语言</p>
+
+<ul>
+<li>010001000-机器语言【二进制语言 硬件-电-正电/负电】</li>
+<li>汇编语言</li>
+<li>B语言</li>
+<li>C语言、C++&mdash;高级语言</li>
+</ul>
+
+<p>C语言→早期不是很成熟→成熟→流行
+国际标准ANSIC-C89/C90 、 C99/C11并不流行</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main() //main函数是程序的入口,一个工程中main函数有且仅有一个
+{
+    printf(&quot;hello\n&quot;);
+    printf(&quot;he he\n&quot;);
+    return 0;
+}
+</code></pre>
+
+<h2 id="数据类型">数据类型</h2>
+
+<ul>
+<li>char - 字符数据类型 1</li>
+<li>short - 短整型 2</li>
+<li>int - 整形 4</li>
+<li>long - 长整型 4</li>
+<li>long long -更长的整形 8</li>
+<li>float -单精度浮点数 4</li>
+<li>double -双精度浮点数 8</li>
+</ul>
+
+<pre><code class="language-C++">char ch = 'As';
+int a = 0;
+float b = 1.22f;
+double c = 1.23;
+printf(&quot;char:  %c\n&quot;, ch);
+printf(&quot;int:  %d\n&quot;, a); //整形
+printf(&quot;float:  %f\n&quot;, b);
+printf(&quot;double:  %lf\n&quot;, c);
+
+printf(&quot;%d\n&quot;, sizeof(char));      //1个字节
+printf(&quot;%d\n&quot;, sizeof(short));     //2
+printf(&quot;%d\n&quot;, sizeof(int));       //4
+printf(&quot;%d\n&quot;, sizeof(long));      //4\8
+printf(&quot;%d\n&quot;, sizeof(long long)); //8
+printf(&quot;%d\n&quot;, sizeof(float));     //4
+printf(&quot;%d\n&quot;, sizeof(double));    //8
+</code></pre>
+
+<h2 id="变量-常量">变量、常量</h2>
+
+<h3 id="变量">变量</h3>
+
+<h4 id="分类">分类</h4>
+
+<ul>
+<li>局部变量</li>
+<li>全局变量</li>
+</ul>
+
+<p>【当局部变量和全局变量同名时，局部变量优先使用】</p>
+
+<h4 id="如何使用">如何使用</h4>
+
+<p>scanf  \  printf</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main()
+{
+    int num1, num2;               //C语言语法规定，变量要定义在当前代码块的最前面
+    scanf(&quot;%d,%d&quot;, &amp;num1, &amp;num2); //取地址符号&amp;
+    printf(&quot;sum= %d\n&quot;, num1 + num2);
+    return 0;
+}
+</code></pre>
+
+<h4 id="作用域-限定的这个名字的可用性的代码范围">作用域：（限定的这个名字的可用性的代码范围）</h4>
+
+<p>作用域（scope），程序设计概念，通常来说，一段程序代码中所用到的名字并不总是有效/可用的,
+而限定这个名字的可用性的代码范围就是这个名字的作用域。</p>
+
+<ol>
+<li>局部变量的作用域是变量所在局部范围。</li>
+<li>全局变量的作用域是整个工程。</li>
+</ol>
+
+<h4 id="生命周期-变量的生命周期指的是变量的创建到变量的销毁之间的一个时间段">生命周期：变量的生命周期指的是变量的创建到变量的销毁之间的一个时间段</h4>
+
+<ol>
+<li>局部变量的生命周期是：进入作用域生命周期开始，出作用域生命周期结束。</li>
+<li>全局变量的生命周期是：整个程序的生命周期。</li>
+</ol>
+
+<h3 id="常量">常量</h3>
+
+<p>字面变量</p>
+
+<p>const 修饰的常变量：是变量，但又有常属性，所以是常变量</p>
+
+<p>#define 定义的标识符常量</p>
+
+<p>枚举常量</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+enum Sex //枚举常量
+{
+    MALE,
+    FEMALE,
+    SECERT
+};
+int main()
+{
+    enum Sex s = FEMALE;
+    printf(&quot;%d\n&quot;, MALE);   //0
+    printf(&quot;%d\n&quot;, FEMALE); //1
+    printf(&quot;%d\n&quot;, SECERT); //2
+    return 0;
+}
+</code></pre>
+
+<h2 id="字符串-转义字符-注释">字符串、转义字符、注释</h2>
+
+<h3 id="字符串-s-n">字符串(%s\n)</h3>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    char arr1[] = &quot;abc&quot;;
+    char arr2[] = {'a', 'b', 'c'};
+    char arr3[] = {'a', 'b', 'c', 0};
+    printf(&quot;%s\n&quot;, arr1);                        // abc
+    printf(&quot;%s\n&quot;, arr2);                        // abcabc
+    printf(&quot;%s\n&quot;, arr3);                        // abc
+    printf(&quot;%d\n&quot;, strlen(arr1));                // 3
+    printf(&quot;%d\n&quot;, strlen(arr2));                // 6 未知
+    printf(&quot;%d\n&quot;, strlen(arr3));                // 3
+    printf(&quot;%d\n&quot;, strlen(&quot;c:\test\32\test.c&quot;)); // 13
+    printf(&quot;%s\n&quot;, &quot;\32&quot;);                       //
+    // \t是一个字符
+    // \32也是一个转移字符，是32作为八进制代表的十进制数字，作为ASCII码值,对应的字符
+    // 32---&gt;10进制26【3*8^1+2*8^0】--&gt;作为ASCII码代表的字符
+    printf(&quot;%s\n&quot;, &quot;\130&quot;); //X
+    printf(&quot;%s\n&quot;, &quot;\x30&quot;); //0
+}
+</code></pre>
+
+<h4 id="这种由双引号-double-quote-引起来的一串字符称为字符串字面值-string-literal-或者建成字符串">这种由双引号（Double Quote）引起来的一串字符称为字符串字面值（String Literal）,或者建成字符串</h4>
+
+<p>注：字符串的结束标志是一个\0的转义字符。在计算字符串长度的时候\0是结束标志，不算做字符串内容。</p>
+
+<h3 id="转义字符">转义字符【\】</h3>
+
+<p><img src="../img/1/转义字符.png" alt="Image text" /></p>
+
+<p>注意：</p>
+
+<ol>
+<li>区分，斜杠：&rdquo;/&rdquo; 与 反斜杠：&rdquo;\&rdquo; ,此处不可互换</li>
+<li>\xhh 十六进制转义不限制字符个数 &lsquo;\x000000000000F&rsquo; == &lsquo;\xF&rsquo;</li>
+</ol>
+
+<p><img src="../img/1/ASCII.jpg" alt="Image text" /></p>
+
+<h3 id="注释">注释</h3>
+
+<h4 id="作用">作用</h4>
+
+<ol>
+<li>代码中有不需要的代码可以直接删除，也可以注释</li>
+<li>代码中有些代码比较难懂，可以加一下注释文字</li>
+</ol>
+
+<h4 id="形式">形式</h4>
+
+<ol>
+<li>C语言风格的注释/*xxxxxxx*/： 缺陷：不能嵌套注释</li>
+<li>C++注释风格//xxxxx：可以注释一行也可以注释多行</li>
+</ol>
+
+<h2 id="选择语句">选择语句</h2>
+
+<h2 id="循环语句">循环语句</h2>
+
+<h2 id="函数-特点是简化代码-代码复用">函数：特点是简化代码，代码复用</h2>
+
+<h2 id="数组">数组</h2>
+
+<h3 id="定义-一组相同类型元素的集合">定义：一组相同类型元素的集合</h3>
+
+<h3 id="使用">使用</h3>
+
+<h2 id="操作符">操作符</h2>
+
+<ul>
+<li>算数操作符：</li>
+</ul>
+
+<pre><code class="language-txt"> + - * / %
+</code></pre>
+
+<ul>
+<li>移位操作符：</li>
+</ul>
+
+<pre><code class="language-txt"> &gt;&gt; &lt;&lt;   --- 移动二进制位
+</code></pre>
+
+<ul>
+<li>位操作符：</li>
+</ul>
+
+<pre><code class="language-txt"> &amp; ^ |
+</code></pre>
+
+<ul>
+<li>赋值操作符：</li>
+</ul>
+
+<pre><code class="language-txt"> = += -= /= &amp;= ^= |= &gt;&gt;= &lt;&lt;=
+</code></pre>
+
+<ul>
+<li>单目操作符：</li>
+</ul>
+
+<pre><code class="language-txt">!           逻辑反操作
+-           负值
++           正值
+&amp;           取地址
+sizeof      操作数的类型长度（以字节为单位）
+~           对一个数的二进制按位取反
+--          前置、后置--
+++          前置、后置++
+*           间接访问操作符(解引用操作符)
+(类型)       强制类型转换
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main()
+{
+    int a = 10;
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    printf(&quot;%d\n&quot;, sizeof(a));                    //4
+    printf(&quot;%d\n&quot;, sizeof(int));                  //4
+    printf(&quot;%d\n&quot;, sizeof a);                     //4
+    //printf(&quot;%d\n&quot;, sizeof int; //err
+    printf(&quot;%d\n&quot;, sizeof(arr));                  //24
+    printf(&quot;%d\n&quot;, sizeof(arr) / sizeof(arr[0])); //6
+    return 0;
+}
+</code></pre>
+
+<p>注：原码、反码、补码</p>
+
+<ol>
+<li>只要是整数，内存中存储的都是二进制补码</li>
+<li>对于正数来说，反码、补码、原码 相同。</li>
+<li>对负数来说，存储的是补码。</li>
+<li>负数：
+    ①原码是直接按照正负写出来的二进制序列；
+    ②反码是原码的符号位不变，其他的位按位取反得到的；
+    ③补码是反码+1。</li>
+</ol>
+
+<pre><code class="language-t">-2
+原码：1000000000000000000000010
+反码：1111111111111111111111101
+补码：1111111111111111111111110
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 0;
+    int b = ~a; //~按二进制取反
+    //00000000000000000000000000000000
+    //11111111111111111111111111111111
+    //原码、反码、补码
+    //11111111111111111111111111111111
+    //11111111111111111111111111111110
+    //10000000000000000000000000000001
+    printf(&quot;%d\n&quot;, b); //-1，适用的，打印的是这个数的原码
+    //有符号数，最高位的二进制位符号位
+    return 0;
+}
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 10, b = 10;
+    int c = a++;                            //后置++，先使用，在++
+    int d = ++b;                            //前置++，先++，在使用
+    printf(&quot;%d\n%d\n%d\n%d\n&quot;, a, c, b, d); //11 10 11 11
+    a = 10, b = 10;
+    int e = a--;                            //后置--，先使用，在--
+    int f = --b;                            //前置--，先--，在使用
+    printf(&quot;%d\n%d\n%d\n%d\n&quot;, a, e, b, f); //9 10 9 9
+    return 0;
+}
+</code></pre>
+
+<pre><code class="language-C++">int a = (int)3.14;//double--&gt;int
+</code></pre>
+
+<ul>
+<li>关系操作符：</li>
+</ul>
+
+<pre><code class="language-txt">&gt;
+&gt;=
+&lt;
+&lt;=
+!=   用于测试“不相等”
+==      用于测试“相等
+</code></pre>
+
+<ul>
+<li>逻辑操作符：&amp;&amp; 逻辑与【零为假,非零为真】 ； || 逻辑或【同假为假】</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 3;
+    int b = 5;
+    int c = a &amp; b;//按位与
+    int d = a ^ b;
+    printf(&quot;%d\n&quot;, c); //1
+    printf(&quot;%d\n&quot;, d); //6 [^不是次方，是异或]
+                       //异或的计算规律：对应二进制同，则为0；对应二进制异，则为1
+                       //按位与：只有对应的两个二进位都为1时，结果位才为1
+                       //3: 011
+                       //5: 101
+                       //6: 110 - 异或
+                       //1: 001 - 按位与
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>条件操作符(三木操作符)：exp1?exp2:exp3</li>
+<li>逗号表达式：exp1,exp2,exp3……expn</li>
+<li>下标引用、函数调用和结构成员：[] () . -&gt;</li>
+</ul>
+
+<h2 id="关键字">关键字</h2>
+
+<h3 id="常见关键字">常见关键字</h3>
+
+<p>auto break case char case count continue default do double else enum extern float for goyo if int long register return short signed sizeof static struct switch typeof union unsigned void volatile while</p>
+
+<pre><code class="language-C++">auto int a = 10; //局部变量，自动创建，自动销毁，自动变量，默认省略auto
+//int 定义的变量是有符号的
+//signed int;有符号的
+unsigned int num=0;//无符号的 
+register int b=0;//寄存器关键字
+//struct 结构体关键字
+//union 联合体，共用体
+</code></pre>
+
+<h3 id="typedef-类型定义">typedef:类型定义</h3>
+
+<pre><code class="language-C++">unsigned int num = 20;
+typedef unsigned int u_int; //类型重定义
+u_int num2 = 20;            //num1和num2类型一致
+</code></pre>
+
+<h3 id="static修饰变量和函数">static修饰变量和函数</h3>
+
+<ul>
+<li><p>修饰局部变量-静态局部变量（局部变量的生命周期变长）</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+void text()
+{
+    int a = 1;
+    a++;
+    printf(&quot;a=%d\n&quot;, a); // 2 2 2 2 2
+}
+void text2()
+{
+    static int a = 1; //修饰局部变量,局部变量的生命周期变长
+    a++;
+    printf(&quot;a=%d -static\n&quot;, a); // 2 3 4 5 6
+}
+int main()
+{
+    int i = 0;
+    while (i &lt; 5)
+    {
+        text();
+        text2();
+        printf(&quot;_____________\n&quot;);
+        i++;
+    }
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/1/static结果.png" alt="Image text" /></p></li>
+
+<li><p>修饰全局变量-静态全局变量（改变了作用域，让静态的全局变量只能在自己的源文件内使用，出了源文件就无法再使用）</p>
+
+<p>运行正常</p>
+
+<pre><code class="language-C++">//add.c
+int g_val = 2021; //全局变量
+
+//test.c
+#include &lt;stdio.h&gt;
+int main() {
+    //extern -声明外部符号
+    extern int g_val;
+    printf(&quot;g_val=%d\n&quot;, g_val);
+    return 0;
+}
+</code></pre>
+
+<p>运行异常</p>
+
+<pre><code class="language-C++">//add.c
+static int g_val = 2021;
+
+//test.c
+#include &lt;stdio.h&gt;
+int main() {
+    //extern -生命外部符号
+    extern int g_val;
+    printf(&quot;g_val=%d\n&quot;, g_val);
+    return 0;
+}
+</code></pre></li>
+
+<li><p>修饰函数-静态函数（修饰函数的外部链接属性，外部链接属性&ndash;&gt;内部链接属性）
+一个函数被static修饰，使用这个函数只能在本源文件内使用，不能再其他源文件内使用。</p>
+
+<pre><code class="language-C++">//add.c
+int Add(int x, int y) {
+    int z = x + y;
+    return z;
+}
+
+//test.c
+#include &lt;stdio.h&gt;
+int main() {
+    extern Add(int, int);
+    printf(&quot;%d&quot;, Add(1, 2));
+    return 0;
+}
+</code></pre></li>
+</ul>
+
+<h2 id="define定义常量和宏">#define定义常量和宏</h2>
+
+<h3 id="定义标识符常量-define-max-1000">定义标识符常量：#define MAX 1000</h3>
+
+<h3 id="定义宏">定义宏</h3>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+//define定义标识符常量
+#define MAX 1000
+//define定义宏
+#define MAX(x, y) (x &gt; y ? x : y)
+//函数
+int Max(int x,int y){
+    if(x&gt;y){
+        return x;
+    }else{
+        return y;
+    }
+}
+int main()
+{
+    //函数的方式
+    int max = Max(2, 3);
+    printf(&quot;MAX = %d\n&quot;, max);
+    //宏的方式
+    max = MAX(2, 3);
+    printf(&quot;MAX = %d\n&quot;, max);
+    return 0;
+}
+</code></pre>
+
+<h2 id="指针">指针</h2>
+
+<h3 id="内存">内存</h3>
+
+<p>内存是电脑上特别重要的存储器，计算机中所有程序的运行都是在内存中进行的 。
+所以为了有效的使用内存，就把内存划分成一个个小的内存单元，每个内存单元的大小是<strong>1个字节</strong>。
+为了能够有效的访问到内存的每个单元，就给内存单元进行了编号，这些编号被称为该<strong>内存单元的地址</strong>。</p>
+
+<p><img src="../img/1/内存.png" alt="Image text" /></p>
+
+<h3 id="指针变量">指针变量</h3>
+
+<ul>
+<li>变量地址取出</li>
+<li>地址存储</li>
+<li>使用实例&ndash;推广使用</li>
+<li>指针变量的大小</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main()
+{
+    int a = 10;  //4个字节
+    int *p = &amp;a; //取地址
+    //有一种变量是用来存放地址的-指针变量
+    printf(&quot;%p\n&quot;, &amp;a); //打印地址
+    printf(&quot;%p\n&quot;, p);  //打印地址
+    printf(&quot;a=%d\n&quot;, a);
+    *p = 20; //* -解引用操作符,间接访问操作符
+    printf(&quot;a=%d\n&quot;, a);
+
+    char ch = 'a';
+    char *pc = &amp;ch;//类型是char *
+    printf(&quot;ch=%c\n&quot;, ch);
+    *pc = 'w';//与上面的*意义不同
+    printf(&quot;ch=%c\n&quot;, ch);
+    //指针大小
+    printf(&quot;%d\n&quot;, sizeof(char *)); //x64下为8个字节，win32为4个字节
+    printf(&quot;%d\n&quot;, sizeof(short *)); //x64下为8个字节，win32为4个字节
+    printf(&quot;%d\n&quot;, sizeof(int *)); //x64下为8个字节，win32为4个字节
+    printf(&quot;%d\n&quot;, sizeof(double *)); //x64下为8个字节，win32为4个字节
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/1/指针结果.png" alt="Image text" />
+<img src="../img/1/指针.png" alt="Image text" /></p>
+
+<h2 id="结构体-描述复杂类型">结构体 描述复杂类型</h2>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+struct Stu
+{
+    char name[20]; //名字
+    int age;       //年龄
+    char sex[5];   //性别
+    char id[15];   //学号
+};
+int main()
+{
+    //打印结构体信息
+    struct Stu s = {&quot;张三&quot;, 20, &quot;男&quot;, &quot;20180101&quot;};
+    //.为结构成员访问操作符
+    printf(&quot;name = %s age = %d sex = %s id = %s\n&quot;, s.name, s.age, s.sex, s.id);
+    s.age = 18;
+    // s.name = &quot;李四&quot;;//err
+    strcpy(s.name, &quot;李四&quot;); //string-copy strcpy 字符串拷贝
+    printf(&quot;name = %s age = %d sex = %s id = %s\n&quot;, s.name, s.age, s.sex, s.id);
+    //-&gt;操作符
+    struct Stu *ps = &amp;s;
+    //.   结构体变量.成员
+    //-&gt;  结构体指针-&gt;成员
+    printf(&quot;name = %s age = %d sex = %s id = %s\n&quot;, (*ps).name, (*ps).age, (*ps).sex, (*ps).id);
+    printf(&quot;name = %s age = %d sex = %s id = %s\n&quot;, ps-&gt;name, ps-&gt;age, ps-&gt;sex, ps-&gt;id);
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/1/结构体结果.png" alt="Image text" /></p>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/" rel="prev"></a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 2021-01-17
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

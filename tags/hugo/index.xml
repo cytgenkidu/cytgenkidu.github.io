@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/hugo/</link>
+    <description>Recent content in hugo on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Tue, 02 Apr 2019 14:51:48 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>博客添加Gitalk评论</title>
+      <link>https://cytgenkidu.github.io/post/blog-gitalk/</link>
+      <pubDate>Tue, 02 Apr 2019 14:51:48 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/blog-gitalk/</guid>
+      <description>前言  在整理个人博客的过程中，想添加一套评论系统，一方面想收集意见来更好的改进，另一方面想提供一个读者与作者或读者与读者之间交流的平台。 在对比线下比较火的几个评论系统，又考虑到自己的博客是基于GitHub，综合考虑最终选择了基于Github Issues的评论系统Gitalk。 其他评论系统，如：
+  LiveRe：中文名称“来必力”，是一家韩国的公司，但本地化做的非常到位。这是我新发现的一个评论系统，支持的登录方式也挺多，但由于时间问题没有仔细的研究，后续有可能会尝试。
+ Disqus：国外比较火的评论系统，但在国内必须完全代理VPN,才可以正常访问。
+ gitment:基于Github issue的评论插件,但很久没有人维护。
+ 畅言：需要ICP备案。
+ 友言、网易云跟帖、多说等等其他家：关停太随意。
+  正文 关于Gitalk Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件。
+ 使用 GitHub 登录 支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru] 支持个人或组织 无干扰模式（设置 distractionFreeMode 为 true 开启） 快捷键提交评论 （cmd|ctrl + enter）  在线演示
+使用 创建一个Github Application 如果没有 点击申请，也可以
+ Github头像下拉菜单 &amp;gt; Settings &amp;gt; 左边Developer settings下的OAuth Application &amp;gt; Register a new application，填写相关信息：</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="安装  下载git Mac OS X 版 下载git Windows版 下载git Linux 和 Unix版  配置Git 设置名字和邮箱地址
+git config --global user.name cytgenkidu git config --global user.email tgenkidu@163.com  检查配置信息,执行 git config --list
+ 更多自定义配置请查看。
+创建新仓库（repository） 创建repository(仓库)  建立本地新仓库 创建新文件夹，打开，然后执行 git init 创建新的 git 仓库。
+存储库克隆到新目录  创建一个本地仓库的克隆版本 git clone /path/to/repository 创建一个远程仓库的克隆版本 git clone username@host:/path/to/repository  Git工作流 Git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。 由此引出三个工作区域的概念：Git 仓库、工作目录以及暂存区域(Index)。
+ Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。 工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。 暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作`‘索引’&rsquo;，不过一般说法还是叫暂存区域。   基本的 Git 工作流程如下：">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/post/git-guide/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/post/git-guide/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/post/git-guide/">
+  <meta property="og:title" content="Git简要说明 | Cytgenkidu">
+  <meta property="og:description" content="安装  下载git Mac OS X 版 下载git Windows版 下载git Linux 和 Unix版  配置Git 设置名字和邮箱地址
+git config --global user.name cytgenkidu git config --global user.email tgenkidu@163.com  检查配置信息,执行 git config --list
+ 更多自定义配置请查看。
+创建新仓库（repository） 创建repository(仓库)  建立本地新仓库 创建新文件夹，打开，然后执行 git init 创建新的 git 仓库。
+存储库克隆到新目录  创建一个本地仓库的克隆版本 git clone /path/to/repository 创建一个远程仓库的克隆版本 git clone username@host:/path/to/repository  Git工作流 Git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。 由此引出三个工作区域的概念：Git 仓库、工作目录以及暂存区域(Index)。
+ Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。 工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。 暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作`‘索引’&rsquo;，不过一般说法还是叫暂存区域。   基本的 Git 工作流程如下：">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2019-04-10T13:57:00&#43;08:00">
+  
+  
+  <meta property="article:modified_time" content="2019-04-10T13:57:00&#43;08:00">
+  
+  
+
+  
+
+  
+
+  <title>Git简要说明 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Git简要说明</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-04-10 13:57:00 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-04-10 13:57:00 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-04-10</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/git/">Git</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Git%e7%ae%80%e8%a6%81%e8%af%b4%e6%98%8e&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fgit-guide%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fgit-guide%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fgit-guide%2f&amp;title=Git%e7%ae%80%e8%a6%81%e8%af%b4%e6%98%8e"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fgit-guide%2f&amp;title=Git%e7%ae%80%e8%a6%81%e8%af%b4%e6%98%8e"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Git%e7%ae%80%e8%a6%81%e8%af%b4%e6%98%8e&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fgit-guide%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="安装">安装</h2>
+
+<ul>
+<li><a href="https://git-scm.com/download/mac" target="_blank">下载git Mac OS X 版</a></li>
+<li><a href="https://git-scm.com/download/win" target="_blank">下载git Windows版</a></li>
+<li><a href="https://git-scm.com/download/linux" target="_blank">下载git Linux 和 Unix版</a></li>
+</ul>
+
+<h2 id="配置git">配置Git</h2>
+
+<p>设置名字和邮箱地址</p>
+
+<pre><code class="language-cmd">git config --global user.name cytgenkidu
+git config --global user.email tgenkidu@163.com
+</code></pre>
+
+<p>检查配置信息,执行 <code>git config --list</code></p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img" href="/post/git-guide/img/%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF.png" data-caption="检查配置信息">
+  <img src="/post/git-guide/img/%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF_hu10b985e678837add4213b517b2d161fc_9065_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img" href="/post/git-guide/img/logo_%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF.png" >
+  <img src="/post/git-guide/img/logo_%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF_hu57c5ef784efa66dab54856100a7bea6c_14381_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<div class="alert alert-note">
+  <div>
+    <p>更多<a href="https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-%E9%85%8D%E7%BD%AE-Git" target="_blank">自定义配置</a>请查看。</p>
+
+  </div>
+</div>
+
+
+<h2 id="创建新仓库-repository">创建新仓库（repository）</h2>
+
+<h3 id="创建repository-仓库">创建repository(仓库)</h3>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/create" href="/post/git-guide/img/create/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E6%88%90%E5%8A%9F.png" data-caption="创建仓库">
+  <img src="/post/git-guide/img/create/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E6%88%90%E5%8A%9F_hu9998f6d56f4bdaacd4736a22356902dc_62491_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/create" href="/post/git-guide/img/create/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" data-caption="创建仓库">
+  <img src="/post/git-guide/img/create/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93_hue78cad5452fd0e733ceb632f8d5d7b05_46180_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/create" href="/post/git-guide/img/create/logo_%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E6%88%90%E5%8A%9F.png" >
+  <img src="/post/git-guide/img/create/logo_%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E6%88%90%E5%8A%9F_hua87342dc1bb98b86e5a00902d7f051ee_67802_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/create" href="/post/git-guide/img/create/logo_%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" >
+  <img src="/post/git-guide/img/create/logo_%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93_hue9abe26f249b55d0ab0818a9ddd5f6fe_51080_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h3 id="建立本地新仓库">建立本地新仓库</h3>
+
+<p>创建新文件夹，打开，然后执行 <code>git init</code> 创建新的 git 仓库。</p>
+
+<h2 id="存储库克隆到新目录">存储库克隆到新目录</h2>
+
+<ul>
+<li>创建一个本地仓库的克隆版本 <code>git clone /path/to/repository</code></li>
+<li>创建一个远程仓库的克隆版本 <code>git clone username@host:/path/to/repository</code></li>
+</ul>
+
+<h2 id="git工作流">Git工作流</h2>
+
+<p>Git有三种状态：已提交（committed）、已修改（modified）和已暂存（staged）。
+由此引出三个工作区域的概念：Git 仓库、工作目录以及暂存区域(Index)。</p>
+
+<ul>
+<li>Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。</li>
+<li>工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。</li>
+<li>暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作`‘索引’&rsquo;，不过一般说法还是叫暂存区域。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/git工作区域" href="/post/git-guide/img/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9F%9F/areas.png" data-caption="areas">
+  <img src="/post/git-guide/img/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9F%9F/areas_hu7efbba2f0fa7e4fc667efff4c9002388_18502_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/git工作区域" href="/post/git-guide/img/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9F%9F/logo_areas.png" >
+  <img src="/post/git-guide/img/git%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9F%9F/logo_areas_huad5cf317a626e4e938a34a92346699b7_52895_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>基本的 Git 工作流程如下：</p>
+
+<ol>
+<li>在工作目录中修改文件。</li>
+<li>暂存文件，将文件的快照放入暂存区域。</li>
+<li>提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</li>
+</ol>
+
+<h2 id="添加和提交">添加和提交</h2>
+
+<p>提出更改（把它们添加到暂存区），命令如下：</p>
+
+<ul>
+<li>添加某个文件：<code>git add &lt;filename&gt;</code></li>
+<li>添加所有更改：<code>git add *</code></li>
+</ul>
+
+<p>提交改动(改动已经提交到了本地的Git 仓库的 HEAD 中，但是还没到远端仓库)，命令如下：<code>git commit -m &quot;代码提交信息&quot;</code></p>
+
+<h2 id="推送改动">推送改动</h2>
+
+<p>将改动提交到远程仓库：<code>git push origin master</code>，可将master改为任何分支。</p>
+
+<p>若未克隆现有仓库，并欲将你的仓库连接到某个远程服务器，可执行 <code>git remote add origin &lt;server&gt;</code>，可将改动推送到所添加的服务器上去。</p>
+
+<h2 id="分支">分支</h2>
+
+<p>分支意味着你可以把你的工作从开发主线上分离开来，以免影响开发主线。在你创建仓库的时候，master 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。</p>
+
+<h3 id="创建分支">创建分支</h3>
+
+<p>创建一个叫做“test”的分支：<code>git branch test</code> ，切换到“test”分支：<code>git checkout test</code>。也可直接执行<code>git checkout -b test</code>，创建并切换。</p>
+
+<h3 id="切换分支">切换分支</h3>
+
+<p>切换回主分支：<code>git checkout master</code></p>
+
+<h3 id="删掉分支">删掉分支</h3>
+
+<p>删除“test”分支：<code>git branch -d test</code>，
+除非你将分支推送到远端仓库，不然该分支就是 不为他人所见的：<code>git push origin &lt;branch&gt;</code></p>
+
+<h2 id="更新与合并">更新与合并</h2>
+
+<p>更新你的本地仓库至最新改动，执行：<code>git pull</code>，在你的工作目录将获取（fetch）并合并（merge）远端的改动。</p>
+
+<p>要合并其他分支到你的当前分支（例如 master），执行：<code>git merge &lt;branch&gt;</code>。</p>
+
+<p>在这两种情况下，git 都会尝试去自动合并改动。但很有可能并非每次都成功，还有可能出现冲突（conflicts）。 这时候需要修改文件来手动合并这些冲突（conflicts）。改后，你需要执行如下命令<code>git add &lt;filename&gt;</code>将它们标记为合并成功。</p>
+
+<p>在合并改动之前，你可以使用如下命令预览差异：<code>git diff &lt;source_branch&gt; &lt;target_branch&gt;</code></p>
+
+<h2 id="示例">示例</h2>
+
+<ol>
+<li><p>获取最新代码到本地，并自动合并到当前分支：</p>
+
+<pre><code class="language-cmd">//查询当前远程的版本
+$ git remote -v
+//直接拉取并合并最新代码
+$ git pull origin master [拉取远端origin/master分支并合并到当前分支]
+</code></pre></li>
+
+<li><p>获取最新代码到本地，然后手动合并分支,需额外建立本地分支</p>
+
+<pre><code class="language-cmd">//查看当前远程的版本
+$ git remote -v
+//获取最新代码到本地临时分支(本地当前分支为[branch]，获取的远端的分支为[origin/branch])
+$ git fetch origin master:master1  [在本地建立master1分支，并下载远端的origin/master分支到master1分支中]
+//查看版本差异
+$ git diff master1 [查看本地master1分支与当前分支的版本差异]
+//合并最新分支到本地分支
+$ git merge master1    [合并本地分支master1到当前分支]
+//删除本地临时分支
+$ git branch -D master1    [删除本地分支master1]
+</code></pre></li>
+
+<li><p>获取最新代码到本地，然后手动合并分支,不额外建立本地分支</p>
+
+<pre><code class="language-cmd">//查询当前远程的版本
+$ git remote -v
+//获取最新代码到本地(本地当前分支为[branch]，获取的远端的分支为[origin/branch])
+$ git fetch origin master  [获取远端的origin/master分支]
+//查看版本差异
+$ git log -p master..origin/master [查看本地master与远端origin/master的版本差异]
+//合并最新代码到本地分支
+$ git merge origin/master  [合并远端分支origin/master到当前分支]
+</code></pre></li>
+</ol>
+
+<h2 id="链接与资源">链接与资源</h2>
+
+<p><a href="https://book.git-scm.com/" target="_blank">Git 社区参考书</a></p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/git/">Git</a>
+  
+</div>
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+      
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/post/jhipster-monolithic-structure/" rel="next">使用JHipster构建单一的Web应用程序-文件结构与部分代码</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/post/jhipster-monolithic-build/" rel="prev">使用JHipster构建单一的Web应用程序</a>
+  </div>
+  
+</div>
+
+
+    </div>
+    
+
+    
+
+    
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

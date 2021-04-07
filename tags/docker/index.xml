@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/docker/</link>
+    <description>Recent content in Docker on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Mon, 11 Feb 2019 12:41:05 -0500</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>微租社群—基于Spring Boot的微信公众号开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</link>
+      <pubDate>Mon, 11 Feb 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</guid>
+      <description> 项目介绍： 开发微信公众号，客户通过公众号对应租金进行付款，客户社区运营。
+开发过程： 通过在GitHub上spring-guides/gs-spring-boot-docker的开源项目快速构建Docker镜像，并在此基础上进行开发，使用Spring Data JPA实现有数据库表生成实体类，并快速构建仓储类对数据库进行操作。前端页面使用Thymeleaf模板引擎进行渲染。通过Gradle对项目进行管理和构建，并将Docker镜像push到阿里云，负载到三个服务节点。
+结果： 客户通过公众号了解公司情况，还可以通过公众号查询违章信息、资料上传、租金自缴等功能。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>微租社群—基于Spring Boot的微信公众号开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</link>
+      <pubDate>Mon, 11 Feb 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</guid>
+      <description> 项目介绍： 开发微信公众号，客户通过公众号对应租金进行付款，客户社区运营。
+开发过程： 通过在GitHub上spring-guides/gs-spring-boot-docker的开源项目快速构建Docker镜像，并在此基础上进行开发，使用Spring Data JPA实现有数据库表生成实体类，并快速构建仓储类对数据库进行操作。前端页面使用Thymeleaf模板引擎进行渲染。通过Gradle对项目进行管理和构建，并将Docker镜像push到阿里云，负载到三个服务节点。
+结果： 客户通过公众号了解公司情况，还可以通过公众号查询违章信息、资料上传、租金自缴等功能。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>微租小程序—基于.NET Core的微信小程序开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-xiaochengxu/</link>
+      <pubDate>Wed, 10 Oct 2018 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-xiaochengxu/</guid>
+      <description> 项目介绍： 搭建微信小程序积分商店，客户使用小程序通过支付宝、微信等形式进行租金支付。
+开发过程： 基于Github上找到的开源项目https://github.com/tumobi/nideshop 仿网易严选小程序Demo，在此基础上参考小程序开发手册进行开发。后端使用.NET Core 搭建接口服务，使用它提供的微信和支付宝的支付功能。
+结果： 客户能够通过积分在小程序上兑换商品，并通过小程序对每月租金进行付款。
+效果图  </description>
+    </item>
+    
+  </channel>
+</rss>

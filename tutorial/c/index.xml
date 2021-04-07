@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>概述 on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tutorial/c/</link>
+    <description>Recent content in 概述 on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Thu, 07 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tutorial/c/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>初识C语言</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/1/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/1/</guid>
+      <description>什么是C语言？ C语言是一门计算机语言
+计算机语言是什么？人和计算机交流的语言 C/C++/java/python
+语言的发展：低级语言→高级语言
+ 010001000-机器语言【二进制语言 硬件-电-正电/负电】 汇编语言 B语言 C语言、C++&amp;mdash;高级语言  C语言→早期不是很成熟→成熟→流行 国际标准ANSIC-C89/C90 、 C99/C11并不流行
+#include &amp;lt;stdio.h&amp;gt; int main() //main函数是程序的入口,一个工程中main函数有且仅有一个 { printf(&amp;quot;hello\n&amp;quot;); printf(&amp;quot;he he\n&amp;quot;); return 0; }  数据类型  char - 字符数据类型 1 short - 短整型 2 int - 整形 4 long - 长整型 4 long long -更长的整形 8 float -单精度浮点数 4 double -双精度浮点数 8  char ch = &#39;As&#39;; int a = 0; float b = 1.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/</guid>
+      <description>基本流程  创建一个用户交互菜单； 创建一个棋盘并初始化； 打印一个棋盘； 玩家落子（玩家通过输入行列坐标落子）； 判定胜负关系； 电脑落子（电脑采用随机落子的方式落子）； 判定胜负关系； 游戏结束。  test.c #define _CRT_SECURE_NO_WARNINGS 1 //测试三子棋游戏 #include &amp;quot;game.h&amp;quot; //打印菜单：1.开始游戏 0.退出游戏 void menu() { printf(&amp;quot;***************************\n&amp;quot;); printf(&amp;quot;**** 1. play 0. exit*****\n&amp;quot;); printf(&amp;quot;***************************\n&amp;quot;); } // | | //---|---|--- // | | //---|---|--- // | | void test() { int input = 0; srand((unsigned int)time(NULL));//拿时间戳设置一个随机起点，设置一次就可以，不要频繁调用 do { menu(); printf(&amp;quot;请选择:&amp;gt;&amp;quot;); scanf(&amp;quot;%d&amp;quot;, &amp;amp;input); switch (input) { case 1: game(); break; case 0: printf(&amp;quot;退出游戏\n&amp;quot;); break; default: printf(&amp;quot;选择错误，请重新选择!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/</guid>
+      <description>基本流程 test.c #define _CRT_SECURE_NO_WARNINGS 1 #include &amp;quot;game.h&amp;quot; void menu() { printf(&amp;quot;*****************************\n&amp;quot;); printf(&amp;quot;******* 1. play ******\n&amp;quot;); printf(&amp;quot;******* 0. exit ******\n&amp;quot;); printf(&amp;quot;*****************************\n&amp;quot;); } void test() { int input = 0; srand((unsigned int)time(NULL)); do { menu(); printf(&amp;quot;请选择:&amp;gt;&amp;quot;); scanf(&amp;quot;%d&amp;quot;, &amp;amp;input); switch (input) { case 1: game(); break; case 0: printf(&amp;quot;退出游戏\n&amp;quot;); break; default: printf(&amp;quot;选择错误,重新选择!\n&amp;quot;); break; } } while (input); } int main() { test(); return 0; }  game.h #define ROW 9 #define COL 9 #define ROWS ROW+2 #define COLS COL+2 #define EASY_COUNT 10 #include &amp;lt;stdio.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/</guid>
+      <description> 简介 相传在古印度圣庙中，有一种被称为汉诺塔(Hanoi)的游戏。该游戏是在一块铜板装置上，有三根杆(编号A、B、C)，在A杆自下而上、由大到小按顺序放置64个金盘(如下图)。游戏的目标：把A杆上的金盘全部移到C杆上，并仍保持原有顺序叠好。操作规则：每次只能移动一个盘子，并且在移动过程中三根杆上都始终保持大盘在下，小盘在上，操作过程中盘子可以置于A、B、C任一杆上。
+思想 C语言实现 void hanoi(int n, char a, char b, char c)
+n - 为移动圆盘个数
+a b c - 分别为三根针
+实现功能 - a上的n个圆盘移动到c上
+当只移动一个圆盘时，直接将圆盘从 A 针移动到 C 针。 若移动的圆盘为 n(n&amp;gt;1)，则分成几步走： 把 (n-1) 个圆盘从 A 针移动到 B 针（借助 C 针）； A 针上的最后一个圆盘移动到 C 针； B 针上的 (n-1) 个圆盘移动到 C 针（借助 A 针）。 每做一遍，移动的圆盘少一个，逐次递减，最后当 n 为 1 时，完成整个移动过程。
+#include &amp;lt;stdio.h&amp;gt; void hanoi(int n, char a, char b, char c) { if (n &amp;gt;= 1) { hanoi(n - 1, a, c, b);//把n - 1个盘子从a移到c借助b printf(&amp;quot;%c-- &amp;gt; %c\n&amp;quot;, a, c); hanoi(n - 1, b, a, c);//把n - 1个盘子从b柱移到a柱借助c } } void main() { int n; printf(&amp;quot;请输入移动圆盘个数:\n &amp;quot;); scanf(&amp;quot;%d&amp;quot;, &amp;amp;n); hanoi(n, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;); }  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/contact/</guid>
+      <description>通讯录Contact  存放1000个好友的信息 ： 名字 电话 性别 住址 年龄 增加好友信息 删除指定名字的好友信息 查找好友信息 修改好友信息 打印好友信息 排序  简单流程 详细代码 test.c 测试 #define _CRT_SECURE_NO_WARNINGS 1 #include &amp;quot;contact.h&amp;quot; void menu() { printf(&amp;quot;*****************************************\n&amp;quot;); printf(&amp;quot;****** 1. add 2. del *******\n&amp;quot;); printf(&amp;quot;****** 3. search 4. modify *******\n&amp;quot;); printf(&amp;quot;****** 5. show 6. sort *******\n&amp;quot;); printf(&amp;quot;****** 0. exit *******\n&amp;quot;); printf(&amp;quot;*****************************************\n&amp;quot;); } int main() { int input = 0; //创建通讯录 struct Contact con;//con就是通讯录，里边包含：data指针和size，capacity //初始化通讯录 InitContact(&amp;amp;con); // do { menu(); printf(&amp;quot;请选择:&amp;gt;&amp;quot;); scanf(&amp;quot;%d&amp;quot;, &amp;amp;input); switch (input) { case ADD: AddContact(&amp;amp;con); break; case DEL: DelContact(&amp;amp;con); break; case SEARCH: SearchContact(&amp;amp;con); break; case MODIFY: ModifyContact(&amp;amp;con); break; case SHOW: ShowContact(&amp;amp;con);//即使是展示也要取地址，这种效率高 break; case SORT: SortContact(&amp;amp;con); break; case EXIT: //销毁通讯录-释放动态开辟的内存 DestroyContact(&amp;amp;con); printf(&amp;quot;退出通讯录\n&amp;quot;); break; default: printf(&amp;quot;选择错误\n&amp;quot;); break; } } while (input); return 0; }  contact.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/</guid>
+      <description>问题描述 一只青蛙一次可以跳上 1 级台阶，也可以跳上2 级。求该青蛙跳上一个n 级的台阶总共有多少种跳法。
+分析 n - 台阶数
+sum - 跳发
+   n sum     1 1   2 2   3 3   4 5   5 8   6 13   7 21   8 34   9 55   10 89   …… ……   n-2 f(n-2)   n-1 f(n-1)   n f(n-1)+f(n-2)    可参考斐波那数</description>
+    </item>
+    
+    <item>
+      <title>分支语句和循环语句</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/2/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/2/</guid>
+      <description>C语言是一门结构化的程序设计语言  顺序结构 选择结构 循环结构  什么是语句 C语言中由一个分号 ; 隔开的就是一条语句。
+printf(&amp;quot;hello&amp;quot;); ;//是语句，空语句  分支语句（选择结构） if if语句语法 if(表达式) 语句; if(表达式) 语句1; else 语句2; //多分支 if(表达式1) 语句1; else if(表达式2) 语句2; else 语句3;  if语句示例 int age = 45; if (age &amp;lt; 18) printf(&amp;quot;未成年\n&amp;quot;); else if (age &amp;gt;= 18 &amp;amp;&amp;amp; age &amp;lt; 28) // 18&amp;lt;=age&amp;lt;28 有问题 printf(&amp;quot;青年\n&amp;quot;); else if (age &amp;gt;= 28 &amp;amp;&amp;amp; age &amp;lt; 50) printf(&amp;quot;壮年\n&amp;quot;); else if (age &amp;gt;= 50 &amp;amp;&amp;amp; age &amp;lt; 90) printf(&amp;quot;老年&amp;quot;); else printf(&amp;quot;长寿&amp;quot;);   如果表达式的结果为真，则语句执行。</description>
+    </item>
+    
+    <item>
+      <title>函数</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/3/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/3/</guid>
+      <description>函数是什么 维基百科中对函数的定义：子程序
+- 在计算机科学中，子程序（英语：Subroutine, procedure, function, routine, method,subprogram, callable unit），是一个大型程序中的某部分代码， 由一个或多个语句块组成。它负责完成某项特定任务，而且相较于其他代码，具备相对的独立性。 - 一般会有输入参数并有返回值，提供对过程的封装和细节的隐藏。这些代码通常被集成为软件库。  C语言中函数的分类  库函数 自定义函数  库函数 为什么会有库函数？
+ 我们知道在我们学习C语言编程的时候，总是在一个代码编写完成之后迫不及待的想知道结果，想把这个结果打印到我们的屏幕上看看。这个时候我们会频繁的使用一个功能：将信息按照一定的格式打印到屏幕上（printf）。 在编程的过程中我们会频繁的做一些字符串的拷贝工作（strcpy）。 在编程是我们也计算，总是会计算n的k次方这样的运算（pow）。  注： http://www.cplusplus.com/ http://en.cppreference.com
+常见库函数  IO函数 字符串操作函数 字符操作函数 内存操作函数 时间/日期函数 数学函数 其他库函数  strcpy-拷贝字符串
+char * strcpy ( char * destination, const char * source );  #include &amp;lt;string.h&amp;gt; #include &amp;lt;stdio.h&amp;gt; int main() { //strcpy - string copy -字符串拷贝 //strlen - string length -字符串长度有关 char arr1[] = &amp;quot;world&amp;quot;; char arr2[] = &amp;quot;##########&amp;quot;; printf(&amp;quot;%s\n&amp;quot;, arr2); strcpy(arr2, arr1); printf(&amp;quot;%s\n&amp;quot;, arr2); return 0; }  memset</description>
+    </item>
+    
+    <item>
+      <title>数组</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/4/</link>
+      <pubDate>Wed, 03 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/4/</guid>
+      <description>一维数组的创建和初始化 数组的创建 数组是一组相同类型元素的集合。 数组的创建方式
+type_t arr_name [const_n]; //type_t 是指数组的元素类型 //const_n 是一个常量表达式，用来指定数组的大小  素组创建的实例
+注：数组创建， [] 中要给一个常量才可以，不能使用变量。
+//创建一个数组-存放整形-10个 int arr[5] = {1, 2, 3}; //不完全初始化，剩下的元素默认初始化为0 char arr2[5] = {&#39;a&#39;, &#39;b&#39;}; char arr3[5] = &amp;quot;ab&amp;quot;; char arr4[] = &amp;quot;abcdef&amp;quot;; // int n = 5; // char ch[n];//err printf(&amp;quot;%d\n&amp;quot;, sizeof(arr4)); //7 sizeof 计算变量、数组、类型的大小-单位是字节- 操作符 printf(&amp;quot;%d\n&amp;quot;, strlen(arr4)); //6 strlen 是求字符串长度的，只针对字符串求长度- 库函数-使用得引用头文件  数组的初始化 数组的初始化是指，在创建数组的同时给数组的内容一些合理初始值（初始化）。
+char arr1[] = &amp;quot;abc&amp;quot;; char arr2[] = {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;}; printf(&amp;quot;%d\n&amp;quot;, sizeof(arr1)); //4 printf(&amp;quot;%d\n&amp;quot;, sizeof(arr2)); //3 printf(&amp;quot;%d\n&amp;quot;, strlen(arr1)); //3 printf(&amp;quot;%d\n&amp;quot;, strlen(arr2)); //随机数，没有\0结束字符  一维数组的使用 对于数组的使用我们之前介绍了一个操作符： [] ，下标引用操作符。它其实就数组访问的操作符。</description>
+    </item>
+    
+    <item>
+      <title>操作符详解</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/5/</link>
+      <pubDate>Wed, 03 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/5/</guid>
+      <description>操作符 分类  算术操作符 移位操作符 位操作符 赋值操作符 单目操作符 关系操作符 逻辑操作符 条件操作符 逗号表达式 下标引用、函数调用和结构成员  算术操作符 + - * / %   除了 % 操作符之外，其他的几个操作符可以作用于整数和浮点数。 对于 / 操作符如果两个操作数都为整数，执行整数除法。而只要有浮点数执行的就是浮点数除法。 % 操作符的两个操作数必须为整数。返回的是整除之后的余数。  double a = 5 % 2;//商2余1 printf(&amp;quot;a = %lf\n&amp;quot;, a);//1.000000  移位操作符 ：移动是二进制位，只能作用于整形 &amp;lt;&amp;lt; 左移操作符 &amp;gt;&amp;gt; 右移操作符  左移操作符 移位规则： **左边抛弃、右边补0**  int a = 5; int b = a &amp;lt;&amp;lt; 1; //00000000000000000000000000000101 //00000000000000000000000000001010 printf(&amp;quot;%d\n&amp;quot;, b); //10  右移操作符 移位规则：[右移1位有除2的效果] 首先右移运算分两种： 1.</description>
+    </item>
+    
+    <item>
+      <title>指针</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/6/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/6/</guid>
+      <description>指针是什么 在计算机科学中，指针（Pointer）是编程语言中的一个对象，利用地址，它的值直接指向 （points to）存在电脑存储器中另一个地方的值。由于通过地址能找到所需的变量单元，可以 说，地址指向该变量单元。因此，将地址形象化的称为“指针”。意思是通过它能找到以它为地址 的内存单元。  int a = 10;//在内存中开辟一块空间 int *p = &amp;amp;a;//这里我们对变量a，取出它的地址，可以使用&amp;amp;操作符。 //将a的地址存放在p变量中，p就是一个之指针变量  总结：指针就是变量，用来存放地址的变量。（存放在指针中的值都被当成地址处理）。指针就是地址.
+ 一个小的单元到底是多大？（1个字节） 如何编址？
+经过仔细的计算和权衡我们发现一个字节给一个对应的地址是比较合适的。 对于32位的机器，假设有32根地址线，那么假设每根地址线在寻址的是产生一个电信号正电/负电（1或者0）
+那么32根地址线产生的地址就会是：
+00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001 ... 11111111 11111111 11111111 11111111  这里就有2的32次方个地址。
+每个地址标识一个字节，那我们就可以给 （2^32Byte == 2^32/1024KB ==2^32/1024/1024MB==2^32/1024/1024/1024GB == 4GB） 4G的空闲进行编址。
+同样的方法，那64位机器，如果给64根地址线，那能编址多大空间，自己计算。
+  总结：
+ 指针是用来存放地址的，地址是唯一标示一块地址空间的。 指针的大小在32位平台是4个字节，在64位平台是8个字节。  指针和指针类型 指针+-整数 int n = 10; char *pc = (char *)&amp;amp;n; int *pi = &amp;amp;n; printf(&amp;quot;%p\n&amp;quot;, &amp;amp;n); //000000000061FE0C printf(&amp;quot;%p\n&amp;quot;, pc); //000000000061FE0C printf(&amp;quot;%p\n&amp;quot;, pc + 1); //000000000061FE0D printf(&amp;quot;%p\n&amp;quot;, pi); //000000000061FE0C printf(&amp;quot;%p\n&amp;quot;, pi + 1); //000000000061FE10  总结：指针的类型决定了指针向前或者向后走一步有多大（距离单位是字节）(指针的步长)。</description>
+    </item>
+    
+    <item>
+      <title>结构体</title>
+      <link>https://cytgenkidu.github.io/tutorial/c/7/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/7/</guid>
+      <description>结构体类型的声明 结构的基础知识 结构是一些值的集合，这些值称为成员变量。结构的每个成员可以是不同类型的变量。  结构的声明 struct tag { member-list; }variable-list;  例如描述一个学生 :名字,年龄,电话,性别
+//定义结构体类型 //struct 结构体关键字 Stu - 结构体标签 struct Stu - 结构体类型 struct Stu { //成员变量 char name[20]; short age; char tele[12]; char sex[5]; }s1, s2, s3;//s1,s2,s3 是三个全局的结构体变量，//分号不能丢 //创建结构体变量 struct Stu s2 = {&amp;quot;旺财&amp;quot;, 30, &amp;quot;15596668862&amp;quot;, &amp;quot;保密&amp;quot;};  //typedef给结构体类型struct Stu重新命名为Stu typedef struct Stu { //成员变量 char name[20]; short age; char tele[12]; char sex[5]; }Stu;//分号不能丢 //创建结构体变量 Stu s1 = {&amp;quot;张三&amp;quot;, 20, &amp;quot;15249287076&amp;quot;, &amp;quot;男&amp;quot;};//局部变量  结构成员的类型 结构的成员可以是标量、数组、指针，甚至是其他结构体。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/8/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/8/</guid>
+      <description>Debug和Release的介绍 Debug 通常称为调试版本，它包含调试信息，并且不作任何优化，便于程序员调试程序。  Release 称为发布版本，它往往是进行了各种优化，使得程序在代码大小和运行速度上都是最优的，以便用户很好地使用。  int main() { int i = 0; int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; printf(&amp;quot;%p\n&amp;quot;, arr); printf(&amp;quot;%p\n&amp;quot;, &amp;amp;i); //VC6.0 环境下 &amp;lt;=10 就死循环了 //gcc 编译器 &amp;lt;=11 就死循环了 //VS2013 &amp;lt;=12 死循环 for (i = 0; i &amp;lt;= 12; i++) { printf(&amp;quot;hehe\n&amp;quot;); arr[i] = 0; } system(&amp;quot;pause&amp;quot;); return 0; }  死循环的原因：
+main函数创建了i和arr是局部变量，存储在栈区，i在高地址创建，arr在i的低地址创建,所以在使用的过程中产生越界，可能arr会遇到i
+ 栈区的默认使用 先使用高地址处的空间，在使用低地址处的空间 数组随着下标的增长，地址是由低到高的变化  常用快捷键 window F5 启动调试，经常用来直接调到下一个断点处。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/9/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/9/</guid>
+      <description>数据类型  内置类型
+char //字符数据类型 short //短整型 int //整形 long //长整型 long long //更长的整形 float //单精度浮点数 double //双精度浮点数  自定义类型(构造类型)
+  类型的意义：
+ 使用这个类型开辟内存空间的大小（大小决定了使用范围）。 如何看待内存空间的视角。  类型的基本归类 整形家族 char unsigned char //无符号数 signed char short unsigned short [int] signed short [int] //[int] 可以省略 int unsigned int signed int long unsigned long [int] signed long [int]  浮点数家族 float double  构造类型 &amp;gt; 数组类型 &amp;gt; 结构体类型 struct &amp;gt; 枚举类型 enum &amp;gt; 联合类型 union  指针类型 int *pi; char *pc; float* pf; void* pv;  空类型 void 表示空类型（无类型） 通常应用于函数的返回类型、函数的参数、指针类型。  整形在内存中的存储 limit.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/10/</link>
+      <pubDate>Sat, 20 Feb 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/10/</guid>
+      <description>字符指针 在指针的类型中我们知道有一种指针类型为字符指针 char* ;
+一般使用:
+char ch = &#39;w&#39;; char *pc = &amp;amp;ch; *pc = &#39;w&#39;;  char arr[] = &amp;quot;abcdef&amp;quot;; char* pc = arr; printf(&amp;quot;%s\n&amp;quot;, arr);//abcdef printf(&amp;quot;%s\n&amp;quot;, pc);//abcdef  还有一种使用方式如下：
+char* p= &amp;quot;abcdef&amp;quot;;//&amp;quot;abcdef&amp;quot; 是一个常量字符串，存放的是a的地址 printf(&amp;quot;%c\n&amp;quot;, p);//a printf(&amp;quot;%s\n&amp;quot;, p);//abcdef *p=&#39;W&#39;; //printf(&amp;quot;%s\n&amp;quot;, p);//err,准确的写法const char* p= &amp;quot;abcdef&amp;quot;;  面试题 char arr1[] = &amp;quot;abcdef&amp;quot;; char arr2[] = &amp;quot;abcdef&amp;quot;; const char* p1 = &amp;quot;abcdef&amp;quot;;//常量自字符串 const char* p2 = &amp;quot;abcdef&amp;quot;;//常量自字符串里 //p1、p2指向的是一个同一个常量字符串，p1和p2指向同一个地址 //C/C++会把常量字符串存储到单独的一个内存区域， //当几个指针。指向同一个字符串的时候，他们实际会指向同一块内存。 //但是用相同的常量字符串去初始化不同的数组的时候就会开辟出不同的内存块。 if (arr1 == arr2) { printf(&amp;quot;hehe\n&amp;quot;); } else { printf(&amp;quot;haha\n&amp;quot;);//打印 } if (p1 == p2) { printf(&amp;quot;hehe\n&amp;quot;);//打印 } else { printf(&amp;quot;haha\n&amp;quot;); }  指针数组 指针数组的定义 //指针数组 是数组，用来存放指针的 int arr[10] = {0};//整形数组 char ch[5] = { 0 };//字符数组 int* parr[4];//存放整形指针的数组 - 指针数组 char* pch[5];//存放字符指针的数组 - 指针数组  指针数组的用途 //实际中不会这么用 int a = 10; int b = 20; int c = 30; int d = 40; int* arr[4] = {&amp;amp;a, &amp;amp;b, &amp;amp;c, &amp;amp;d}; int i = 0; for (i = 0; i &amp;lt; 4; i++) { printf(&amp;quot;%d &amp;quot;, *(arr[i]));//10 20 30 40 }  实际用途</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/11/</guid>
+      <description>函数介绍  求字符串长度
+strlen  长度不受限制的字符串函数
+strcpy strcat strcmp  长度受限制的字符串函数介绍
+strncpy strncat strncmp  字符串查找
+strstr strtok  错误信息报告
+strerror  字符操作
+ 内存操作函数
+memcpy memmove memset memcmp   求字符串长度 strlen-获取字符串长度 size_t strlen ( const char * str ); //size_t== unsigned int，是无符号的（ 易错 ）   字符串已经&amp;rsquo;\0&amp;rsquo;作为结束标志， strlen函数返回的是在字符串中&amp;rsquo;\0&amp;rsquo;前面出现的字符个数（不包含 &amp;lsquo;\0&amp;rsquo; )。 参数指向的字符串必须要以 &amp;lsquo;\0&amp;rsquo; 结束。  strlen函数的模拟实现  计数器方式 不能创建临时变量计数器 指针-指针的方式  int my_strlen(const char *str) //库里返回的是无符号数 { //法一：记数方式 int count = 0; while (*str !</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/12/</guid>
+      <description>结构体 结构体类型的声明 结构的基础知识 结构是一些值的集合，这些值称为成员变量。结构的每个成员可以是不同类型的变量。
+结构体的声明 struct tag { member-list;//成员列表 }variable-list ;  //声明一个结构体类型 //声明一个学生类型，是想过学生类型来创建学生变量（对象） //描述学生：属性-名字+电话+性别+年龄 struct Stu { char name[20];//名字 char tele[12];//电话 char sex[10];//性别 int age; } s4,s5,s6;//全局变量 struct Stu s3;//全局变量 int main() { //创建的结构体变量 struct Stu s1;//局部变量 struct Stu s2; return 0; }  特殊的声明 在声明结构的时候，可以不完全的声明。
+//匿名结构体类型，在声明的时候省略掉了结构体标签（tag） struct { int a; char c; }sa; //匿名结构体指针类型 struct { int a; char c; }* psa; int main() { psa = &amp;amp;sa; return 0; }  警告： 编译器会把上面的两个声明当成完全不同的两个类型。 所以是非法的。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/13/</guid>
+      <description>为什么存在动态内存分配 当前已经知道的内存的使用方式： 1. 创建一个变量 int a=10;//局部变量 - 栈区 int g_a=10;//全局变量 - 静态区 2. 创建一个数组 int arr[10];//局部/全局
+但是上述的开辟空间的方式有两个特点： 1. 空间开辟大小是固定的。 2. 数组在申明的时候，必须指定数组的长度，它所需要的内存在编译时分配。
+但是对于空间的需求，不仅仅是上述的情况。有时候我们需要的空间大小在程序运行的时候才能知道，那数组的编译时开辟空间的方式就不能满足了。 这时候就只能试试动态存开辟了。
+动态内存函数的介绍 malloc-动态内存开辟 和 free-动态内存的释放和回收 void* malloc (size_t size);//动态内存开辟的函数   这个函数向内存申请一块连续可用的空间，并返回指向这块空间的指针。 如果开辟成功，则返回一个指向开辟好空间的指针。 如果开辟失败，则返回一个NULL指针，因此malloc的返回值一定要做检查。 返回值的类型是 void* ，所以malloc函数并不知道开辟空间的类型，具体在使用的时候使用者自己来决定。 如果参数 size 为0，malloc的行为是标准是未定义的，取决于编译器。  void free (void* ptr);//动态内存的释放和回收的函数   free函数用来释放动态开辟的内存。 如果参数 ptr 指向的空间不是动态开辟的，那free函数的行为是未定义的。 如果参数 ptr 是NULL指针，则函数什么事都不做。  malloc和free都声明在 stdlib.h 头文件中。
+#include &amp;lt;stdlib.h&amp;gt; #include &amp;lt;string.h&amp;gt; #include &amp;lt;errno.h&amp;gt; #include &amp;lt;stdio.h&amp;gt; int main() { //向内存申请10个整形的空间 //int* p = (int*)malloc(INT_MAX); int* p = (int*)malloc(10*sizeof(int));//动态内存开辟 if (p == NULL) { //打印错误原因的一个方式 printf(&amp;quot;%s\n&amp;quot;, strerror(errno)); } else { //正常使用空间 int i = 0; for (i = 0; i &amp;lt; 10; i++) { *(p + i) = i; } for (i = 0; i &amp;lt; 10; i++) { printf(&amp;quot;%d &amp;quot;, *(p + i)); } } //当动态申请的空间不再使用的时候 //就应该还给操作系统 free(p);//释放ptr所指向的动态内存 p = NULL;//必要 return 0; }  calloc-动态内存分配 void* calloc (size_t num, size_t size);   函数的功能是为 num 个大小为 size 的元素开辟一块空间，并且把空间的每个字节初始化为0。 与函数 malloc 的区别只在于 calloc 会在返回地址之前把申请的空间的每个字节初始化为全0。  #include &amp;lt;stdlib.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/14/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/14/</guid>
+      <description>什么是文件 磁盘上的文件是文件。
+但是在程序设计中，我们一般谈的文件有两种：程序文件、数据文件
+程序文件 包括源程序文件（后缀为.c）,目标文件（windows环境后缀为.obj）,可执行程序（windows环境后缀为.exe）。
+数据文件 文件的内容不一定是程序，而是程序运行时读写的数据，比如程序运行需要从中读取数据的文件，或者输出内容的文件。
+本章讨论的是数据文件。
+在以前各章所处理数据的输入输出都是以终端为对象的，即从终端的键盘输入数据，运行结果显示到显示器上。
+其实有时候我们会把信息输出到磁盘上，当需要的时候再从磁盘上把数据读取到内存中使用，这里处理的就是磁盘上文件。
+文件名 一个文件要有一个唯一的文件标识，以便用户识别和引用。
+文件名包含3部分：文件路径+文件名主干+文件后缀
+例如：c:\code\test.txt 为了方便起见，文件标识常被称为文件名。
+文件类型 根据数据的组织形式，数据文件被称为文本文件或者二进制文件。
+数据在内存中以二进制的形式存储，如果不加转换的输出到外存，就是二进制文件。如果要求在外存上以ASCII码的形式存储，则需要在存储前转换。以ASCII字符的形式存储的文件就是文本文件。
+一个数据在内存中是怎么存储的呢？
+字符一律以ASCII形式存储，数值型数据既可以用ASCII形式存储，也可以使用二进制形式存储。
+如有整数10000，如果以ASCII码的形式输出到磁盘，则磁盘中占用5个字节（每个字符一个字节），而二进制形式输出，则在磁盘上只占4个字节（VS2017测试）。
+#include &amp;lt;stdio.h&amp;gt; int main() { int a = 10000; FILE* pf = fopen(&amp;quot;test.txt&amp;quot;, &amp;quot;wb&amp;quot;); fwrite(&amp;amp;a, 4, 1, pf);//二进制的形式写到文件中 fclose(pf); pf = NULL; return 0; }  文件缓冲区 ANSIC 标准采用“缓冲文件系统”处理的数据文件的，所谓缓冲文件系统是指系统自动地在内存中为程序中每一个正在使用的文件开辟一块“文件缓冲区”。从内存向磁盘输出数据会先送到内存中的缓冲区，装满缓冲区后才一起送到磁盘上。如果从磁盘向计算机读入数据，则从磁盘文件中读取数据输入到内存缓冲区（充满缓冲区），然后再从缓冲区逐个地将数据送到程序数据区（程序变量等）。缓冲区的大小根据C编译系统决定的。
+文件指针 缓冲文件系统中，关键的概念是“文件类型指针”，简称“文件指针”。
+每个被使用的文件都在内存中开辟了一个相应的文件信息区，用来存放文件的相关信息（如文件的名字，文件状态及文件当前的位置等）。这些信息是保存在一个结构体变量中的。该结构体类型是有系统声明的，取名FILE.
+struct _iobuf { char *_ptr; int _cnt; char *_base; int _flag; int _file; int _charbuf; int _bufsiz; char *_tmpfname; }; typedef struct _iobuf FILE;  不同的C编译器的FILE类型包含的内容不完全相同，但是大同小异。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://cytgenkidu.github.io/tutorial/c/15/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/tutorial/c/15/</guid>
+      <description>程序的翻译环境和执行环境 在ANSI C的任何一种实现中，存在两个不同的环境。
+第1种是翻译环境，在这个环境中源代码被转换为可执行的机器指令。 第2种是执行环境，它用于实际执行代码。  详解：C语言程序的编译+链接 翻译环境  组成一个程序的每个源文件通过编译过程分别转换成目标代码（object code）。 每个目标文件由链接器（linker）捆绑在一起，形成一个单一而完整的可执行程序。 链接器同时也会引入标准C函数库中任何被该程序所用到的函数，而且它可以搜索程序员个人的程序库，将其需要的函数也链接到程序中。  编译本身也分为几个阶段  预处理 选项 gcc -E test.c -o test.i 预处理完成之后就停下来，预处理之后产生的结果都放在test.i文件中。 编译 选项 gcc -S test.c 编译完成之后就停下来，结果保存在test.s中。 汇编 gcc -c test.c 汇编完成之后就停下来，结果保存在test.o中。  运行环境 程序执行的过程：
+ 程序必须载入内存中。在有操作系统的环境中：一般这个由操作系统完成。在独立的环境中，程序的载入必须由手工安排，也可能是通过可执行代码置入只读内存来完成。 程序的执行便开始。接着便调用main函数。 开始执行程序代码。这个时候程序将使用一个运行时堆栈（stack），存储函数的局部变量和返回地址。程序同时也可以使用静态（static）内存，存储于静态内存中的变量在程序的整个执行过程一直保留他们的值。 终止程序。正常终止main函数；也有可能是意外终止。  预编译（预处理）详解 预定义符号 __FILE__ //进行编译的源文件 __LINE__ //文件当前的行号 __DATE__ //文件被编译的日期 __TIME__ //文件被编译的时间 __STDC__ //如果编译器遵循ANSI C，其值为1，否则未定义  printf(&amp;quot;%s\n&amp;quot;, __FILE__); printf(&amp;quot;%d\n&amp;quot;, __LINE__); printf(&amp;quot;%s\n&amp;quot;, __DATE__); printf(&amp;quot;%s\n&amp;quot;, __TIME__);  应用-写日志log
+//写日志 int i = 0; int arr[10] = { 0 }; FILE* pf = fopen(&amp;quot;log.</description>
+    </item>
+    
+  </channel>
+</rss>

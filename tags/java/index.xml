@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/java/</link>
+    <description>Recent content in java on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Sun, 04 Apr 2021 10:38:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mybatis generator插件自定义修改-[修改数据类型与java类型映射关系&#43;增加分页&#43;增加多字段模糊查询&#43;增加中文字段特殊字符转化]</title>
+      <link>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Sun, 04 Apr 2021 10:38:53 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</guid>
+      <description>如果你想在mybatis generator 自动生成mapper xml model等的时候，调整生成java的数据库类型（数据类型转换）、生成分页语句、or连接的多列模糊查询、含中文特殊字符处理。末尾有源码的地址和jar.
+准备工作 下载源码：https://github.com/mybatis/generator 其中，mybatis-generator-core目录 是该项目的源码，主要修改这里。 注：本例是对mybatis-generator-core1.4.1的扩展，其他版本修改过程类似。 目录如下： 修改 mybatis-generator 中数据库类型和 Java 类型的映射关系 本例是将原本数据库的TIMESTAMP 映射为 Date 类型， 改为 数据库的TIMESTAMP 映射为 LocalDateTime类型。
+注： 仅为示例，其他类型修改类似。 mybatis generator 本身可直接将TIMESTAMP映射为LocalDateTime。具体使用方法请参考http://mybatis.org/generator/configreference/javaTypeResolver.html
+修改文件位置为src\main\java\org\mybatis\generator\internal\types\JavaTypeResolverDefaultImpl.java // typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ // new FullyQualifiedJavaType(Date.class.getName()))); typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ new FullyQualifiedJavaType(LocalDateTime.class.getName())));  这样就会将数据库的TIMESTAMP映射为java的LocalDateTime。
+增加物理分页 适用于targetRuntime=&amp;ldquo;MyBatis3&amp;rdquo;
+增加代码位置 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithBLOBsElementGenerator.java 和 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithoutBLOBsElementGenerator.java
+ifElement = new XmlElement(&amp;quot;if&amp;quot;); //$NON-NLS-1$ ifElement.addAttribute(new Attribute(&amp;quot;test&amp;quot;, &amp;quot;limitStart &amp;gt;= 0 and limitEnd &amp;gt; 0&amp;quot;)); //$NON-NLS-1$ //$NON-NLS-2$ ifElement.addElement(new TextElement(&amp;quot;limit ${limitStart},${limitEnd}&amp;quot;)); //$NON-NLS-1$ answer.</description>
+    </item>
+    
+    <item>
+      <title>VSCode搭建java环境</title>
+      <link>https://cytgenkidu.github.io/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Wed, 12 Jun 2019 22:31:57 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/</guid>
+      <description>安装扩展  安装完成重启 VSCode。
+配置Maven 点击左下角设置图标-&amp;gt;设置，打开设置内容,然后点击右侧的打开json格式setting：
+ 然后把maven的可执行文件路径配置、maven的setting路径配置、java.home的路径配置，拷贝到右侧的用户设置区域并且设置为自己电脑的实际路径。
+设置内容如下：
+{ &amp;quot;workbench.startupEditor&amp;quot;: &amp;quot;newUntitledFile&amp;quot;, &amp;quot;java.errors.incompleteClasspath.severity&amp;quot;: &amp;quot;ignore&amp;quot;, &amp;quot;java.home&amp;quot;:&amp;quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_192&amp;quot;, &amp;quot;java.configuration.maven.userSettings&amp;quot;: &amp;quot;D:\\软件安装位置\\apache-maven-3.6.0\\conf\\settings.xml&amp;quot;, &amp;quot;maven.executable.path&amp;quot;: &amp;quot;D:\\软件安装位置\\apache-maven-3.6.0\\bin\\mvn.cmd&amp;quot;, &amp;quot;maven.terminal.useJavaHome&amp;quot;: true, &amp;quot;maven.terminal.customEnv&amp;quot;: [ { &amp;quot;environmentVariable&amp;quot;: &amp;quot;JAVA_HOME&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_192&amp;quot; } ], &amp;quot;git.path&amp;quot;: &amp;quot;C:\\Program Files\\Git\\bin\\git.exe&amp;quot;, &amp;quot;workbench.colorTheme&amp;quot;: &amp;quot;Visual Studio Dark&amp;quot;, // &amp;quot;vscodePluginDemo.showTip&amp;quot;: false, &amp;quot;files.encoding&amp;quot;: &amp;quot;utf8&amp;quot;, &amp;quot;javascript.implicitProjectConfig.experimentalDecorators&amp;quot;: true, &amp;quot;vscodePluginDemo.showTip&amp;quot;: true, &amp;quot;files.exclude&amp;quot;: { &amp;quot;**/.classpath&amp;quot;: true, &amp;quot;**/.project&amp;quot;: true, &amp;quot;**/.settings&amp;quot;: true, &amp;quot;**/.factorypath&amp;quot;: true }, &amp;quot;editor.</description>
+    </item>
+    
+    <item>
+      <title>基于Spring Boot &#43; AngularJS的ERP系统升级</title>
+      <link>https://cytgenkidu.github.io/project/springboot-angular-erp/</link>
+      <pubDate>Sun, 24 Mar 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/springboot-angular-erp/</guid>
+      <description>项目介绍： 对原本使用.NET Framework框架的ERP系统进行升级。
+开发过程： JHipster快速构建一个基于Spring Boot + AngularJS的项目，并在此基础上进行开发。
+客户端：  单页面应用AngularJS、Bootstrap、HTML5、I18N、Sass 通过npm来安装额外的JavaScript库 通过webpack构建、优化、实时重载 支持Thtmeleaf模板引擎  服务端：  使用易于配置的Spring Boot框架，通过Gradle对项目进行管理和构建 使用Spring Security OAuth2进行认证授权 使用Mybatis Generator根据数据库自动生成映射文件和Dao 使用Spring data JPA实现动态查询 使用Liquibase初始化数据库信息及数据库源代码版本控制 使用Lombok简化Java代码  生产环境：  支持使用Docker Compose管理Docker多容器，完成部署。  结果： 项目还在进行中，部分功能已测试，其他功能待迁移。</description>
+    </item>
+    
+    <item>
+      <title>微租社群—基于Spring Boot的微信公众号开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</link>
+      <pubDate>Mon, 11 Feb 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</guid>
+      <description> 项目介绍： 开发微信公众号，客户通过公众号对应租金进行付款，客户社区运营。
+开发过程： 通过在GitHub上spring-guides/gs-spring-boot-docker的开源项目快速构建Docker镜像，并在此基础上进行开发，使用Spring Data JPA实现有数据库表生成实体类，并快速构建仓储类对数据库进行操作。前端页面使用Thymeleaf模板引擎进行渲染。通过Gradle对项目进行管理和构建，并将Docker镜像push到阿里云，负载到三个服务节点。
+结果： 客户通过公众号了解公司情况，还可以通过公众号查询违章信息、资料上传、租金自缴等功能。
+效果图  </description>
+    </item>
+    
+  </channel>
+</rss>

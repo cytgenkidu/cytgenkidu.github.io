@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="VSCode搭建java环境">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/">
+  <meta property="og:title" content="VSCode搭建java环境 | Cytgenkidu">
+  <meta property="og:description" content="VSCode搭建java环境">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2019-06-12T22:31:57&#43;08:00">
+  
+  
+  <meta property="article:modified_time" content="2019-06-12T22:31:57&#43;08:00">
+  
+  
+
+  
+
+  
+
+  <title>VSCode搭建java环境 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">VSCode搭建java环境</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-06-12 22:31:57 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-06-12 22:31:57 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-06-12</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/vscode/">VSCode</a>, 
+    
+    <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>, 
+    
+    <a href="/categories/java/">java</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=VSCode%e6%90%ad%e5%bb%bajava%e7%8e%af%e5%a2%83&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fvscode%25E6%2590%25AD%25E5%25BB%25BAjava%25E7%258E%25AF%25E5%25A2%2583%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fvscode%25E6%2590%25AD%25E5%25BB%25BAjava%25E7%258E%25AF%25E5%25A2%2583%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fvscode%25E6%2590%25AD%25E5%25BB%25BAjava%25E7%258E%25AF%25E5%25A2%2583%2f&amp;title=VSCode%e6%90%ad%e5%bb%bajava%e7%8e%af%e5%a2%83"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fvscode%25E6%2590%25AD%25E5%25BB%25BAjava%25E7%258E%25AF%25E5%25A2%2583%2f&amp;title=VSCode%e6%90%ad%e5%bb%bajava%e7%8e%af%e5%a2%83"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=VSCode%e6%90%ad%e5%bb%bajava%e7%8e%af%e5%a2%83&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fvscode%25E6%2590%25AD%25E5%25BB%25BAjava%25E7%258E%25AF%25E5%25A2%2583%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="安装扩展">安装扩展</h2>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/安装" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/Java%20Extension%20Pack.png" data-caption="Java Extension Pack">
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/Java%20Extension%20Pack_hu5aa13f357d3a145f477072ae1ee89e7f_11032_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/安装" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/Spring%20Boot%20Extension%20Pack.png" data-caption="Spring Boot Extension Pack">
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/Spring%20Boot%20Extension%20Pack_hu290ba304981bd1b3c6cacb105415cfa6_12666_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/安装" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/logo_Java%20Extension%20Pack.png" >
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/logo_Java%20Extension%20Pack_hu1c4b2320a230eaceeb696542e5e423c4_16732_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/安装" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/logo_Spring%20Boot%20Extension%20Pack.png" >
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/%E5%AE%89%E8%A3%85/logo_Spring%20Boot%20Extension%20Pack_hu187ff1221371ff65a1497435951c6da5_18358_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>安装完成重启 VSCode。</p>
+
+<h2 id="配置maven">配置Maven</h2>
+
+<p>点击左下角设置图标-&gt;设置，打开设置内容,然后点击右侧的打开json格式setting：</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/maven" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/%E9%85%8D%E7%BD%AEmaven.png" data-caption="配置maven2">
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/%E9%85%8D%E7%BD%AEmaven_hu7e9edf5ea3eee5aec57a5b0c06ecc7a0_101735_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/maven" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/%E9%85%8D%E7%BD%AEmaven2.png" >
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/%E9%85%8D%E7%BD%AEmaven2_hufea3ad6ec93a361de2070093b654722d_188601_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/maven" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/logo_%E9%85%8D%E7%BD%AEmaven.png" >
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/logo_%E9%85%8D%E7%BD%AEmaven_hu0c248a3f03880e7efb9bbf09aac0fd6f_122021_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/maven" href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/logo_%E9%85%8D%E7%BD%AEmaven2.png" >
+  <img src="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/img/maven/logo_%E9%85%8D%E7%BD%AEmaven2_hue6eb7e498133d0787d0dafa8b3d80ece_202599_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>然后把maven的可执行文件路径配置、maven的setting路径配置、java.home的路径配置，拷贝到右侧的用户设置区域并且设置为自己电脑的实际路径。</p>
+
+<p>设置内容如下：</p>
+
+<pre><code class="language-json">{
+    &quot;workbench.startupEditor&quot;: &quot;newUntitledFile&quot;,
+    &quot;java.errors.incompleteClasspath.severity&quot;: &quot;ignore&quot;,
+    &quot;java.home&quot;:&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_192&quot;,
+    &quot;java.configuration.maven.userSettings&quot;: &quot;D:\\软件安装位置\\apache-maven-3.6.0\\conf\\settings.xml&quot;,
+    &quot;maven.executable.path&quot;: &quot;D:\\软件安装位置\\apache-maven-3.6.0\\bin\\mvn.cmd&quot;,
+    &quot;maven.terminal.useJavaHome&quot;: true,
+    &quot;maven.terminal.customEnv&quot;: [
+        {
+            &quot;environmentVariable&quot;: &quot;JAVA_HOME&quot;,
+            &quot;value&quot;: &quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_192&quot;
+        }
+    ],
+    &quot;git.path&quot;: &quot;C:\\Program Files\\Git\\bin\\git.exe&quot;,
+    &quot;workbench.colorTheme&quot;: &quot;Visual Studio Dark&quot;,
+    // &quot;vscodePluginDemo.showTip&quot;: false,
+    &quot;files.encoding&quot;: &quot;utf8&quot;,
+    &quot;javascript.implicitProjectConfig.experimentalDecorators&quot;: true,
+    &quot;vscodePluginDemo.showTip&quot;: true,
+    &quot;files.exclude&quot;: {
+        &quot;**/.classpath&quot;: true,
+        &quot;**/.project&quot;: true,
+        &quot;**/.settings&quot;: true,
+        &quot;**/.factorypath&quot;: true
+    },
+    &quot;editor.largeFileOptimizations&quot;: false,
+    &quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe&quot;,
+    &quot;java.jdt.ls.vmargs&quot;: &quot;-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\&quot;C:\\Users\\15762\\.vscode\\extensions\\gabrielbb.vscode-lombok-0.9.8/server/lombok.jar\&quot;&quot;,
+    &quot;terminal.integrated.rendererType&quot;: &quot;dom&quot;,
+    &quot;editor.suggestSelection&quot;: &quot;first&quot;,
+    &quot;vsintellicode.modify.editor.suggestSelection&quot;: &quot;automaticallyOverrodeDefaultValue&quot;,
+    &quot;git.enableSmartCommit&quot;: true,
+    &quot;typescript.updateImportsOnFileMove.enabled&quot;: &quot;always&quot;,
+    &quot;[html]&quot;: {
+        &quot;editor.defaultFormatter&quot;: &quot;HookyQR.beautify&quot;
+    },
+    &quot;[json]&quot;: {
+        &quot;editor.defaultFormatter&quot;: &quot;HookyQR.beautify&quot;
+    },
+    &quot;vsicons.projectDetection.autoReload&quot;: true
+}
+</code></pre>
+
+<p>如果mvn更新包速度很慢，建议使用阿里云的镜像速度会快点（修改maven的setting.xml配置如下）：</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+  &lt;pluginGroups&gt;
+  &lt;/pluginGroups&gt;
+  &lt;proxies&gt;
+  &lt;/proxies&gt;
+  &lt;servers&gt;
+  &lt;/servers&gt;
+  &lt;mirrors&gt;
+  &lt;!-- 阿里云仓库 --&gt;
+    &lt;mirror&gt;
+        &lt;id&gt;alimaven&lt;/id&gt;
+        &lt;name&gt;aliyun maven&lt;/name&gt;
+        &lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;
+        &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+    &lt;/mirror&gt;
+  &lt;/mirrors&gt;
+  &lt;profiles&gt;
+  &lt;/profiles&gt;
+&lt;/settings&gt;
+</code></pre>
+
+<p>配置完成重启 VSCode。</p>
+
+<h2 id="创建spring-boot项目">创建Spring Boot项目</h2>
+
+<p>使用快捷键(Ctrl+Shift+P)命令窗口，输入 Spring 选择创建 Gradle 项目。</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/vscode/">VSCode</a>
+  
+  <a class="badge badge-light" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+  
+  <a class="badge badge-light" href="/tags/java/">java</a>
+  
+</div>
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/project/springboot-angular-erp/">基于Spring Boot &#43; AngularJS的ERP系统升级</a></li>
+          
+          <li><a href="/project/weizu-gongzhonghao/">微租社群—基于Spring Boot的微信公众号开发</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/" rel="next">使用VSCode运行C语言</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/post/jhipster-monoliyhic-entitymodel/" rel="prev">使用JHipster构建单一的Web应用程序-实体建模</a>
+  </div>
+  
+</div>
+
+
+    </div>
+    
+
+    
+
+    
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mybatis on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/mybatis/</link>
+    <description>Recent content in mybatis on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Sun, 04 Apr 2021 10:38:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/mybatis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mybatis generator插件自定义修改-[修改数据类型与java类型映射关系&#43;增加分页&#43;增加多字段模糊查询&#43;增加中文字段特殊字符转化]</title>
+      <link>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Sun, 04 Apr 2021 10:38:53 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/mybatis-generator-core%E6%89%A9%E5%B1%95/</guid>
+      <description>如果你想在mybatis generator 自动生成mapper xml model等的时候，调整生成java的数据库类型（数据类型转换）、生成分页语句、or连接的多列模糊查询、含中文特殊字符处理。末尾有源码的地址和jar.
+准备工作 下载源码：https://github.com/mybatis/generator 其中，mybatis-generator-core目录 是该项目的源码，主要修改这里。 注：本例是对mybatis-generator-core1.4.1的扩展，其他版本修改过程类似。 目录如下： 修改 mybatis-generator 中数据库类型和 Java 类型的映射关系 本例是将原本数据库的TIMESTAMP 映射为 Date 类型， 改为 数据库的TIMESTAMP 映射为 LocalDateTime类型。
+注： 仅为示例，其他类型修改类似。 mybatis generator 本身可直接将TIMESTAMP映射为LocalDateTime。具体使用方法请参考http://mybatis.org/generator/configreference/javaTypeResolver.html
+修改文件位置为src\main\java\org\mybatis\generator\internal\types\JavaTypeResolverDefaultImpl.java // typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ // new FullyQualifiedJavaType(Date.class.getName()))); typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation(&amp;quot;TIMESTAMP&amp;quot;, //$NON-NLS-1$ new FullyQualifiedJavaType(LocalDateTime.class.getName())));  这样就会将数据库的TIMESTAMP映射为java的LocalDateTime。
+增加物理分页 适用于targetRuntime=&amp;ldquo;MyBatis3&amp;rdquo;
+增加代码位置 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithBLOBsElementGenerator.java 和 src\main\java\org\mybatis\generator\codegen\mybatis3\xmlmapper\elements\SelectByExampleWithoutBLOBsElementGenerator.java
+ifElement = new XmlElement(&amp;quot;if&amp;quot;); //$NON-NLS-1$ ifElement.addAttribute(new Attribute(&amp;quot;test&amp;quot;, &amp;quot;limitStart &amp;gt;= 0 and limitEnd &amp;gt; 0&amp;quot;)); //$NON-NLS-1$ //$NON-NLS-2$ ifElement.addElement(new TextElement(&amp;quot;limit ${limitStart},${limitEnd}&amp;quot;)); //$NON-NLS-1$ answer.</description>
+    </item>
+    
+  </channel>
+</rss>

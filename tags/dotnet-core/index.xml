@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DOTNET Core on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/dotnet-core/</link>
+    <description>Recent content in DOTNET Core on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Wed, 10 Oct 2018 12:41:05 -0500</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/dotnet-core/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>微租小程序—基于.NET Core的微信小程序开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-xiaochengxu/</link>
+      <pubDate>Wed, 10 Oct 2018 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-xiaochengxu/</guid>
+      <description> 项目介绍： 搭建微信小程序积分商店，客户使用小程序通过支付宝、微信等形式进行租金支付。
+开发过程： 基于Github上找到的开源项目https://github.com/tumobi/nideshop 仿网易严选小程序Demo，在此基础上参考小程序开发手册进行开发。后端使用.NET Core 搭建接口服务，使用它提供的微信和支付宝的支付功能。
+结果： 客户能够通过积分在小程序上兑换商品，并通过小程序对每月租金进行付款。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>安环云—基于.NET Core的微信小程序及安卓后台项目开发</title>
+      <link>https://cytgenkidu.github.io/project/huanjing-xiaochengxu/</link>
+      <pubDate>Mon, 11 Dec 2017 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/huanjing-xiaochengxu/</guid>
+      <description>项目介绍 与人保公司合作项目，开发微信小程序和安卓APP后端服务，实现移动办公，记录评估人员评估轨迹，随时随地上传提交现场风险隐患点及整改情况现场勘查照片。
+开发过程 参考小程序开发文档，使用小程序开发工具进行开发微信小程序。后端使用.NET Core 搭建接口服务，在人保内部网络进行部署，满足小程序接口及安卓后台接口。使用阿里云OSS存储记录现场勘查图片。
+结果 实现评估轨迹查询，实现现场勘查随时上传，实现企业风险点随时记录。</description>
+    </item>
+    
+  </channel>
+</rss>

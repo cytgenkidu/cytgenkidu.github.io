@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="在本章中，我们将看到如何使用业务实体和模型。
+使用命令行生成实体 &gt; jhipster entity Invoice  使用JHipster域语言进行实体建模 JHipster Domain Language (JDL)用于为JHipster应用程序创建域模型。它提供了一个简单且用户友好的DSL来描述实体及其关系(仅适用于SQL数据库)。
+JDL是为应用程序创建实体的推荐方法，它可以替代JHipster提供的实体生成器，在创建大量实体时，可能很难使用JHipster提供的实体生成器。JDL通常写在一个或多个扩展名为.jh的文件中。
+使用JDL进行实体建模 实体声明语法
+entity &lt;entity name&gt; ([&lt;table name&gt;]) { &lt;field name&gt; &lt;type&gt; [&lt;validation&gt;*] }   &lt;entity name&gt;是实体的名称，将用于类名和表名。可以使用可选的&lt;Table name&gt;参数重写表名。 &lt;field name&gt;是您希望用于实体的字段(属性)的名称，&lt;type&gt;是字段类型，如String、Integer等。  请参考JHipster 域语言 (JDL)，查看所有支持类型。
+ ID字段将自动创建，因此不需要在JDL中指定。 &lt;validation&gt;是可选的，可以根据字段类型支持的验证指定一个或多个字段的&lt;validation&gt;。对于max length和pattern等验证，可以在大括号中指定值。  示例如下：
+entity Customer { /** Name field */ name String required, age Integer, address String maxlength(100) pattern(/[a-Z0-9]&#43;/) }  枚举也可以使用以下语法声明:
+enum &lt;enum name&gt; { &lt;VALUE&gt;* }  示例如下：">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/post/jhipster-monoliyhic-entitymodel/">
+  <meta property="og:title" content="使用JHipster构建单一的Web应用程序-实体建模 | Cytgenkidu">
+  <meta property="og:description" content="在本章中，我们将看到如何使用业务实体和模型。
+使用命令行生成实体 &gt; jhipster entity Invoice  使用JHipster域语言进行实体建模 JHipster Domain Language (JDL)用于为JHipster应用程序创建域模型。它提供了一个简单且用户友好的DSL来描述实体及其关系(仅适用于SQL数据库)。
+JDL是为应用程序创建实体的推荐方法，它可以替代JHipster提供的实体生成器，在创建大量实体时，可能很难使用JHipster提供的实体生成器。JDL通常写在一个或多个扩展名为.jh的文件中。
+使用JDL进行实体建模 实体声明语法
+entity &lt;entity name&gt; ([&lt;table name&gt;]) { &lt;field name&gt; &lt;type&gt; [&lt;validation&gt;*] }   &lt;entity name&gt;是实体的名称，将用于类名和表名。可以使用可选的&lt;Table name&gt;参数重写表名。 &lt;field name&gt;是您希望用于实体的字段(属性)的名称，&lt;type&gt;是字段类型，如String、Integer等。  请参考JHipster 域语言 (JDL)，查看所有支持类型。
+ ID字段将自动创建，因此不需要在JDL中指定。 &lt;validation&gt;是可选的，可以根据字段类型支持的验证指定一个或多个字段的&lt;validation&gt;。对于max length和pattern等验证，可以在大括号中指定值。  示例如下：
+entity Customer { /** Name field */ name String required, age Integer, address String maxlength(100) pattern(/[a-Z0-9]&#43;/) }  枚举也可以使用以下语法声明:
+enum &lt;enum name&gt; { &lt;VALUE&gt;* }  示例如下：">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2019-04-12T10:38:53&#43;08:00">
+  
+  
+  <meta property="article:modified_time" content="2019-04-12T10:38:53&#43;08:00">
+  
+  
+
+  
+
+  
+
+  <title>使用JHipster构建单一的Web应用程序-实体建模 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">使用JHipster构建单一的Web应用程序-实体建模</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-04-12 10:38:53 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-04-12 10:38:53 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      
+        <a href="/authors/admin/">Tgenkidu Cy</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-04-12</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/jhipster/">JHipster</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f-%e5%ae%9e%e4%bd%93%e5%bb%ba%e6%a8%a1&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monoliyhic-entitymodel%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monoliyhic-entitymodel%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monoliyhic-entitymodel%2f&amp;title=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f-%e5%ae%9e%e4%bd%93%e5%bb%ba%e6%a8%a1"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monoliyhic-entitymodel%2f&amp;title=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f-%e5%ae%9e%e4%bd%93%e5%bb%ba%e6%a8%a1"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f-%e5%ae%9e%e4%bd%93%e5%bb%ba%e6%a8%a1&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monoliyhic-entitymodel%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>在本章中，我们将看到如何使用业务实体和模型。</p>
+
+<h2 id="使用命令行生成实体">使用命令行生成实体</h2>
+
+<pre><code class="language-cmd">&gt; jhipster entity Invoice
+</code></pre>
+
+<h2 id="使用jhipster域语言进行实体建模">使用JHipster域语言进行实体建模</h2>
+
+<p><a href="http://www.jhipster.tech/jdl/" target="_blank">JHipster Domain Language (JDL)</a>用于为JHipster应用程序创建域模型。它提供了一个简单且用户友好的DSL来描述实体及其关系(仅适用于SQL数据库)。</p>
+
+<p>JDL是为应用程序创建实体的推荐方法，它可以替代JHipster提供的实体生成器，在创建大量实体时，可能很难使用JHipster提供的实体生成器。JDL通常写在一个或多个扩展名为.jh的文件中。</p>
+
+<h3 id="使用jdl进行实体建模">使用JDL进行实体建模</h3>
+
+<p>实体声明语法</p>
+
+<pre><code class="language-jh">entity &lt;entity name&gt; ([&lt;table name&gt;]) {
+  &lt;field name&gt; &lt;type&gt; [&lt;validation&gt;*]
+}
+</code></pre>
+
+<ul>
+<li><code>&lt;entity name&gt;</code>是实体的名称，将用于类名和表名。可以使用可选的<code>&lt;Table name&gt;</code>参数重写表名。</li>
+<li><code>&lt;field name&gt;</code>是您希望用于实体的字段(属性)的名称，<code>&lt;type&gt;</code>是字段类型，如String、Integer等。</li>
+</ul>
+
+<div class="alert alert-note">
+  <div>
+    <p>请参考<a href="https://www.jhipster.tech/jdl/#available-types-and-constraints" target="_blank">JHipster 域语言 (JDL)</a>，查看所有支持类型。</p>
+
+  </div>
+</div>
+
+
+<ul>
+<li>ID字段将自动创建，因此不需要在JDL中指定。</li>
+<li><code>&lt;validation&gt;</code>是可选的，可以根据字段类型支持的验证指定一个或多个字段的<code>&lt;validation&gt;</code>。对于max length和pattern等验证，可以在大括号中指定值。</li>
+</ul>
+
+<p>示例如下：</p>
+
+<pre><code class="language-jh">entity Customer {
+  /** Name field */
+  name String required,
+  age Integer,
+  address String maxlength(100) pattern(/[a-Z0-9]+/)
+}
+</code></pre>
+
+<p>枚举也可以使用以下语法声明:</p>
+
+<pre><code class="language-jh">enum &lt;enum name&gt; {
+  &lt;VALUE&gt;*
+}
+</code></pre>
+
+<p>示例如下：</p>
+
+<pre><code class="language-jh">enum Language {
+  ENGLISH, DUTCH, FRENCH
+}
+</code></pre>
+
+<h3 id="关系管理">关系管理</h3>
+
+<p>实体之间的关系可以使用以下语法声明:</p>
+
+<pre><code class="language-jd">relationship &lt;type&gt; {
+  &lt;from entity&gt;[{&lt;relationship name&gt;[(&lt;display field&gt;)] &lt;validation&gt;*}] 
+  to
+  &lt;to entity&gt;[{&lt;relationship name&gt;[(&lt;display field&gt;)] &lt;validation&gt;*}]
+}
+</code></pre>
+
+<ul>
+<li><code>&lt;type&gt;</code>是来自OneToMany、ManyToOne、OneToOne或ManyToMany的类型，它声明了<code>&lt;from entity&gt;</code> and <code>&lt;to entity&gt;</code>之间的关系类型。</li>
+<li><code>&lt;from entity&gt;</code>是关系或源的所有者实体的名称。<code>&lt;to entity&gt;</code>是关系的目标。</li>
+<li><code>&lt;relationship name&gt;</code>是可选的，可用于指定要在域对象中为关系创建的字段名。<code>&lt;display field&gt;</code>可以在大括号中指定来控制要在生成的web页面的下拉菜单中显示的实体的字段，默认情况下将使用ID字段。<code>&lt;validation&gt;</code>可以在<code>&lt;from entity&gt;</code>或<code>&lt;to entity&gt;</code>上指定，并且是可选的。目前，只支持required。</li>
+<li>同一类型的多个关系可以在同一个块中声明，用逗号分隔。</li>
+</ul>
+
+<p>示例如下：</p>
+
+<pre><code class="language-jh">entity Book
+entity Author
+entity Tag
+
+relationship OneToMany {
+  Author{book} to Book{writer(name) required},
+  Book{tag} to Tag
+}
+</code></pre>
+
+<h3 id="dto-服务和分页选项">DTO、服务和分页选项</h3>
+
+<p>JDL还允许我们轻松地声明与实体相关的选项。目前支持的选项有:</p>
+
+<ul>
+<li>service :默认情况下，JHipster生成直接调用实体存储库的REST资源类。这是最简单的选择，但在实际场景中，我们可能需要一个服务层来处理业务逻辑。该选项允许我们使用简单的Spring服务bean类或传统的服务bean接口和实现创建服务层。可能的值是serviceClass和serviceImpl。</li>
+<li>dto :默认情况下，域对象直接用于创建的REST端点，这在某些情况下可能不太理想，您可能希望使用中介数据传输对象(DTO)来进行更多的控制。JHipster允许我们使用<a href="http://mapstruct.org/" target="_blank">Mapstruct</a>生成DTO层，这是一个自动生成DTO类的注释预处理器库。建议在使用DTO时使用服务层。一个可能的值是mapstruct。更多细节请参考<a href="https://www.jhipster.tech/using-dtos/" target="_blank">https://www.jhipster.tech/using-dtos</a>。</li>
+<li>filter ：该选项允许我们为实体启用基于JPA的过滤功能。这只在使用服务层时才有效。更多细节请参考<a href="http://www.jhipster.tech/entities-filtering" target="_blank">http://www.jhipster.tech/entities-filtering</a>。</li>
+<li>paginate ：这个选项允许我们为实体启用分页。这将在资源层上启用分页，并在客户端实现分页选项。可能的值是分页器、分页和无限滚动。</li>
+<li>noFluentMethod ：这允许我们为生成的实体域对象禁用Fluent API样式设置器。</li>
+<li>skipClient/skipServer ：这些选项允许我们在生成期间跳过客户端代码或服务器端代码。</li>
+<li>angularSuffix ：该选项允许我们在前端代码中为文件夹和类名指定后缀。</li>
+</ul>
+
+<p>选项声明的一般语法：</p>
+
+<pre><code class="language-jh">&lt; option &gt; &lt;ENTITIES | * | all&gt; [with &lt;VALUE&gt;] [except &lt;ENTITIES&gt;]。
+</code></pre>
+
+<p>示例如下：</p>
+
+<pre><code class="language-jh">entity A
+entity B
+...
+entity Z
+
+dto * with mapstruct
+service A with serviceImpl
+service B with serviceClass
+paginate * with pagination except B, C
+paginate B, C with infinite-scroll
+filter A, B
+</code></pre>
+
+<h3 id="jdl-studio">JDL Studio</h3>
+
+<p>可使用<a href="https://start.jhipster.tech/jdl-studio/" target="_blank">JDL Studio</a>来创建我们的JDL文件。它是由JHipster团队构建的一个在线web应用程序，用于在可视化编辑器中创建JDL文件。该工具显示了创建实体模型的可视化表示，并允许您导入/导出JDL和捕获图像快照:</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jdl" href="/post/jhipster-monoliyhic-entitymodel/img/jdl/jdl.png" data-caption="jdl">
+  <img src="/post/jhipster-monoliyhic-entitymodel/img/jdl/jdl_hu1bd70cc9e88dc9f4b2e19bce59b955b1_193231_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jdl" href="/post/jhipster-monoliyhic-entitymodel/img/jdl/logo_jdl.png" >
+  <img src="/post/jhipster-monoliyhic-entitymodel/img/jdl/logo_jdl_hud09d2a6706e2c0ea0caee9fd06b46504_216711_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h2 id="使用jhipster生成实体">使用JHipster生成实体</h2>
+
+<pre><code class="language-cmd">&gt; cd my-shop
+&gt; jhipster import-jdl shop.jh
+</code></pre>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/complete" href="/post/jhipster-monoliyhic-entitymodel/img/complete/completed.png" data-caption="complete">
+  <img src="/post/jhipster-monoliyhic-entitymodel/img/complete/completed_hu58758b40d3ad7458ef3aecc0c5dda1bc_13257_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/complete" href="/post/jhipster-monoliyhic-entitymodel/img/complete/logo_completed.png" >
+  <img src="/post/jhipster-monoliyhic-entitymodel/img/complete/logo_completed_huac44c90a2b360bb8e3c5c5ca0502ceef_19841_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h2 id="生成代码">生成代码</h2>
+
+<p>以Project实体为例：</p>
+
+<h3 id="jhipster文件夹">.jhipster文件夹</h3>
+
+<p>将会在根目录下生成一个<code>.jhipster</code>文件夹，查看<code>project.json</code>。</p>
+
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;Product&quot;,
+    &quot;fields&quot;: [
+        {
+            &quot;fieldName&quot;: &quot;name&quot;,
+            &quot;fieldType&quot;: &quot;String&quot;,
+            &quot;fieldValidateRules&quot;: [
+                &quot;required&quot;
+            ]
+        },
+        {
+            &quot;fieldName&quot;: &quot;description&quot;,
+            &quot;fieldType&quot;: &quot;String&quot;
+        },
+        {
+            &quot;fieldName&quot;: &quot;price&quot;,
+            &quot;fieldType&quot;: &quot;BigDecimal&quot;,
+            &quot;fieldValidateRules&quot;: [
+                &quot;required&quot;,
+                &quot;min&quot;
+            ],
+            &quot;fieldValidateRulesMin&quot;: 0
+        },
+        {
+            &quot;fieldName&quot;: &quot;size&quot;,
+            &quot;fieldType&quot;: &quot;Size&quot;,
+            &quot;fieldValues&quot;: &quot;S,M,L,XL,XXL&quot;,
+            &quot;fieldValidateRules&quot;: [
+                &quot;required&quot;
+            ]
+        },
+        {
+            &quot;fieldName&quot;: &quot;image&quot;,
+            &quot;fieldType&quot;: &quot;byte[]&quot;,
+            &quot;fieldTypeBlobContent&quot;: &quot;image&quot;
+        }
+    ],
+    &quot;relationships&quot;: [
+        {
+            &quot;relationshipType&quot;: &quot;many-to-one&quot;,
+            &quot;otherEntityName&quot;: &quot;productCategory&quot;,
+            &quot;otherEntityRelationshipName&quot;: &quot;product&quot;,
+            &quot;relationshipName&quot;: &quot;productCategory&quot;,
+            &quot;otherEntityField&quot;: &quot;name&quot;
+        }
+    ],
+    &quot;changelogDate&quot;: &quot;20190415054558&quot;,
+    &quot;javadoc&quot;: &quot;shop&quot;,
+    &quot;entityTableName&quot;: &quot;product&quot;,
+    &quot;dto&quot;: &quot;no&quot;,
+    &quot;pagination&quot;: &quot;pagination&quot;,
+    &quot;service&quot;: &quot;serviceClass&quot;,
+    &quot;jpaMetamodelFiltering&quot;: false,
+    &quot;fluentMethods&quot;: true,
+    &quot;clientRootFolder&quot;: &quot;&quot;,
+    &quot;applications&quot;: &quot;*&quot;
+}
+</code></pre>
+
+<h3 id="服务器端源代码">服务器端源代码</h3>
+
+<h4 id="实体类">实体类</h4>
+
+<p>在src/main/java/com/mycompany/myapp/domain文件加下，将会生成Project.java。</p>
+
+<p>实体类定义字段和关系。</p>
+
+<pre><code class="language-java">//Swagger使用这个注释在端点中使用实体时显示有用的文档:
+@ApiModel(description = &quot;shop&quot;)
+//这些JPA注释将POJO声明为一个实体并将其映射到一个SQL表:
+@Entity
+@Table(name = &quot;product&quot;)
+//是Hibernate注释，它允许我们为这个实体启用二级缓存。在我们使用Hazelcast的情况下:
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    //id字段是特殊的，它被映射为一个生成的值字段。根据数据库的不同，这个字段将使用Hibernate提供的本地生成技术或序列。
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;sequenceGenerator&quot;)
+    @SequenceGenerator(name = &quot;sequenceGenerator&quot;)
+    private Long id;
+
+    @NotNull
+    @Column(name = &quot;name&quot;, nullable = false)
+    private String name;
+
+    @Column(name = &quot;description&quot;)
+    private String description;
+
+    //JPA注释用于将列映射到字段，还可以用于声明字段的属性，如可空、精度、比例、惟一等等:
+    @NotNull
+    @DecimalMin(value = &quot;0&quot;)
+    @Column(name = &quot;price&quot;, precision = 10, scale = 2, nullable = false)
+    private BigDecimal price;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = &quot;jhi_size&quot;, nullable = false)
+    private Size size;
+
+    //是Bean验证注释，支持对字段进行验证
+    @Lob
+    @Column(name = &quot;image&quot;)
+    private byte[] image;
+
+    @Column(name = &quot;image_content_type&quot;)
+    private String imageContentType;
+
+    //枚举数据
+    @ManyToOne
+    @JsonIgnoreProperties(&quot;products&quot;)
+    private ProductCategory productCategory;
+
+    //setter、getter
+}
+</code></pre>
+
+<p>对应的表定义和约束使用Liquibase创建，可以在<code>src/main/resources/config/Liquibase/changelog</code>中找到，文件名<code>&lt;timestamp&gt;_added_entity_Product</code>和<code>&lt;timestamp&gt;_added_entity_constraints_Product.xml</code>，当我们重新加载或启动应用程序时，它会自动应用到数据库。</p>
+
+<h4 id="实体的存储库接口">实体的存储库接口</h4>
+
+<p>在src/main/java/com/mycompany/myapp/repository文件夹中，您将找到实体存储库服务。打开ProductRepository.java:</p>
+
+<pre><code class="language-java">@SuppressWarnings(&quot;unused&quot;)
+@Repository
+public interface ProjecyRepository extends JpaRepository&lt;Projecy, Long&gt; {
+
+}
+</code></pre>
+
+<p>repository服务只是一个扩展JpaRepository类的空接口。因为它是一个Spring数据存储库，所以实现是自动创建的，允许我们使用这个简单的接口声明执行所有CRUD操作。</p>
+
+<h4 id="实体的服务类">实体的服务类</h4>
+
+<p>由于我们选择为实体生成服务类，让我们来看一个在src/main/java/com/mycompany/myapp/service文件夹中，将找到实体存储库服务。打开ProductService.java:</p>
+
+<pre><code class="language-java">@Service
+@Transactional
+public class ProductService {
+
+    private final Logger log = LoggerFactory.getLogger(ProductService.class);
+
+    private final ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+    ...
+}
+</code></pre>
+
+<p>该服务使用构造函数注入来获取依赖项，这些依赖项在bean实例化期间由Spring自动注入。该服务还被标记为@Transactional，以启用数据访问的事务管理。该服务定义了CRUD操作方法。例如，findAll方法在向其添加只读事务规则时调用等效的存储库方法。您可以看到该方法已经支持分页并将结果作为Page返回。页面和可分页对象由Spring提供，让我们轻松控制分页:</p>
+
+<pre><code class="language-java">@Transactional(readOnly = true)
+public Page&lt;Product&gt; findAll(Pageable pageable) {
+    log.debug(&quot;Request to get all Products&quot;);
+    return productRepository.findAll(pageable);
+}
+</code></pre>
+
+<h4 id="实体的资源类">实体的资源类</h4>
+
+<p>在src/main/java/com/mycompany/myapp/web/rest文件夹中，您将找到实体资源服务。打开ProductResource.java:</p>
+
+<pre><code class="language-java">@RestController
+@RequestMapping(&quot;/api&quot;)
+public class ProductResource {
+  ···
+}
+</code></pre>
+
+<p>资源充当控制器层，在我们的示例中，它服务于客户端代码使用的其余端点。端点有一个到“/api”的基本映射:</p>
+
+<pre><code class="language-java">@PostMapping(&quot;/products&quot;)
+public ResponseEntity&lt;Product&gt; createProduct(@Valid @RequestBody Product product) throws URISyntaxException {
+    log.debug(&quot;REST request to save Product : {}&quot;, product);
+    if (product.getId() != null) {
+        throw new BadRequestAlertException(&quot;A new product cannot already have an ID&quot;, ENTITY_NAME, &quot;idexists&quot;);
+    }
+    Product result = productService.save(product);
+    return ResponseEntity.created(new URI(&quot;/api/products/&quot; + result.getId()))
+        .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+        .body(result);
+}
+</code></pre>
+
+<p>这里所有的CRUD操作都有等价的映射方法。</p>
+
+<h3 id="客户端源代码">客户端源代码</h3>
+
+<p>实体的客户端资源在src/main/webapp/app/entities文件夹中创建。让我们看一下为Product文件夹中的Product实体创建的代码。</p>
+
+<h4 id="实体的typescript模型类">实体的TypeScript模型类</h4>
+
+<p>让我们看看在src\main\webapp\app\shared\model\product.model.ts中生成的TypeScript模型。这直接映射到域对象:</p>
+
+<pre><code class="language-ts">import { IProductCategory } from 'app/shared/model/product-category.model';
+
+export const enum Size {
+    S = 'S',
+    M = 'M',
+    L = 'L',
+    XL = 'XL',
+    XXL = 'XXL'
+}
+
+export interface IProduct {
+    id?: number;
+    name?: string;
+    description?: string;
+    price?: number;
+    size?: Size;
+    imageContentType?: string;
+    image?: any;
+    productCategory?: IProductCategory;
+}
+
+export class Product implements IProduct {
+    constructor(
+        public id?: number,
+        public name?: string,
+        public description?: string,
+        public price?: number,
+        public size?: Size,
+        public imageContentType?: string,
+        public image?: any,
+        public productCategory?: IProductCategory
+    ) {}
+}
+</code></pre>
+
+<h4 id="实体的angular服务">实体的Angular服务</h4>
+
+<p>ProductService是一个Angular服务，它与我们的REST端点交互，并在src\main\webapp\app\entities\product\product.service.ts中创建:</p>
+
+<pre><code class="language-ts">@Injectable({ providedIn: 'root' })
+export class ProductService {
+    public resourceUrl = SERVER_API_URL + 'api/products';
+
+    constructor(protected http: HttpClient) {}
+
+     create(product: IProduct): Observable&lt;EntityResponseType&gt; {
+        return this.http.post&lt;IProduct&gt;(this.resourceUrl, product, { observe: 'response' });
+    }
+    ···
+}
+</code></pre>
+
+<p>正如您所看到的，服务有一个构造函数，按照与服务器端代码类似的模式注入依赖项。有一些方法将所有CRUD操作映射到后端REST资源。HTTP调用使用RxJS Observables提供异步流API。</p>
+
+<h4 id="实体的angular组件">实体的Angular组件</h4>
+
+<p>对于一个实体，在组件中使用的四个文件和四个HTML文件中生成了六个组件类。</p>
+
+<p>在product.component.ts中定义的ProductComponent处理主清单屏幕。它使用product.component.html作为模板。组件管理视图及其操作。它还调用多个服务来获取数据并执行其他操作，如警报和事件广播:</p>
+
+<pre><code class="language-ts">@Component({
+    selector: 'jhi-product',
+    templateUrl: './product.component.html'
+})
+export class ProductComponent implements OnInit, OnDestroy {
+  ···
+}
+</code></pre>
+
+<h4 id="实体的angular路由">实体的Angular路由</h4>
+
+<p>我们需要一个路由声明，以便访问实体页面。这在product.route.ts中声明。</p>
+
+<pre><code class="language-ts">{
+    path: ':id/view',
+    component: ProductDetailComponent,
+    resolve: {
+        product: ProductResolve
+    },
+    data: {
+        authorities: ['ROLE_USER'],
+        pageTitle: 'shopApp.product.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+}
+</code></pre>
+
+<p>data属性用于将元数据(如允许的角色和页面标题)传递给组件。canActivate属性中定义的UserRouteAccessService决定用户是否具有查看页面的授权，并使用权威元数据和身份验证细节进行验证。具有弹出框的路由，声明outlet: &lsquo;popup&rsquo;属性。</p>
+
+<h4 id="实体的angular模块">实体的Angular模块</h4>
+
+<p>最后，我们有一个实体模块。Angular模块可以用来整合一个实体的所有组件、指令、管道和服务，这样它们就可以很容易地导入到其他模块中。ShopProductModule模块定义在product.module.ts中:</p>
+
+<pre><code class="language-ts">
+@NgModule({
+    imports: [ShopSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    declarations: [
+        ProductComponent,
+        ProductDetailComponent,
+        ProductUpdateComponent,
+        ProductDeleteDialogComponent,
+        ProductDeletePopupComponent
+    ],
+    entryComponents: [ProductComponent, ProductUpdateComponent, ProductDeleteDialogComponent, ProductDeletePopupComponent],
+    providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class ShopProductModule {
+    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
+        this.languageHelper.language.subscribe((languageKey: string) =&gt; {
+            if (languageKey !== undefined) {
+                this.languageService.changeLanguage(languageKey);
+            }
+        });
+    }
+}
+</code></pre>
+
+<p>模块声明组件并注册它提供的服务。模块还导入共享模块，以便访问共享服务和组件。模块由src/main/webapp/app/entities/entity.module.ts中定义的ShopEntityModule导入。</p>
+
+<h2 id="提交git-可选择行执行">提交Git（可选择行执行）</h2>
+
+<pre><code class="language-cmd">&gt; git add --all
+&gt; git commit -am &quot;generated shop entity model&quot;
+</code></pre>
+
+<h2 id="链接与资源">链接与资源</h2>
+
+<p><a href="https://www.jhipster.tech" target="_blank">jhipster学习网</a></p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/jhipster/">JHipster</a>
+  
+</div>
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/author/admin/avatar_hu9af2cef82de808ab65e058f484976a2c_58561_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/authors/admin">Tgenkidu Cy</a></h5>
+    <h6 class="card-subtitle">程序员呀哈哈哈</h6>
+    <p class="card-text" itemprop="description">目前专注于 java 开发。</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://weibo.com/u/3024883347?nick=top%e7%a5%8e%e8%a7%81%e5%80%be%e5%bf%83&amp;is_hot=1" target="_blank" rel="noopener">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/cytgenkidu" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/jhipster-monolithic-structure/">使用JHipster构建单一的Web应用程序-文件结构与部分代码</a></li>
+          
+          <li><a href="/post/jhipster-monolithic-build/">使用JHipster构建单一的Web应用程序</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/" rel="next">VSCode搭建java环境</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/post/jhipster-monolithic-structure/" rel="prev">使用JHipster构建单一的Web应用程序-文件结构与部分代码</a>
+  </div>
+  
+</div>
+
+
+    </div>
+    
+
+    
+
+    
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

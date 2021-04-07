@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gitalk on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/gitalk/</link>
+    <description>Recent content in Gitalk on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Thu, 04 Apr 2019 17:31:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/gitalk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gitalk评论自动初始化</title>
+      <link>https://cytgenkidu.github.io/post/gitalk-initialize/</link>
+      <pubDate>Thu, 04 Apr 2019 17:31:01 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/gitalk-initialize/</guid>
+      <description>出现原因 该篇博文的评论系统还没初始化。
+解决办法 手动完成 登录自己的github账号登录后，就可以在上面错误信息处看到“Initialize Comments”的按钮 (ps: 由于要求回调URL和当前地址一样，故第2步不能在本地调试， 需把代码先上传再调试),点击Initialize Comments按钮后，就可以开始对该篇博文开始评论了， 同时也可以在对应的github仓库看到相应的issue。
+自动初始化Gitalk 生成sitemap站点地图： hugo附带了一个内置模板文件,可在layouts/sitemap.xml或layouts/_default/sitemap.xml查看模板。
+在public/sitemap.xml查看生成的sitemap站点地图。
+获取github接口的调用权限  创建一个access token 点此创建  点击Generate new token按钮,生成token。   编写脚本文件 安装依赖包 在根目录下执行以下命令
+npm install request --save npm install xml-parser --save npm install cheerio --save  创建脚本文件 在根目录下创建initialize.js
+const request = require(&amp;quot;request&amp;quot;); const fs = require(&amp;quot;fs&amp;quot;); const path = require(&amp;quot;path&amp;quot;); const url = require(&amp;quot;url&amp;quot;); const xmlParser = require(&amp;quot;xml-parser&amp;quot;); const cheerio = require(&amp;quot;cheerio&amp;quot;); // 根据自己的情况进行配置 const config = { username: &amp;quot;cytgenkidu&amp;quot;, // GitHub 用户名 token: &amp;quot;&amp;quot;, // GitHub Token repo: &amp;quot;cytgenkidu.</description>
+    </item>
+    
+    <item>
+      <title>Gitalk出现Error:Validation Failed问题的解决办法</title>
+      <link>https://cytgenkidu.github.io/post/gitalk-validation-failed/</link>
+      <pubDate>Thu, 04 Apr 2019 17:25:04 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/gitalk-validation-failed/</guid>
+      <description>出现原因 文章标题名太长，由于 Github 限制 labal 长度不能超过 50引起的，该问题解决方案来自Gitalk项目仓 Issues115，通过MD5加密ID来缩短labal长度。
+解决办法 创建md5.min.js文件 ! function(n) { &amp;quot;use strict&amp;quot;; function t(n, t) { var r = (65535 &amp;amp; n) + (65535 &amp;amp; t); return (n &amp;gt;&amp;gt; 16) + (t &amp;gt;&amp;gt; 16) + (r &amp;gt;&amp;gt; 16) &amp;lt;&amp;lt; 16 | 65535 &amp;amp; r } function r(n, t) { return n &amp;lt;&amp;lt; t | n &amp;gt;&amp;gt;&amp;gt; 32 - t } function e(n, e, o, u, c, f) { return t(r(t(t(e, n), t(u, f)), c), o) } function o(n, t, r, o, u, c, f) { return e(t &amp;amp; r | ~t &amp;amp; o, n, t, u, c, f) } function u(n, t, r, o, u, c, f) { return e(t &amp;amp; o | r &amp;amp; ~o, n, t, u, c, f) } function c(n, t, r, o, u, c, f) { return e(t ^ r ^ o, n, t, u, c, f) } function f(n, t, r, o, u, c, f) { return e(r ^ (t | ~o), n, t, u, c, f) } function i(n, r) { n[r &amp;gt;&amp;gt; 5] |= 128 &amp;lt;&amp;lt; r % 32, n[14 + (r + 64 &amp;gt;&amp;gt;&amp;gt; 9 &amp;lt;&amp;lt; 4)] = r; var e, i, a, d, h, l = 1732584193, g = -271733879, v = -1732584194, m = 271733878; for (e = 0; e &amp;lt; n.</description>
+    </item>
+    
+    <item>
+      <title>博客添加Gitalk评论</title>
+      <link>https://cytgenkidu.github.io/post/blog-gitalk/</link>
+      <pubDate>Tue, 02 Apr 2019 14:51:48 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/blog-gitalk/</guid>
+      <description>前言  在整理个人博客的过程中，想添加一套评论系统，一方面想收集意见来更好的改进，另一方面想提供一个读者与作者或读者与读者之间交流的平台。 在对比线下比较火的几个评论系统，又考虑到自己的博客是基于GitHub，综合考虑最终选择了基于Github Issues的评论系统Gitalk。 其他评论系统，如：
+  LiveRe：中文名称“来必力”，是一家韩国的公司，但本地化做的非常到位。这是我新发现的一个评论系统，支持的登录方式也挺多，但由于时间问题没有仔细的研究，后续有可能会尝试。
+ Disqus：国外比较火的评论系统，但在国内必须完全代理VPN,才可以正常访问。
+ gitment:基于Github issue的评论插件,但很久没有人维护。
+ 畅言：需要ICP备案。
+ 友言、网易云跟帖、多说等等其他家：关停太随意。
+  正文 关于Gitalk Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件。
+ 使用 GitHub 登录 支持多语言 [en, zh-CN, zh-TW, es-ES, fr, ru] 支持个人或组织 无干扰模式（设置 distractionFreeMode 为 true 开启） 快捷键提交评论 （cmd|ctrl + enter）  在线演示
+使用 创建一个Github Application 如果没有 点击申请，也可以
+ Github头像下拉菜单 &amp;gt; Settings &amp;gt; 左边Developer settings下的OAuth Application &amp;gt; Register a new application，填写相关信息：</description>
+    </item>
+    
+  </channel>
+</rss>

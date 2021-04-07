@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图片批量添加水印 on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/%E5%9B%BE%E7%89%87%E6%89%B9%E9%87%8F%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/</link>
+    <description>Recent content in 图片批量添加水印 on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Wed, 17 Feb 2021 22:23:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/%E5%9B%BE%E7%89%87%E6%89%B9%E9%87%8F%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nodejs给图片批量添加水印</title>
+      <link>https://cytgenkidu.github.io/post/nodejs%E6%89%B9%E9%87%8F%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/</link>
+      <pubDate>Wed, 17 Feb 2021 22:23:00 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/nodejs%E6%89%B9%E9%87%8F%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/</guid>
+      <description>环境准备 安装 images 库 npm install images  安装 imageinfo 库 npm install imageinfo  实现 本例 addimageinfo.js 与 marklogo.png 、imagest文件夹、node_modules 文件夹 在同一目录下。
+含子文件也可实现
+JS代码 若直接使用需修改一下信息
+var logomarkimg = images(&#39;./marklogo.png&#39;);//水印位置 var rmimgpath = &amp;quot;./imagest/img/&amp;quot;;//添加图片文件加位置 var mark = &amp;quot;logo_&amp;quot;;//另存图片前缀，若为&amp;quot;&amp;quot;则替换原图片  完整代码 addimageinfo.js
+//引用文件系统模块 var fs = require(&amp;quot;fs&amp;quot;); //引用imageinfo模块 var imageInfo = require(&amp;quot;imageinfo&amp;quot;); //引用images模块 var images = require(&#39;images&#39;); var logomarkimg = images(&#39;./marklogo.png&#39;);//水印位置 var rmimgpath = &amp;quot;./imagest/img/&amp;quot;;//添加图片文件加位置 var mark = &amp;quot;logo_&amp;quot;;//另存图片前缀，若为&amp;quot;&amp;quot;则替换原图片 function readFileList(path, filesList) { var files = fs.</description>
+    </item>
+    
+  </channel>
+</rss>

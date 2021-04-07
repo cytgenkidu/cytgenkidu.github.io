@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="围绕以租车、以租代购为主营业务的汽车租赁公司和融资租赁公司，为提高企业运营效率而设计开发的管理系统。">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/project/weizu-erp/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/project/weizu-erp/">
+
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/project/weizu-erp/">
+  <meta property="og:title" content="微租数据—基于.NET的ERP系统及其他微服务 | Cytgenkidu">
+  <meta property="og:description" content="围绕以租车、以租代购为主营业务的汽车租赁公司和融资租赁公司，为提高企业运营效率而设计开发的管理系统。">
+  <meta property="og:image" content="https://cytgenkidu.github.io/project/weizu-erp/featured.jpg">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2019-01-11T12:41:05-05:00">
+  
+  
+  <meta property="article:modified_time" content="2019-01-11T12:41:05-05:00">
+  
+  
+
+  
+
+  
+
+  <title>微租数据—基于.NET的ERP系统及其他微服务 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article article-project" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-header d-xl-none">
+  <div class="featured-image" style="background-image: url('/project/weizu-erp/featured_hu105d9738adbf8eeefdee019aacf3513e_431987_800x0_resize_q90_lanczos.jpg');"></div>
+  <span class="article-header-caption">界面截图</span>
+</div>
+
+
+<div class="container-fluid split-header d-none d-xl-block">
+  <div class="row">
+    <div class="col-6">
+      <div class="split-header-content">
+        <h1 itemprop="name">微租数据—基于.NET的ERP系统及其他微服务</h1>
+
+        
+
+        
+
+
+
+<meta content="2019-01-11 12:41:05 -0500 -0500" itemprop="datePublished">
+<meta content="2019-01-11 12:41:05 -0500 -0500" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-01-11</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+</div>
+
+
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+    
+      
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1" href="/project/weizu-gongzhonghao/" >
+    <i class="fab fa-weixin mr-1"></i>
+    微租公众号介绍
+  </a>
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+    
+      
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1" href="/project/weizu-xiaochengxu/" >
+    <i class="fab fa-weixin mr-1"></i>
+    微租小程序介绍
+  </a>
+
+
+</div>
+
+
+
+        
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f&amp;title=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f&amp;title=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="split-header-image">
+        <img src="/project/weizu-erp/featured_hu105d9738adbf8eeefdee019aacf3513e_431987_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span class="article-header-caption">界面截图</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-container d-xl-none">
+  <h1 itemprop="name">微租数据—基于.NET的ERP系统及其他微服务</h1>
+
+  
+
+  
+
+
+
+<meta content="2019-01-11 12:41:05 -0500 -0500" itemprop="datePublished">
+<meta content="2019-01-11 12:41:05 -0500 -0500" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-01-11</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f&amp;title=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f&amp;title=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=%e5%be%ae%e7%a7%9f%e6%95%b0%e6%8d%ae%e2%80%94%e5%9f%ba%e4%ba%8e.NET%e7%9a%84ERP%e7%b3%bb%e7%bb%9f%e5%8f%8a%e5%85%b6%e4%bb%96%e5%be%ae%e6%9c%8d%e5%8a%a1&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fproject%2fweizu-erp%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+    
+      
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1" href="/project/weizu-gongzhonghao/" >
+    <i class="fab fa-weixin mr-1"></i>
+    微租公众号介绍
+  </a>
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+    
+      
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1" href="/project/weizu-xiaochengxu/" >
+    <i class="fab fa-weixin mr-1"></i>
+    微租小程序介绍
+  </a>
+
+
+</div>
+
+
+</div>
+
+
+ 
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+
+      
+
+<h2 id="项目介绍">项目介绍：</h2>
+
+<p>围绕以租车、以租代购为主营业务的汽车租赁公司和融资租赁公司，为提高企业运营效率而设计开发的ERP管理系统。</p>
+
+<h2 id="开发过程">开发过程：</h2>
+
+<p>与各条线负责人需求跟进，分析其主要业务流程和信息交互内容，结合公司实际情况进行系统设计和数据库设计，在Visual Studio 2015的.NET环境为开发平台的基础上，通过ASP.NET、C#编程语言、MySQL数据库进行开发，开发过程遵循敏捷开发模式，将开发运维一体化，在系统运行过程中紧随业务调整和需求变动快速迭代，不断完善各功能模块。
+&lt;!&ndash;</p>
+
+<h3 id="系统架构">系统架构</h3>
+
+<h4 id="saas混合云架构">SaaS混合云架构</h4>
+
+<p>采用混合云SaaS模式架构，混合云架构将公司内部自由的服务器集群、传统租赁的ICP机房中的服务器集群通过VPC（Virtual Private Cloud）的可信连接与阿里云的VBR（Virtual Border Router）相连。通过搭建此架构，迅速形成了统一运维多个云端资源的能力。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/混合云架构" href="/project/weizu-erp/img/%E6%B7%B7%E5%90%88%E4%BA%91%E6%9E%B6%E6%9E%84/%E6%B7%B7%E5%90%88%E4%BA%91%E6%9E%B6%E6%9E%84.png" data-caption="-混合云架构">
+  <img src="/project/weizu-erp/img/%E6%B7%B7%E5%90%88%E4%BA%91%E6%9E%B6%E6%9E%84/%E6%B7%B7%E5%90%88%E4%BA%91%E6%9E%B6%E6%9E%84_huadafccb4226676a94305c8a1e7a386d2_137315_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h5 id="负载均衡和服务发现">负载均衡和服务发现</h5>
+
+<p>通过Nginx反向代理提供负载均衡，支持4层和7层的请求转发和后端绑定。通过服务发现可以实时监测到后端服务器特定端口服务的健康状态。</p>
+
+<h5 id="云上伸缩应用">云上伸缩应用</h5>
+
+<p>在业务高峰期或迅速增长期，通过微服务和容器级别的监控，在云端进行分钟级快速扩容，把某些特定业务流量引到新增容器。高峰期业务流量达到扩容指标，可秒级触发容器的横向扩展或纵向扩展操作。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/计算能力" href="/project/weizu-erp/img/%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B/%E5%88%86%E9%92%9F%E7%BA%A7%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E6%89%A9%E5%AE%B9.png" data-caption="-分钟级计算能力扩容">
+  <img src="/project/weizu-erp/img/%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B/%E5%88%86%E9%92%9F%E7%BA%A7%E8%AE%A1%E7%AE%97%E8%83%BD%E5%8A%9B%E6%89%A9%E5%AE%B9_hu14f4470e2631bd531505626c51cf0055_236739_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h5 id="混合容灾">混合容灾</h5>
+
+<p>IT系统同时部署到云上和云下，云上提供服务和容灾，云下专用容灾。利用调度和异常恢复策略，实现了服务级别的亲和性调度，支持跨云上可用区的高可用和灾难恢复。</p>
+
+<h5 id="云下开发测试">云下开发测试</h5>
+
+<p>实现了，云下、云上、测试与生产环境的全方位统一，云下开发测试后的应用无缝全自动发布至云上。</p>
+
+<h4 id="基于docker-swarm的微服务集群">基于Docker Swarm的微服务集群</h4>
+
+<p>微租混合云中所涉及的公有云（阿里云）的计算资源主要集中在容器服务（Container Service）。通过其提供的高性能可伸缩的容器应用管理服务，对Docker容器进行应用生命周期管理。从而使微租系统具备多种应用发布方式和持续交付能力，即构成了微租所需要的微服务架构。微租IT系统通过容器服务一站式整合了公有云的虚拟化、存储、网络和安全能力。</p>
+
+<p>容器服务的基础架构如下，其中：集群管理服务：提供Docker集群管理和调度。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/Docker服务架构" href="/project/weizu-erp/img/Docker%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/Docker%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84.png" data-caption="-Docker服务架构">
+  <img src="/project/weizu-erp/img/Docker%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/Docker%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84_hueae09a641bec1b445e82d128a520118a_110415_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>服务发现：提供Docker的状态等元数据存储。Agent通信服务：提供每台宿主机和集群管理服务之间的通信服务。集群API：对外暴露统一OpenAPI。服务API：对外暴露兼容Docker Swarm的API。微租的IT开发人员可同时管理云上云下的资源，不需在多中云管理控制台中反复切换。基于容器基础设施无关的特性，使用同一套镜像和编排同时在云上云下部署应用。如下图所示，容器与所部属的应用有以下的对应关系，可随时重新部署应用来平衡统一集群中不同节点的负载，实现集群的效用最大化。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/应用与容器" href="/project/weizu-erp/img/%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%B9%E5%99%A8/Docker%20Swarm%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%B9%E5%99%A8.png" data-caption="-Docker Swarm应用与容器">
+  <img src="/project/weizu-erp/img/%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%B9%E5%99%A8/Docker%20Swarm%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%B9%E5%99%A8_hu1195e0c8a5d95668f3372761ea6190b2_77895_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>容器服务支撑起微租整体IT系统的DevOps自动化，实现从代码变更到代码构建，镜像构建和应用部署的全流程自动化。由于开发环境与生产环境完全一致，微租IT系统每次的迭代更新不仅是代码，还有基于完全不同语言、架构的整套环境。基于此，微租IT系统能够完成每天10+以上的版本更迭，同时能够得到实时的持续反馈，每次集成或交付，都会得到第一时间的结果反馈，做到实时响应。</p>
+
+<h4 id="已投入生产的微服务">已投入生产的微服务</h4>
+
+<p>由于使用了微服务架构，不同的生产与测试环境的搭建以及上线后的运维难度大幅下降为接近于零，使得系统同时涉及不同的编程语言成为一种可行并且最优的解决方案。在实现系统技术模块的全面解耦的同时，针对不同的应用场景选择最合适的编程语言与技术框架进行开发。目前已经使用的编程语言与框架如下图所示：</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/主要技术" href="/project/weizu-erp/img/%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6.png" data-caption="-主要技术框架">
+  <img src="/project/weizu-erp/img/%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF/%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E6%A1%86%E6%9E%B6_huf3f66f7f3a898fc129168734155779a9_218546_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>其中，提供底层支持的是运行在CentOS集群之上的Docker Swarm用以支撑整个容器服务。</p>
+
+<ul>
+<li>Python具备大量的图片处理、爬虫、数据分析方面的第三方库，微租IT系统使用Flask框架为其他模块提供标准的RESTful API服务，主要用于系统中的分布式爬虫、图像批量压缩、合同自动生成等功能。</li>
+<li>Node js由于其非阻塞机制非常适合大规模并发的应用场景，所以通过结合FIS3和Express框架同样通过RESTful API服务提供了IT系统里面最大并发量的两个应用微租鹰眼和短信群发模块。</li>
+<li>由于大部分的第三方API仅提供了Java的接口或SDK，如芝麻信用API、某些GPS设备的回传接口等，其Spring BOOT框架也是通过标准化的RESTful API向微租IT系统其他模块或第三方系统提供服务。</li>
+<li>C# .Net Core主要用于系统的ERP系统、各级Agent、微信公众号、微信小程序后台服务的开发。同样搭建在Docker的虚拟化技术之上，不再依赖Windows Server，实现基于Debian的轻量级全自动开发、测试与部署。
+上述的各个微服务已经部署在阿里云的容器服务集群之中。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/docker已部署" href="/project/weizu-erp/img/docker%E5%B7%B2%E9%83%A8%E7%BD%B2/%E5%B7%B2%E9%83%A8%E7%BD%B2Docker%E6%9C%8D%E5%8A%A1.png" data-caption="-已部署Docker服务">
+  <img src="/project/weizu-erp/img/docker%E5%B7%B2%E9%83%A8%E7%BD%B2/%E5%B7%B2%E9%83%A8%E7%BD%B2Docker%E6%9C%8D%E5%8A%A1_hu84e3eea81e0036ed213d60dfb814d451_80354_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h4 id="功能架构">功能架构</h4>
+
+<p>微租IT系统功能架构如下图所示。微租IT系统基于微租数据库，包括微租数据、微租社群及通过形成多维数据集支撑的PAM。
+微租数据定位为微租内部系统，服务于微租员工的业务工作，包括B/S架构的ERP系统（PC端）和微信小程序（手机端）两个主要组成部分。PC端操作的ERP系统覆盖所有功能，一些有移动办公或即时拍照需要的功能（如意向客户回访、资产盘点、验车上牌等）通过微信小程序实现。</p>
+
+<p>微租社群定位为支撑DP部门的司机社群运营，包括微租社群微信公众号和微租社群微信小程序两个组成部分。微信公众号主要提供数据发布和信息推送功能，为社群成员（网约车司机）提供如违章查询、高发违章地点列表、积分查询和不定时的活动参与推送。微信小程序主要作为数据交互平台，实现包括司机收入报告、事故报告、维修保养报告等功能，便于司机在工作过程中随时向DP部门传送数据。
+通过对全渠道、全过程的大数据抽取与清洗、模型运算与可视化，微租研发实现了一整套PAM（Perspective Action Model）模式，基于微租数据库形成多维数据集，从各个维度穿透财务、资产、人力、司机管理等环节的整个流程，实现各个环节的KPI指数分解，同时针对分解项给出标准化的改进规则与实施方案，支撑各业务数据分析和决策。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/功能架构" href="/project/weizu-erp/img/%E5%8A%9F%E8%83%BD%E6%9E%B6%E6%9E%84/%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%9E%B6%E6%9E%84.png" data-caption="-系统功能架构">
+  <img src="/project/weizu-erp/img/%E5%8A%9F%E8%83%BD%E6%9E%B6%E6%9E%84/%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%9E%B6%E6%9E%84_hufaa4a217a4d222f3274332032e58130a_84033_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h4 id="相关链接">相关链接</h4>
+
+<p><a href="https://cytgenkidu.github.io/project/weizu-gongzhonghao/" target="_blank">公众号</a></p>
+
+<p><a href="https://cytgenkidu.github.io/project/weizu-xiaochengxu/" target="_blank">小程序</a> &ndash;&gt;</p>
+
+<h2 id="结果">结果：</h2>
+
+<p>2017.08开始进行梳理，10月应急功能上线，12月基本实现前端（销售）和中端（AMC与DP）业务覆盖。开发功能近千个，系统已全面覆盖主营业务，更覆盖企业管理90%以上。</p>
+
+<h2 id="主要功能图">主要功能图</h2>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/功能图" href="/project/weizu-erp/img/%E5%8A%9F%E8%83%BD%E5%9B%BE/%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E5%9B%BE.png" data-caption="-系统功能图">
+  <img src="/project/weizu-erp/img/%E5%8A%9F%E8%83%BD%E5%9B%BE/%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E5%9B%BE_hu6ac067b79a7a59e32b269d9f900bebe9_199616_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h2 id="系统效果图">系统效果图</h2>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/1.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/1_hu105d9738adbf8eeefdee019aacf3513e_431987_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/10.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/10_hu54051f528b96fb987fcac736eb0e2fd4_159846_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/11.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/11_hu3d3638b4a56a663f470a0ce99361cbbc_89580_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/2.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/2_hu24b6a3b354a31cd893eebb853027f5c7_142287_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/3.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/3_hu249cfc8ff13b236cf3ab77ebfe17d805_164055_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/4.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/4_huabc5ec6eea4fba9a82c09309de375792_144295_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/5.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/5_hudf5cd10299175610320ec2628a97c475_832424_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/6.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/6_hu7ae109c276c52a109d3cfa59d9d2ece6_293399_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/7.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/7_hufc631c2464e537c464c4933960f59167_598056_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/8.png" data-caption="-效果图">
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/8_hu9f749c260c5449b0d5babb4b4f98bc39_245064_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/效果图" href="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/9.png" >
+  <img src="/project/weizu-erp/img/%E6%95%88%E6%9E%9C%E5%9B%BE/9_hud3fbd082533d3c6f290a4b9284214519_277205_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+      
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/aps.net/">APS.NET</a>
+  
+  <a class="badge badge-light" href="/tags/dotnet/">DOTNET</a>
+  
+  <a class="badge badge-light" href="/tags/net/">NET</a>
+  
+  <a class="badge badge-light" href="/tags/erp/">ERP</a>
+  
+  <a class="badge badge-light" href="/tags/mysql/">MySQL</a>
+  
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      <div class="article-container article-widget">
+        
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/project/weizu-gongzhonghao/" rel="next">微租社群—基于Spring Boot的微信公众号开发</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/project/weizu-caredriver/" rel="prev">CareDriver Initial Plan关爱出行初步方案设计与调研</a>
+  </div>
+  
+</div>
+
+
+      </div>
+      
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+    </div>
+  </div>
+
+</article>
+
+
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+
+
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

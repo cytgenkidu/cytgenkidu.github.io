@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="程序的翻译环境和执行环境 在ANSI C的任何一种实现中，存在两个不同的环境。
+第1种是翻译环境，在这个环境中源代码被转换为可执行的机器指令。 第2种是执行环境，它用于实际执行代码。  详解：C语言程序的编译&#43;链接 翻译环境  组成一个程序的每个源文件通过编译过程分别转换成目标代码（object code）。 每个目标文件由链接器（linker）捆绑在一起，形成一个单一而完整的可执行程序。 链接器同时也会引入标准C函数库中任何被该程序所用到的函数，而且它可以搜索程序员个人的程序库，将其需要的函数也链接到程序中。  编译本身也分为几个阶段  预处理 选项 gcc -E test.c -o test.i 预处理完成之后就停下来，预处理之后产生的结果都放在test.i文件中。 编译 选项 gcc -S test.c 编译完成之后就停下来，结果保存在test.s中。 汇编 gcc -c test.c 汇编完成之后就停下来，结果保存在test.o中。  运行环境 程序执行的过程：
+ 程序必须载入内存中。在有操作系统的环境中：一般这个由操作系统完成。在独立的环境中，程序的载入必须由手工安排，也可能是通过可执行代码置入只读内存来完成。 程序的执行便开始。接着便调用main函数。 开始执行程序代码。这个时候程序将使用一个运行时堆栈（stack），存储函数的局部变量和返回地址。程序同时也可以使用静态（static）内存，存储于静态内存中的变量在程序的整个执行过程一直保留他们的值。 终止程序。正常终止main函数；也有可能是意外终止。  预编译（预处理）详解 预定义符号 __FILE__ //进行编译的源文件 __LINE__ //文件当前的行号 __DATE__ //文件被编译的日期 __TIME__ //文件被编译的时间 __STDC__ //如果编译器遵循ANSI C，其值为1，否则未定义  printf(&quot;%s\n&quot;, __FILE__); printf(&quot;%d\n&quot;, __LINE__); printf(&quot;%s\n&quot;, __DATE__); printf(&quot;%s\n&quot;, __TIME__);  应用-写日志log
+//写日志 int i = 0; int arr[10] = { 0 }; FILE* pf = fopen(&quot;log.">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/15/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/15/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/15/">
+  <meta property="og:title" content=" | Cytgenkidu">
+  <meta property="og:description" content="程序的翻译环境和执行环境 在ANSI C的任何一种实现中，存在两个不同的环境。
+第1种是翻译环境，在这个环境中源代码被转换为可执行的机器指令。 第2种是执行环境，它用于实际执行代码。  详解：C语言程序的编译&#43;链接 翻译环境  组成一个程序的每个源文件通过编译过程分别转换成目标代码（object code）。 每个目标文件由链接器（linker）捆绑在一起，形成一个单一而完整的可执行程序。 链接器同时也会引入标准C函数库中任何被该程序所用到的函数，而且它可以搜索程序员个人的程序库，将其需要的函数也链接到程序中。  编译本身也分为几个阶段  预处理 选项 gcc -E test.c -o test.i 预处理完成之后就停下来，预处理之后产生的结果都放在test.i文件中。 编译 选项 gcc -S test.c 编译完成之后就停下来，结果保存在test.s中。 汇编 gcc -c test.c 汇编完成之后就停下来，结果保存在test.o中。  运行环境 程序执行的过程：
+ 程序必须载入内存中。在有操作系统的环境中：一般这个由操作系统完成。在独立的环境中，程序的载入必须由手工安排，也可能是通过可执行代码置入只读内存来完成。 程序的执行便开始。接着便调用main函数。 开始执行程序代码。这个时候程序将使用一个运行时堆栈（stack），存储函数的局部变量和返回地址。程序同时也可以使用静态（static）内存，存储于静态内存中的变量在程序的整个执行过程一直保留他们的值。 终止程序。正常终止main函数；也有可能是意外终止。  预编译（预处理）详解 预定义符号 __FILE__ //进行编译的源文件 __LINE__ //文件当前的行号 __DATE__ //文件被编译的日期 __TIME__ //文件被编译的时间 __STDC__ //如果编译器遵循ANSI C，其值为1，否则未定义  printf(&quot;%s\n&quot;, __FILE__); printf(&quot;%d\n&quot;, __LINE__); printf(&quot;%s\n&quot;, __DATE__); printf(&quot;%s\n&quot;, __TIME__);  应用-写日志log
+//写日志 int i = 0; int arr[10] = { 0 }; FILE* pf = fopen(&quot;log.">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  
+  
+
+  
+
+  
+
+  <title> | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#程序的翻译环境和执行环境">程序的翻译环境和执行环境</a></li>
+<li><a href="#详解-c语言程序的编译-链接">详解：C语言程序的编译+链接</a></li>
+<li><a href="#翻译环境">翻译环境</a>
+<ul>
+<li><a href="#编译本身也分为几个阶段">编译本身也分为几个阶段</a></li>
+</ul></li>
+<li><a href="#运行环境">运行环境</a></li>
+<li><a href="#预编译-预处理-详解">预编译（预处理）详解</a>
+<ul>
+<li><a href="#预定义符号">预定义符号</a></li>
+<li><a href="#define">#define</a>
+<ul>
+<li><a href="#define-定义标识符">#define 定义标识符</a></li>
+<li><a href="#define-定义宏">#define 定义宏</a></li>
+<li><a href="#define-替换规则">#define 替换规则</a></li>
+<li><a href="#预处理操作符-和-的介绍">预处理操作符#和##的介绍</a>
+<ul>
+<li><a href="#的作用">#的作用</a></li>
+<li><a href="#的作用-1">##的作用</a></li>
+</ul></li>
+<li><a href="#带副作用的宏参数">带副作用的宏参数</a></li>
+<li><a href="#宏和函数对比">宏和函数对比</a></li>
+</ul></li>
+<li><a href="#命名约定">命名约定</a></li>
+<li><a href="#undef">#undef</a></li>
+<li><a href="#命令行定义">命令行定义</a></li>
+<li><a href="#条件编译">条件编译</a></li>
+<li><a href="#文件包含">文件包含</a>
+<ul>
+<li><a href="#头文件被包含的方式">头文件被包含的方式：</a></li>
+<li><a href="#嵌套文件包含">嵌套文件包含</a></li>
+</ul></li>
+<li><a href="#其他预处理指令">其他预处理指令</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name"></h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<p><img src="../img/15/重点.png" alt="Image Text" /></p>
+
+<h2 id="程序的翻译环境和执行环境">程序的翻译环境和执行环境</h2>
+
+<p>在ANSI C的任何一种实现中，存在两个不同的环境。</p>
+
+<pre><code>第1种是翻译环境，在这个环境中源代码被转换为可执行的机器指令。
+第2种是执行环境，它用于实际执行代码。
+</code></pre>
+
+<h2 id="详解-c语言程序的编译-链接">详解：C语言程序的编译+链接</h2>
+
+<h2 id="翻译环境">翻译环境</h2>
+
+<p><img src="../img/15/程序编译过程.png" alt="Image Text" /></p>
+
+<ul>
+<li>组成一个程序的每个源文件通过编译过程分别转换成目标代码（object code）。</li>
+<li>每个目标文件由链接器（linker）捆绑在一起，形成一个单一而完整的可执行程序。</li>
+<li>链接器同时也会引入标准C函数库中任何被该程序所用到的函数，而且它可以搜索程序员个人的程序库，将其需要的函数也链接到程序中。</li>
+</ul>
+
+<h3 id="编译本身也分为几个阶段">编译本身也分为几个阶段</h3>
+
+<p><img src="../img/15/编译.png" alt="Image Text" /></p>
+
+<ol>
+<li>预处理 选项 gcc -E test.c -o test.i 预处理完成之后就停下来，预处理之后产生的结果都放在test.i文件中。</li>
+<li>编译 选项 gcc -S test.c 编译完成之后就停下来，结果保存在test.s中。</li>
+<li>汇编 gcc -c test.c 汇编完成之后就停下来，结果保存在test.o中。</li>
+</ol>
+
+<h2 id="运行环境">运行环境</h2>
+
+<p>程序执行的过程：</p>
+
+<ol>
+<li>程序必须载入内存中。在有操作系统的环境中：一般这个由操作系统完成。在独立的环境中，程序的载入必须由手工安排，也可能是通过可执行代码置入只读内存来完成。</li>
+<li>程序的执行便开始。接着便调用main函数。</li>
+<li>开始执行程序代码。这个时候程序将使用一个运行时堆栈（stack），存储函数的局部变量和返回地址。程序同时也可以使用静态（static）内存，存储于静态内存中的变量在程序的整个执行过程一直保留他们的值。</li>
+<li>终止程序。正常终止main函数；也有可能是意外终止。</li>
+</ol>
+
+<h2 id="预编译-预处理-详解">预编译（预处理）详解</h2>
+
+<h3 id="预定义符号">预定义符号</h3>
+
+<pre><code class="language-C++">__FILE__     //进行编译的源文件
+__LINE__     //文件当前的行号
+__DATE__     //文件被编译的日期
+__TIME__     //文件被编译的时间
+__STDC__     //如果编译器遵循ANSI C，其值为1，否则未定义
+</code></pre>
+
+<pre><code class="language-C++">printf(&quot;%s\n&quot;, __FILE__);
+printf(&quot;%d\n&quot;, __LINE__);
+printf(&quot;%s\n&quot;, __DATE__);
+printf(&quot;%s\n&quot;, __TIME__);
+</code></pre>
+
+<p><img src="../img/15/预定义符号.png" alt="Image Text" /></p>
+
+<p><strong>应用-写日志log</strong></p>
+
+<pre><code class="language-C++">//写日志
+int i = 0;
+int arr[10] = { 0 };
+FILE* pf = fopen(&quot;log.txt&quot;, &quot;w&quot;);
+for (i = 0; i &lt; 10; i++)
+{
+  arr[i] = i;
+  fprintf(pf, &quot;file:%s line:%d date:%s time:%s i=%d\n&quot;, 
+    __FILE__, __LINE__, __DATE__, __TIME__, i);
+  //printf(&quot;%s\n&quot;, __FUNCTION__);//获得方法
+}
+fclose(pf);
+pf = NULL;
+for (i = 0; i &lt; 10; i++)
+{
+  printf(&quot;%d &quot;, arr[i]);
+}
+</code></pre>
+
+<p><img src="../img/15/log.png" alt="Image Text" /></p>
+
+<h3 id="define">#define</h3>
+
+<h4 id="define-定义标识符">#define 定义标识符</h4>
+
+<p>语法：
+ #define name stuff</p>
+
+<pre><code class="language-C++">#define name stuff
+#define MAX 1000
+#define reg register          //为 register这个关键字，创建一个简短的名字
+#define do_forever for(;;)     //用更形象的符号来替换一种实现
+#define CASE break;case        //在写case语句的时候自动把 break写上。
+// 如果定义的 stuff过长，可以分成几行写，除了最后一行外，每行的后面都加一个反斜杠(续行符)。
+#define DEBUG_PRINT printf(&quot;file:%s\tline:%d\t \
+                          date:%s\ttime:%s\n&quot; ,\
+                          __FILE__,__LINE__ ,       \
+                          __DATE__,__TIME__ )   
+</code></pre>
+
+<p>define 建议不要加上 ; ,这样容易导致问题。</p>
+
+<h4 id="define-定义宏">#define 定义宏</h4>
+
+<p>#define 机制包括了一个规定，允许把参数替换到文本中，这种实现通常称为宏（macro）或定义宏（define macro）。</p>
+
+<p>下面是宏的申明方式：</p>
+
+<pre><code>#define name( parament-list ) stuff 其中的 parament-list 是一个由逗号隔开的符号表，它们可能出现在 stuff中。
+</code></pre>
+
+<p><strong>注意：</strong> 参数列表的左括号必须与name紧邻。 如果两者之间有任何空白存在，参数列表就会被解释为stuff的一部分。</p>
+
+<pre><code class="language-C++">#define SQUARE(X) ((X)*(X))
+
+int main()
+{
+    //int ret = SQUARE(5);
+    ////int ret = 5* 5;
+    //printf(&quot;ret = %d\n&quot;, ret);
+
+    int ret = SQUARE(5 + 1);
+
+    printf(&quot;%d\n&quot;, ret);
+
+    return 0;
+}
+</code></pre>
+
+<p><strong>提示：</strong></p>
+
+<p>所以用于对数值表达式进行求值的宏定义都应该用这种方式加上括号，避免在使用宏时由于参数中的操作符或
+邻近操作符之间不可预料的相互作用。</p>
+
+<h4 id="define-替换规则">#define 替换规则</h4>
+
+<p>在程序中扩展#define定义符号和宏时，需要涉及几个步骤。</p>
+
+<ol>
+<li>在调用宏时，首先对参数进行检查，看看是否包含任何由#define定义的符号。如果是，它们首先被替换。</li>
+<li>替换文本随后被插入到程序中原来文本的位置。对于宏，参数名被他们的值替换。</li>
+<li>最后，再次对结果文件进行扫描，看看它是否包含任何由#define定义的符号。如果是，就重复上述处理过程。</li>
+</ol>
+
+<p><strong>注意</strong>
+1. 宏参数和#define 定义中可以出现其他#define定义的变量。但是对于宏，不能出现递归。
+2. 当预处理器搜索#define定义的符号的时候，字符串常量的内容并不被搜索。</p>
+
+<h4 id="预处理操作符-和-的介绍">预处理操作符#和##的介绍</h4>
+
+<h5 id="的作用">#的作用</h5>
+
+<p>使用 # ，把一个宏参数变成对应的字符串</p>
+
+<pre><code class="language-C++">void print(int a) //无法实现预期效果
+{
+    printf(&quot;the value of a is %d\n&quot;, a);
+}
+#define PRINT(X) printf(&quot;the value of &quot; #X &quot; is %d\n&quot;, X)   //定义宏，一般用大写
+
+int main()
+{
+    int a = 10;
+    int b = 20;
+    //printf(&quot;the value of a is %d\n&quot;, a);
+    print(a);//the value of a is 10
+    print(b);//the value of a is 20
+
+  PRINT(a);//the value of a is 10
+  PRINT(b);//the value of b is 20
+    return 0;
+}
+</code></pre>
+
+<h5 id="的作用-1">##的作用</h5>
+
+<p>##可以把位于它两边的符号合成一个符号。 它允许宏定义从分离的文本片段创建标识符。</p>
+
+<pre><code class="language-C++">#define CAT(X, Y) X##Y
+
+int main()
+{
+    int Class1 = 2021;
+    //printf(&quot;%d\n&quot;, class1);
+    printf(&quot;%d\n&quot;, CAT(Class, 84));//2021 
+    //printf(&quot;%d\n&quot;, Class##1);
+    //printf(&quot;%d\n&quot;, Class1);
+    return 0;
+}
+</code></pre>
+
+<p>注： 这样的连接必须产生一个合法的标识符。否则其结果就是未定义的。</p>
+
+<h4 id="带副作用的宏参数">带副作用的宏参数</h4>
+
+<p>当宏参数在宏的定义中出现超过一次的时候，如果参数带有副作用，那么你在使用这个宏的时候就可能出现危险，导致不可预测的后果。副作用就是表达式求值的时候出现的永久性效果。</p>
+
+<p>例如：</p>
+
+<pre><code>x+1;//不带副作用
+x++;//带有副作用
+</code></pre>
+
+<p>MAX宏可以证明具有副作用的参数所引起的问题。</p>
+
+<pre><code class="language-C++">#define MAX(X, Y)     ((X)&gt;(Y)?(X):(Y))
+
+int main()
+{
+    int a = 10;
+    int b = 11;
+
+    int max = MAX(a++, b++);
+    //int max = ((a++) &gt; (b++) ? (a++) : (b++));
+
+    printf(&quot;%d\n&quot;, max);//12
+    printf(&quot;%d\n&quot;, a);//11
+    printf(&quot;%d\n&quot;, b);//13
+
+    return 0;
+}
+</code></pre>
+
+<h4 id="宏和函数对比">宏和函数对比</h4>
+
+<p>宏通常被应用于执行简单的运算。比如在两个数中找出较大的一个。</p>
+
+<pre><code class="language-C++">//函数-1
+int Max(int x, int y)
+{
+    return (x &gt; y ? x : y);
+}
+
+float Max2(float x, float y)
+{
+    return (x &gt; y ? x : y);
+}
+
+//宏-2
+#define MAX(X, Y) ((X)&gt;(Y)?(X):(Y))
+
+int main()
+{
+    int a = 10;
+    int b = 20;
+    float c = 3.0f;
+    float d = 4.0f;
+    //函数在调用的时候
+    //会有函数调用和返回的开销
+
+    float max = Max2(c, d);
+    printf(&quot;max = %d\n&quot;, max);
+    //预处理阶段就完成了替换
+    //没有函数的调用和返回的开销
+    max = MAX(c, d);
+    max = ((c) &gt; (d) ? (c) : (d));
+    printf(&quot;max = %d\n&quot;, max);
+    /*int max = Max(a, b);
+    printf(&quot;max = %d\n&quot;, max);
+    max = MAX(a, b);
+    printf(&quot;max = %d\n&quot;, max);*/
+
+    return 0;
+}
+</code></pre>
+
+<p>那为什么不用函数来完成这个任务？ 原因有二：</p>
+
+<ol>
+<li>用于调用函数和从函数返回的代码可能比实际执行这个小型计算工作所需要的时间更多。所以<strong>宏比函数在程序的规模和速度方面更胜一筹</strong>。</li>
+<li>更为重要的是函数的参数必须声明为特定的类型。所以函数只能在类型合适的表达式上使用。反之这个宏怎可以适用于整形、长整型、浮点型等可以用于&gt;来比较的类型。<strong>宏是类型无关的</strong>。</li>
+</ol>
+
+<p>当然和宏相比函数也有劣势的地方：</p>
+
+<ol>
+<li>每次使用宏的时候，一份宏定义的代码将插入到程序中。除非宏比较短，否则可能大幅度增加程序的长度。</li>
+<li>宏是没法调试的。</li>
+<li>宏由于类型无关，也就不够严谨。</li>
+<li>宏可能会带来运算符优先级的问题，导致程容易出现错。</li>
+</ol>
+
+<p>宏有时候可以做函数做不到的事情。比如：宏的参数可以出现类型，但是函数做不到。</p>
+
+<pre><code class="language-C++">#define MALLOC(num, type) (type*)malloc(num*sizeof(type))
+int main()
+{
+    int* p = (int*)malloc(10*sizeof(int));
+    
+    int* p = MALLOC(10, int);
+    //int* p = (int*)malloc(10 * sizeof(int));
+    return 0;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">#define定义宏</th>
+<th align="left">函数</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">代码长度</td>
+<td align="left">每次使用时，宏代码都会被插入到程序中。除了非常小的宏之外，程序的长度会大幅度增长</td>
+<td align="left">函数代码只出现于一个地方；每次使用这个函数时，都调用那个地方的同一份代码</td>
+</tr>
+
+<tr>
+<td align="left">执行速度</td>
+<td align="left">更快</td>
+<td align="left">存在函数的调用和返回的额外开销，所以相对慢一些</td>
+</tr>
+
+<tr>
+<td align="left">操作符优先级</td>
+<td align="left">宏参数的求值是在所有周围表达式的上下文环境里，除非加上括号，否则邻近操作符的优先级可能会产生不可预料的后果，所以建议宏在书写的时候多些括号。</td>
+<td align="left">函数参数只在函数调用的时候求值一次，它的结果值传递给函数。表达式的求值结果更容易预测。</td>
+</tr>
+
+<tr>
+<td align="left">带有副作用的参数</td>
+<td align="left">参数可能被替换到宏体中的多个位置，所以带有副作用的参数求值可能会产生不可预料的结果。</td>
+<td align="left">函数参数只在传参的时候求值一次，结果更容易控制。</td>
+</tr>
+
+<tr>
+<td align="left">参数类型</td>
+<td align="left">宏的参数与类型无关，只要对参数的操作是合法的，它就可以使用于任何参数类型。</td>
+<td align="left">函数的参数是与类型有关的，如果参数的类型不同，就需要不同的函数，即使他们执行的任务是不同的。</td>
+</tr>
+
+<tr>
+<td align="left">调试</td>
+<td align="left">宏是不方便调试的</td>
+<td align="left">函数是可以逐语句调试的</td>
+</tr>
+
+<tr>
+<td align="left">递归</td>
+<td align="left">宏是不能递归的</td>
+<td align="left">函数是可以递归的</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="命名约定">命名约定</h3>
+
+<p>一般来讲函数的宏的使用语法很相似。所以语言本身没法帮我们区分二者。 那我们平时的一个习惯是：</p>
+
+<pre><code>把宏名全部大写 函数名不要全部大写
+</code></pre>
+
+<h3 id="undef">#undef</h3>
+
+<p>这条指令用于移除一个宏定义。</p>
+
+<pre><code class="language-C++">#define MAX 100
+
+int main()
+{
+    printf(&quot;MAX = %d\n&quot;, MAX);
+#undef MAX //如果现存的一个名字需要被重新定义，那么它的旧名字首先要被移除。
+    //printf(&quot;MAX = %d\n&quot;, MAX);//err
+    return 0;
+}
+</code></pre>
+
+<h3 id="命令行定义">命令行定义</h3>
+
+<p>许多C 的编译器提供了一种能力，允许在命令行中定义符号。用于启动编译过程。 例如：当我们根据同一个源文件要编译出不同的一个程序的不同版本的时候，这个特性有点用处。（假定某个程序中声明了一个某个长度的数组，如果机器内存有限，我们需要一个很小的数组，但是另外一个机器内存大写，我们需要一个数组能够大写。）</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt; 
+int main() 
+{ 
+ int array [ARRAY_SIZE]; 
+ int i = 0; 
+ for(i = 0; i&lt; ARRAY_SIZE; i ++) 
+ { 
+ array[i] = i; 
+ } 
+ for(i = 0; i&lt; ARRAY_SIZE; i ++) 
+ { 
+ printf(&quot;%d &quot; ,array[i]); 
+ } 
+ printf(&quot;\n&quot; ); 
+ return 0; 
+} 
+</code></pre>
+
+<p>编译指令：</p>
+
+<pre><code class="language-CMD">gcc -D ARRAY_SIZE=10 programe.c 
+</code></pre>
+
+<h3 id="条件编译">条件编译</h3>
+
+<p>在编译一个程序的时候我们如果要将一条语句（一组语句）编译或者放弃是很方便的。因为我们有条件编译指令。</p>
+
+<p>比如说：</p>
+
+<pre><code>调试性的代码，删除可惜，保留又碍事，所以我们可以选择性的编译。
+</code></pre>
+
+<pre><code class="language-C++">#define DEBUG
+
+int main()
+{
+    int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+    int i = 0;
+
+    for (i = 0; i &lt; 10; i++)
+    {
+        arr[i] = 0;
+#ifdef DEBUG
+        printf(&quot;%d &quot;, arr[i]);
+#endif
+    }
+
+    return 0;
+}
+</code></pre>
+
+<p><strong>常见的条件编译指令：</strong></p>
+
+<ol>
+<li><pre><code class="language-C++">#if 常量表达式
+//... 
+#endif 
+//常量表达式由预处理器求值。
+如：
+#define __DEBUG__ 1 
+#if __DEBUG__ 
+//.. 
+#endif 
+</code></pre></li>
+
+<li><p>多个分支的条件编译</p>
+
+<pre><code class="language-C++">#if 常量表达式
+//... 
+#elif 常量表达式
+//... 
+#else 
+//... 
+#endif 
+</code></pre></li>
+
+<li><p>判断是否被定义</p>
+
+<pre><code class="language-C++">#if defined(symbol) 
+#ifdef symbol 
+#if !defined(symbol) 
+#ifndef symbol 
+</code></pre></li>
+
+<li><p>嵌套指令</p>
+
+<pre><code class="language-C++">#if defined(OS_UNIX) 
+#ifdef OPTION1 
+unix_version_option1(); 
+#endif 
+#ifdef OPTION2 
+unix_version_option2(); 
+#endif 
+#elif defined(OS_MSDOS) 
+#ifdef OPTION2 
+msdos_version_option2(); 
+#endif 
+#endif 
+</code></pre></li>
+</ol>
+
+<h3 id="文件包含">文件包含</h3>
+
+<p>我们已经知道， #include 指令可以使另外一个文件被编译。就像它实际出现于 #include 指令的地方一样。</p>
+
+<p>这种替换的方式很简单： 预处理器先删除这条指令，并用包含文件的内容替换。 这样一个源文件被包含10次，那就实际被编译10次。</p>
+
+<h4 id="头文件被包含的方式">头文件被包含的方式：</h4>
+
+<ul>
+<li>本地文件包含</li>
+</ul>
+
+<pre><code>#include &quot;filename&quot;
+</code></pre>
+
+<p>查找策略：先在源文件所在目录下查找，如果该头文件未找到，编译器就像查找库函数头文件一样在标准位置查找头文件。 如果找不到就提示编译错误。 <strong>linux环境的标准头文件的路径</strong>：</p>
+
+<pre><code>/usr/include 
+</code></pre>
+
+<p><strong>VS环境的标准头文件的路径</strong>：</p>
+
+<pre><code>C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include 
+</code></pre>
+
+<p>注意按照自己的安装路径去找。</p>
+
+<ul>
+<li>库文件包含</li>
+</ul>
+
+<pre><code>#include &lt;filename.h&gt; 
+</code></pre>
+
+<p>查找头文件直接去标准路径下去查找，如果找不到就提示编译错误。</p>
+
+<p>这样是不是可以说，对于库文件也可以使用 “” 的形式包含？ 答案是肯定的，可以。</p>
+
+<p><strong>但是这样做查找的效率就低些，当然这样也不容易区分是库文件还是本地文件了。</strong></p>
+
+<h4 id="嵌套文件包含">嵌套文件包含</h4>
+
+<p>如果出现这样的场景：</p>
+
+<p><img src="../img/15/嵌套文件包含.png" alt="Image text" /></p>
+
+<p>comm.h和comm.c是公共模块。 test1.h和test1.c使用了公共模块。 test2.h和test2.c使用了公共模块。 test.h和test.c使用了test1模块和test2模块。 这样最终程序中就会出现两份comm.h的内容。这样就造成了文件内容的重复。</p>
+
+<p><strong>如何解决这个问题？</strong> 答案：条件编译。</p>
+
+<p>每个头文件的开头写：</p>
+
+<pre><code class="language-C++">#ifndef __TEST_H__ 
+#define __TEST_H__ 
+//头文件的内容
+#endif //__TEST_H__ 
+</code></pre>
+
+<p>或者：</p>
+
+<pre><code>#pragma once 
+</code></pre>
+
+<p>就可以避免头文件的重复引入。</p>
+
+<p>注： 推荐《高质量C/C++编程指南》中附录的考试试卷（很重要）。</p>
+
+<p>笔试题：</p>
+
+<ol>
+<li>头文件中的 ifndef/define/endif是干什么用的?</li>
+<li>#include <filename.h> 和 #include &ldquo;filename.h&rdquo;有什么区别?</li>
+</ol>
+
+<h3 id="其他预处理指令">其他预处理指令</h3>
+
+<p>#error
+#pragma
+#line
+&hellip;</p>
+
+<p>不做介绍，自己去了解。</p>
+
+<p>#pragma pack()在结构体部分介绍。</p>
+
+<p>参考《C语言深度解剖》学习</p>
+
+<p>本章完</p>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/14/" rel="next"></a>
+  </div>
+  
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 0001-01-01
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

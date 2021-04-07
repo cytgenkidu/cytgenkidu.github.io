@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="函数是什么 维基百科中对函数的定义：子程序
+- 在计算机科学中，子程序（英语：Subroutine, procedure, function, routine, method,subprogram, callable unit），是一个大型程序中的某部分代码， 由一个或多个语句块组成。它负责完成某项特定任务，而且相较于其他代码，具备相对的独立性。 - 一般会有输入参数并有返回值，提供对过程的封装和细节的隐藏。这些代码通常被集成为软件库。  C语言中函数的分类  库函数 自定义函数  库函数 为什么会有库函数？
+ 我们知道在我们学习C语言编程的时候，总是在一个代码编写完成之后迫不及待的想知道结果，想把这个结果打印到我们的屏幕上看看。这个时候我们会频繁的使用一个功能：将信息按照一定的格式打印到屏幕上（printf）。 在编程的过程中我们会频繁的做一些字符串的拷贝工作（strcpy）。 在编程是我们也计算，总是会计算n的k次方这样的运算（pow）。  注： http://www.cplusplus.com/ http://en.cppreference.com
+常见库函数  IO函数 字符串操作函数 字符操作函数 内存操作函数 时间/日期函数 数学函数 其他库函数  strcpy-拷贝字符串
+char * strcpy ( char * destination, const char * source );  #include &lt;string.h&gt; #include &lt;stdio.h&gt; int main() { //strcpy - string copy -字符串拷贝 //strlen - string length -字符串长度有关 char arr1[] = &quot;world&quot;; char arr2[] = &quot;##########&quot;; printf(&quot;%s\n&quot;, arr2); strcpy(arr2, arr1); printf(&quot;%s\n&quot;, arr2); return 0; }  memset">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/3/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/3/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/3/">
+  <meta property="og:title" content="函数 | Cytgenkidu">
+  <meta property="og:description" content="函数是什么 维基百科中对函数的定义：子程序
+- 在计算机科学中，子程序（英语：Subroutine, procedure, function, routine, method,subprogram, callable unit），是一个大型程序中的某部分代码， 由一个或多个语句块组成。它负责完成某项特定任务，而且相较于其他代码，具备相对的独立性。 - 一般会有输入参数并有返回值，提供对过程的封装和细节的隐藏。这些代码通常被集成为软件库。  C语言中函数的分类  库函数 自定义函数  库函数 为什么会有库函数？
+ 我们知道在我们学习C语言编程的时候，总是在一个代码编写完成之后迫不及待的想知道结果，想把这个结果打印到我们的屏幕上看看。这个时候我们会频繁的使用一个功能：将信息按照一定的格式打印到屏幕上（printf）。 在编程的过程中我们会频繁的做一些字符串的拷贝工作（strcpy）。 在编程是我们也计算，总是会计算n的k次方这样的运算（pow）。  注： http://www.cplusplus.com/ http://en.cppreference.com
+常见库函数  IO函数 字符串操作函数 字符操作函数 内存操作函数 时间/日期函数 数学函数 其他库函数  strcpy-拷贝字符串
+char * strcpy ( char * destination, const char * source );  #include &lt;string.h&gt; #include &lt;stdio.h&gt; int main() { //strcpy - string copy -字符串拷贝 //strlen - string length -字符串长度有关 char arr1[] = &quot;world&quot;; char arr2[] = &quot;##########&quot;; printf(&quot;%s\n&quot;, arr2); strcpy(arr2, arr1); printf(&quot;%s\n&quot;, arr2); return 0; }  memset">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2021-01-17T00:00:00&#43;01:00">
+  
+  
+  <meta property="article:modified_time" content="2021-01-17T00:00:00&#43;01:00">
+  
+  
+
+  
+
+  
+
+  <title>函数 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#函数是什么">函数是什么</a>
+<ul>
+<li><a href="#c语言中函数的分类">C语言中函数的分类</a></li>
+</ul></li>
+<li><a href="#库函数">库函数</a>
+<ul>
+<li><a href="#常见库函数">常见库函数</a></li>
+</ul></li>
+<li><a href="#自定义函数">自定义函数</a>
+<ul>
+<li><a href="#函数的组成">函数的组成</a></li>
+<li><a href="#例子-写一个函数可以找出两个整数中的最大值">例子：写一个函数可以找出两个整数中的最大值</a></li>
+<li><a href="#例子-写一个函数可以交换两个整形变量的内容">例子：写一个函数可以交换两个整形变量的内容</a></li>
+</ul></li>
+<li><a href="#函数参数">函数参数</a>
+<ul>
+<li><a href="#实际参数-实参">实际参数（实参）</a></li>
+<li><a href="#形式参数-形参">形式参数（形参）</a></li>
+</ul></li>
+<li><a href="#函数调用">函数调用</a>
+<ul>
+<li><a href="#传值调用">传值调用</a></li>
+<li><a href="#传址调用">传址调用</a></li>
+<li><a href="#函数练习">函数练习</a></li>
+</ul></li>
+<li><a href="#函数的嵌套调用和链式访问">函数的嵌套调用和链式访问</a>
+<ul>
+<li><a href="#嵌套调用">嵌套调用</a></li>
+<li><a href="#链式访问">链式访问</a></li>
+</ul></li>
+<li><a href="#函数的声明和定义">函数的声明和定义</a>
+<ul>
+<li><a href="#函数声明">函数声明</a></li>
+<li><a href="#函数定义">函数定义</a></li>
+</ul></li>
+<li><a href="#函数递归">函数递归</a>
+<ul>
+<li><a href="#什么是递归">什么是递归</a></li>
+<li><a href="#递归的两个必要条件">递归的两个必要条件</a></li>
+<li><a href="#递归练习">递归练习</a></li>
+<li><a href="#递归与迭代">递归与迭代</a>
+<ul>
+<li><a href="#问题">问题</a></li>
+<li><a href="#为什么">为什么</a></li>
+<li><a href="#那如何解决上述的问题">那如何解决上述的问题</a></li>
+<li><a href="#提示">提示</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#练习">练习</a>
+<ul>
+<li><a href="#字符串逆序-递归实现">字符串逆序（递归实现）</a></li>
+<li><a href="#计算一个数的每位之和-递归实现">计算一个数的每位之和（递归实现）</a></li>
+<li><a href="#递归实现n的k次方">递归实现n的k次方</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name">函数</h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="函数是什么">函数是什么</h2>
+
+<p>维基百科中对函数的定义：子程序</p>
+
+<pre><code class="language-txt">- 在计算机科学中，子程序（英语：Subroutine, procedure, function, routine, method,subprogram, callable unit），是一个大型程序中的某部分代码， 由一个或多个语句块组成。它负责完成某项特定任务，而且相较于其他代码，具备相对的独立性。
+- 一般会有输入参数并有返回值，提供对过程的封装和细节的隐藏。这些代码通常被集成为软件库。
+</code></pre>
+
+<h3 id="c语言中函数的分类">C语言中函数的分类</h3>
+
+<ol>
+<li>库函数</li>
+<li>自定义函数</li>
+</ol>
+
+<h2 id="库函数">库函数</h2>
+
+<p>为什么会有库函数？</p>
+
+<ol>
+<li>我们知道在我们学习C语言编程的时候，总是在一个代码编写完成之后迫不及待的想知道结果，想把这个结果打印到我们的屏幕上看看。这个时候我们会频繁的使用一个功能：将信息按照一定的格式打印到屏幕上（printf）。</li>
+<li>在编程的过程中我们会频繁的做一些字符串的拷贝工作（strcpy）。</li>
+<li>在编程是我们也计算，总是会计算n的k次方这样的运算（pow）。</li>
+</ol>
+
+<p>注：
+<code>http://www.cplusplus.com/</code>
+<code>http://en.cppreference.com</code></p>
+
+<h3 id="常见库函数">常见库函数</h3>
+
+<ul>
+<li>IO函数</li>
+<li>字符串操作函数</li>
+<li>字符操作函数</li>
+<li>内存操作函数</li>
+<li>时间/日期函数</li>
+<li>数学函数</li>
+<li>其他库函数</li>
+</ul>
+
+<p><a href="http://www.cplusplus.com/reference/cstring/strcpy/?kw=strcpy" target="_blank">strcpy</a>-拷贝字符串</p>
+
+<pre><code class="language-C++">char * strcpy ( char * destination, const char * source );
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+int main()
+{
+    //strcpy - string copy -字符串拷贝
+    //strlen - string length -字符串长度有关
+    char arr1[] = &quot;world&quot;;
+    char arr2[] = &quot;##########&quot;;
+    printf(&quot;%s\n&quot;, arr2);
+    strcpy(arr2, arr1);
+    printf(&quot;%s\n&quot;, arr2);
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/3/strcpy.png" alt="Image text" /></p>
+
+<p><a href="http://www.cplusplus.com/reference/cstring/memset/?kw=memset" target="_blank">memset</a></p>
+
+<pre><code class="language-C++">void * memset ( void * ptr, int value, size_t num );
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+int main()
+{
+    char arr[] = &quot;hello world&quot;;
+    memset(arr, '*', 5);
+    printf(&quot;%s\n&quot;, arr); 
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/3/memset.png" alt="Image text" /></p>
+
+<h2 id="自定义函数">自定义函数</h2>
+
+<h3 id="函数的组成">函数的组成</h3>
+
+<pre><code class="language-C++">ret_type fun_name(para1, * )
+{
+ statement;//语句项
+}
+ret_type 返回类型
+fun_name 函数名
+para1    函数参数
+</code></pre>
+
+<h3 id="例子-写一个函数可以找出两个整数中的最大值">例子：写一个函数可以找出两个整数中的最大值</h3>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+//get_max函数的设计
+int get_max(int x, int y)
+{
+    return (x &gt; y) ? (x) : (y);
+}
+int main()
+{
+    int num1 = 10;
+    int num2 = 20;
+    int max = get_max(num1, num2);
+    printf(&quot;max = %d\n&quot;, max);
+    return 0;
+}
+</code></pre>
+
+<h3 id="例子-写一个函数可以交换两个整形变量的内容">例子：写一个函数可以交换两个整形变量的内容</h3>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+void Swap1(int x, int y)
+{
+    int tmp = 0;
+    tmp = x;
+    x = y;
+    y = tmp;
+}
+void Swap2(int *px, int *py)
+{
+    int tmp = 0;
+    tmp = *px; //*px - 解引用操作
+    *px = *py;
+    *py = tmp;
+}
+int main()
+{
+    int num1 = 1;
+    int num2 = 2;
+    Swap1(num1, num2); // 传值调用
+    printf(&quot;Swap1::num1 = %d num2 = %d\n&quot;, num1, num2); //没有交换
+    Swap2(&amp;num1, &amp;num2); // 传址调用
+    printf(&quot;Swap2::num1 = %d num2 = %d\n&quot;, num1, num2); //交换了
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/3/swap.png" alt="Image text" /></p>
+
+<h2 id="函数参数">函数参数</h2>
+
+<h3 id="实际参数-实参">实际参数（实参）</h3>
+
+<pre><code class="language-txt">真实传给函数的参数，叫实参。实参可以是：常量、变量、表达式、函数等。无论实参是何种类型的量，在进行函数调用时，它们都必须有确定的值，以便把这些值传送给形参.
+</code></pre>
+
+<h3 id="形式参数-形参">形式参数（形参）</h3>
+
+<pre><code class="language-C++">形式参数是指函数名后括号中的变量，因为形式参数只有在函数被调用的过程中才实例化（分配内存单元），所以叫形式参数。形式参数当函数调用完成之后就自动销毁了。因此形式参数只在函数中有效.
+</code></pre>
+
+<p>上面Swap1和Swap2函数中的参数 x，y，px，py 都是形式参数。在main函数中传给Swap1的num1，num2和传给Swap2函数的&amp;num1，&amp;num2是实际参数。</p>
+
+<h2 id="函数调用">函数调用</h2>
+
+<h3 id="传值调用">传值调用</h3>
+
+<pre><code class="language-txt">函数的形参和实参分别占有不同内存块，对形参的修改不会影响实参。
+</code></pre>
+
+<h3 id="传址调用">传址调用</h3>
+
+<pre><code class="language-txt">1.传址调用是把函数外部创建变量的内存地址传递给函数参数的一种调用函数的方式。
+2.这种传参方式可以让函数和函数外边的变量建立起正真的联系，也就是函数内部可以直接操作函数外部的变量.
+</code></pre>
+
+<h3 id="函数练习">函数练习</h3>
+
+<ul>
+<li>写一个函数，每调用一次这个函数，就会将num的值增加1。</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+void add(int *px)
+{
+    *px = *px + 1; // *p++ err
+}
+int main()
+{
+    int num = 0;
+    add(&amp;num);
+    printf(&quot;%d\n&quot;, num);
+    return 0;
+}
+</code></pre>
+
+<h2 id="函数的嵌套调用和链式访问">函数的嵌套调用和链式访问</h2>
+
+<p>函数和函数之间可以有机的组合的</p>
+
+<h3 id="嵌套调用">嵌套调用</h3>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+void new_line()
+{
+    printf(&quot;hehe\n&quot;);
+}
+void three_line()
+{
+    int i = 0;
+    for (i = 0; i &lt; 3; i++)
+    {
+        new_line();
+    }
+}
+int main()
+{
+    three_line();//打印三行hehe
+    return 0;
+}
+</code></pre>
+
+<h3 id="链式访问">链式访问</h3>
+
+<p>把一个函数的返回值作为另外一个函数的参数.</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main()
+{
+    char arr[20] = &quot;hello&quot;;
+    int ret = strlen(strcat(arr, &quot;world&quot;)); //strlen函数-字符长度,strcat函数-源字符串的副本追加到目标字符串
+    printf(&quot;%d\n&quot;, ret);                  // 10
+    return 0;
+}
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int main()
+{
+    printf(&quot;%d&quot;, printf(&quot;%d&quot;, printf(&quot;%d&quot;, 43)));//printf 返回 打印字符的个数
+    //结果是啥？4321
+    return 0;
+}
+</code></pre>
+
+<h2 id="函数的声明和定义">函数的声明和定义</h2>
+
+<h3 id="函数声明">函数声明</h3>
+
+<ol>
+<li>告诉编译器有一个函数叫什么，参数是什么，返回类型是什么。但是具体是不是存在，无关紧要。</li>
+<li>函数的声明一般出现在函数的使用之前。要满足先声明后使用。</li>
+<li>函数的声明一般要放在头文件中的。</li>
+</ol>
+
+<h3 id="函数定义">函数定义</h3>
+
+<p>函数的定义是指函数的具体实现，交待函数的功能实现。</p>
+
+<p><img src="../img/3/声明定义1.png" alt="Image text" /></p>
+
+<p><strong>add.h的内容</strong> 放置函数的声明</p>
+
+<pre><code class="language-C++">#ifndef __ADD_H__
+#define __ADD_H__
+//函数Add的声明
+int Add(int x, int y);
+#endif //__ADD_H__
+</code></pre>
+
+<p><strong>add.c的内容</strong> 放置函数的定义</p>
+
+<pre><code class="language-C++">//函数Add的定义
+int Add(int x, int y) {
+  int z = x + y;
+  return z;
+}
+</code></pre>
+
+<p><strong>test.c的内容</strong> 放置函数的实现</p>
+
+<pre><code class="language-C++">#include &quot;add.h&quot;
+//函数Add的实现
+int main()
+{
+    printf(&quot;%d\n&quot;, Add(1, 2)); //3
+    return 0;
+}
+</code></pre>
+
+<h2 id="函数递归">函数递归</h2>
+
+<h3 id="什么是递归">什么是递归</h3>
+
+<p>程序调用自身的编程技巧称为递归（ recursion）。 递归做为一种算法在程序设计语言中广泛应用。 一个过程或函数在其定义或说明中有直接或间接调用自身的一种方法，它通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解，递归策略只需少量的程序就可描述出解题过程所需要的多次重复计算，大大地减少了程序的代码量。 <strong>递归的主要思考方式在于：把大事化小</strong></p>
+
+<h3 id="递归的两个必要条件">递归的两个必要条件</h3>
+
+<ul>
+<li>存在限制条件，当满足这个限制条件的时候，递归便不再继续。</li>
+<li>每次递归调用之后越来越接近这个限制条件</li>
+</ul>
+
+<p>注：递归要找到条件，否则会溢出
+栈溢出：
+<img src="../img/3/栈溢出0.png" alt="Image text" />
+<img src="../img/3/栈溢出.png" alt="Image text" /></p>
+
+<h3 id="递归练习">递归练习</h3>
+
+<ul>
+<li>接受一个整型值（无符号），按照顺序打印它的每一位。 例如： 输入：1234，输出 1 2 3 4</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+void print(int n)
+{
+    if (n &gt; 9)
+    {
+        print(n / 10);
+    }
+    printf(&quot;%d &quot;, n % 10);
+}
+int main()
+{
+    int num = 0;
+    printf(&quot;输入-&gt; &quot;);
+    scanf(&quot;%d&quot;, &amp;num);
+    printf(&quot;输出-&gt; &quot;);
+    print(num);
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/3/数字递归.png" alt="Image text" /></p>
+
+<p><img src="../img/3/print.png" alt="Image text" /></p>
+
+<ul>
+<li>编写函数不允许创建临时变量，求字符串的长度。</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int my_strlen(const char *str)
+{
+    //法一：记数方式
+    // int count = 0;
+    // while (*str != &quot;\0&quot;)
+    // {
+    //     count++;
+    //     str++;
+    // }
+    // return count;
+
+    //法二：递归方式
+    if (*str == '\0') //*str就是字符
+        return 0;
+    else
+        return 1 + my_strlen(str + 1); //str +1 是str的下一个地址
+        
+    //法三：指针方式
+    // char* start = str;
+    // char* end = str;
+    // while (*end != '\0')
+    // {
+    //  end++;
+    // }
+    // return end - start;//
+}
+int main()
+{
+    char arr[] = &quot;hello&quot;;
+    // int len = strlen(arr); // 求字符串长度
+    // char *p = &quot;abcedke&quot;;
+    // int len = my_strlen(p);//7
+    int len = my_strlen(arr); //arr是数组，数组传参，传过去的不是整个数组，而是第一个元素的地址
+    printf(&quot;%d\n&quot;, len);     //5
+    return 0;
+}
+</code></pre>
+
+<h3 id="递归与迭代">递归与迭代</h3>
+
+<ul>
+<li>求n的阶乘。（不考虑溢出）</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+int factorial(int n)
+{
+    if (n &lt;= 1)
+        return 1;
+    else
+        return n * factorial(n - 1);
+}
+int main()
+{
+    int num = 0;
+    int ret = 0;
+    scanf(&quot;%d&quot;, &amp;num);
+    ret = factorial(num);
+    printf(&quot;%d\n&quot;, ret);
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li>求第n个斐波那契数。（不考虑溢出）</li>
+</ul>
+
+<p><img src="../img/3/斐波那契数列.png" alt="Image text" /></p>
+
+<!-- <div align="center"> <img src="../img/3/斐波那契数列.png" width=""/> </div><br> -->
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+//斐波那契数列：1 1 2 3 5 8 13 21 34 55 …
+// int count = 0; //全局变量
+int fib(int n)
+{
+    // if (n == 3)//最后我们输出看看count，是一个很大很大的值。
+    //     count++;
+    if (n &lt;= 2)
+        return 1;
+    else
+        return fib(n - 1) + fib(n - 2);
+}
+int main()
+{
+    int num = 0;
+    scanf(&quot;%d&quot;, &amp;num);
+    printf(&quot;%d&quot;, fib(num));
+    return 0;
+}
+</code></pre>
+
+<h4 id="问题">问题</h4>
+
+<ul>
+<li>在使用 fib 这个函数的时候如果我们要计算第50个斐波那契数字的时候特别耗费时间。</li>
+<li>使用 factorial 函数求10000的阶乘（不考虑结果的正确性），程序会崩溃。</li>
+</ul>
+
+<h4 id="为什么">为什么</h4>
+
+<p>我们发现 fib 函数在调用的过程中很多计算其实在一直重复。 如果我们把代码修改一下</p>
+
+<p>那我们如何改进呢？
+在调试 factorial 函数的时候，如果你的参数比较大，那就会报错： `stack overflow（栈溢出） 这样的信息。 系统分配给程序的栈空间是有限的，但是如果出现了死循环，或者（死递归），这样有可能导致一直开辟栈空间，最终产生栈空间耗尽的情况，这样的现象我们称为栈溢出。</p>
+
+<h4 id="那如何解决上述的问题">那如何解决上述的问题</h4>
+
+<ol>
+<li>将递归改写成非递归。</li>
+<li>使用static对象替代nonstatic局部对象。在递归函数设计中，可以使用static对象替代nonstatic局部对象（即栈对象），这不仅可以减少每次递归调用和返回时产生和释放nonstatic对象的开销，而且static对象还可以保存递归调用的中间状态，并且可为各个调用层所访问.</li>
+</ol>
+
+<ul>
+<li>改进factorial</li>
+</ul>
+
+<pre><code class="language-C++">int factorial(int n)
+{
+    int res = 1;
+    while (n &gt; 1)
+    {
+        res *= n;
+        n -= 1;
+    }
+    return res;
+}
+</code></pre>
+
+<ul>
+<li>改进fib</li>
+</ul>
+
+<pre><code class="language-C++">//斐波那契数列：1 1 2 3 5 8 13 21 34 55 …
+int fib(int n)
+{
+    int res = 1;
+    int pre_res = 1;
+    int next_older_res = 0;
+    while (n &gt; 2)
+    {
+        next_older_res = pre_res;
+        pre_res = res;
+        res = pre_res + next_older_res;
+        n--;
+    }
+    return res;
+}
+</code></pre>
+
+<h4 id="提示">提示</h4>
+
+<ol>
+<li>许多问题是以递归的形式进行解释的，这只是因为它比非递归的形式更为清晰。</li>
+<li>但是这些问题的迭代实现往往比递归实现效率更高，虽然代码的可读性稍微差些。</li>
+<li>当一个问题相当复杂，难以用迭代实现时，此时递归实现的简洁性便可以补偿它所带来的运行时开销。</li>
+</ol>
+
+<h2 id="练习">练习</h2>
+
+<h3 id="字符串逆序-递归实现">字符串逆序（递归实现）</h3>
+
+<p>编写一个函数reverse_string(char* string)(递归实现)</p>
+
+<p>实现：将参数字符串中的字符反向排列。</p>
+
+<p>要求：不能使用C库函数中的字符串操作函数。</p>
+
+<ul>
+<li>主函数</li>
+</ul>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int my_strlen(char* str)
+{
+    int count = 0;
+    while (*str != '\0')
+    {
+        count++;
+        str++;
+    }
+    return count;
+}
+//……
+int main()
+{
+    char arr[] = &quot;abcdefg&quot;;//fedcba
+    reverse_string(arr);
+    printf(&quot;%s\n&quot;, arr);
+
+    return 0;
+}
+</code></pre>
+
+<ol>
+<li><p>非递归方式</p>
+
+<pre><code class="language-C++">void reverse_string(char arr[])
+{
+    int left = 0;
+    int right = my_strlen(arr)-1;
+
+    while (left&lt;right)
+    {
+        int tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
+        left++;
+        right--;
+    }
+}
+</code></pre></li>
+
+<li><p>递归方式</p>
+
+<pre><code class="language-C++">//abcdef
+// a和f的小环
+// 逆序reverse_string(&quot;bcde&quot;)
+void reverse_string(char* arr)
+{
+    char tmp = arr[0];//先放a
+    int len = my_strlen(arr);
+    arr[0] = arr[len - 1];
+    arr[len - 1] = '\0';//把f位置替换为\0
+    if (my_strlen(arr+1) &gt;=2)
+        reverse_string(arr+1);//reverse_string(&quot;bcde\0&quot;);
+    arr[len - 1] = tmp;//把f放在最后
+}
+</code></pre>
+
+<p><img src="../img/3/reverse.png" alt="Image text" /></p></li>
+</ol>
+
+<h3 id="计算一个数的每位之和-递归实现">计算一个数的每位之和（递归实现）</h3>
+
+<p>写一个递归函数DigitSum(n),输入一个非负整数，返回组成它的数字之后而</p>
+
+<p>例如：调用 DigitSum(1729),则应该返回是1+7+2+9，它的和是19</p>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+//DigitSum(1729)
+//DigitSum(172) + 1729%10
+//DigitSum(17) + 172%10 + 1729%10
+//DigitSum(1) + 17%10 + ...
+//1+7+2+9
+int DigitSum(unsigned int num)
+{
+    if (num &gt; 9)
+    {
+        return DigitSum(num / 10) + num % 10;
+    }
+    else
+    {
+        return num;
+    }
+}
+
+int main()
+{
+    unsigned int num = 0;
+    scanf(&quot;%d&quot;, &amp;num);//1729
+    int ret = DigitSum(num);
+    printf(&quot;ret = %d\n&quot;, ret);
+    return 0;
+}
+</code></pre>
+
+<h3 id="递归实现n的k次方">递归实现n的k次方</h3>
+
+<pre><code class="language-C++">#include &lt;stdio.h&gt;
+double Pow(int n, int k)
+{
+    //n^k = n* n^(k-1)
+    if (k &lt; 0)
+        return (1.0 / (Pow(n, -k)));
+    else if (k == 0)
+        return 1;
+    else
+        return n*Pow(n, k - 1);
+}
+
+int main()
+{
+    int n = 0;
+    int k = 0;
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;k);
+
+    double ret = Pow(n, k);
+    printf(&quot;ret = %lf\n&quot;, ret);
+    return 0;
+}
+</code></pre>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/2/" rel="next">分支语句和循环语句</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/4/" rel="prev">数组</a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 2021-01-17
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

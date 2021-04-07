@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/project/</link>
+    <description>Recent content in Projects on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Sun, 24 Mar 2019 12:41:05 -0500</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>基于Spring Boot &#43; AngularJS的ERP系统升级</title>
+      <link>https://cytgenkidu.github.io/project/springboot-angular-erp/</link>
+      <pubDate>Sun, 24 Mar 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/springboot-angular-erp/</guid>
+      <description>项目介绍： 对原本使用.NET Framework框架的ERP系统进行升级。
+开发过程： JHipster快速构建一个基于Spring Boot + AngularJS的项目，并在此基础上进行开发。
+客户端：  单页面应用AngularJS、Bootstrap、HTML5、I18N、Sass 通过npm来安装额外的JavaScript库 通过webpack构建、优化、实时重载 支持Thtmeleaf模板引擎  服务端：  使用易于配置的Spring Boot框架，通过Gradle对项目进行管理和构建 使用Spring Security OAuth2进行认证授权 使用Mybatis Generator根据数据库自动生成映射文件和Dao 使用Spring data JPA实现动态查询 使用Liquibase初始化数据库信息及数据库源代码版本控制 使用Lombok简化Java代码  生产环境：  支持使用Docker Compose管理Docker多容器，完成部署。  结果： 项目还在进行中，部分功能已测试，其他功能待迁移。</description>
+    </item>
+    
+    <item>
+      <title>微租社群—基于Spring Boot的微信公众号开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</link>
+      <pubDate>Mon, 11 Feb 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</guid>
+      <description> 项目介绍： 开发微信公众号，客户通过公众号对应租金进行付款，客户社区运营。
+开发过程： 通过在GitHub上spring-guides/gs-spring-boot-docker的开源项目快速构建Docker镜像，并在此基础上进行开发，使用Spring Data JPA实现有数据库表生成实体类，并快速构建仓储类对数据库进行操作。前端页面使用Thymeleaf模板引擎进行渲染。通过Gradle对项目进行管理和构建，并将Docker镜像push到阿里云，负载到三个服务节点。
+结果： 客户通过公众号了解公司情况，还可以通过公众号查询违章信息、资料上传、租金自缴等功能。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>微租数据—基于.NET的ERP系统及其他微服务</title>
+      <link>https://cytgenkidu.github.io/project/weizu-erp/</link>
+      <pubDate>Fri, 11 Jan 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-erp/</guid>
+      <description>项目介绍： 围绕以租车、以租代购为主营业务的汽车租赁公司和融资租赁公司，为提高企业运营效率而设计开发的ERP管理系统。
+开发过程： 与各条线负责人需求跟进，分析其主要业务流程和信息交互内容，结合公司实际情况进行系统设计和数据库设计，在Visual Studio 2015的.NET环境为开发平台的基础上，通过ASP.NET、C#编程语言、MySQL数据库进行开发，开发过程遵循敏捷开发模式，将开发运维一体化，在系统运行过程中紧随业务调整和需求变动快速迭代，不断完善各功能模块。 &amp;lt;!&amp;ndash;
+系统架构 SaaS混合云架构 采用混合云SaaS模式架构，混合云架构将公司内部自由的服务器集群、传统租赁的ICP机房中的服务器集群通过VPC（Virtual Private Cloud）的可信连接与阿里云的VBR（Virtual Border Router）相连。通过搭建此架构，迅速形成了统一运维多个云端资源的能力。
+ 负载均衡和服务发现 通过Nginx反向代理提供负载均衡，支持4层和7层的请求转发和后端绑定。通过服务发现可以实时监测到后端服务器特定端口服务的健康状态。
+云上伸缩应用 在业务高峰期或迅速增长期，通过微服务和容器级别的监控，在云端进行分钟级快速扩容，把某些特定业务流量引到新增容器。高峰期业务流量达到扩容指标，可秒级触发容器的横向扩展或纵向扩展操作。
+ 混合容灾 IT系统同时部署到云上和云下，云上提供服务和容灾，云下专用容灾。利用调度和异常恢复策略，实现了服务级别的亲和性调度，支持跨云上可用区的高可用和灾难恢复。
+云下开发测试 实现了，云下、云上、测试与生产环境的全方位统一，云下开发测试后的应用无缝全自动发布至云上。
+基于Docker Swarm的微服务集群 微租混合云中所涉及的公有云（阿里云）的计算资源主要集中在容器服务（Container Service）。通过其提供的高性能可伸缩的容器应用管理服务，对Docker容器进行应用生命周期管理。从而使微租系统具备多种应用发布方式和持续交付能力，即构成了微租所需要的微服务架构。微租IT系统通过容器服务一站式整合了公有云的虚拟化、存储、网络和安全能力。
+容器服务的基础架构如下，其中：集群管理服务：提供Docker集群管理和调度。
+ 服务发现：提供Docker的状态等元数据存储。Agent通信服务：提供每台宿主机和集群管理服务之间的通信服务。集群API：对外暴露统一OpenAPI。服务API：对外暴露兼容Docker Swarm的API。微租的IT开发人员可同时管理云上云下的资源，不需在多中云管理控制台中反复切换。基于容器基础设施无关的特性，使用同一套镜像和编排同时在云上云下部署应用。如下图所示，容器与所部属的应用有以下的对应关系，可随时重新部署应用来平衡统一集群中不同节点的负载，实现集群的效用最大化。
+ 容器服务支撑起微租整体IT系统的DevOps自动化，实现从代码变更到代码构建，镜像构建和应用部署的全流程自动化。由于开发环境与生产环境完全一致，微租IT系统每次的迭代更新不仅是代码，还有基于完全不同语言、架构的整套环境。基于此，微租IT系统能够完成每天10+以上的版本更迭，同时能够得到实时的持续反馈，每次集成或交付，都会得到第一时间的结果反馈，做到实时响应。
+已投入生产的微服务 由于使用了微服务架构，不同的生产与测试环境的搭建以及上线后的运维难度大幅下降为接近于零，使得系统同时涉及不同的编程语言成为一种可行并且最优的解决方案。在实现系统技术模块的全面解耦的同时，针对不同的应用场景选择最合适的编程语言与技术框架进行开发。目前已经使用的编程语言与框架如下图所示：
+ 其中，提供底层支持的是运行在CentOS集群之上的Docker Swarm用以支撑整个容器服务。
+ Python具备大量的图片处理、爬虫、数据分析方面的第三方库，微租IT系统使用Flask框架为其他模块提供标准的RESTful API服务，主要用于系统中的分布式爬虫、图像批量压缩、合同自动生成等功能。 Node js由于其非阻塞机制非常适合大规模并发的应用场景，所以通过结合FIS3和Express框架同样通过RESTful API服务提供了IT系统里面最大并发量的两个应用微租鹰眼和短信群发模块。 由于大部分的第三方API仅提供了Java的接口或SDK，如芝麻信用API、某些GPS设备的回传接口等，其Spring BOOT框架也是通过标准化的RESTful API向微租IT系统其他模块或第三方系统提供服务。 C# .Net Core主要用于系统的ERP系统、各级Agent、微信公众号、微信小程序后台服务的开发。同样搭建在Docker的虚拟化技术之上，不再依赖Windows Server，实现基于Debian的轻量级全自动开发、测试与部署。 上述的各个微服务已经部署在阿里云的容器服务集群之中。   功能架构 微租IT系统功能架构如下图所示。微租IT系统基于微租数据库，包括微租数据、微租社群及通过形成多维数据集支撑的PAM。 微租数据定位为微租内部系统，服务于微租员工的业务工作，包括B/S架构的ERP系统（PC端）和微信小程序（手机端）两个主要组成部分。PC端操作的ERP系统覆盖所有功能，一些有移动办公或即时拍照需要的功能（如意向客户回访、资产盘点、验车上牌等）通过微信小程序实现。
+微租社群定位为支撑DP部门的司机社群运营，包括微租社群微信公众号和微租社群微信小程序两个组成部分。微信公众号主要提供数据发布和信息推送功能，为社群成员（网约车司机）提供如违章查询、高发违章地点列表、积分查询和不定时的活动参与推送。微信小程序主要作为数据交互平台，实现包括司机收入报告、事故报告、维修保养报告等功能，便于司机在工作过程中随时向DP部门传送数据。 通过对全渠道、全过程的大数据抽取与清洗、模型运算与可视化，微租研发实现了一整套PAM（Perspective Action Model）模式，基于微租数据库形成多维数据集，从各个维度穿透财务、资产、人力、司机管理等环节的整个流程，实现各个环节的KPI指数分解，同时针对分解项给出标准化的改进规则与实施方案，支撑各业务数据分析和决策。
+ 相关链接 公众号</description>
+    </item>
+    
+    <item>
+      <title>CareDriver Initial Plan关爱出行初步方案设计与调研</title>
+      <link>https://cytgenkidu.github.io/project/weizu-caredriver/</link>
+      <pubDate>Sat, 01 Dec 2018 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-caredriver/</guid>
+      <description> 项目介绍： 公司计划与德国大众上汽斯柯达汽车公司合作，设计关爱出行实施方案，提前为项目做准备，确保方案及关键技术能够行得通。
+开发过程： 快速了解简单需求后，参考市场上已有案例Uber Health和Lyft Bussiness，调研现有网约车平台，在此基础上结合需求设计出三种不同的实施方案，包括各方案运行流程、优缺点、基础设施预算、关键技术、关键页面原型等，并对关键技术进行简单测试，确保能够实施。
+需求  三种方案流程图  结果： 项目资金审批暂未通过，项目搁置。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>微租小程序—基于.NET Core的微信小程序开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-xiaochengxu/</link>
+      <pubDate>Wed, 10 Oct 2018 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-xiaochengxu/</guid>
+      <description> 项目介绍： 搭建微信小程序积分商店，客户使用小程序通过支付宝、微信等形式进行租金支付。
+开发过程： 基于Github上找到的开源项目https://github.com/tumobi/nideshop 仿网易严选小程序Demo，在此基础上参考小程序开发手册进行开发。后端使用.NET Core 搭建接口服务，使用它提供的微信和支付宝的支付功能。
+结果： 客户能够通过积分在小程序上兑换商品，并通过小程序对每月租金进行付款。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>环境保险风险评估服务平台—基于.NET的ERP系统设计与开发</title>
+      <link>https://cytgenkidu.github.io/project/huanjing-erp/</link>
+      <pubDate>Tue, 12 Dec 2017 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/huanjing-erp/</guid>
+      <description> 项目介绍 为提高企业环境风险评估效率，结合人保机构和评估机构对企业风险评估的管理标准和要求，而设计开发的ERP管理系统。
+开发过程 针对环境责任保险风险评估服务管理工作，根据环境责任保险风险评估模型的说明文档，设计出各行业标准的数据结构及整理出各标准的评估模型计算方法。为确保计算速度及可维护性，最后选择将复杂的评估模型算法编写成存储过程进行计算。
+用例图  流程图  跨职能流程图  结果 全面覆盖环境责任保险风险评估模型的说明文档中的所有风险评估模型，简化了企业风险评估过程，提高评估公司评估效率，实现了对评估项目的分配、录入、评分、统计等统一化管理。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>安环云—基于.NET Core的微信小程序及安卓后台项目开发</title>
+      <link>https://cytgenkidu.github.io/project/huanjing-xiaochengxu/</link>
+      <pubDate>Mon, 11 Dec 2017 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/huanjing-xiaochengxu/</guid>
+      <description>项目介绍 与人保公司合作项目，开发微信小程序和安卓APP后端服务，实现移动办公，记录评估人员评估轨迹，随时随地上传提交现场风险隐患点及整改情况现场勘查照片。
+开发过程 参考小程序开发文档，使用小程序开发工具进行开发微信小程序。后端使用.NET Core 搭建接口服务，在人保内部网络进行部署，满足小程序接口及安卓后台接口。使用阿里云OSS存储记录现场勘查图片。
+结果 实现评估轨迹查询，实现现场勘查随时上传，实现企业风险点随时记录。</description>
+    </item>
+    
+  </channel>
+</rss>

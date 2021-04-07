@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="使用VSCode运行C语言">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/">
+  <meta property="og:title" content="使用VSCode运行C语言 | Cytgenkidu">
+  <meta property="og:description" content="使用VSCode运行C语言">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2021-01-21T17:24:58&#43;08:00">
+  
+  
+  <meta property="article:modified_time" content="2021-01-21T17:24:58&#43;08:00">
+  
+  
+
+  
+
+  
+
+  <title>使用VSCode运行C语言 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">使用VSCode运行C语言</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2021-01-21 17:24:58 &#43;0800 CST" itemprop="datePublished">
+<meta content="2021-01-21 17:24:58 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2021-01-21</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/vscode/">VSCode</a>, 
+    
+    <a href="/categories/c%E8%AF%AD%E8%A8%80/">C语言</a>, 
+    
+    <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=%e4%bd%bf%e7%94%a8VSCode%e8%bf%90%e8%a1%8cC%e8%af%ad%e8%a8%80&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2f%25E4%25BD%25BF%25E7%2594%25A8vscode%25E8%25BF%2590%25E8%25A1%258Cc%25E8%25AF%25AD%25E8%25A8%2580%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fpost%2f%25E4%25BD%25BF%25E7%2594%25A8vscode%25E8%25BF%2590%25E8%25A1%258Cc%25E8%25AF%25AD%25E8%25A8%2580%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2f%25E4%25BD%25BF%25E7%2594%25A8vscode%25E8%25BF%2590%25E8%25A1%258Cc%25E8%25AF%25AD%25E8%25A8%2580%2f&amp;title=%e4%bd%bf%e7%94%a8VSCode%e8%bf%90%e8%a1%8cC%e8%af%ad%e8%a8%80"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2f%25E4%25BD%25BF%25E7%2594%25A8vscode%25E8%25BF%2590%25E8%25A1%258Cc%25E8%25AF%25AD%25E8%25A8%2580%2f&amp;title=%e4%bd%bf%e7%94%a8VSCode%e8%bf%90%e8%a1%8cC%e8%af%ad%e8%a8%80"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=%e4%bd%bf%e7%94%a8VSCode%e8%bf%90%e8%a1%8cC%e8%af%ad%e8%a8%80&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fpost%2f%25E4%25BD%25BF%25E7%2594%25A8vscode%25E8%25BF%2590%25E8%25A1%258Cc%25E8%25AF%25AD%25E8%25A8%2580%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="vscode安装">VSCode安装</h2>
+
+<p>下载地址：<a href="https://code.visualstudio.com/Download" target="_blank">https://code.visualstudio.com/Download</a></p>
+
+<h2 id="mingw-w64-下载">Mingw-w64 下载</h2>
+
+<p>下载地址：<a href="https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/" target="_blank">https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/</a></p>
+
+<p>下载并解压后配置PATH</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%830.png" data-caption="环境0">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%830_hueabae7a47f18ed69f4169fda9b4b7d7e_33178_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%831.png" data-caption="环境1">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%831_hucd2624839bd881427a9baf709908d077_28434_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%832.png" data-caption="环境2">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%832_hub4b36196ff59f2e1b6bcbeebd1375c7f_49053_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%833.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/%E7%8E%AF%E5%A2%833_huaa90763289dcb5805f1b35cf98e1b722_42561_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%830.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%830_hu7107f8735242417fac38dfc936ef3838_38631_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%831.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%831_hu17a914b21824c8d146cdfe927a364748_32934_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%832.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%832_hu95d092973b033befa7d96b2d13a040f6_53649_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%833.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_%E7%8E%AF%E5%A2%833_hu38581a9c4093839b2f358c5b59dbcea2_47532_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%830.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%830_hu7107f8735242417fac38dfc936ef3838_38608_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%831.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%831_hu17a914b21824c8d146cdfe927a364748_32955_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%832.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%832_hu95d092973b033befa7d96b2d13a040f6_53634_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/环境" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%833.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E7%8E%AF%E5%A2%83/logo_logo_%E7%8E%AF%E5%A2%833_hu38581a9c4093839b2f358c5b59dbcea2_47523_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h2 id="安装vscode-插件">安装VSCode 插件</h2>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/插件" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E6%8F%92%E4%BB%B6/%E9%85%8D%E7%BD%AE.png" data-caption="配置">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E6%8F%92%E4%BB%B6/%E9%85%8D%E7%BD%AE_hubd99fae4a9da3be1ffb4a542449b6544_50682_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/插件" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E6%8F%92%E4%BB%B6/logo_%E9%85%8D%E7%BD%AE.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E6%8F%92%E4%BB%B6/logo_%E9%85%8D%E7%BD%AE_hu5df1621af2d6d9cdd4fb240708ce76f5_56266_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/插件" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E6%8F%92%E4%BB%B6/logo_logo_%E9%85%8D%E7%BD%AE.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E6%8F%92%E4%BB%B6/logo_logo_%E9%85%8D%E7%BD%AE_hu5df1621af2d6d9cdd4fb240708ce76f5_56236_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h2 id="配置运行文件">配置运行文件</h2>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C1.png" data-caption="配置运行1">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C1_hu2a9c6faa62c777b59ea80c1d1e65bdff_5733_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C2.png" data-caption="配置运行2">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C2_hu33b43795a68dbfe9e9568c1f0d43fbfc_95261_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C3.png" data-caption="配置运行3">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C3_huf48d47ff143927911f8d73eae1b822ef_54301_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C4.png" data-caption="配置运行4">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C4_hubf83804d91ee7d96ef5259897d79254d_20117_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C5.png" data-caption="配置运行5">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C5_hu6a5e82086f14cd5630d6936088285eb5_33165_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C6.png" data-caption="配置运行6">
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C6_hu511114c1ee221fe4896f6a7684c1ecb9_35808_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C1.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C1_hu5c2ae1f7c077b7bddf86c1f2c5f10d28_10538_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C2.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C2_hu92f56b7c56d48bb3a12d9cb8bbbe46ac_101992_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C3.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C3_hue3cc8582c896bc8d8e25278e3d879e2c_60321_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C4.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C4_hu481fce9db228e19f19a00b7ea12444dc_26467_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C5.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C5_hu97caa4eca518d6835fef9155ec3a57bd_38499_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C6.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C6_huc11ba99340a2f234163c7734c026642b_41156_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C1.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C1_hucf48c9524e24eae56c1158f2bbc6d2fe_10480_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C2.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C2_hu92f56b7c56d48bb3a12d9cb8bbbe46ac_101999_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C3.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C3_hue3cc8582c896bc8d8e25278e3d879e2c_60306_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C4.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C4_hu481fce9db228e19f19a00b7ea12444dc_26460_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C5.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C5_huf6d9d467ca8a2bea8e172bc93926ff44_38531_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/配置运行" href="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C6.png" >
+  <img src="/post/%E4%BD%BF%E7%94%A8vscode%E8%BF%90%E8%A1%8Cc%E8%AF%AD%E8%A8%80/img/%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C/logo_logo_%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C6_huc11ba99340a2f234163c7734c026642b_41105_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<ol>
+<li>新建一个工程，然后建一个.c文件，随便写点代码，运行它，.vscode文件夹，文件夹下会生成launch.json文件，另外可以通过在该文件夹下新建  tasks.json。</li>
+<li>配置 launch.json文件</li>
+</ol>
+
+<pre><code class="language-json">  {
+      &quot;configurations&quot;: [
+          {
+              &quot;name&quot;: &quot;(gdb) Launch&quot;, // 配置名称，将会在启动配置的下拉菜单中显示
+              &quot;type&quot;: &quot;cppdbg&quot;, // 配置类型，这里只能为cppdbg
+              &quot;request&quot;: &quot;launch&quot;, // 请求配置类型，可以为launch（启动）或attach（附加）  
+              &quot;program&quot;: &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;, // 将要进行调试的程序的路径 
+              &quot;stopAtEntry&quot;: false, // 设为true时程序将暂停在程序入口处，一般设置为false
+              &quot;cwd&quot;: &quot;${workspaceFolder}&quot;, // 调试程序时的工作目录，一般为${workspaceFolder}即代码所在目录 
+              &quot;environment&quot;: [],
+              &quot;externalConsole&quot;: false, // 如果为true，则为调试对象启动控制台。如果为false，它在Linux和Windows上会显示在集成控制台中
+              &quot;MIMode&quot;: &quot;gdb&quot;,
+              &quot;miDebuggerPath&quot;: &quot;D:\\软件安装位置\\mingw64\\bin\\gdb.exe&quot;, // miDebugger的路径，注意这里要与MinGw的路径对应
+              &quot;preLaunchTask&quot;: &quot;gcc&quot;,
+              &quot;setupCommands&quot;: [
+                  {
+                      &quot;description&quot;: &quot;为 gdb 启用整齐打印&quot;,
+                      &quot;text&quot;: &quot;-enable-pretty-printing&quot;,
+                      &quot;ignoreFailures&quot;: true
+                  }
+              ]
+          }
+      ]
+  }
+</code></pre>
+
+<ol>
+<li>配置 task.json文件</li>
+</ol>
+
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;command&quot;: &quot;gcc&quot;,
+    &quot;args&quot;: [
+        &quot;-g&quot;,
+        &quot;${file}&quot;,
+        &quot;-o&quot;,
+        &quot;${fileDirname}/${fileBasenameNoExtension}.exe&quot;
+    ],// 编译命令参数
+    &quot;problemMatcher&quot;: {
+        &quot;owner&quot;: &quot;cpp&quot;,
+        &quot;fileLocation&quot;: [
+            &quot;relative&quot;,
+            &quot;${workspaceRoot}&quot;
+        ],
+        &quot;pattern&quot;: {
+            &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&quot;,
+            &quot;file&quot;: 1,
+            &quot;line&quot;: 2,
+            &quot;column&quot;: 3,
+            &quot;severity&quot;: 4,
+            &quot;message&quot;: 5
+        }
+    },
+    &quot;group&quot;: {
+        &quot;kind&quot;: &quot;build&quot;,
+        &quot;isDefault&quot;: true
+    }
+}
+</code></pre>
+
+<ol>
+<li>配置 c_cpp_properties.json 文件</li>
+</ol>
+
+<pre><code class="language-json">{
+    &quot;configurations&quot;: [{
+        &quot;name&quot;: &quot;MinGW64&quot;,
+        &quot;includePath&quot;: [
+            &quot;${workspaceFolder}/**&quot;,
+            &quot;D:/软件安装位置/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include&quot;,
+            &quot;D:/软件安装位置/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed&quot;,
+            &quot;D:/软件安装位置/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include&quot;
+        ],
+        &quot;defines&quot;: [
+            &quot;_DEBUG&quot;,
+            &quot;UNICODE&quot;,
+            &quot;_UNICODE&quot;
+        ],
+        &quot;compilerPath&quot;: &quot;D:\\软件安装位置\\mingw64\\bin\\gcc.exe&quot;,
+        &quot;cStandard&quot;: &quot;c11&quot;,
+        &quot;cppStandard&quot;: &quot;c++17&quot;,
+        &quot;intelliSenseMode&quot;: &quot;gcc-x64&quot;
+    }],
+    &quot;version&quot;: 4
+}
+</code></pre>
+
+<ol>
+<li>运行</li>
+</ol>
+
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+    printf(&quot;hello world&quot;);
+    return 0;
+}
+</code></pre>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/vscode/">VSCode</a>
+  
+  <a class="badge badge-light" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+  
+</div>
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>相关</h3>
+        <ul>
+          
+          <li><a href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/">VSCode搭建java环境</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/post/powerbi-mysql-error1/" rel="next">PowerBI连接Mysql数据库出现未将对象引用设置到对象的实例的问题</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/post/vscode%E6%90%AD%E5%BB%BAjava%E7%8E%AF%E5%A2%83/" rel="prev">VSCode搭建java环境</a>
+  </div>
+  
+</div>
+
+
+    </div>
+    
+
+    
+
+    
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

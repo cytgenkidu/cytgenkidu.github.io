@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/categories/python/</link>
+    <description>Recent content in python on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Wed, 07 Apr 2021 14:50:21 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python生成word</title>
+      <link>https://cytgenkidu.github.io/post/python%E7%94%9F%E6%88%90word/</link>
+      <pubDate>Wed, 07 Apr 2021 14:50:21 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/python%E7%94%9F%E6%88%90word/</guid>
+      <description>方法一：写入新建文档 安装第三方库 pip install python-docx  实现代码 # pip install python-docx from docx import Document from docx.shared import Pt # 简单的打开word，输入数据，关闭word document = Document() # 向word里增加段落 document.add_paragraph(&#39;hello&#39;) document.save(&#39;./doc/test.docx&#39;) # 在一个段落中增加文字 document = Document() paragraph = document.add_paragraph(&#39;Hello, &#39;) # 增加文字 paragraph.add_run(&#39;tgenkidu&#39;) # 设置word字体大小 style = document.styles[&#39;Normal&#39;] font = style.font font.size = Pt(10) document.save(&#39;./doc/test.docx&#39;)  运行结果 注意 运行python时，要写入的word文档应处于关闭状态。
+方法二：运用模板写入word文档 本例创建了 模板.docx生成模板2.docx,也可使用已有模板进行修改，加以应用。
+安装第三方库 pip3 install docxtpl -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com  因直接安装报错，所以选择了国内的库</description>
+    </item>
+    
+  </channel>
+</rss>

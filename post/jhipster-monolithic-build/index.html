@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="准备 从Oracle网站安装Java 8。
+从Node.js网站安装Node.js（LTS 64位版本，不支持非LTS版本）。
+如使用docker，请从docker网站安装docker。
+安装JHipster 使用yarn安装，在终端运行:
+yarn add global generator-jhipster
+使用npm安装,在终端运行：
+npm install -g generator-jhipster
+等待安装完毕，执行jhipster --version ，你将会看到版本信息。
+ 生成应用 在此之前,可以先准备一个github repository(仓库)，之后将在这个仓库上创建许多Git Branchs(分支)。
+可以查看本博客关于Git简要说明。
+准备工作区 为工作区创建一个新文件夹,导航到该文件夹。
+mkdir my-test-app cd my-test-app  为应用创建一个文件夹，导航到该文件夹。
+mkdir my-shop cd my-shop  在开始前执行jhipster --version确保准备完成，最好使用最新版本的工具,执行yarn global upgrade generator-jhipster或npm update -g generator-jhipster更新版本。
+使用JHipster生成代码 生成代码只需要在应用文件夹下终端执行jhipster命令，终端将输出。
+ JHipster将询问一些问题，以获得有关所需的不同选项输入。
+? (1/19) Which *type* of application would you like to create? (Use arrow keys) //选择创建的应用类型 &gt; Monolithic application (recommended for simple projects) //综合应用 Microservice application //微服务应用 Microservice gateway //微服务网关 [BETA] JHipster UAA server (for microservice OAuth2 authentication) //微服务OAuth2的身份认证服务  服务器选择 ?">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/post/jhipster-monolithic-build/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/post/jhipster-monolithic-build/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/post/jhipster-monolithic-build/">
+  <meta property="og:title" content="使用JHipster构建单一的Web应用程序 | Cytgenkidu">
+  <meta property="og:description" content="准备 从Oracle网站安装Java 8。
+从Node.js网站安装Node.js（LTS 64位版本，不支持非LTS版本）。
+如使用docker，请从docker网站安装docker。
+安装JHipster 使用yarn安装，在终端运行:
+yarn add global generator-jhipster
+使用npm安装,在终端运行：
+npm install -g generator-jhipster
+等待安装完毕，执行jhipster --version ，你将会看到版本信息。
+ 生成应用 在此之前,可以先准备一个github repository(仓库)，之后将在这个仓库上创建许多Git Branchs(分支)。
+可以查看本博客关于Git简要说明。
+准备工作区 为工作区创建一个新文件夹,导航到该文件夹。
+mkdir my-test-app cd my-test-app  为应用创建一个文件夹，导航到该文件夹。
+mkdir my-shop cd my-shop  在开始前执行jhipster --version确保准备完成，最好使用最新版本的工具,执行yarn global upgrade generator-jhipster或npm update -g generator-jhipster更新版本。
+使用JHipster生成代码 生成代码只需要在应用文件夹下终端执行jhipster命令，终端将输出。
+ JHipster将询问一些问题，以获得有关所需的不同选项输入。
+? (1/19) Which *type* of application would you like to create? (Use arrow keys) //选择创建的应用类型 &gt; Monolithic application (recommended for simple projects) //综合应用 Microservice application //微服务应用 Microservice gateway //微服务网关 [BETA] JHipster UAA server (for microservice OAuth2 authentication) //微服务OAuth2的身份认证服务  服务器选择 ?">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  <meta property="article:published_time" content="2019-04-10T11:30:47&#43;08:00">
+  
+  
+  <meta property="article:modified_time" content="2019-04-10T11:30:47&#43;08:00">
+  
+  
+
+  
+
+  
+
+  <title>使用JHipster构建单一的Web应用程序 | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">使用JHipster构建单一的Web应用程序</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-04-10 11:30:47 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-04-10 11:30:47 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      
+        <a href="/authors/admin/">Tgenkidu Cy</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-04-10</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 分钟阅读时间
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/jhipster/">JHipster</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monolithic-build%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monolithic-build%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monolithic-build%2f&amp;title=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monolithic-build%2f&amp;title=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=%e4%bd%bf%e7%94%a8JHipster%e6%9e%84%e5%bb%ba%e5%8d%95%e4%b8%80%e7%9a%84Web%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f&amp;body=https%3a%2f%2fcytgenkidu.github.io%2fpost%2fjhipster-monolithic-build%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h2 id="准备">准备</h2>
+
+<p>从<a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">Oracle网站</a>安装Java 8。</p>
+
+<p>从<a href="https://nodejs.org/zh-cn/" target="_blank">Node.js网站</a>安装Node.js（LTS 64位版本，不支持非LTS版本）。</p>
+
+<p>如使用docker，请从<a href="https://www.docker.com/" target="_blank">docker网站</a>安装docker。</p>
+
+<h2 id="安装jhipster">安装JHipster</h2>
+
+<p>使用yarn安装，在终端运行:</p>
+
+<p><code>yarn add global generator-jhipster</code></p>
+
+<p>使用npm安装,在终端运行：</p>
+
+<p><code>npm install -g generator-jhipster</code></p>
+
+<p>等待安装完毕，执行<code>jhipster --version</code> ，你将会看到版本信息。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster install" href="/post/jhipster-monolithic-build/img/jhipster%20install/jhipster%E7%89%88%E6%9C%AC.png" data-caption="jhipster版本">
+  <img src="/post/jhipster-monolithic-build/img/jhipster%20install/jhipster%E7%89%88%E6%9C%AC_hub730b6f3bb7304cc6c2e1793f9a36089_1526_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster install" href="/post/jhipster-monolithic-build/img/jhipster%20install/logo_jhipster%E7%89%88%E6%9C%AC.png" >
+  <img src="/post/jhipster-monolithic-build/img/jhipster%20install/logo_jhipster%E7%89%88%E6%9C%AC_hu7e6f8dfb17f0bb9636b1b029f0d0dd7e_6088_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h2 id="生成应用">生成应用</h2>
+
+<p>在此之前,可以先准备一个github repository(仓库)，之后将在这个仓库上创建许多Git Branchs(分支)。</p>
+
+<div class="alert alert-note">
+  <div>
+    <p>可以查看本博客关于<a href="https://cytgenkidu.github.io/post/git-guide/" target="_blank">Git简要说明</a>。</p>
+
+  </div>
+</div>
+
+
+<h3 id="准备工作区">准备工作区</h3>
+
+<p>为工作区创建一个新文件夹,导航到该文件夹。</p>
+
+<pre><code class="language-cmd">mkdir my-test-app
+cd my-test-app
+</code></pre>
+
+<p>为应用创建一个文件夹，导航到该文件夹。</p>
+
+<pre><code class="language-cmd">mkdir my-shop
+cd my-shop
+</code></pre>
+
+<p>在开始前执行<code>jhipster --version</code>确保准备完成，最好使用最新版本的工具,执行<code>yarn global upgrade generator-jhipster</code>或<code>npm update -g generator-jhipster</code>更新版本。</p>
+
+<h3 id="使用jhipster生成代码">使用JHipster生成代码</h3>
+
+<p>生成代码只需要在应用文件夹下终端执行<code>jhipster</code>命令，终端将输出。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster" href="/post/jhipster-monolithic-build/img/jhipster/jhipster.png" data-caption="jhipster">
+  <img src="/post/jhipster-monolithic-build/img/jhipster/jhipster_hud6b8022902520d8ee74bf84e58bb4eec_13887_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster" href="/post/jhipster-monolithic-build/img/jhipster/logo_jhipster.png" >
+  <img src="/post/jhipster-monolithic-build/img/jhipster/logo_jhipster_huc7e7a0d065d8175a80cca04f0aebeaed_19859_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>JHipster将询问一些问题，以获得有关所需的不同选项输入。</p>
+
+<pre><code class="language-cmd">? (1/19) Which *type* of application would you like to create? (Use arrow keys) //选择创建的应用类型
+&gt; Monolithic application (recommended for simple projects) //综合应用
+ Microservice application //微服务应用
+ Microservice gateway //微服务网关
+ [BETA] JHipster UAA server (for microservice OAuth2 authentication) //微服务OAuth2的身份认证服务
+</code></pre>
+
+<h4 id="服务器选择">服务器选择</h4>
+
+<pre><code class="language-cmd">? (2/19) What is the base name of your application? (shop) //服务名
+
+? (3/19) What is your default Java package name? (com.mycompany.app) //默认包名
+
+? (4/19) ? Do you want to use the JHipster Registry to configure, monitor and scale your application? (Use arrow keys) //微服务注册中心和统一配置中心，只有在微服务架构时才会使用
+&gt; No
+  Yes
+
+? (5/19) Which *type* of authentication would you like to use? (Use arrow keys) //选择认证方式
+&gt; JWT authentication (stateless, with a token) //使用JSON Web Token
+  OAuth 2.0 / OIDC Authentication (stateful, works with Keycloak and Okta) //使用OpenID连接服务，类似于Keycloak或者Okta
+  HTTP Session Authentication (stateful, default Spring Security mechanism) //经典的基于session认证的机制
+  Authentication with JHipster UAA server // 此种方式必须提前生成JHipster UAA Server (Q1的选项)，它是基于OAuth2的验证服务
+
+? (6/19) Which *type* of database would you like to use? (Use arrow keys) //选择数据库类型
+&gt; SQL (H2, MySQL, MariaDB, PostgreSQL, Oracle, MSSQL) //关系型数据库
+  MongoDB
+  Couchbase
+  Cassandra
+
+? (7/19) Which *production* database would you like to use? //生产数据库
+  MySQL
+  MariaDB
+&gt; PostgreSQL
+  Oracle (Please follow our documentation to use the Oracle proprietary driver)
+  Microsoft SQL Server
+
+? (8/19) Which *development* database would you like to use? //开发数据库
+  H2 with disk-based persistence //数据存储在磁盘的H2
+  H2 with in-memory persistence //内存H2（服务关闭数据丢失）
+&gt; PostgreSQL
+
+? (9/19) Do you want to use the Spring cache abstraction?
+  Yes, with the Ehcache implementation (local cache, for a single node) //本地缓存方案 ehcache
+&gt; Yes, with the Hazelcast implementation (distributed cache, for multiple nodes) //集群缓存方案，多节点缓存，适合多微服务的分布式环境
+  [BETA] Yes, with the Infinispan implementation (hybrid cache, for multiple nodes)
+  Yes, with Memcached (distributed cache) - Warning, when using an SQL database, this will disable the Hib
+ernate 2nd level cache!
+  No - Warning, when using an SQL database, this will disable the Hibernate 2nd level cache!
+
+? (10/19) Do you want to use Hibernate 2nd level cache? (Y/n) y  //Hibernate 二级缓存
+
+? (11/19) Would you like to use Maven or Gradle for building the backend? //选择后台构建系统
+  Maven //更成熟，稳定，用户群体更大
+&gt; Gradle //更灵活，易于扩展，支持maven一键转Gradle
+
+? (12/19) Which other technologies would you like to use?  //可选技术
+ ( ) Search engine using Elasticsearch //集成搜索开源搜索引擎 ElasticSearch
+&gt;(*) WebSockets using Spring Websocket //使用Spring WebSocket、SocketJS和Stomp协议添加WebSocket支持
+ ( ) Asynchronous messages using Apache Kafka //使用Kafka添加对异步队列的支持
+ ( ) API first development using OpenAPI-generator //添加Swagger codegen对API优先开发的支持
+
+</code></pre>
+
+<h4 id="客户端选择">客户端选择</h4>
+
+<pre><code class="language-cmd">? (13/19) Which *Framework* would you like to use for the client? (Use arrow keys) //客户端框架
+&gt; Angular
+  React
+
+? (14/19) Would you like to enable *SASS* stylesheet preprocessor? (Y/n) y //SASS支持
+
+</code></pre>
+
+<h4 id="国际化选择">国际化选择</h4>
+
+<pre><code class="language-cmd">? (15/19) Would you like to enable internationalization support? (Y/n) y //是否使用国际化
+
+? (16/19) Please choose the native language of the application (Use arrow keys) //选择本地化语言
+  Belorussian
+  Bengali
+  Catalan
+&gt; Chinese (Simplified)
+  Chinese (Traditional)
+  Czech
+  Danish
+(Move up and down to reveal more choices)
+
+? (17/19) Please choose additional languages to install //选择其余支持语言
+ ( ) Czech
+ ( ) Danish
+ ( ) Dutch
+&gt;(*) English
+ ( ) Estonian
+ ( ) Farsi
+ ( ) French
+(Move up and down to reveal more choices)
+</code></pre>
+
+<h4 id="测试选择">测试选择</h4>
+
+<pre><code class="language-cmd">? (18/19) Besides JUnit and Jest, which testing frameworks would you like to use? //应用程序选择测试选项
+ ( ) Gatling
+ ( ) Cucumber
+&gt;(*) Protractor
+</code></pre>
+
+<h4 id="其他">其他</h4>
+
+<pre><code class="language-cmd">? (19/19) Would you like to install other generators from the JHipster Marketplace? (y/N) n //是否需要去JHipster商城安装第三方插件模块
+
+</code></pre>
+
+<h4 id="生成成功">生成成功</h4>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster-gen" href="/post/jhipster-monolithic-build/img/jhipster-gen/gen1.png" data-caption="gen">
+  <img src="/post/jhipster-monolithic-build/img/jhipster-gen/gen1_hub135032887311730b4f6e6ce4f529abd_28456_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster-gen" href="/post/jhipster-monolithic-build/img/jhipster-gen/gen2.png" data-caption="gen">
+  <img src="/post/jhipster-monolithic-build/img/jhipster-gen/gen2_hu5a312c253b886bedc0faf08dae74ee83_9406_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster-gen" href="/post/jhipster-monolithic-build/img/jhipster-gen/logo_gen1.png" >
+  <img src="/post/jhipster-monolithic-build/img/jhipster-gen/logo_gen1_hue26e564d8f58143b199e7ed7e73b0a6f_33927_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/jhipster-gen" href="/post/jhipster-monolithic-build/img/jhipster-gen/logo_gen2.png" >
+  <img src="/post/jhipster-monolithic-build/img/jhipster-gen/logo_gen2_huad6ca2a1d671426410343223aa084505_15063_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<h4 id="运行">运行</h4>
+
+<p>执行<code>./gradlew</code>,相当于执行<code>./gradlew bootRun -Pdev</code>。</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="gallery">
+
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/run" href="/post/jhipster-monolithic-build/img/run/logo_run.png" >
+  <img src="/post/jhipster-monolithic-build/img/run/logo_run_hu3bc234a2ab551f607562d48432ef02cb_9912_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+  <a data-fancybox="gallery-img/run" href="/post/jhipster-monolithic-build/img/run/run.png" data-caption="run">
+  <img src="/post/jhipster-monolithic-build/img/run/run_hu3827a9e7b3d6f08e19d3388120b1807e_4485_0x190_resize_lanczos_2.png" alt="">
+  </a>
+  
+
+  
+</div>
+
+<p>该应用程序已经成功启动，可以在 <a href="http://localhost:8080" target="_blank">http://localhost:8080</a> 上查看。</p>
+
+<h4 id="测试">测试</h4>
+
+<h5 id="服务端测试">服务端测试</h5>
+
+<p>运行<code>./gradlew test</code>,如果运行成功，将会看到<code>BUILD SUCCESSFUL</code>。</p>
+
+<h5 id="客户端测试">客户端测试</h5>
+
+<p>运行<code>npm test</code>或运行<code>yarn test</code>。</p>
+
+<p>e2e测试，需确保服务端正在运行，然后在运行<code>npm e2e</code>或<code>yarn e2e</code>。</p>
+
+<h4 id="热启动">热启动</h4>
+
+<p>在一个终端中，通过运行<code>./gradlew</code>以dev模式启动服务器，在另一个终端中，通过运行<code>yarn start</code>或<code>npm start</code>启动客户端开发服务器。</p>
+
+<p>当您在服务器端进行任何更改时，只需运行<code>./gradlew compileJava</code>，或者如果您使用IDE，则单击compile按钮。</p>
+
+<h4 id="提交git-可选择行执行">提交Git（可选择行执行）</h4>
+
+<pre><code class="language-cmd">&gt; git init
+&gt; git add --all
+&gt; git commit -am &quot;generated myshop application&quot;
+</code></pre>
+
+<h2 id="链接与资源">链接与资源</h2>
+
+<p><a href="https://www.jhipster.tech" target="_blank">jhipster学习网</a></p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/jhipster/">JHipster</a>
+  
+</div>
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  
+  <img class="portrait mr-3" src="/author/admin/avatar_hu9af2cef82de808ab65e058f484976a2c_58561_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+  
+
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/authors/admin">Tgenkidu Cy</a></h5>
+    <h6 class="card-subtitle">程序员呀哈哈哈</h6>
+    <p class="card-text" itemprop="description">目前专注于 java 开发。</p>
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://weibo.com/u/3024883347?nick=top%e7%a5%8e%e8%a7%81%e5%80%be%e5%bf%83&amp;is_hot=1" target="_blank" rel="noopener">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/cytgenkidu" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+      
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/post/git-guide/" rel="next">Git简要说明</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/post/gitalk-initialize/" rel="prev">Gitalk评论自动初始化</a>
+  </div>
+  
+</div>
+
+
+    </div>
+    
+
+    
+
+    
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+  </div>
+</article>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://yandex.st/highlightjs/6.2/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+</script>
+
+<script>
+  
+  var hCount = [0, 0, 0, 0, 0, 0];
+  
+  function setHCount(number) {
+    
+    hCount[number - 1]++;
+    for (var i = number, length = hCount.length; i < length; i++) {
+      
+      hCount[i] = 0;
+    }
+  }
+  
+  function setHTagValue(item, number) {
+    
+    var text = $(item).get(0).innerHTML;
+    
+    var before = "";
+    
+    for (var i = 0, length = hCount.length; i < number; i++) {
+      if (i < number - 1)
+        before += hCount[i] + ".";
+      else
+        before += hCount[i] + " ";
+    }
+    
+    
+  }
+
+  function renameHTag(item) {
+    var tag = $(item).get(0).localName;
+    if (tag === "h1") {
+      setHCount(1);
+      
+      setHTagValue(item, 1);
+    }
+    if (tag === "h2") {
+      setHCount(2);
+      
+      setHTagValue(item, 2);
+    }
+    if (tag === "h3") {
+      setHCount(3);
+      
+      setHTagValue(item, 3);
+    }
+    if (tag === "h4") {
+      setHCount(4);
+      
+      setHTagValue(item, 4);
+    }
+    if (tag === "h5") {
+      setHCount(5);
+      
+      setHTagValue(item, 5);
+    }
+    if (tag === "h6") {
+      setHCount(6);
+      
+      setHTagValue(item, 6)
+    }
+  }
+  $(document).ready(function () {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $(".article-style h1,.article-style h2,.article-style h3,.article-style h4,.article-style h5,.article-style h6")
+      .each(function (i, item) {
+        
+        renameHTag(item);
+        
+        var tag = $(item).get(0).localName;
+        
+        $(item).attr("id", "wow" + i);
+        
+        
+        $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(item).text() + '</a></br>');
+        
+        $(".newh1").css("margin-left", 0);
+        $(".newh2").css("margin-left", 10);
+        $(".newh3").css("margin-left", 20);
+        $(".newh4").css("margin-left", 30);
+        $(".newh5").css("margin-left", 40);
+        $(".newh6").css("margin-left", 50);
+      });
+    
+    $(".book-body").html($(".book-body").nextAll())
+  });
+
+</script>
+<style type="text/css">
+  @media (max-width: 1600px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .book-body {
+       
+      padding-right: 0px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .book-body {
+       
+      padding-left: 0px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .menu {
+      display: none;
+      padding: 15px;
+      position: fixed;
+      right: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      width: 50px;
+    }
+
+    .book-body {
+      padding-left: 0px;
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      right: 0;
+      top: 177px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+      overflow-x: scroll;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .menu {
+      padding: 15px;
+      position: fixed;
+      left: 0;
+      top: 120px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+       
+    }
+
+    #category {
+       
+      position: fixed;
+       
+       
+      left: 0;
+      top: 182px;
+       
+      background-color: rgba(0, 0, 0, 0.5);
+       
+      height: 66%;
+      padding: 15px;
+       
+      overflow-y: scroll;
+       
+       
+      z-index: 99;
+    }
+
+    #category a {
+      color: #fff;
+    }
+  }
+
+  @media (-webkit-max-device-pixel-ratio: 1) {
+    ::-webkit-scrollbar-track-piece {
+      background-color: rgba(255, 255, 255, 0.25)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.25);
+      background-clip: padding-box;
+      min-height: 28px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  }
+
+</style>
+
+
+
+
+
+<div class="menu" is_check="0">目录</div>
+<div class="book-body" id="book_body" style="display:block"></div>
+
+<div class="book-summary" id="category" style="display:none"></div>
+<script>
+    
+    $(".menu").click(function(){
+        console.log("aa")
+      var _is_check = $(this).attr('is_check');
+      if (_is_check == 0) {
+        $(this).attr('is_check', 1);
+        var btnwid = $("#category").width()+30;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideDown(500);
+      } else {
+        $(this).attr('is_check', 0);
+        var btnwid = 80;
+        $(this).stop().animate({
+          "width": btnwid
+        }, 500);
+        $("#category").slideUp(500);
+      }
+    })
+      
+      
+      
+      
+  
+   
+  
+  </script>
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="结构体 结构体类型的声明 结构的基础知识 结构是一些值的集合，这些值称为成员变量。结构的每个成员可以是不同类型的变量。
+结构体的声明 struct tag { member-list;//成员列表 }variable-list ;  //声明一个结构体类型 //声明一个学生类型，是想过学生类型来创建学生变量（对象） //描述学生：属性-名字&#43;电话&#43;性别&#43;年龄 struct Stu { char name[20];//名字 char tele[12];//电话 char sex[10];//性别 int age; } s4,s5,s6;//全局变量 struct Stu s3;//全局变量 int main() { //创建的结构体变量 struct Stu s1;//局部变量 struct Stu s2; return 0; }  特殊的声明 在声明结构的时候，可以不完全的声明。
+//匿名结构体类型，在声明的时候省略掉了结构体标签（tag） struct { int a; char c; }sa; //匿名结构体指针类型 struct { int a; char c; }* psa; int main() { psa = &amp;sa; return 0; }  警告： 编译器会把上面的两个声明当成完全不同的两个类型。 所以是非法的。">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/12/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/12/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/12/">
+  <meta property="og:title" content=" | Cytgenkidu">
+  <meta property="og:description" content="结构体 结构体类型的声明 结构的基础知识 结构是一些值的集合，这些值称为成员变量。结构的每个成员可以是不同类型的变量。
+结构体的声明 struct tag { member-list;//成员列表 }variable-list ;  //声明一个结构体类型 //声明一个学生类型，是想过学生类型来创建学生变量（对象） //描述学生：属性-名字&#43;电话&#43;性别&#43;年龄 struct Stu { char name[20];//名字 char tele[12];//电话 char sex[10];//性别 int age; } s4,s5,s6;//全局变量 struct Stu s3;//全局变量 int main() { //创建的结构体变量 struct Stu s1;//局部变量 struct Stu s2; return 0; }  特殊的声明 在声明结构的时候，可以不完全的声明。
+//匿名结构体类型，在声明的时候省略掉了结构体标签（tag） struct { int a; char c; }sa; //匿名结构体指针类型 struct { int a; char c; }* psa; int main() { psa = &amp;sa; return 0; }  警告： 编译器会把上面的两个声明当成完全不同的两个类型。 所以是非法的。">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  
+  
+
+  
+
+  
+
+  <title> | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#结构体">结构体</a>
+<ul>
+<li><a href="#结构体类型的声明">结构体类型的声明</a>
+<ul>
+<li><a href="#结构的基础知识">结构的基础知识</a></li>
+<li><a href="#结构体的声明">结构体的声明</a></li>
+<li><a href="#特殊的声明">特殊的声明</a></li>
+</ul></li>
+<li><a href="#结构的自引用">结构的自引用</a></li>
+<li><a href="#结构体变量的定义和初始化">结构体变量的定义和初始化</a></li>
+<li><a href="#结构体内存对齐">结构体内存对齐</a>
+<ul>
+<li><a href="#修改默认对齐数">修改默认对齐数</a></li>
+<li><a href="#写一个宏-计算结构体中某变量相对于首地址的偏移-并给出说明">写一个宏，计算结构体中某变量相对于首地址的偏移，并给出说明</a></li>
+</ul></li>
+<li><a href="#结构体传参">结构体传参</a></li>
+<li><a href="#结构体实现位段-位段的填充-可移植性">结构体实现位段（位段的填充&amp;可移植性）</a>
+<ul>
+<li><a href="#位段-位指的是二进制位">位段 位指的是二进制位</a></li>
+<li><a href="#位段的内存分配">位段的内存分配</a></li>
+<li><a href="#位段的跨平台问题">位段的跨平台问题</a></li>
+<li><a href="#总结">总结</a></li>
+<li><a href="#位段的应用">位段的应用</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#枚举">枚举</a>
+<ul>
+<li><a href="#枚举类型的定义">枚举类型的定义</a></li>
+<li><a href="#枚举的优点">枚举的优点</a></li>
+<li><a href="#枚举的大小">枚举的大小</a></li>
+</ul></li>
+<li><a href="#联合">联合</a>
+<ul>
+<li><a href="#联合类型的定义">联合类型的定义</a></li>
+<li><a href="#联合的特点">联合的特点</a></li>
+<li><a href="#联合大小的计算">联合大小的计算</a></li>
+<li><a href="#判断当前计算机的大小端存储">判断当前计算机的大小端存储</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name"></h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="结构体">结构体</h2>
+
+<h3 id="结构体类型的声明">结构体类型的声明</h3>
+
+<h4 id="结构的基础知识">结构的基础知识</h4>
+
+<p>结构是一些值的集合，这些值称为成员变量。结构的每个成员可以是不同类型的变量。</p>
+
+<h4 id="结构体的声明">结构体的声明</h4>
+
+<pre><code>struct tag
+{
+ member-list;//成员列表
+}variable-list
+;
+</code></pre>
+
+<pre><code class="language-C++">//声明一个结构体类型
+//声明一个学生类型，是想过学生类型来创建学生变量（对象）
+//描述学生：属性-名字+电话+性别+年龄
+
+struct Stu
+{
+    char name[20];//名字
+    char tele[12];//电话
+    char sex[10];//性别
+    int age;
+} s4,s5,s6;//全局变量
+
+struct Stu s3;//全局变量
+
+int main()
+{
+    //创建的结构体变量
+    struct Stu s1;//局部变量
+    struct Stu s2;
+
+    return 0;
+}
+</code></pre>
+
+<h4 id="特殊的声明">特殊的声明</h4>
+
+<p>在声明结构的时候，可以不完全的声明。</p>
+
+<pre><code class="language-C++">//匿名结构体类型，在声明的时候省略掉了结构体标签（tag）
+struct 
+{
+    int a;
+    char c;
+}sa;
+//匿名结构体指针类型
+struct
+{
+    int a;
+    char c;
+}* psa;
+
+int main()
+{
+    psa = &amp;sa;
+    return 0;
+}
+</code></pre>
+
+<p><strong>警告</strong>： 编译器会把上面的两个声明当成完全不同的两个类型。 所以是非法的。</p>
+
+<h3 id="结构的自引用">结构的自引用</h3>
+
+<pre><code class="language-C++">//错误代码,sizeof(struct Node)
+struct Node 
+{
+    int data;//4
+    struct Node next;
+};
+</code></pre>
+
+<pre><code class="language-C++">//正确代码，结构体的自引用
+struct Node 
+{
+    int data;//4
+    struct Node* next;//4/8
+};
+</code></pre>
+
+<pre><code class="language-C++">//这种写法没问题
+typedef struct Node
+{
+    double d;
+    int data;//4
+    struct Node* next;//4/8
+}Node;
+//err
+// typedef Node
+// {
+//  double d;
+//  int data;//4
+//  Node* next;//4/8
+// }Node;
+
+
+int main()
+{
+    struct Node n1;
+    Node n2;
+
+    return 0;
+}
+</code></pre>
+
+<h3 id="结构体变量的定义和初始化">结构体变量的定义和初始化</h3>
+
+<pre><code class="language-C++">struct T
+{
+    double weight;
+    short age;
+};
+struct S
+{
+    char c;
+    struct T st;
+    int a;
+    double d;
+    char arr[20];
+};
+
+int main()
+{
+    //struct S s = {'c', 100, 3.14, &quot;hello&quot;};//初始化
+    struct S s = { 'c', {55.6, 30}, 100, 3.14, &quot;hello&quot; };//结构体嵌套初始化
+
+    printf(&quot;%c %d %lf %s\n&quot;, s.c, s.a, s.d, s.arr);
+    printf(&quot;%lf\n&quot;, s.st.weight);
+    return 0;
+}
+</code></pre>
+
+<h3 id="结构体内存对齐">结构体内存对齐</h3>
+
+<p>考点 <strong>如何计算</strong>？ 首先得掌握结构体的对齐规则：</p>
+
+<ol>
+<li>第一个成员在与结构体变量偏移量为0的地址处。</li>
+<li>其他成员变量要对齐到某个数字（对齐数）的整数倍的地址处。
+对齐数 = 编译器默认的一个对齐数 与 该成员大小的较小值。
+VS中默认的值为8
+Linux gcc- 没有默认对齐数 该成员的大小就是对齐数</li>
+<li>结构体总大小为最大对齐数（每个成员变量都有一个对齐数）的整数倍。</li>
+<li>如果嵌套了结构体的情况，嵌套的结构体对齐到自己的最大对齐数的整数倍处，结构体的整体大小就是所
+有最大对齐数（含嵌套结构体的对齐数）的整数倍。</li>
+</ol>
+
+<p><img src="../img/12/结构体内存对齐.png" alt="Image text" />
+<img src="../img/12/结构体内存对齐2.png" alt="Image text" /></p>
+
+<p><strong>为什么存在内存对齐?</strong></p>
+
+<p>大部分的参考资料都是如是说的：</p>
+
+<ol>
+<li>平台原因(移植原因)： 不是所有的硬件平台都能访问任意地址上的任意数据的；某些硬件平台只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</li>
+<li>性能原因： 数据结构(尤其是栈)应该尽可能地在自然边界上对齐。 原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；而对齐的内存访问仅需要一次访问。</li>
+</ol>
+
+<p><img src="../img/12/结构体内存对齐3.png" alt="Image text" /></p>
+
+<p><strong>总体来说：</strong>
+结构体的内存对齐是拿空间来换取时间的做法。</p>
+
+<p>那在设计结构体的时候，我们既要满足对齐，又要节省空间，如何做到：</p>
+
+<pre><code>让占用空间小的成员尽量集中在一起。
+</code></pre>
+
+<p>如下面代码S1和S2类型的成员一模一样，但是S1和S2所占空间的大小有了一些区别。</p>
+
+<pre><code class="language-C++">struct S1
+{
+    char c1;//1
+    int a;//4
+    char c2;//1
+};
+
+struct S2
+{
+    char c1;//1
+    char c2;//1
+    int a;//4
+};
+
+struct S3
+{
+    double d;//8
+    char c;//1
+    int i;//4
+};
+
+struct S4
+{
+    char c;//1
+    struct S3 s3;//16
+    double d;//8
+};
+
+int main()
+{
+    struct S1 s1 = {0};
+    printf(&quot;%d\n&quot;, sizeof(s1));//12
+    struct S2 s2 = { 0 };
+    printf(&quot;%d\n&quot;, sizeof(s2));//8
+    struct S3 s3;
+    printf(&quot;%d\n&quot;, sizeof(s3));//16
+    struct S4 s4;
+    printf(&quot;%d\n&quot;, sizeof(s4));//32
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/12/offsetof.png" alt="Image text" /></p>
+
+<h4 id="修改默认对齐数">修改默认对齐数</h4>
+
+<p>之前我们见过了 #pragma 这个预处理指令，这里我们再次使用，可以改变我们的默认对齐数。</p>
+
+<pre><code class="language-C++">//设置默认对齐数位4
+#pragma pack(4)
+struct S //12 不设置对齐数为16
+{
+    char c1;//1
+    //3
+    double d;//8 4 4
+};
+#pragma pack()
+//取消设置的默认对齐数
+
+
+//设置默认对齐数位1
+#pragma pack(1)
+struct S//9 不设置对对齐数为16
+{
+    char c1;//1
+    //3
+    double d;//8 4 4
+};
+#pragma pack()
+//取消设置的默认对齐数
+</code></pre>
+
+<h4 id="写一个宏-计算结构体中某变量相对于首地址的偏移-并给出说明">写一个宏，计算结构体中某变量相对于首地址的偏移，并给出说明</h4>
+
+<p>考察： <a href="http://www.cplusplus.com/reference/cstddef/offsetof/?kw=offsetof" target="_blank">offsetof</a> 宏的实现 。<a href="./15">详细代码参考</a></p>
+
+<pre><code>offsetof (type,member)//返回偏移量
+</code></pre>
+
+<pre><code class="language-C++">#include &lt;stddef.h&gt;
+#include &lt;stdio.h&gt;
+struct S
+{
+    char c1;
+    int a;
+    char c2;
+};
+#define OFFSETOF(struct_name, member_name) (int)&amp;(((struct_name*)0)-&gt;member_name)
+int main()
+{
+    //offsetof();
+    printf(&quot;%d\n&quot;, offsetof(struct S, c1));//0
+    printf(&quot;%d\n&quot;, offsetof(struct S, a));//4
+    printf(&quot;%d\n&quot;, offsetof(struct S, c2));//8
+
+    printf(&quot;%d\n&quot;, OFFSETOF(struct S, c1) );//0
+    printf(&quot;%d\n&quot;, OFFSETOF(struct S, a) );//4
+    printf(&quot;%d\n&quot;, OFFSETOF(struct S, c2) );//8
+
+    return 0;
+}
+</code></pre>
+
+<h3 id="结构体传参">结构体传参</h3>
+
+<pre><code class="language-C++">struct S
+{
+    int a;
+    char c;
+    double d;
+};
+
+void Init(struct S* ps)
+{
+    ps-&gt;a = 100;
+    ps-&gt;c = 'w';
+    ps-&gt;d = 3.14;
+}
+
+//传值
+void Print1(struct S tmp)
+{
+    printf(&quot;%d %c %lf\n&quot;, tmp.a, tmp.c, tmp.d);
+}
+
+//传址
+void Print2(const struct S* ps)
+{
+    printf(&quot;%d %c %lf\n&quot;, ps-&gt;a, ps-&gt;c, ps-&gt;d);
+}
+
+int main()
+{
+    struct S s = {0};
+    Init(&amp;s);
+    // Init(s);err//结构体传参的时候，要传结构体的地址。
+    Print1(s);
+    Print2(&amp;s);
+
+    /*s.a = 100;
+    s.c = 'w';
+    s.d = 3.14;
+
+    printf(&quot;%d\n&quot;, s.a);*/
+    return 0;
+}
+</code></pre>
+
+<p>print2 函数优于 print1 ,因为</p>
+
+<pre><code>函数传参的时候，参数是需要压栈，会有时间和空间上的系统开销。
+如果传递一个结构体对象的时候，结构体过大，参数压栈的的系统开销比较大，所以会导致性能的下降。
+</code></pre>
+
+<p><strong>结论： 结构体传参的时候，要传结构体的地址。</strong></p>
+
+<h3 id="结构体实现位段-位段的填充-可移植性">结构体实现位段（位段的填充&amp;可移植性）</h3>
+
+<h4 id="位段-位指的是二进制位">位段 位指的是二进制位</h4>
+
+<p>位段的声明和结构是类似的，有两个不同：</p>
+
+<pre><code>1.位段的成员必须是 int、unsigned int 、signed int 、short char 位段成员类型必须一致
+2.位段的成员名后边有一个冒号和一个数字。
+</code></pre>
+
+<pre><code class="language-C++">struct S //位段类型
+{
+    int a : 2;//2个比特位，4个状态
+    int b : 5;//5个比特位
+    int c : 10;
+    int d : 30;
+};
+//2+5+10+30=47
+//47bit - 6个字节*8 = 48bit
+int main()
+{
+    struct S s;
+    printf(&quot;%d\n&quot;, sizeof(s));//8个字节
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/12/位段.png" alt="Image text" /></p>
+
+<h4 id="位段的内存分配">位段的内存分配</h4>
+
+<ol>
+<li>位段的成员可以是 int unsigned int signed int 或者是 char （属于整形家族）类型</li>
+<li>位段的空间上是按照需要以4个字节（ int ）或者1个字节（ char ）的方式来开辟的。</li>
+<li>位段涉及很多不确定因素，位段是不跨平台的，注重可移植的程序应该避免使用位段。</li>
+</ol>
+
+<pre><code class="language-C++">struct S
+{
+    char a : 3;
+    char b : 4;
+    char c : 5;
+    char d : 4;
+};
+
+int main()
+{
+    struct S s = {0};
+
+    s.a = 10;
+    s.b = 20;
+    s.c = 3;
+    s.d = 4;
+
+    return 0;
+}
+</code></pre>
+
+<p><img src="../img/12/位段2.png" alt="Image text" /></p>
+
+<h4 id="位段的跨平台问题">位段的跨平台问题</h4>
+
+<ol>
+<li>int 位段被当成有符号数还是无符号数是不确定的。</li>
+<li>位段中最大位的数目不能确定。（16位机器最大16，32位机器最大32，写成27，在16位机器会出问题。</li>
+<li>位段中的成员在内存中从左向右分配，还是从右向左分配标准尚未定义。</li>
+<li>当一个结构包含两个位段，第二个位段成员比较大，无法容纳于第一个位段剩余的位时，是舍弃剩余的位还是利用，这是不确定的。</li>
+</ol>
+
+<h4 id="总结">总结</h4>
+
+<p>跟结构相比，位段可以达到同样的效果，但是可以很好的节省空间，但是有跨平台的问题存在。</p>
+
+<h4 id="位段的应用">位段的应用</h4>
+
+<p><img src="../img/12/位段的应用.png" alt="Image text" /></p>
+
+<h2 id="枚举">枚举</h2>
+
+<p>枚举顾名思义就是一一列举。</p>
+
+<p>把可能的取值一一列举。</p>
+
+<p>比如我们现实生活中：</p>
+
+<pre><code>一周的星期一到星期日是有限的7天，可以一一列举。
+性别有：男、女、保密，也可以一一列举。
+月份有12个月，也可以一一列举
+颜色也可以一一列举。
+</code></pre>
+
+<h3 id="枚举类型的定义">枚举类型的定义</h3>
+
+<p>取值都是有值的，默认从0开始，一次递增1，当然在定义的时候也可以赋初值</p>
+
+<pre><code class="language-C++">//枚举类型
+enum Sex
+{
+    //枚举的可能取值-常量
+    MALE,
+    FEMALE =9,//初始值
+    SECRET
+};
+
+enum Color
+{
+    RED,//0
+    GREEN,//1
+    BLUE//2
+}
+//c语言的源代码--预编译--&gt;编译---链接---&gt;可执行程序
+#define RED 0
+#define GREEN 1
+#define BLUE 2
+
+int main()
+{
+    //enum Sex s = MALE;
+    //enum Color c = 2;//int err 
+    //enum Color c = RED;//只能拿枚举常量给枚举变量赋值，才不会出现类型的差异。
+    int color = RED;
+    //printf(&quot;%d %d %d\n&quot;, RED, GREEN, BLUE);
+    //printf(&quot;%d %d %d\n&quot;, MALE, FEMALE, SECRET);
+    return 0;
+}
+</code></pre>
+
+<h3 id="枚举的优点">枚举的优点</h3>
+
+<p>我们可以使用 #define 定义常量，为什么非要使用枚举？ 枚举的优点：</p>
+
+<ol>
+<li>增加代码的可读性和可维护性</li>
+<li>和#define定义的标识符比较枚举有类型检查，更加严谨。</li>
+<li>防止了命名污染（封装）</li>
+<li>便于调试</li>
+<li>使用方便，一次可以定义多个常量</li>
+</ol>
+
+<h3 id="枚举的大小">枚举的大小</h3>
+
+<p>枚举变量的大小，实质是常数所占内存空间的大小（常数为int类型，当前主流的编译器中一般是32位机器和64位机器中int型都是4个字节），枚举类型所占内存大小也是这样。</p>
+
+<pre><code class="language-C++">enum Sex
+{
+    MALE,
+    FEMALE,
+    SECRET
+};
+
+int main()
+{
+    enum Sex s = MALE;
+    printf(&quot;%d\n&quot;, sizeof(s));//4
+
+    return 0;
+}
+</code></pre>
+
+<h2 id="联合">联合</h2>
+
+<h3 id="联合类型的定义">联合类型的定义</h3>
+
+<p>联合也是一种特殊的自定义类型 这种类型定义的变量也包含一系列的成员，特征是这些成员公用同一块空间（所以联合也叫共用体）。</p>
+
+<pre><code class="language-C++">union Un
+{
+    char c;//1
+    int i; //4
+};
+
+int main()
+{
+    union Un u;//联合变量的定义
+    printf(&quot;%d\n&quot;, sizeof(u));//4
+
+    printf(&quot;%p\n&quot;, &amp;u);//00B6FD24
+    printf(&quot;%p\n&quot;, &amp;(u.c));//00B6FD24
+    printf(&quot;%p\n&quot;, &amp;(u.i));//00B6FD24
+
+    return 0;
+}
+</code></pre>
+
+<h3 id="联合的特点">联合的特点</h3>
+
+<p>联合的成员是共用同一块内存空间的，这样一个联合变量的大小，至少是最大成员的大小（因为联合至少得有
+能力保存最大的那个成员）。</p>
+
+<h3 id="联合大小的计算">联合大小的计算</h3>
+
+<p>联合的大小至少是最大成员的大小。
+当最大成员大小不是最大对齐数的整数倍的时候，就要对齐到最大对齐数的整数倍。</p>
+
+<p><img src="../img/12/联合体.png" alt="Image text" /></p>
+
+<pre><code class="language-C++">union Un
+{
+    int a;//4 8 4
+    char arr[5];//5 1 8 1
+};
+
+int main()
+{
+    union Un u;
+    printf(&quot;%d\n&quot;, sizeof(u));//8
+    return 0;
+}
+</code></pre>
+
+<h3 id="判断当前计算机的大小端存储">判断当前计算机的大小端存储</h3>
+
+<pre><code class="language-C++">int a = 0x11223344;
+//低地址--------------------&gt;高地址
+//....[][][][][11][22][33][44][][][][][][][]...  大端字节序存储模式
+//....[][][][][44][33][22][11][][][][][][][]...  小端字节序存储模式
+//讨论一个数据，放在内存中的存放的字节顺序
+//大小端字节序问题
+</code></pre>
+
+<pre><code class="language-C++">// int check_sys()
+// {
+//  int a = 1;
+//  //返回1，表示小端
+//  //返回0，表示大端
+//  return *(char*)&amp;a;
+// }
+
+int check_sys()
+{
+    union //匿名结构体就用一次
+    {
+        char c;
+        int i;
+    }u;
+
+    u.i = 1;//
+    //返回1，表示小端
+    //返回0，表示大端
+    return u.c;
+}
+
+int main()
+{
+    int ret = check_sys();
+
+    if (1 == ret)
+    {
+        printf(&quot;小端\n&quot;);
+    }
+    else
+    {
+        printf(&quot;大端\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/11/" rel="next"></a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/13/" rel="prev"></a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 0001-01-01
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

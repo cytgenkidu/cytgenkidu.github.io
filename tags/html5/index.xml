@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML5 on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/html5/</link>
+    <description>Recent content in HTML5 on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Mon, 11 Feb 2019 12:41:05 -0500</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/html5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>微租社群—基于Spring Boot的微信公众号开发</title>
+      <link>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</link>
+      <pubDate>Mon, 11 Feb 2019 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-gongzhonghao/</guid>
+      <description> 项目介绍： 开发微信公众号，客户通过公众号对应租金进行付款，客户社区运营。
+开发过程： 通过在GitHub上spring-guides/gs-spring-boot-docker的开源项目快速构建Docker镜像，并在此基础上进行开发，使用Spring Data JPA实现有数据库表生成实体类，并快速构建仓储类对数据库进行操作。前端页面使用Thymeleaf模板引擎进行渲染。通过Gradle对项目进行管理和构建，并将Docker镜像push到阿里云，负载到三个服务节点。
+结果： 客户通过公众号了解公司情况，还可以通过公众号查询违章信息、资料上传、租金自缴等功能。
+效果图  </description>
+    </item>
+    
+    <item>
+      <title>CareDriver Initial Plan关爱出行初步方案设计与调研</title>
+      <link>https://cytgenkidu.github.io/project/weizu-caredriver/</link>
+      <pubDate>Sat, 01 Dec 2018 12:41:05 -0500</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/project/weizu-caredriver/</guid>
+      <description> 项目介绍： 公司计划与德国大众上汽斯柯达汽车公司合作，设计关爱出行实施方案，提前为项目做准备，确保方案及关键技术能够行得通。
+开发过程： 快速了解简单需求后，参考市场上已有案例Uber Health和Lyft Bussiness，调研现有网约车平台，在此基础上结合需求设计出三种不同的实施方案，包括各方案运行流程、优缺点、基础设施预算、关键技术、关键页面原型等，并对关键技术进行简单测试，确保能够实施。
+需求  三种方案流程图  结果： 项目资金审批暂未通过，项目搁置。
+效果图  </description>
+    </item>
+    
+  </channel>
+</rss>

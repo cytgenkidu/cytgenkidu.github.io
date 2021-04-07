@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <meta name="author" content="Tgenkidu Cy">
+
+  
+  
+  
+  
+  
+  <meta name="description" content="通讯录Contact  存放1000个好友的信息 ： 名字 电话 性别 住址 年龄 增加好友信息 删除指定名字的好友信息 查找好友信息 修改好友信息 打印好友信息 排序  简单流程 详细代码 test.c 测试 #define _CRT_SECURE_NO_WARNINGS 1 #include &quot;contact.h&quot; void menu() { printf(&quot;*****************************************\n&quot;); printf(&quot;****** 1. add 2. del *******\n&quot;); printf(&quot;****** 3. search 4. modify *******\n&quot;); printf(&quot;****** 5. show 6. sort *******\n&quot;); printf(&quot;****** 0. exit *******\n&quot;); printf(&quot;*****************************************\n&quot;); } int main() { int input = 0; //创建通讯录 struct Contact con;//con就是通讯录，里边包含：data指针和size，capacity //初始化通讯录 InitContact(&amp;con); // do { menu(); printf(&quot;请选择:&gt;&quot;); scanf(&quot;%d&quot;, &amp;input); switch (input) { case ADD: AddContact(&amp;con); break; case DEL: DelContact(&amp;con); break; case SEARCH: SearchContact(&amp;con); break; case MODIFY: ModifyContact(&amp;con); break; case SHOW: ShowContact(&amp;con);//即使是展示也要取地址，这种效率高 break; case SORT: SortContact(&amp;con); break; case EXIT: //销毁通讯录-释放动态开辟的内存 DestroyContact(&amp;con); printf(&quot;退出通讯录\n&quot;); break; default: printf(&quot;选择错误\n&quot;); break; } } while (input); return 0; }  contact.">
+
+  
+  <link rel="alternate" hreflang="zh-cn" href="https://cytgenkidu.github.io/tutorial/c/contact/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml"
+    title="Cytgenkidu">
+  <link rel="feed" href="https://cytgenkidu.github.io/index.xml" type="application/rss+xml" title="Cytgenkidu">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://cytgenkidu.github.io/tutorial/c/contact/">
+
+  
+  
+  
+  
+  
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Cytgenkidu">
+  <meta property="og:url" content="https://cytgenkidu.github.io/tutorial/c/contact/">
+  <meta property="og:title" content=" | Cytgenkidu">
+  <meta property="og:description" content="通讯录Contact  存放1000个好友的信息 ： 名字 电话 性别 住址 年龄 增加好友信息 删除指定名字的好友信息 查找好友信息 修改好友信息 打印好友信息 排序  简单流程 详细代码 test.c 测试 #define _CRT_SECURE_NO_WARNINGS 1 #include &quot;contact.h&quot; void menu() { printf(&quot;*****************************************\n&quot;); printf(&quot;****** 1. add 2. del *******\n&quot;); printf(&quot;****** 3. search 4. modify *******\n&quot;); printf(&quot;****** 5. show 6. sort *******\n&quot;); printf(&quot;****** 0. exit *******\n&quot;); printf(&quot;*****************************************\n&quot;); } int main() { int input = 0; //创建通讯录 struct Contact con;//con就是通讯录，里边包含：data指针和size，capacity //初始化通讯录 InitContact(&amp;con); // do { menu(); printf(&quot;请选择:&gt;&quot;); scanf(&quot;%d&quot;, &amp;input); switch (input) { case ADD: AddContact(&amp;con); break; case DEL: DelContact(&amp;con); break; case SEARCH: SearchContact(&amp;con); break; case MODIFY: ModifyContact(&amp;con); break; case SHOW: ShowContact(&amp;con);//即使是展示也要取地址，这种效率高 break; case SORT: SortContact(&amp;con); break; case EXIT: //销毁通讯录-释放动态开辟的内存 DestroyContact(&amp;con); printf(&quot;退出通讯录\n&quot;); break; default: printf(&quot;选择错误\n&quot;); break; } } while (input); return 0; }  contact.">
+  <meta property="og:image" content="https://cytgenkidu.github.io/img/icon-192.png">
+  <meta property="og:locale" content="zh-cn">
+  
+  
+  
+  
+
+  
+
+  
+
+  <title> | Cytgenkidu</title>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fcb4ffd03ad556276685a41c0ba9d475";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+  </script>
+</head>
+
+<body id="top" data-spy="scroll"
+  data-target="#TableOfContents" data-offset="71"
+  >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Cytgenkidu</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>首页</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>博客</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>笔记</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>联系</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid docs">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 docs-sidebar">
+      
+
+
+
+
+<form class="docs-search d-flex align-items-center">
+  <button class="btn docs-toggle d-md-none p-0 mr-3" type="button" data-toggle="collapse" data-target="#docs-nav" aria-controls="docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  
+  <input name="q" type="search" class="form-control" id="search-query" placeholder="搜索..." autocomplete="off">
+  
+</form>
+
+<nav class="collapse docs-links" id="docs-nav">
+  
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/">概述</a>
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/1/">1、基础知识</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/1/">初识C语言</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/java/1/">基本概念</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/2/">分支语句和循环语句</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/3/">函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/4/">数组</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/5/">操作符详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/6/">指针</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/7/">结构体</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/8/">实用调试技巧</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/9/">数据的存储</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/10/">指针的详解</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/11/">字符函数和字符串函数</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/12/">自定义类型：结构体，枚举，联合</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/13/">动态内存管理</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/14/">文件操作</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/15/">程序环境和预处理</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  <div class="docs-toc-item">
+    <a class="docs-toc-link" href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">2、应用</a>
+    <ul class="nav docs-sidenav">
+      
+      <li >
+        <a href="/tutorial/c/%E4%B8%89%E5%AD%90%E6%A3%8B/">三子棋的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%89%AB%E9%9B%B7%E6%B8%B8%E6%88%8F/">扫雷游戏的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/">汉诺塔问题</a>
+      </li>
+      
+      <li class="active">
+        <a href="/tutorial/c/contact/">通讯录的实现</a>
+      </li>
+      
+      <li >
+        <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/">青蛙跳台阶问题</a>
+      </li>
+      
+    </ul>
+    
+
+  </div>
+  
+  
+</nav>
+
+    </div>
+
+    
+    <div class="d-none d-xl-block col-xl-2 docs-toc">
+      
+      <p class="docs-toc-title">在本页</p>
+      
+
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#通讯录contact">通讯录Contact</a></li>
+<li><a href="#简单流程">简单流程</a></li>
+<li><a href="#详细代码">详细代码</a>
+<ul>
+<li><a href="#test-c-测试">test.c 测试</a></li>
+<li><a href="#contact-c-实现函数的功能">contact.c 实现函数的功能</a></li>
+<li><a href="#contact-h-声明函数">contact.h 声明函数</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav> 
+
+      <ul class="nav toc-top">
+        <li><a href="#">回到顶部</a></li>
+      </ul>
+
+      
+    </div>
+    
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 docs-content" role="main">
+
+      <article class="article" itemscope itemtype="http://schema.org/Article">
+
+        <div class="docs-article-container">
+          <h1 itemprop="name"></h1>
+
+          <div class="article-style" itemprop="articleBody">
+            
+
+<h2 id="通讯录contact">通讯录Contact</h2>
+
+<ol>
+<li>存放1000个好友的信息  ： 名字 电话 性别 住址 年龄</li>
+<li>增加好友信息</li>
+<li>删除指定名字的好友信息</li>
+<li>查找好友信息</li>
+<li>修改好友信息</li>
+<li>打印好友信息</li>
+<li>排序</li>
+</ol>
+
+<p><img src="../img/通讯录/静态改动态.png" alt="Image Text" /></p>
+
+<h2 id="简单流程">简单流程</h2>
+
+<p><img src="https://img-blog.csdnimg.cn/20210323211415121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3NzQ2ODU1,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2 id="详细代码">详细代码</h2>
+
+<h3 id="test-c-测试">test.c 测试</h3>
+
+<pre><code class="language-C++">#define _CRT_SECURE_NO_WARNINGS 1
+
+#include &quot;contact.h&quot;
+
+void menu()
+{
+    printf(&quot;*****************************************\n&quot;);
+    printf(&quot;****** 1. add           2. del    *******\n&quot;);
+    printf(&quot;****** 3. search        4. modify *******\n&quot;);
+    printf(&quot;****** 5. show          6. sort   *******\n&quot;);
+    printf(&quot;****** 0. exit                    *******\n&quot;);
+    printf(&quot;*****************************************\n&quot;);
+}
+
+int main()
+{
+    int input = 0;
+    //创建通讯录
+    struct Contact con;//con就是通讯录，里边包含：data指针和size，capacity
+    //初始化通讯录
+    InitContact(&amp;con);
+    //
+    do
+    {
+        menu();
+        printf(&quot;请选择:&gt;&quot;);
+        scanf(&quot;%d&quot;, &amp;input);
+        switch (input)
+        {
+        case ADD:
+            AddContact(&amp;con);
+            break;
+        case DEL:
+            DelContact(&amp;con);
+            break;
+        case SEARCH:
+            SearchContact(&amp;con);
+            break;
+        case MODIFY:
+            ModifyContact(&amp;con);
+            break;
+        case SHOW:
+            ShowContact(&amp;con);//即使是展示也要取地址，这种效率高
+            break;
+        case SORT:
+            SortContact(&amp;con);
+            break;
+        case EXIT:
+            //销毁通讯录-释放动态开辟的内存
+            DestroyContact(&amp;con);
+            printf(&quot;退出通讯录\n&quot;);
+            break;
+        default:
+            printf(&quot;选择错误\n&quot;);
+            break;
+        }
+    } while (input);
+    return 0;
+}
+</code></pre>
+
+<h3 id="contact-c-实现函数的功能">contact.c 实现函数的功能</h3>
+
+<pre><code class="language-C++">#define _CRT_SECURE_NO_WARNINGS 1
+
+#include &quot;contact.h&quot;
+
+void InitContact(struct Contact* ps)
+{
+    ps-&gt;data = (struct PeoInfo*)malloc(DEFAULT_SZ * sizeof(struct PeoInfo));
+    if (ps-&gt;data == NULL)
+    {
+        return;
+    }
+    ps-&gt;size = 0;
+    ps-&gt;capacity = DEFAULT_SZ;
+}
+
+
+void CheckCapacity(struct Contact* ps)
+{
+    if (ps-&gt;size == ps-&gt;capacity)
+    {
+        //增容
+        struct PeoInfo* ptr = realloc(ps-&gt;data, (ps-&gt;capacity + 2) * sizeof(PeoInfo));
+        if (ptr != NULL)
+        {
+            ps-&gt;data = ptr;
+            ps-&gt;capacity += 2;
+            printf(&quot;增容成功\n&quot;);
+        }
+        else
+        {
+            printf(&quot;增容失败\n&quot;);
+        }
+    }
+}
+
+void AddContact(struct Contact* ps)
+{
+    //检测当前通讯录的容量
+    //1. 如果满了，就增加空间
+    //2. 如果不满，啥事都不干
+    CheckCapacity(ps);
+    //增加数据
+    printf(&quot;请输入名字:&gt;&quot;);
+    scanf(&quot;%s&quot;, ps-&gt;data[ps-&gt;size].name);//数组
+    printf(&quot;请输入年龄:&gt;&quot;);
+    scanf(&quot;%d&quot;, &amp;(ps-&gt;data[ps-&gt;size].age));//int 要加&amp;
+    printf(&quot;请输入性别:&gt;&quot;);
+    scanf(&quot;%s&quot;, ps-&gt;data[ps-&gt;size].sex);
+    printf(&quot;请输入电话:&gt;&quot;);
+    scanf(&quot;%s&quot;, ps-&gt;data[ps-&gt;size].tele);
+    printf(&quot;请输入地址:&gt;&quot;);
+    scanf(&quot;%s&quot;, ps-&gt;data[ps-&gt;size].addr);
+
+    ps-&gt;size++;
+    printf(&quot;添加成功\n&quot;);
+}
+
+void ShowContact(const struct Contact* ps)
+{
+    if (ps-&gt;size == 0)
+    {
+        printf(&quot;通讯录为空格\n&quot;);
+    }
+    else
+    {
+        int i = 0;
+        //标题
+        printf(&quot;%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n&quot;, &quot;名字&quot;, &quot;年龄&quot;, &quot;性别&quot;, &quot;电话&quot;, &quot;地址&quot;);
+        //数据
+        for (i = 0; i &lt; ps-&gt;size; i++)
+        {
+            printf(&quot;%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n&quot;,
+                ps-&gt;data[i].name,
+                ps-&gt;data[i].age,
+                ps-&gt;data[i].sex,
+                ps-&gt;data[i].tele,
+                ps-&gt;data[i].addr);
+        }
+    }
+}
+//没有声明，并加上static 这个函数只能在该源文件内调用，不会暴露在外面
+static int FindByName(const struct Contact* ps, char name[MAX_NAME])
+{
+    int i = 0;
+    for (i = 0; i &lt; ps-&gt;size; i++)
+    {
+        if (0 == strcmp(ps-&gt;data[i].name, name))
+        {
+            return i;
+        }
+    }
+
+    return -1;//找不到的情况
+}
+
+void DelContact(struct Contact* ps)
+{
+    char name[MAX_NAME];
+    int pos = 0;
+    printf(&quot;请输入要删除人的名字:&gt;&quot;);
+    scanf(&quot;%s&quot;, name);
+    //1. 查找要删除的人在什么位置
+    //找到了返回名字所在元素的下标
+    //找不到返回 -1
+    pos = FindByName(ps, name);
+    //2. 删除
+    if (pos == -1)
+    {
+        printf(&quot;要删除的人不存在\n&quot;);
+    }
+    else
+    {
+        //删除数据
+        int j = 0;
+        for (j = pos; j &lt; ps-&gt;size - 1; j++)
+        {
+            ps-&gt;data[j] = ps-&gt;data[j + 1];
+        }
+        ps-&gt;size--;
+        printf(&quot;删除成功\n&quot;);
+    }
+}
+
+void SearchContact(const struct Contact* ps)
+{
+    int pos = 0;
+    char name[MAX_NAME];
+    printf(&quot;请输入要查找人的名字:&gt;&quot;);
+    scanf(&quot;%s&quot;, name);
+    pos = FindByName(ps, name);
+    if (pos == -1)
+    {
+        printf(&quot;要查找的人不存在\n&quot;);
+    }
+    else
+    {
+        printf(&quot;%-20s\t%-4s\t%-5s\t%-12s\t%-20s\n&quot;, &quot;名字&quot;, &quot;年龄&quot;, &quot;性别&quot;, &quot;电话&quot;, &quot;地址&quot;);
+        printf(&quot;%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n&quot;,
+            ps-&gt;data[pos].name,
+            ps-&gt;data[pos].age,
+            ps-&gt;data[pos].sex,
+            ps-&gt;data[pos].tele,
+            ps-&gt;data[pos].addr);
+    }
+}
+
+void ModifyContact(struct Contact* ps)
+{
+    int pos = 0;
+    char name[MAX_NAME];
+    printf(&quot;请输入要修改人的名字:&gt;&quot;);
+    scanf(&quot;%s&quot;, name);
+    pos = FindByName(ps, name);
+    if (pos == -1)
+    {
+        printf(&quot;要修改人的信息不错在\n&quot;);
+    }
+    else
+    {
+        printf(&quot;请输入名字:&gt;&quot;);
+        scanf(&quot;%s&quot;, ps-&gt;data[pos].name);
+        printf(&quot;请输入年龄:&gt;&quot;);
+        scanf(&quot;%d&quot;, &amp;(ps-&gt;data[pos].age));
+        printf(&quot;请输入性别:&gt;&quot;);
+        scanf(&quot;%s&quot;, ps-&gt;data[pos].sex);
+        printf(&quot;请输入电话:&gt;&quot;);
+        scanf(&quot;%s&quot;, ps-&gt;data[pos].tele);
+        printf(&quot;请输入地址:&gt;&quot;);
+        scanf(&quot;%s&quot;, ps-&gt;data[pos].addr);
+
+        printf(&quot;修改完成\n&quot;);
+    }
+}
+
+//冒泡排序
+void SortContact(struct Contact*ps)
+{
+    for (int i = 0; i &lt; ps-&gt;size; i++)//冒泡排序的趟数
+    {
+        int flag = 1; //假设这一趟要排序的数据已经有序
+        //每一趟冒泡排序
+        for (int j = 0; j &lt; ps-&gt;size - i - 1; j++)
+        {
+            if (strcmp(ps-&gt;data[j].name, ps-&gt;data[j + 1].name) &gt; 0)
+            {
+                PeoInfo temp;
+                temp = ps-&gt;data[j];
+                ps-&gt;data[j] = ps-&gt;data[j + 1];
+                ps-&gt;data[j + 1] = temp;
+                flag = 0; //本趟排序的数据其实不完全有序
+            }
+        }
+        if (flag == 1)
+        {
+            break;// if不能break,这个break是跳出外层循环
+        }
+    }
+}
+
+void DestroyContact(Contact* ps)
+{
+    free(ps-&gt;data);
+    ps-&gt;data = NULL;
+}
+</code></pre>
+
+<h3 id="contact-h-声明函数">contact.h 声明函数</h3>
+
+<pre><code class="language-C++">#define _CRT_SECURE_NO_WARNINGS 1
+
+//#define MAX 1000
+
+#define DEFAULT_SZ 3
+
+
+#define MAX_NAME 20
+#define MAX_SEX 5
+#define MAX_TELE 12
+#define MAX_ADDR 30
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+enum Option
+{
+    EXIT,//0
+    ADD, //1
+    DEL, //2
+    SEARCH, //3
+    MODIFY, //4
+    SHOW, //5
+    SORT //6
+};
+
+typedef struct PeoInfo
+{
+    char name[MAX_NAME];
+    int age;
+    char sex[MAX_SEX];
+    char tele[MAX_TELE];
+    char addr[MAX_ADDR];
+}PeoInfo;
+
+//通讯录类型
+typedef struct Contact
+{
+    struct PeoInfo *data;//存放1000个信息
+    int size;//记录当前已经有的元素个数
+    int capacity;//当前通讯录的最大容量
+}Contact;
+
+
+
+//声明函数
+//初始化通讯录的函数
+void InitContact(struct Contact* ps);
+
+//增加一个信息到通讯录
+void AddContact(struct Contact* ps);
+
+//打印通讯录中的信息
+void ShowContact(const struct Contact* ps);
+
+//删除指定的联系人
+void DelContact(struct Contact* ps);
+
+//查找指定的人的信息
+void SearchContact(const struct Contact* ps);
+
+//修改指定联系人
+void ModifyContact(struct Contact* ps);
+
+//排序通讯录内容
+void SortContact(struct Contact*ps);
+
+void DestroyContact(Contact* ps);
+</code></pre>
+
+          </div>
+
+          
+
+
+          
+          <div class="article-widget">
+            
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">上一页</div>
+    <a href="/tutorial/c/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/" rel="next"></a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">下一页</div>
+    <a href="/tutorial/c/%E9%9D%92%E8%9B%99%E8%B7%B3%E5%8F%B0%E9%98%B6%E9%97%AE%E9%A2%98/" rel="prev"></a>
+  </div>
+  
+</div>
+
+
+          </div>
+          
+        </div>
+
+        <div class="body-footer">
+          最近更新于 0001-01-01
+        </div>
+       
+      </article>
+      
+
+
+
+<link rel="stylesheet" href="/css/gitalk.css">
+<script src="/js/gitalk/md5.min.js"></script>
+<script src="/js/gitalk/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  
+   
+ 
+ var gitalk = new Gitalk({
+    clientID: '10a6d5d1d3fbd4240caf',
+    clientSecret: '3df97152f7b0637c0d6dca7cd06eac30b4b908e3',
+    repo: 'cytgenkidu.github.io',
+    owner: 'cytgenkidu',
+    admin: ['cytgenkidu'],
+    
+    id: md5(location.pathname),
+    distractionFreeMode: false 
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2019 &middot; 
+
+    Powered by the
+    
+    <a href="https://github.com/cytgenkidu" target="_blank" rel="noopener">cytgenkidu</a> 
+    <i class="fas fa-heart" style="color: red;"></i>
+    .
+
+    
+  </p>
+</footer>
+
+
+    </main>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "搜索...",
+        'results': "搜索结果",
+        'no_results': "没有找到结果"
+      };
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲"
+        };
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/anchor-js/4.1.1/anchor.min.js" integrity="sha256-pB/deHc9CGfFpJRjC43imB29Rse8tak+5eXqntO94ck=" crossorigin="anonymous"></script>
+    <script>
+      anchors.add();
+    </script>
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+
+

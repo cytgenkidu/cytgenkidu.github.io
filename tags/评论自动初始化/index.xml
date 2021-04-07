@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>评论自动初始化 on Cytgenkidu</title>
+    <link>https://cytgenkidu.github.io/tags/%E8%AF%84%E8%AE%BA%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+    <description>Recent content in 评论自动初始化 on Cytgenkidu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2019</copyright>
+    <lastBuildDate>Thu, 04 Apr 2019 17:31:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://cytgenkidu.github.io/tags/%E8%AF%84%E8%AE%BA%E8%87%AA%E5%8A%A8%E5%88%9D%E5%A7%8B%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Gitalk评论自动初始化</title>
+      <link>https://cytgenkidu.github.io/post/gitalk-initialize/</link>
+      <pubDate>Thu, 04 Apr 2019 17:31:01 +0800</pubDate>
+      
+      <guid>https://cytgenkidu.github.io/post/gitalk-initialize/</guid>
+      <description>出现原因 该篇博文的评论系统还没初始化。
+解决办法 手动完成 登录自己的github账号登录后，就可以在上面错误信息处看到“Initialize Comments”的按钮 (ps: 由于要求回调URL和当前地址一样，故第2步不能在本地调试， 需把代码先上传再调试),点击Initialize Comments按钮后，就可以开始对该篇博文开始评论了， 同时也可以在对应的github仓库看到相应的issue。
+自动初始化Gitalk 生成sitemap站点地图： hugo附带了一个内置模板文件,可在layouts/sitemap.xml或layouts/_default/sitemap.xml查看模板。
+在public/sitemap.xml查看生成的sitemap站点地图。
+获取github接口的调用权限  创建一个access token 点此创建  点击Generate new token按钮,生成token。   编写脚本文件 安装依赖包 在根目录下执行以下命令
+npm install request --save npm install xml-parser --save npm install cheerio --save  创建脚本文件 在根目录下创建initialize.js
+const request = require(&amp;quot;request&amp;quot;); const fs = require(&amp;quot;fs&amp;quot;); const path = require(&amp;quot;path&amp;quot;); const url = require(&amp;quot;url&amp;quot;); const xmlParser = require(&amp;quot;xml-parser&amp;quot;); const cheerio = require(&amp;quot;cheerio&amp;quot;); // 根据自己的情况进行配置 const config = { username: &amp;quot;cytgenkidu&amp;quot;, // GitHub 用户名 token: &amp;quot;&amp;quot;, // GitHub Token repo: &amp;quot;cytgenkidu.</description>
+    </item>
+    
+  </channel>
+</rss>
